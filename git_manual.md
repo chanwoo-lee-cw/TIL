@@ -249,4 +249,3 @@ reset과 비슷하지만, 삭제 되기 이전의 내용을 새 commit으로 만
 https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
 
 https://gmlwjd9405.github.io/2018/05/25/git-add-cancle.html
-
