@@ -164,3 +164,32 @@ ex ) git clone https://github.com/Alphanewbie/Personal_learning
 
 
 
+##### git diff
+
+수정된 파일에서 어떤 부분이 달라졌는지 확인해주는 명령어.
+
+삭제 된 부분은 빨간 색으로 추가된 부분은 초록색으로 표시해서 보여준다.
+
+
+
+##### git checkout "항목명"
+
+Modified 상태의 파일을 add하지 않고 Unmodified 상태로 되돌리는 명령어. 수정을 잘못했을 때 파일을 원 상태로 되돌리는 명령어
+
+ex) git check git_manual.md
+
+
+
+##### git reset "항목명"
+
+Modified가 아닌 add까지 된 staged상태일 때 되돌리는 명령어. stage상태로부터 삭제 된다. commit한 이후에 되돌릴 때도 reset이 사용된다.
+
+옵션 3가지
+
+- --soft : commit 후의 Unmodified에서 commit 직전의 Stage상태로 만든다.
+- --mixed : Unmodified 에서 commit전의 Modified상태로 만든다.(기본 값)
+- --hard : Unmodified에서 commit 전의 Unmodified 로 만든다. 즉, 전부 날림
+
+
+
+참고한 사이트 : https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
