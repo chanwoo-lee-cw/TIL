@@ -375,7 +375,16 @@ merge 결과에 Fast -forward라고 표시 되는 것은 future 브렌치가 mas
 
 서로 다른 브렌치 둘을 병합. 
 
-이건 충돌이 
+이건 충돌이 일어나면 경고를 해준다.
+
+```Linux
+student@M130116 MINGW64 ~/Personal_learning (master)
+$ git rebase future
+// 경고 메세지 
+// 그 후에 수정이 끝난 후에 
+$ git rebase --continue
+// 병합을 재개해준다.
+```
 
 
 
