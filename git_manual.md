@@ -240,6 +240,21 @@ reset과 비슷하지만, 삭제 되기 이전의 내용을 새 commit으로 만
 
 
 
+#### git branch
+
+새로운 브렌치 만들기 그리고 브렌치 확인
+
+ex) 
+
+- git branch [브렌치명] : 새로운 브렌치 만들기
+- git branch : 만들어진 브렌치 확인, 현재의 HEAD가 있는 브렌치는 *표시가 되었다.
+
+
+
+#### git checkout [branchName]
+
+다른 브렌치로 옮겨가기 위한 명령어
+
 
 
 
