@@ -164,7 +164,6 @@ ex ) git clone https://github.com/Alphanewbie/Personal_learning
 
 
 
-<<<<<<< HEAD
 #### git diff
 
 명령어를 옵션 없이 쓰면 Working Directory와 Index영역 사이의 변경사항을 표시합니다.
@@ -183,17 +182,6 @@ unstaged된 상태(Add가 안된 상태)에서 변경점이 확인 됩니다.
 
 
 #### git checkout [항목명]
-=======
-##### git diff
-
-수정된 파일에서 어떤 부분이 달라졌는지 확인해주는 명령어.
-
-삭제 된 부분은 빨간 색으로 추가된 부분은 초록색으로 표시해서 보여준다.
-
-
-
-##### git checkout "항목명"
->>>>>>> 262159dd9bb72f2c833c6b71e38d3bba85133b51
 
 Modified 상태의 파일을 add하지 않고 Unmodified 상태로 되돌리는 명령어. 수정을 잘못했을 때 파일을 원 상태로 되돌리는 명령어
 
@@ -201,17 +189,12 @@ ex) git check git_manual.md
 
 
 
-<<<<<<< HEAD
 #### git reset [옵션] [항목명]
-=======
-##### git reset "항목명"
->>>>>>> 262159dd9bb72f2c833c6b71e38d3bba85133b51
 
 Modified가 아닌 add까지 된 staged상태일 때 되돌리는 명령어. stage상태로부터 삭제 된다. commit한 이후에 되돌릴 때도 reset이 사용된다.
 
 옵션 3가지
 
-<<<<<<< HEAD
 - --soft : 
   - index 보존(add한 상태, staged 상태), 워킹 디렉터리의 파일 보존. 즉 모두 보존.
 - --mixed : 
