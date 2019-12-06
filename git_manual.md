@@ -130,5 +130,37 @@ commit 된 내역을 볼 수 있는 명령어.
 
 
 
+##### git remote add "저장소 명" "저장소 주소"
+
+원격 저장소를 사용한다. 주로 깃 허브에 사용
+
+ex) git remote add origin https://github.com/[이름]/gitExample
+
+
+
+##### git push "저장소 명" "브렌치 명"
+
+원격 저장소에 현재 브렌치를 푸시한다.
+
+ex) git push learning master	//master에 있는 내용을 원격 저장소 learning으로 올린다.
+
+
+
+##### git pull "저장소명" "브렌치 명"
+
+다른 사람이 PR을 통해 코드를 업데이트 했더나 깃 허브를 통해 commit 했을때,
+
+그 내용을 클라이언트로 내려 받는 명령어.
+
+ex) git pull learning master	//learning 에 있는 내용을 master에 내려받는다.
+
+
+
+##### git clone "주소"
+
+pull과 비슷하지만 클라이언트 상에 아무 것도 없을때, 서버의 프로젝트를 내려 받는 명령어. 저장소의 내용을 다운로드 받고 자동으로 init도 된다.
+
+ex ) git clone https://github.com/Alphanewbie/Personal_learning
+
 
 
