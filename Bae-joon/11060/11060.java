@@ -24,17 +24,19 @@ public class Main {
 			if (dp[i] == -1)
 				continue;
 			for (int j = 1; j <= ai[i]; j++) {
-				if (i + j >= n)
-					break;
+				if (i+j >= n) break;
 				if (dp[i + j] == -1)
 					dp[i + j] = dp[i] + 1;
 				else {
-					dp[i + j] = Math.min(dp[i + j], dp[i] + 1);
+					dp[i+j] = Math.min(dp[i+j], dp[i]+1);
 				}
 
 			}
 		}
-		System.out.print(dp[n - 1]);
+		System.out.print(dp[n-1]);
+//		for (int i=0;i<n;i++) {
+//			System.out.print(ai[i] + " ");
+//		}
 	}
 
 }

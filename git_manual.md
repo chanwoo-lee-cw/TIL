@@ -320,13 +320,9 @@ $ git branch : 만들어진 브렌치 확인, 현재의 HEAD가 있는 브렌치
 
 다른 브렌치로 옮겨가기 위한 명령어
 
-
-
-얄파 테스트
-
-
-
-얄파 테스트
+```Linux
+$ git checkout study
+```
 
 
 
@@ -391,6 +387,7 @@ $ git rebase --continue
 참고한 사이트 : 
 
 https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
+
 https://gmlwjd9405.github.io/2018/05/25/git-add-cancle.html
 
 
