@@ -122,21 +122,23 @@ LiteralTest
   그런데 만일 다른 타입이 사용되면 r-value의 값이 손실되지 않는 범위에서
   l-value의 타입으로 자동 변환한다.
 
-         int = char
-         (4)   (2)
-         int = double
-         (4)   (8)
-    
-         byte < short < int < long < float < double
-         (1)      (2)      (4)   (8)     (4)      (8)
-         char < int < long < float < double
-         (2)      (4)   (8)     (4)      (8)
-    
-         boolean
-    
-         short = (short)char
-         char = (char)short
-         char = (char)byte
+```java
+int = char
+(4)   (2)
+int = double
+(4)   (8)
+
+byte < short < int < long < float < double
+(1)     (2)    (4)    (8)    (4)     (8)
+char < int < long < float < double
+(2)    (4)   (8)     (4)     (8)
+
+boolean
+
+short = (short)char
+char = (char)short
+char = (char)byte
+```
 
   [ 제어문 ]
 
@@ -484,3 +486,27 @@ System.out.printf("%,d원\n", 1000000);		// 큰 숫자는 %d를 하면 알아서
      - 변수=식
      - result = System.out.println();
      - rand =Math.random
+   - 배열 타입의 매개변수를 선언하여 매서드 호출시 배열을 아규먼트로 전달받으면 전달 받는 데이터의 갯수를 제한하지 않게 된다.
+   - java(JDK 1.5)
+     - 가변형 아규먼트 구문이 추가된다.
+     - 리턴타입 매서드명(int... p) {}
+     - 매서드명(1,2,3), 매서드명(1,2,3,4,5)
+
+
+
+Run Configurations
+
+- 실행 정보 수정
+- Main class 위치 day6.MethodTest7 - 패키지 명도 같이 인식한다. - 이걸로 들어가서 argument를 수정 blank로 구분
+- String[] args 프로그램을 실행 시킬때 전달시키는 데이터.
+
+
+
+### 프로그램 아규먼트(명령행 데이터)
+
+프로그램을 수행 시작 시키면서 최초에 한번만 전달되는 데이터들
+
+main(String[] args)
+
+(Integet.parsInt(),Double.parseDouble()를 이용해서 숫자로 변환해서 사용한다.)
+

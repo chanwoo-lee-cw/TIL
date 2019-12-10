@@ -14,6 +14,8 @@
 git config --lobal user.name [me]
 ```
 
+이메일 설정 잘 해줘야함. 이메일 틀리면 깃허브에 커밋을 하더라도 초록색으로 안 변함.
+
 
 
 #### mkdir
