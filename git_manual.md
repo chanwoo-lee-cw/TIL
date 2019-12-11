@@ -151,7 +151,11 @@ commit 된 내역을 볼 수 있는 명령어.
 
 원격 저장소를 사용한다. 주로 깃 허브에 사용
 
+
+
   ``` Linux
+$ git remote add [원격저장소 이름] [원격저장소 주소]
+//예를 들면
 $ git remote add origin https://github.com/[이름]/gitExample
   ```
 
