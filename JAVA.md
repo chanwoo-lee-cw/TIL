@@ -560,11 +560,11 @@ main(String[] args)
 
 #### 생성자 매서드 : constructor
 
-- 클래스를 객체 생성할 때 호출 되는 매서드
+- 클래스를 객체 생성할 때 호출 되는 인스턴스 초기화 매서드
 
   - new 클래스명()
 
-    -------생성자 매서드
+    // 생성자 매서드
 
 - 모든 클래스는 1개 이상의 매서드를 가지고 있어야한다.
 
@@ -574,8 +574,10 @@ main(String[] args)
 
   1. 매서드 명은 클래스명과 동일해야 한다.
   2. 매개변수는 선택적이다(오버로딩 가능하다)
-  3. 리턴 값의 타입은 생략하야한다.
+  3. 리턴 값의 타입은 생략해야한다.
   4. 객체 생성시 수행햐여 하는 기능 또는 **객체 생성시 데이터를 전달받아서 초기화 하는 기능**
+  5. ***모든 클래스에는 반드시 하나 이상의 생성자가 있어야 한다.*** 
+  6. 생성자가 하나라도 있으면 기본 생성자를 추가하지 않는다.
 
 - import다른 패키지에 있는 것을 가져오겠다.
 
@@ -584,4 +586,44 @@ main(String[] args)
   //java.util이라는 패키지에 있는 Date라는 클래스를 가져옴
   ```
 
-  
+
+
+
+##### this
+
+- 자신의 객체의 참조값을 의미하는 리터럴
+  - this.xxx
+- this() 
+  - 생성자 메서드 내에서만 호출 가능
+  - **생성자 매서드의 첫 행에서만 호출 가능** -> 상수랑 연관 되기 때문에
+  - 동일한 클래스 내에 있는 다른 생성자를 호출
+
+```java
+class Book {
+	String title;
+	String author;
+	int price;
+
+	Book() {
+		this("자바의 정석","남궁 성",30000);
+	}
+	Book(String title,String author,int price) {
+		this.title = title;
+		this.author = author;
+		this.price = price;
+	}
+}
+```
+
+
+
+##### 클래스 배열
+
+```java
+Product[] prod = new Product[5];
+
+for (int i;i<n;i++) {
+    prod[i] = new Product(name[i],price[i]);
+}
+```
+
