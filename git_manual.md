@@ -165,9 +165,13 @@ $ git remote add origin https://github.com/[이름]/gitExample
 
 원격 저장소에 현재 브렌치를 푸시한다.
 
+브렌치나 원격 저장소가 바뀌면 그에 따라 이름도 바꾸어야 한다.
+
   ``` Linux
 $ git push learning master	
-	//master에 있는 내용을 원격 저장소 learning으로 올린다.
+	// master에 있는 내용을 원격 저장소 learning으로 올린다.
+$ git push happy feature
+	// feature 브렌치에 있는 내용을 원격 저장소 happy에 올린다
   ```
 
 
