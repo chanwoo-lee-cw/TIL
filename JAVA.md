@@ -627,3 +627,243 @@ for (int i;i<n;i++) {
 }
 ```
 
+- argument가 없는 생성자는 가능하면 만들어 주는게 좋다. -> 상속이 있을때 만들기 편함.
+
+
+
+#### 다른 패키지에 있는 매소드 가져오기
+
+
+
+day6에 있는 getRandom 매소드 가져오기
+
+방법 1
+
+```java
+import day6.Method3;
+
+class DateTest {
+    ...main() {
+        int month = Method3.getRandom(12);
+    }
+}
+```
+
+방법2
+
+```java
+class DateTest {
+    ...main() {
+        int month = day6.Method3.getRandom(12);
+    }
+}
+```
+
+
+
+하지만 getRandom이 public이 안 붙어 있다면 에러가 난다.
+
+
+
+### static(정적, 고정)
+
+- 제어자
+
+- 멤버 변수와 메서드 앞에 지정 가능하다. (클래스 앞에는 올 수 없다.)
+
+- static을 설정한 멤버변수와 메서드는 객체 생성을 하지 않아도 자동으로 메모리 영역을 할당하거나 호출 가능한 상태가 된다.
+
+- 다른 클래스에서 또 다른 클래스의 static 타입의 멤버를 사용할 때는
+
+  ```java
+  class.member;
+  ```
+
+- 클래스에 정의 되는 멤머중 어떤 멤버에 static을 부여하는가?
+
+  #### 클래스 변수
+
+  - static이 붙은것. 클래스 로딩시에 **미리** 자동으로 메모리 할당함. 프로그램 끝날 때까지 유지됨
+  - 즉, 각자 할당해줘야 하는 것엔 static붙혀주면 안됨. -> 이런건 인스턴스 변수로 ex) student
+
+  #### 인스턴스 변수
+
+- 직접 할당해 주는 것. **객체가 생성 될 때마다 할당됨**
+
+| 변수의  종류 | 선언위치     | 생성시기                     |
+| ------------ | ------------ | ---------------------------- |
+| 클래스변수   | 클래스  영역 | 클래스가  메모리에 올라갈 때 |
+| 인스턴스변수 | 클래스  영역 | 인스턴스  생성시             |
+| 지역변수     | 메서드  영역 | 변수  선언문 수행시          |
+
+
+
+ex ) 트럼프 카드
+
+```java
+class Card {
+    String kind;	//무늬
+    int number;		//숫자
+    
+    static int width = 100;		//폭
+    static int height = 250;	//높이
+}
+```
+
+
+
+Method Area
+
+- 자바가 로딩될때 할당 되는 영역, static이 할당 되는 영역
+
+Call stack
+
+- 호출되는 매서드에 대한 정보가 기록되는 부분 ex)callback변수
+
+- 지역 변수들이 할당 되는 부분 - 매서드가 할당할때 같이 할당되었다가 매서드가 죽을 때 같이 죽는다.
+
+Heap 
+
+
+
+Method Area에 할당된 static은 클래스이름으로 접근하는게 좋다.
+
+static 로 접근하는게 좋다.
+
+static 변수는 클래스 호출시 언제든지 사용할 수 있는 위치가 된다.
+
+메인 메소드는 로딩만 하고 바로 호출하기 때문에 무조건 static
+
+
+
+Tread.sleep()도 스태틱
+
+
+
+#####  -verbose:class
+
+- run configuration에 VM argument에 -verbose:class를 입력하면 프로그램 실행 정보를 알려준다.
+
+- 로딩하는 것들을 전부 알려준다. - 즉 로딩하는 것들은 JVM에 필요한 클래스들.
+
+- jvm옵션이다- 클래스 로딩 정보를 보여주면서 자바 프로그램을 수행시켜라
+
+자바는 동적 로딩 - 예를 들면 다른 클래스를 호출하기 전에 프린트 하면 프린트가 되는 걸 알 수 있다,
+
+즉, 프린트 한 다음에 card클래스가 필요하니 로딩을 하는것
+
+```java
+public static void main(String args[]) throws Exception{	
+		System.out.println("CardTest 수행이 시작었습니다.");
+		Thread.sleep(10000);
+		Card c1 = new Card();
+}
+```
+
+실행 로딩
+
+```
+[Loaded java.security.BasicPermissionCollection from C:\Program Files\Java\jdk1.8.0_231\jre\lib\rt.jar]
+[Loaded day8.CardTest from file:/C:/alpha/eclipse-workspace/javaexam/bin/]
+[Loaded sun.launcher.LauncherHelper$FXHelper from C:\Program Files\Java\jdk1.8.0_231\jre\lib\rt.jar]
+[Loaded java.lang.Class$MethodArray from C:\Program Files\Java\jdk1.8.0_231\jre\lib\rt.jar]
+[Loaded java.lang.Void from C:\Program Files\Java\jdk1.8.0_231\jre\lib\rt.jar]
+CardTest 수행이 시작었습니다.
+[Loaded day8.Card from file:/C:/alpha/eclipse-workspace/javaexam/bin/]
+첫 번째 Card 객체가 생성됨
+두 번째 Card 객체가 생성됨
+```
+
+
+
+#### 블록 스코프
+
+```java
+Method_header {
+    int a;			// 선언된 위치 - 즉 현재 블록이 끝날때까지 유효 -> Method_header끝까지
+    if(...) {
+        int b;		// 이건 if문이 끝날 때까지 유효
+    }
+    int c;
+    int b;			// if문 밖으로 나왔으니 새로 선언이 가능하다.
+}
+```
+
+
+
+매서드는 객체 생성시 호출 가능한 상태가 됨
+
+
+
+### JVM의 메모리 구조
+
+- 메서드영역(Method Area)
+  - 클래스 정보와 클래스변수가 저장되는 곳
+- 호출스택(Call Stack)
+  - 메서드의 작업공간. 메서드가 호출되면 메서드 수행에 필요한 메모리공간(지역변수, 메서드공간)을 할당받고 메서드가 종료되면 사용하던 메모리를 반환한다.
+- 힙(Heap)
+  - 인스턴스가 생성되는 공간. new연산자에 의해서 생성되는 배열과 객체는 모두 여기에 생성된다.
+
+
+
+##### 호출 스택의 특징
+
+- 메서드가 호출되면 수행에 필요한 메모리를 스택에 할당받는다
+- 메서드가 수행을 마치면 사용했던 메모리를 반환한다.
+- 호출스택의 제일 위에 있는 메서드가 현재 실행중인 메서드다.
+- 아래에 있는 메서드가 바로 위의 메서드를 호출한 메서드다.
+
+
+
+#### 클래스 매서드와 인스턴스 매서드
+
+- 인스턴스 매서드
+
+  - 인스턴스 생성 후, ‘참조변수.메서드이름()’으로 호출
+  - 인스턴스변수나 인스턴스메서드와 관련된 작업을 하는 메서드
+  - 메서드 내에서 인스턴스변수 사용가능
+
+- 클래스메서드(static메서드)
+
+  - 객체생성없이 ‘클래스이름.메서드이름()’으로 호출
+
+  - 인스턴스변수나 인스턴스메서드와 관련없는 작업을 하는 메서드
+
+  - 메서드 내에서 인스턴스변수 사용불가
+
+  - 메서드 내에서 인스턴스변수를 사용하지 않는다면 static을 붙이는 것을 고려한다.
+
+    -> 즉, 매서드 내에 하나라도 static 안 붙은거 사용하면 에러난다.
+
+  ```java
+  class Book {
+  	String title;
+  	String author;
+  	int price;
+  
+  	public static String getTitle() {
+  		return title;		//error난다. 왜냐하면 함수 객세 생성할때 생성되기 때문에
+          					//그때는 인스턴스 매서드가 뭐가 생성될지 모르기 때문이다.
+  	}
+  }
+  ```
+
+
+
+### 표준 입력
+
+- 프로그램이 수행하는 동안 필요로 하는 데이터를 시스템의 표준 입력 장치로부터 받아오는 것
+
+- 표준 입력 장치 - 키보드
+- java의 표준 입력 -> System.in
+- System.in.read(); ->  한글 깨짐, 무조건 문자열만 받음.
+- Java 5에 java.util.Scanner클래스를 제공하여 좀더 편하게 입력 할 수 있게됨
+
+```java
+Scanner scna = new Scanner(System.in);
+
+scan.next();
+scan.nextLine();
+scan.nextInt();
+```
+
