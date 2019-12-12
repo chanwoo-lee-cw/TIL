@@ -867,3 +867,47 @@ scan.nextLine();
 scan.nextInt();
 ```
 
+
+
+***
+
+심각한 에러는 JVM에러 예)스택 오버 플로우
+
+단순하고 해결 가능한 에러는 보통 exception 에러
+
+
+
+class를 처음 선언했을 때 딱히 부모를 지정 안해주면
+
+자동으로 java.lang.Object를 물려 받는다. 즉 멤버는 java.lang.Object
+
+
+
+
+```java
+class Parent {	//java.lang.Object
+	
+}
+
+public class ParentChildTEst {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Parent p =new Parent();
+		System.out.println(p.toString());
+		System.out.println(p);
+		// 즉 자동적으로 참조된 주소, 를 풀력한다.
+		// 객체에 대한 정보를 하나의 문자열로 출력하는 것
+		Card c =new Card();
+		System.out.println(c.toString());
+		java.util.Date d = new java.util.Date();
+		System.out.println(d.toString());
+        // 이건 날짜가 나옴
+        // 부모로 부터 상속 받은 toSting 을 오버라이딩 한 것이다.
+	}
+
+}
+```
+
+객체를 toSting하면 객체에 대한 정보를 출력한다.
+
+객체는 자동적으로 object가 부모형
