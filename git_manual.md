@@ -14,6 +14,8 @@
 git config --lobal user.name [me]
 ```
 
+이메일 설정 잘 해줘야함. 이메일 틀리면 깃허브에 커밋을 하더라도 초록색으로 안 변함.
+
 
 
 #### mkdir
@@ -149,7 +151,11 @@ commit 된 내역을 볼 수 있는 명령어.
 
 원격 저장소를 사용한다. 주로 깃 허브에 사용
 
+
+
   ``` Linux
+$ git remote add [원격저장소 이름] [원격저장소 주소]
+//예를 들면
 $ git remote add origin https://github.com/[이름]/gitExample
   ```
 
@@ -159,9 +165,13 @@ $ git remote add origin https://github.com/[이름]/gitExample
 
 원격 저장소에 현재 브렌치를 푸시한다.
 
+브렌치나 원격 저장소가 바뀌면 그에 따라 이름도 바꾸어야 한다.
+
   ``` Linux
 $ git push learning master	
-	//master에 있는 내용을 원격 저장소 learning으로 올린다.
+	// master에 있는 내용을 원격 저장소 learning으로 올린다.
+$ git push happy feature
+	// feature 브렌치에 있는 내용을 원격 저장소 happy에 올린다
   ```
 
 
