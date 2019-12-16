@@ -4,9 +4,9 @@
 
 
 
-#### git config --global user.name [ Your name]
+#### git config --global user.name [Your name]
 
-#### git config - -global user.email “Your email address”
+#### git config - -global user.email [Your email address]
 
 전역 사용자명/ 이메일 구성하는 것, 최초로 한번만 해주면 된다.
 

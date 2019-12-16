@@ -2,7 +2,6 @@ import math
 
 n = int(input())
 
-
 def eratosthenes(n) :
     isPrime = [True for i in range(n + 1)]
     isPrime[0] = False
