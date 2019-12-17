@@ -1329,3 +1329,381 @@ Integer beta = ((Integer)(new Object()));
 - 선언부만 있고 구현부(몸통, body)가 없는 메서드
 
 만약 자손 클래스의 매서드가 호출 된다면 자식에서 오버라이딩 된 매서드가 호출된다
+
+
+
+
+
+### interface
+
+
+
+- 클래스, final 클래스, absract클래스
+
+- 인터페이스는 모든 매거드가 abstract인 매서드 클래스를 의미한다
+
+- 자바는 단일 상속을 지원하는 OOP언어이다.
+
+  - 모든 매서드가 abstsact인 클래스를 상속한 경우 다른 클래스는 상속 불가
+
+    -> 인터페이스는 추가 상속이 가능한 특별한 클래스이다.
+
+- 인터페이스는 abstact클래스와 비슷한 자바 프로그램의 구조로서 객체 생성은 불가하고 상속으로만 가능하다.
+
+- 인터페이스 생성방법
+
+```java
+interface [interfaceName] {
+    int num;
+    char alpha;
+        ...
+        ...
+    abstract method
+}
+```
+
+- 인터페이스 사용 방법 : 상속
+
+```java
+interface [interfaceName] extends [prointerfaceName] {
+    
+}
+
+class className extends [proClassName] implements [interfacaeName] {
+    
+}
+```
+
+인터페이스는 상속 제한이 없다. 여러 개를 상속해도 됨.
+
+
+
+인터페이스도 변수 선언 가능
+
+위의 리 팩토링에서 만약 B,C,E만을 보내고 싶은게 생겼을때 추가 상속도 불가능하고 S를 수정하자니 코드가 꼬인다. 이럴때 사용하는게 인터페이스
+
+
+
+![그림3](.\그림3.png)
+
+인터페이스는 상속 제한이 없어서 여러개 상속이 가능하다
+
+인터페이스 상속은 점선으로 한다.
+
+
+
+인터페이스에 선언되는건 abstact매서드
+
+abstract 매서드며 자동으로 public이 붙는다
+
+```java
+interface Drawable {
+	 void draw();
+}
+class Rect implements Drawable {
+	void draw() {	// 에러가 뜬다. draw는 자동으로 public인데, 
+        			// 상속은 부모보다 작은 범위는 불가능
+		System.out.println("사각형을 그립니다.");
+	}
+}
+```
+
+
+
+자바 패키지의 종류
+
+java.nnn
+
+- 기본
+- java.lang,java.util,java.io,java.net,java.sql .....
+
+javax.nnn
+
+- 확장
+- javax.sql,java.nio...
+
+
+
+위의 2개는 자아 언어에서만 지원하는 API
+
+---
+
+org.nnn
+
+- 자바언어에서만 지원하지 않고, 다른 프로그래밍 언어에서도 지원되는 API로 어떤 표준화 위원회나 조직에서 정산 API를 자바에서도 사용하기 위해서 만든 것
+
+
+
+
+
+ 변경할 수 있다
+
+조상클래스의 메서드보다 많은 수의 예외를 선언할 수 없다
+
+super - 참조 변수
+this
+
+인스턴스 자신을 가리키는 참조변수. 인스턴스의 주소가 저장되어있음
+
+모든 인스턴스 메서드에 지역변수로 숨겨진 채로 존재
+
+super
+
+this와 같음. 조상의 멤버와 자신의 멤버를 구별하는 데 사용. 
+
+숫자나 문자는 연산자로 값이 동일한지 비교 가능하지만
+
+문자열은 등가 연산자로 비교할 수 있는 경우도 있지만 일반적으로 API를 사용해야한다.
+
+equal() 매서드를 사용해야 한다.
+
+String 클래스가 제공
+
+자바는 문자열 리터럴은 String 객체로 취급된다.
+
+'y'
+
+char 타입, 기본형
+
+"y"
+
+string 타입, 객체형(참조형)
+
+"y".eqauls("...");
+
+제어자
+abstract
+상속해서 부족한 부분을 채워 넣으라고 만든 것
+
+클래스
+
+클래스 내에서 추상매서드가 선언되어 있음을 의미한다
+
+매서드
+
+선언부만 작성하고 구현부는 작성하지 않은 추상 매서드임을 알린다. - 반드시 상속으로 작성해줘야 한다.
+
+블록으로 만들지 말고 만들고 나서 ;으로 완성해 줘야 한다.
+
+클래스가 abstract라고 각 매서드가 전부 abstract일 필요는 없다.
+
+￼
+abstract class abstractTest {
+    abstract void move();
+}
+접근 제어자
+접근 제어자가 사용 될 수 있는 곳 - 클래스, 멤버변수, 매서드, 생성자
+
+private
+같은 클래스 내에서만 접근이 가능하다.
+
+default
+같은 패키지 내에서만 접근이 가능하다.
+
+private
+같은 패지키 내에서, 다른 패키지의 자손 클래스에서 접근이 가능하다.
+
+private
+접근 제한이 전혀 없다
+
+캡슐화
+접근 제어자를 사용하는 이유
+
+외부로부터 데이터를 보호하기 위해서
+
+외부에는 불필요한, 내부적으로만 사용되는 부분을 감추기 위해서
+
+다형성
+abstract, interface 등등
+
+부모가 매개변수라면 부모의 자식이라는 변수는 모두 전달 가능
+
+그래서 object는 모두 전달 가능
+
+￼
+printObjectInfo(new Object());
+printObjectInfo(new String("rksksek"));
+printObjectInfo("ABC");
+printObjectInfo(new java.util.Date());
+printObjectInfo(new java.io.File("c:\\temp"));
+printObjectInfo(new int[10]);
+printObjectInfo(new double[5]);
+printObjectInfo(new day7.Member());
+printObjectInfo(new Integer(100));
+
+static void printObjectInfo(Object o) {
+        System.out.println("전달된 객체의 클래스 명 :"
+                           + o.getClass().getName());
+    }
+참조형 변수(클래스 타입)는 타입에 지정된 클래스 객체 뿐만 아니라 타입에 지정된 클래스의 자손도 참조할 수 있다.
+
+￼
+A obj;
+obj = new A();
+obj = new B();
+obj = new C();
+만약 다형성이 없다면 각각의 매개변수를 받는 매서드를 여러 개 오버로딩 해야 한다.
+
+￼
+Object o = new Date();      
+//object로부터 오버라이딩 된 것들만 접근 가능, 자손에서 추가된건 사용 불가
+Date d = new Date();
+//Date에서 새롭게 생성된 변수와 매서드도 접근 가능
+Member c = new Date();
+//에러가 난다.
+￼
+static void printObjectInfo(Object o) {
+    if (o instanceof String) {
+    System.out.println("문자열 객체 전달됨" 
+                       + o.getClass().getName() 
+                       + ((String)o).length());
+    }
+    System.out.println("전달된 객체의 클래스 명 :" 
+                       + o.getClass().getName());
+}
+instanceof : 조상에서 자손형태로 온 매개변수의 타입을 구분한다.
+
+다형성이란?
+여러 가지 형태를 가질 수 있는 능력
+
+하나의 참조변수로 여러 타입의 객체를 참조할 수 있는 것.
+
+즉, 조상타입의 참조변수로 자손타입의 객체를 다룰 수 있는 것이 다형성.
+
+자손타입 -> 조상타입(upcasting)
+
+형변환 생략 가능
+
+자손타입 <- 조상 타입(downcasting)
+
+형변환 생략 가능
+
+￼
+Object alpha = new Integer();
+Integer beta = ((Integer)(new Object()));
+하지만
+
+￼
+
+그렇게 매개변수를 보낼 수 있지만
+
+만약 a,b,c 만 보내고 싶을때
+
+￼
+
+그런 식으로 A,b만 받아줄 a,b만을 매개변수로 받아주는 위 형태를 만드는 것을 
+
+리팩토링이라고 한다.
+
+추상 클래스
+클래스가 설계도라면 추상클래스는 ‘미완성 설계도’
+
+선언부만 있고 구현부(몸통, body)가 없는 메서드
+
+만약 자손 클래스의 매서드가 호출 된다면 자식에서 오버라이딩 된 매서드가 호출된다
+
+interface
+클래스, final 클래스, absract클래스
+
+인터페이스는 모든 매거드가 abstract인 매서드 클래스를 의미한다
+
+자바는 단일 상속을 지원하는 OOP언어이다.
+
+모든 매서드가 abstsact인 클래스를 상속한 경우 다른 클래스는 상속 불가
+
+-> 인터페이스는 추가 상속이 가능한 특별한 클래스이다.
+
+인터페이스는 abstact클래스와 비슷한 자바 프로그램의 구조로서 객체 생성은 불가하고 상속으로만 가능하다.
+
+인터페이스 생성방법
+
+￼
+interface [interfaceName] {
+    int num;
+    char alpha;
+        ...
+        ...
+    abstract method
+}
+인터페이스 사용 방법 : 상속
+
+￼
+interface [interfaceName] extends [prointerfaceName] {
+    
+}
+
+class className extends [proClassName] implements [interfacaeName] {
+    
+}
+인터페이스는 상속 제한이 없다. 여러 개를 상속해도 됨.
+
+인터페이스도 변수 선언 가능
+
+위의 리 팩토링에서 만약 B,C,E만을 보내고 싶은게 생겼을때 추가 상속도 불가능하고 S를 수정하자니 코드가 꼬인다. 이럴때 사용하는게 인터페이스
+
+￼
+
+인터페이스는 상속 제한이 없어서 여러개 상속이 가능하다
+
+인터페이스 상속은 점선으로 한다.
+
+인터페이스에 선언되는건 abstact매서드
+
+abstract 매서드며 자동으로 public이 붙는다
+
+￼
+interface Drawable {
+     void draw();
+}
+class Rect implements Drawable {
+    void draw() {   // 에러가 뜬다. draw는 자동으로 public인데, 
+                    // 상속은 부모보다 작은 범위는 불가능
+        System.out.println("사각형을 그립니다.");
+    }
+}
+자바 패키지의 종류
+
+java.nnn
+
+기본
+
+java.lang,java.util,java.io,java.net,java.sql .....
+
+javax.nnn
+
+확장
+
+javax.sql,java.nio...
+
+위의 2개는 자아 언어에서만 지원하는 API
+
+org.nnn
+
+자바언어에서만 지원하지 않고, 다른 프로그래밍 언어에서도 지원되는 API로 어떤 표준화 위원회나 조직에서 정산 API를 자바에서도 사용하기 위해서 만든 것
+
+
+
+
+
+### 인터페이스
+
+- class’대신 ‘interface’를 사용한다는 것 외에는 클래스 작성과 동일하다.
+- 하지만, 구성요소(멤버)는 추상메서드와 상수만 가능하다.
+
+``` java
+interface anming{
+    public static final 타입 상수이름 = 값;	
+    // 무조건 public static final이 붙고 값도 초기화 해줘야 한다
+    public abstract 매서드이름(매개변수);
+    // 무조건 public abstract이여야 한다
+}
+```
+
+
+
+
+
+
+
+
+
