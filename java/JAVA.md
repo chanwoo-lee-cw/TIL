@@ -1701,9 +1701,77 @@ interface anming{
 
 
 
+### 오류처리
+
+- 컴파일 오류 : 구문 오류,API 사용 오류
+- 실행 오류 : 
+  - 에러
+    - JVM영역에서 발생하는 오류로서 치명적이라 JVM이 프로그래밍 실행을 중단시키고 callstack 정보를 화면에 출력한다.
+    - 미리 예측하고 대비하는 코드 작성 불가
+  - 예외
+    - 자바 프로그래밍 영역에서 발생하는 실행 오류로 다소 가벼운 잘못된 상황
+    - 런타임 예외
+      - 발생 원인이 프로그램 코드 - 버그- 예외처리 선택
+    - 일반 예외(Not-RuntimeException)
+      - 발생 원인이 외부적인 요인이다. - 예외 처리 필수
+
+- 예외 처리 방법
+
+  1. 적극적인 예외처리
+
+     ```java
+     try {
+         예외가 발생할 수도 있는 코드
+     }catch (처리해야 하는 예외 클래스의 변수 선언) {
+     
+     }finally {
+         예외 발생 여부와 관계없이 마지막에 수행을 보장하는 코드
+     }
+     ```
+
+  2. 소극적인 예외 처리
+
+     - 매서드 헤더에 **throws 처리 해야 하는 예외 클래스**절을 추가
+     - 예외가 발생하면 호출하여 대신 처리하게 함
+
+- 예외 발생
+
+  - throw를 호출하여 발생시키고자 하는 예외 클래스의 객체
+
+    ```java
+    throw new IOException(["예외메시지"])
+    ```
+
+  - 예외를 발생시킬때는 throw, 예외가 발생했을때는 throws
+  - 예외를 발생시키는 코드를 가지고 있는 매서는 헤더 throws 절을 사용해서 이 매서드는 호출시 예외가 발생 할 수도 있다는 것을 알려야 한다.
 
 
 
+- final은 설령 return 하더라도 실행한다.
 
+  ```java
+  try {
+  	}catch(ArithmeticException e) {
+      	e.printStackTrace();
+  		System.out.println("프로그램 아규먼트는 0 이 아닌 값을 전달하세요");
+  		return;
+  	}finally {
+  		System.out.println("항상수행");
+  }
+  ```
 
+  리턴 되더라도 final은 실행이된다.
 
+  그리고 e.printStackTrace();는 비동시 실행이라서 e.printStackTrace();가 끝나기 전에 다른 코드가 실행 된다. 
+
+  ```
+  수행시작
+  프로그램 아규먼트는 0 이 아닌 값을 전달하세요
+  항상수행
+  java.lang.ArithmeticException: / by zero
+  	at day11.ExceptionTest1.main(ExceptionTest1.java:11)
+  ```
+
+  이런 형태가 된다.
+
+Exception은 가장 부모 예외 클래스이다.
