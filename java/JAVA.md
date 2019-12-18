@@ -1,4 +1,4 @@
-# JAVA
+JAVA
 
 
 
@@ -188,20 +188,27 @@ char = (char)byte
       default : 수행문장9;
    }
 
-    switch(식) {
-      case 비교값1 : 수행문장1;
-                          수행문장2;
-                          break;
-      case 비교값2 : 수행문장3;
-                          수행문장4;
-                          break;
-      case 비교값3 : 수행문장5;
-                          수행문장6;
-      case 비교값4 : 수행문장7;
-                          수행문장8;
-    	break;
-      default : 수행문장9;                    
-   }
+```java
+switch(식) {
+  case 비교값1 :
+        수행문장1;
+        수행문장2;
+        break;
+  case 비교값2 : 
+        수행문장3;
+        수행문장4;
+        break;
+  case 비교값3 : 
+        수행문장5;
+        수행문장6;
+  case 비교값4 : 
+        수행문장7;
+        수행문장8;
+        break;
+    default : 수행문장9;
+}
+```
+  
 
    식 : int(byte,short,char), String
 
@@ -1775,3 +1782,92 @@ interface anming{
   이런 형태가 된다.
 
 Exception은 가장 부모 예외 클래스이다.
+
+
+
+```java
+package day11;
+import java.util.Random;
+class TestException extends Exception {
+	TestException(String message){
+		super(message);
+	}
+}
+public class ExceptionTest3 {
+	public static void main(String[] args)  {
+		System.out.println("main()수행시작");
+		a();
+		System.out.println("main()수행종료");
+	}
+	static void a()  {
+		System.out.println("a()수행시작");
+		try {
+			b();
+		} catch (TestException e){	
+			System.out.println("오류 발생 : "+e.getMessage());
+		}
+		System.out.println("a()수행종료");
+	}
+	static void b() throws TestException {
+		System.out.println("b()수행시작");
+		c();
+		System.out.println("b()수행종료");
+	}
+	static void c() throws TestException {
+		System.out.println("c()수행시작");
+		boolean flag = new Random().nextBoolean();
+		if(flag){
+			throw new TestException("<<:::::테스트로 예외발생시킴:::::>>");
+		}else {
+			System.out.println("ㅋㅋㅋㅋ");
+		}	
+		System.out.println("c()수행종료");
+	}	
+}
+```
+
+c에서 예외가 발생, throws로 b에게 던지고 b는 자기를 호출한 a를 찾아가 catch 블록을 실행함
+
+만약 a도 thorw같은 식으로 catch가 없으면 main 의 JVM한테 넘긴다
+
+
+
+### API
+
+java.lang - object,Math,Integer,String,StingBuffer,Character...
+
+- String :
+  - 문자열 처리와 관련된 매서드들을 가지고 있다.
+  - Stirng 객체가 생성된 이후 초기화 된 문자열 내용은 변경 불가하다.
+  - 읽기 용도로만 사용 가능하다.
+  - ex) "abc" + "가나다" -> "abc가나다" 합쳐서 새로운 문자를 아예 새로 만든 다음에 저장하는것
+  - "a"+"b"+"c"+"d" = 총 문자열 4개를 만든다음에 마지막만 저장하는것, 나머지는 grabege가됨
+- StringBuffer : 
+  - 문자열을 편집하는 용도 -> 훨씬 메모리를 덜쓴다. 쓸데없는 가비지를 만들지 않고 하나만 수정
+
+  ```java
+  StringBuffer sb= new StingBuffer();
+sb.append("a");
+sb.append("b");
+sb.append("c");
+sb.append("d");
+  ```
+  
+  - equals() : object 클래스 : == 연산과 동일
+  
+    ```java
+    Book b1 = new Book("짱구","xxx",10000);
+    b1 == b2;	//? false
+    b3==b2;		//? true
+    b1.equals(b2); 	//?false
+    b3.equals(b2);	//?true;
+    ```
+
+
+
+### API
+
+- Application Programming Interface
+- 자주 사용되는 기능을 미리 만들어 놓은 프로그램
+- 자바 : 클래스, abstarct 클래스, 인터페이스..
+- c : 함수
