@@ -2059,6 +2059,49 @@ queue.peek();
 
 
 
+### HashSet
+
+- 자료의 넣은 순서를 보존하지 않는다.
+- 단, 데이터 중복이 안되는 것을 보장해 준다.
+  - 만약, 들어간다면 true, 중복이라서 못 들어 간다면 false를 리턴해 준다.
+- 데이터를 읽어오는 것을 구현 안되있어서 처음부터 읽어야 된다.
+
+```java
+System.out.println(set.add("자바"));			//true
+System.out.println(set.add("카푸치노"));		//true
+System.out.println(set.add("자바"));			//false
+System.out.println("저장된 데이터의 수 = " + set.size());
+Iterator<String> iterator = set.iterator();
+while (iterator.hasNext()) {
+	String str = iterator.next();
+	System.out.println(str);
+}
+```
+
+- 순서도 보존하고 싶으면 LinkedHashSet을 사용하자.
+
+
+
+### HashTable
+
+- 여러 개의 통(bucket)을 만들어두고 키 값을 이용하여 데이터를 넣을 통 번호를 계산하는 자료구조
+  - 몇개의 버킷으로 나눌지가 중요. 세세하게?
+- 정해진 룰로 나누는 것
+  - 이 룰을 해쉬 알고리즘이라고 한다.
+
+```java
+HashMap<String,Integer> hashtable = new HashMap<String,Integer>();
+//<키의 타입, 데이터 타입>
+//기본은 16개의 버켓을 만든다.
+HashMap<String,Integer> hashtable = new HashMap<String,Integer>(100);
+//100개의 버킷을 만든다.
+hashtable.put("Harry",new Integer(95));
+hashtable.get("Harry");
+hashtable.remove("Harry");
+```
+
+- 키 값이 중복 되어서는 안된다. 중복 되면 새로운 얘로 replace해버린다.
+
 
 
 #### iterator

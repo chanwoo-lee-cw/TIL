@@ -139,6 +139,57 @@ public class Main {
 
 
 
+### 이분매칭
+
+- 이분 그래프에서 A 그룹의 정점에서 B 그룹의 정점으로 간선을 연결 할 때,
+- A그래프의 하나의 정점이 B그래프 하나의 정점만 가지도록 구성된 것이 이분 매칭이다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/217915475819DCC20C" alt="img" style="zoom:67%;" />
+
+
+
+<img src="https://t1.daumcdn.net/cfile/tistory/251C624F5819DCF215" alt="img" style="zoom:67%;" />
+
+
+
+이 이분 매칭의 원리는 다음과 같다.
+
+
+
+<img src="https://t1.daumcdn.net/cfile/tistory/2654714D5819DEAF19" style="zoom:67%;" />
+
+ 우선 a1이 b1을 연결한다
+
+
+
+<img src="https://t1.daumcdn.net/cfile/tistory/2658694D5819DEAF15" alt="img" style="zoom:67%;" />
+
+그다음 a2가 b1을 연결하는데 a1과 겹친다. 이때 a1으로 돌아와서 문제를 해결해야 한다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/244E564D5819DEB021" alt="img" style="zoom:67%;" />
+
+다음과 같이 a1이 b2를 지정하도록 한다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/2342514D5819DEB032" alt="img" style="zoom:67%;" />
+
+a3가 가리킬 수 있는 첫번째 정점인 b1을 가리키도록한다. 이때 또 a2와 충돌하므로 a2를 해결한다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/255D9B4D5819DEB110" alt="img" style="zoom:67%;" />
+
+a2가 b2를 보도록 한다. 이때 또 a1과 충돌하니 a1이 또 연결할 수 있는 정점을 확인한다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/274D324D5819DEB123" alt="img" style="zoom:67%;" />
+
+a1이 b4와 연결될 수 있다.
+
+<img src="https://t1.daumcdn.net/cfile/tistory/2464424D5819DEB207" alt="img" style="zoom:67%;" />
+
+
+
 ### 출처
 
 https://gmlwjd9405.github.io/2018/08/23/algorithm-bipartite-graph.html
+
+https://jason9319.tistory.com/149
+
+https://www.crocus.co.kr/499 
