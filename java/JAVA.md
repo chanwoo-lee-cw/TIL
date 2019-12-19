@@ -208,7 +208,7 @@ switch(식) {
     default : 수행문장9;
 }
 ```
-  
+
 
    식 : int(byte,short,char), String
 
@@ -1871,3 +1871,207 @@ sb.append("d");
 - 자주 사용되는 기능을 미리 만들어 놓은 프로그램
 - 자바 : 클래스, abstarct 클래스, 인터페이스..
 - c : 함수
+
+
+
+
+
+# Collection API
+
+- 데이터들을 저장하여 사용하는 방의 역활을 하는 API
+- 공통점
+  - 저장할 수 있는 데이터 타입의 제한이 없다.
+  - 저장할 수 있는 데이터의 갯수에 제한이 없다.
+
+
+
+### List
+
+- 저장되는 데이터의 순서를 유지한다.
+- 저장되는 데이터의 중복을 허용한다.
+- Ex) ArrayList, LinkedList, Vector
+
+### Set
+
+- 저장되는 데이터의 순서를 유지하지 않는다.
+- 저장되는 데이터의 중복을 허용하지 않는다. -> 중복데이터를 자동적으로 체크한다.
+- 해쉬코드도 설정해서 그 객체만의 코드를 설정한다.
+  - -> 해쉬코드를 오버라이딩 해줘야 한다. 오버라이딩 안해주면 object의 해쉬코드 사용(주소값)
+- Ex) HashSet,LinkedHashSet
+
+### Map
+
+- 데이터 이름과 데이터 값을 쌍으로 저장한다.
+- 데이터 이름은 중복 저장이 불가능하다.
+  - 데이터 이름(Key)라고 부름
+  - Key-value 쌍으로 데이터 저장(put)
+- Ex) HashMap, HashTable
+
+### Queue
+
+- FIFO(Firtst in First out)
+
+
+
+### Statck
+
+- FILO(First in Last out)
+
+### Hash
+
+- 검색이 빠르다. 찾기가 쉽다.
+- 데이터 분류의 방법
+
+
+
+### Generics
+
+- 객체 생성시 이 객체가 처리할 데이터 타입 정보를 알려주는 용도
+
+  - ArrayList\<String> list = new ArrayLsit\<String>();
+  - 제너릭스를 명시해 주지 않으면 자동으로 Object가 된다.
+
+- 장점 
+
+  - 견고한 프로그램을 만들 수 있다. 더 에러가 안나는 프로그램을 만들 수 있다.
+  - 타입 파라미터를 정할 수 있다
+  - 타입 파라미터를 정해 놓으면 넣을때도 자동 현변환이 되지만 꺼낼때도 자동적으로 형변환이 된다. -> 형변환에서 자유롭다
+
+  ```java
+  LinkedList<String> list = new LinkedList<String>();
+  // <String> 이 타입 파라미터
+  LinkedList<String> list = new LinkedList<>();
+  //생성자 부분은 생략 가능
+  ```
+  
+  ```java
+  class Value2 {
+  	Object obj;
+  	void put(Object obj){
+  		this.obj = obj;
+  	}
+  	Object get() {
+  		return obj;
+  	}
+  }
+  // Object 이므로 다양한 객체(String, Date 등등) 다 들어 갈 수 있지만, 꺼낼때는 형변환 해줘야함. 돌아갈때도 원래 들어갔단 데이터긴 하지만, 그래도 형변환시켜줘야 한다.
+  
+  class Value3<TT> {
+  	TT obj;
+  	void put(TT obj){
+  		this.obj = obj;
+  	}
+  	TT get() {
+  		return obj;
+  	}
+  }
+  // <> 안에 뭐가 들어가던 상관은 없다. <TT>건 <E> 건 <A>건 상관이 없다. 보통 E인 이유인 Element라고 명시해 주기 위해
+  ```
+
+
+
+### ArrayList
+
+```java
+ArrayList<String> list = new ArrayList<String>();
+//처음에 10개 정도 만들고 데이터 넣을 수록 추가 된다.
+list.add("apple");
+list.add("banana");
+//앞에서부터 비어있는 곳에 차례대로 순서대로 넣는다.
+list.get(1);
+//위치 1에 있는 것에 삽입
+list.size();
+//list의 데이터의 수를 반환
+list.add(1,"kiwi");
+//1의 위치에 kiwi를 삽입한다. 원래 있던 것들은 뒤로 밀린다. 
+list.set(0,"orange");
+//위치 0에 있는 것을 orange로 바뀐다.
+list.remove(1);
+//인덱스 1에 있는 데이터를 삭제. 그 뒤에 있는 데이터를 당긴다.
+list.remove("banana");
+//리스트에서 가장 처음에 만난 banana를 삭제한다.
+list.indexOf("kiwi");
+//처음으로 만난 데이터의 위치를 반환한다. 없다면 -1이 리턴
+//반복 한다면 그 다음?
+list.LastIndexOf("kiwi");
+//데이터를 뒤에서부터 검색하는 방법
+```
+
+### LinkedList
+
+```java
+LinkedList<String> list = new LinkedList<String>();
+
+list.add("grape");
+list.add("strawberry");
+list.add("pitch");
+
+list.get(2);
+//인덱스 2에 있는 pitch를 리턴
+//처음부터 접근하는거라 시간이 오래 걸린다.
+
+list.remove(1);
+//인덱스 1위치에 있는 데이터 삭제
+
+//데이터 순차 접근을 효율적으로 하는 방법
+//iterator 메소드를 호출합니다
+
+Iterator<String> iterator = list.iterator();
+String str = Iterator.next();
+//만약 더이상 데이터가 없으면 NoSuchElementException 발생
+```
+
+### Stack
+
+```java
+LinkedLsit<Integer> stack = new LinkedLsit<Integer>();
+stack.addLast(new Integer(12));
+stack.addLast(new Integer(59));
+stack.addLast(new Integer(7));
+
+while(!stack.isEmpty()) {
+    Integer num = stack.getLast();
+    //데이터를 제거 하지 않고 꺼냄
+    Integer num = stack.removeLsat();
+    //데이터를 제거하고 꺼냄(pop)
+    System.out.println(num);
+}
+```
+
+
+
+### Queue
+
+```java
+LinkedLsit<Integer> queue = new LinkedLsit<Integer>();
+
+queue.offer("rabbit");
+queue.offer("deer");
+queue.offer("tiger");
+// 데이터를 추가 push와 같다.
+
+queue.poll();
+//데이터를 제거하고 꺼냄 - 토끼 나옴
+
+queue.peek();
+//데이터를 제거하지 않고 나옴
+```
+
+
+
+
+
+#### iterator
+
+- 콜렉션 셋이 뭐가 됬던 하나하나 꺼내는 것을 규격화 시킨 매서드
+- Hash건 LinkedList건 잘 꺼내온다.
+
+```java
+Iterator iter = list.iterator();
+	while(iter.hasNext()){			//hasnext() 다음 데이터가 있는지 확인하는 매서드
+		Object value = iter.next();
+		String s = (String)value;		
+		System.out.println(s);
+}
+```
+
