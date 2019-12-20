@@ -2146,3 +2146,204 @@ inthash2=obj2.hashCode();
 // 둘이 다른 값 리턴
 ```
 
+- 그렇기 때문에 오브젝트의 경우에는 아예 새로운 방식으로 해야한다.
+
+```java
+public int hashCode(){
+	return firstName.hashCode() + lastName.hashCode();
+}
+```
+
+
+
+## 문자셋
+
+### 문자셋(charset)
+
+ASCII : 0x~0x7f(1byte)
+
+​	0x41~영문 대문자, 0x61~영문 소문자...
+
+~1986 년 : 표준화된 한글 코드가 없었다.
+
+​				컴퓨터마다 한글 코드가 달랐다.
+
+~1987년 : 표준화된 한글 코드 : 완선형 한글 코드 : KSC5601(EUC-KR,MS949(CP949))-0xB01A1부터 '가'가 시작된다 - 즉 이게 native code
+
+
+
+ASCII : 0x~0x7f(1byte)는 모두 공통이지만, 그 이후는 각 나라마다 다르다.
+
+
+
+.....
+
+
+
+1990년 : 전세계의 나라 언어 코드를 통일하자 : unicode : 2byte : utf-16,utf16
+
+그래봤자 2^16승에 지나지 않는다.
+
+그리고 개정된 유니코드는 1~4byte : utf-8 - **웹표준**
+
+
+
+
+
+## 입출력(I/O) 프로그래밍
+
+- java.io, javax.nio
+
+***
+
+- File : 시스템에 존재하는 파일에 대한 처리, 정보 추출
+- 입력용 API, 출력용 API
+- 입력단위 : 바이트 단위, 문자 단위
+  - InputStreamReader - 바이트 단위의 입력을 문자 단위로 바꿔주는 API
+- 스트림이라는 논리적인 구조 이용한다.
+- 입력 스트림과 출력 스트림으로 구분한다.
+  - -XXXinputStram,XXXoutputStream : 바이트 스트림- 바이트를 이용하는 스트림
+  - XXXReader,xxxWrither : 문자 스트림
+  - InputStreamReader - 바이트 스트림을 문자 스트림으로 변환 시켜준다.
+
+
+
+```java
+int input = System.in.read();
+System.out.print((char)input);
+//한글로 하면 깨진다. byte단위로 읽어서
+
+int input = new InputStreamReader(System.in).read();
+System.out.print((char)input);
+// 바이트 단위로 읽지만, 문자 단위로 변환 시켜준다.
+
+String input = new BufferedReader(new InputStreamReader(System.in)).readLine();
+System.out.println("출력 : "+input);
+//버퍼에 저장되 있는 것을 한번에 전송
+```
+
+- 문자스트림
+  - FileReader,FileWriter - 파일 오픈 기능
+  - BufferReader,BufferedWriter
+- 바이트스트림
+  - FileInputStream, FileOutputStream - 파일 오픈 기능
+  - DataInputStream, DateOutputStream - 원하는 타입으로 읽는 스트림버퍼
+  - ObjectInputStream, ObjectOutputStream
+- InputStreamReader, OutputStreamWriter 
+  - 바이트스트림만 쓰게 되 있는 얘들을 문자 스트림으로 바꿔 쓰는 기능
+
+```java
+		String path = "C:/iotest";
+        File isDir = new File(path);
+        if (!isDir.exists()) {
+        	isDir.mkdirs();
+        }
+        try  {
+        	writer = new FileWriter(path+"/output.txt",true);	
+            //true가 없으면 오버라이딩 모드
+            char arr[] = 
+            { '객', '체', '지', '향', '언', '어', 'J', 'a', 'v', 'a' };          
+            for (int cnt = 0; cnt < arr.length; cnt++)
+                writer.write(arr[cnt]);
+            writer.write(File.pathSeparatorChar);            
+            writer.write(arr);
+            writer.write("\r\n");
+            //윈도우즈는 개행 처리 하려면 둘다 써줘야함. 개행 : \r\n
+            writer.write("OCJP 시험 대비");
+            writer.write("\r\n");
+            System.out.println("파일에 출력 완료!!");
+        } catch (IOException ioe) {
+            System.out.println("파일로 출력할 수 없습니다.");
+        } finally {
+            try {
+            	if (writer != null)
+            		writer.close();
+            } catch (Exception e) {
+            	System.out.println("파일을 닫는동안 오류 발생!!");
+            }
+        }
+```
+
+```java
+try (FileWriter  writer = new FileWriter("c:/iotest/output2.txt");){   
+    ....
+}
+// try catch가 끝나는 시점에 자동으로 괄호 안에서 생성된 객체는 자동으로 close시켜준다
+// 장점 닫을때 예외처리 유도를 방지해 줄 수 있다.
+```
+
+```java
+FileReader reader = null;
+try {
+	reader = new FileReader("c:/iotest/output1.txt");
+	while (true) {
+		int data = reader.read();		//더 이상 읽을게 없으면 -1을 리턴
+		if (data == -1)
+			break;
+		char ch = (char) data;
+		System.out.print(ch);
+		}
+	} catch (FileNotFoundException fnfe) {
+		System.out.println("파일이 존재하지 않습니다.");
+	} catch (IOException ioe) {
+		System.out.println("파일을 읽을 수 없습니다.");
+	} finally {
+		try {
+            //if(reader!=Null)
+			reader.close();
+	} catch (Exception e) {
+			e.printStackTrace();
+		}
+}
+```
+
+이럴 경우 FileNotFoundException에러와 함께
+
+NullPointerException에러도 발생하는데 왜나면 파일이 아예 안 열렸기에 reader는 여전히 null이기 때문이다.
+
+````java
+		FileReader reader = null;
+       BufferedReader br = null;
+       try {
+           reader = new FileReader("c:/iotest/output.txt");
+           br = new BufferedReader(reader);
+           while (true) {
+               String data = br.readLine();
+               if (data == null)
+                   break;               
+               System.out.println(data);
+           }
+       } catch (FileNotFoundException fnfe) {
+           System.out.println("파일이 존재하지 않습니다.");
+       } catch (IOException ioe) {
+           System.out.println("파일을 읽을 수 없습니다.");
+       } finally {
+          try {
+        	   br.close();
+               reader.close();
+          } catch (Exception e) {
+        	  e.printStackTrace();
+          }
+       }
+````
+
+한 문자씩 읽는게 아니라 한 라인씩 읽기 위해 BufferedReader를 같이 만들어 줬다.
+
+```java
+	try (FileReader reader = new FileReader("c:/iotest/output.txt");){
+    	   int data;
+    	   System.out.println(reader.getEncoding());
+           while (true) {
+               data = reader.read();
+               if (data == -1)
+                   break;               
+               System.out.print((char)data);
+           }
+       } catch (FileNotFoundException fnfe) {
+           System.out.println("파일이 존재하지 않습니다.");
+       } catch (IOException ioe) {
+           System.out.println("파일을 읽을 수 없습니다.");
+       } 
+```
+
+try ()안에 파일을 열면 자동으로 UTF-8로 읽게 된다.
