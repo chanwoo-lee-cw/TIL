@@ -2329,21 +2329,14 @@ NullPointerException에러도 발생하는데 왜나면 파일이 아예 안 열
 
 한 문자씩 읽는게 아니라 한 라인씩 읽기 위해 BufferedReader를 같이 만들어 줬다.
 
+## 정규 표현식
+
+- \s : 공백
+- \* : 0개 이상
+
 ```java
-	try (FileReader reader = new FileReader("c:/iotest/output.txt");){
-    	   int data;
-    	   System.out.println(reader.getEncoding());
-           while (true) {
-               data = reader.read();
-               if (data == -1)
-                   break;               
-               System.out.print((char)data);
-           }
-       } catch (FileNotFoundException fnfe) {
-           System.out.println("파일이 존재하지 않습니다.");
-       } catch (IOException ioe) {
-           System.out.println("파일을 읽을 수 없습니다.");
-       } 
+scan = scan.useDelimiter("\\s*fish\\s*");
+//\s* 공백이 0개 이상
+//즉 "\\s*fish\\s*" 의 뜻은 앞뒤로 공백이 0개 이상인 fish를 분리 문자로 삼는다.
 ```
 
-try ()안에 파일을 열면 자동으로 UTF-8로 읽게 된다.
