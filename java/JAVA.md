@@ -2118,3 +2118,31 @@ Iterator iter = list.iterator();
 }
 ```
 
+
+
+
+
+### HashMap
+
+- 똑같은 해쉬 키를 사용해 만든 것은 캐쉬 코드가 똑같다.
+
+```java
+String s1 = new String("듀크");
+String s2 = new String("듀크");
+String s5 = "듀크";
+System.out.println(s1.hashCode());
+System.out.println(s2.hashCode());
+System.out.println(s5.hashCode());
+//전부 똑같은 값이 출력된다.
+```
+
+- 단 오브젝트는 내용이 같더라도, 참조값을 기준으로 판단하기때문에 다른 값 리턴
+
+```java
+Nameobj1=newName("헤르미온느","그레인져");
+Nameobj2=newName("헤르미온느","그레인져");
+inthash1=obj1.hashCode();
+inthash2=obj2.hashCode();
+// 둘이 다른 값 리턴
+```
+
