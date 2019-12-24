@@ -2340,3 +2340,39 @@ scan = scan.useDelimiter("\\s*fish\\s*");
 //즉 "\\s*fish\\s*" 의 뜻은 앞뒤로 공백이 0개 이상인 fish를 분리 문자로 삼는다.
 ```
 
+
+
+
+
+I18N : 국제화
+
+
+
+```java
+URL url = new URL("https://movie.naver.com/");
+InputStream is = url.openStream();	/// 바이트 스트림 객체를 리턴함
+BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+// 입력 받은 것을 문자 스트림으로 변환, 뒤에 저거는 어떤 캐릭터 셋으로 읽게 할 건지 결정
+```
+
+
+
+
+
+```java
+URL req = new URL("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1168064000");
+			is = req.openStream();
+			reader = new BufferedReader(
+					                       new InputStreamReader(is, "utf-8"));
+			fw = new BufferedWriter(new OutputStreamWriter(
+					     new FileOutputStream("c:/iotest/weather.xml"), "utf-8"));
+			// UTF-8 로 내보내기 위해서. FileWriter은 무조건 컴퓨터의 기본 설정을 사용하기 때문에 UTF로 생성하려면 일케 해야됨.
+			String lineStr = "";
+			while(true) {
+				lineStr = reader.readLine();
+				if(lineStr == null)
+					break;
+				fw.write(lineStr+"\r\n");				
+			}	
+```
+
