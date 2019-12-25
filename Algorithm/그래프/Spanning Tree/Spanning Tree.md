@@ -29,21 +29,15 @@ a spanning tree of G is a subgraph of a that is tree where set is eduals to V
 
 
 
-### Minimum Spanning Tree
+## Minimum Spanning Tree
 
 - 최소 신장 트리
-
 - 각 간선의 가중치가 주어져 있을 때, 모든 간선의 합이 가장 작은 트리
 
-  
 
 
+### MST를 구하는 2가지 방법
 
+1. Kurskal's Algorithm
 
-
-
-
-
-
-![Kruskal](.\Kruskal.webp)
 
