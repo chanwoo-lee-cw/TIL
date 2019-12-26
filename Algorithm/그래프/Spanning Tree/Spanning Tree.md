@@ -36,8 +36,43 @@ a spanning tree of G is a subgraph of a that is tree where set is eduals to V
 
 
 
-### MST를 구하는 2가지 방법
+### MST를 구하는 방법
 
-1. Kurskal's Algorithm
+#### Kurskal's Algorithm
+
+greedy method를 이용해 MST를 구한다
+
+
+
+##### 동작
+  1. 그래프의 간선들을 가중치의 오름차순으로 정렬한다.
+  2. 정렬된 간선들 중에서 가중치가 가장 작은 간선을 선택한다.
+  3. 사이클을 이루지 않는지 확인한다.
+     1. 이룬다면 현재의 간선을 MST에 추가한다.
+     2. 아니라면 다음 간선을 탐색한다.
+  4. 반복한다.
+
+![Kruskal](.\Kruskal.webp)
+
+##### 주의점
+
+- 이미 선택된 간선들과 사이클을 이루는지 꼭 확인
+  - 사이클을 이룬다면 MST가 아니다.
+
+- 사이클 여부를 확인하는 방법
+
+  - 추가하고자 하는 간선의 양 끝점이 같은 집합에 속해있는지 먼저 검사해야한다.
+
+    -> union-find 알고리즘
+    
+
+1. Prim's algorithm
+
+
+
+
+
+
+
 
 
