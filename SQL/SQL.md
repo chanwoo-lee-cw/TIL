@@ -285,6 +285,7 @@ yy/mm/dd
 2. Length 함수
 
    - 문자열 길이를 구한다.
+   - LengthB함수 : 메모리의 양을 리턴한다
 
 3. SBUSTER 함수
 
@@ -313,14 +314,151 @@ yy/mm/dd
 6. LPAD ,RPAD
 
    ```sql
-   LPAD([문자열데이터 또는 열 이름(필수)])
+   LPAD([문자열데이터 또는 열 이름(필수)],[데이터의 자릿수(필수)],[빈 공간에 채울 문자(선택)])
    ```
 
-   예)
+   데이터의 빈공간을 특정 문자로 채우는 함수
+
+   만약 아무것도 주지 않는다면 blank로 채운다
+
+   ```
+   SELECT
+   	RPAD('971225-',14,'*'),
+   	RPAD('010-1234-',13,'*')
+   FROM DUAL
+   ```
+
+7.  CONCAT
+
+   ```sql
+   select concat(last_name,concat(',',job_id)) AS "Employee and Title"
+   FROM Employees;
+   
+   select last_name||','||job_id AS "Employee and Title"
+   FROM Employees;
+   ```
+
+8. TRIM, LTRIM , TRIM
+
+```sql
+TRIM([삭제옵션(선택)] [삭제할 문자(선택)] FROM [원본 문자열 데이터(필수)])
+```
+
+| 옵션          | 설명                            |
+| ------------- | ------------------------------- |
+| LEADING FROM  | 왼쪽에 있는 문자를 제거         |
+| TRAILING FROM | 오른쪽에 잇는 문자를 제거       |
+| BOTH FROM     | 양측에 있는 문자를 제거(기본값) |
 
 
 
-1. 다중행 함수
+
+
+#### 날짜 함수
+
+현재 시간을 "....년 ..월 ..일 ..시 ..분" 으로 출력하시오.
+
+```sql
+select TO_CHAR(SYSDATE,'YYYY"년"MM"월"DD"일"HH"시"MI"분"')
+FROM dual;
+```
+
+
+
+
+
+#### NULL 처리 함수
+
+1. NVL
+
+   ```sql
+   NVL([NULL or NOT NULL],[NULL일때 반환할 값])
+   
+   --예시
+   select NAME , SAL + NVL(COMN,0)
+   FROM EMP;
+   --성과금이 없다면 0을 넣어서 출력한다.
+   
+   select NAME , NVL(COMN,'없음')
+   FROM EMP;
+   -- 이건 에러가 난다. 왜나하면 comn형이 int 형이기 때문에
+   ```
+
+   NULL이 아닌 데이터라면 그대로 반환하고 NULL이라면 지정된 값을 반환
+
+   
+
+2. NVL2
+
+   ```sql
+   select NAME , NVL(COMN,'O','X')
+   FROM EMP;
+   -- 성과금이 있으면 O를 출력 없으면 X를 출력, 물론 둘의 데이터타입음 맞춰줘야 한다.
+   ```
+
+   NULL과 NULL이 아닐 때를 구분해서 출력값을 정해 줄 수가 있다.
+
+
+
+3. DECODE
+
+   ```SQL
+   select NAME , 
+   	DECODE(JOB,
+       'CLERK',sal 1*1
+   	'SALESMAN',sal*1.05
+   	'MANAGER',sal
+   	sal*1.03 -- 마지막은 DEFAULT 같은 개념
+             )
+   FROM EMP;
+   -- 직급에 따른 월급 변동
+   ```
+
+   switch 문과 비슷한 방법임
+
+   
+
+4. CASE
+
+   ```SQL
+   select NAME , 
+   	CASE JOB,
+       WHEN 'CLERK' ThEN sal 1*1
+   	WHEN 'SALESMAN' THEN sal*1.05
+   	WHEN 'MANAGER' THEN sal
+   	ELSE sal*1.03 -- 마지막은 DEFAULT 같은 개념
+       END
+   FROM EMP;
+   -- 직급에 따른 월급 변동
+   
+   select NAME , 
+   	CASE
+       WHEN COMM IS NULL ThEN sal 1*1
+   	WHEN COM =0 THEN 0
+   	WHEN COMM>0 THEN sal + COMM
+   	ELSE sal*1.03 -- 등가 연산 같은 것도 가능함
+       END
+   FROM EMP;
+   -- 직급에 따른 월급 변동
+   ```
+
+   
+
+
+
+##### 다중행 함수
    - 그룹함수라고도 한다
-   - 입력행이 N개라도 출력은 1개
+   - **입력행이 N개라도 출력은 1개**
+
+```sql
+select max(SAL),min(SAL),SUM(distict cSAL),AVG(SAL),CONT(SAL) from emp;
+
+select ename,MAX(SAL) from emp;
+-- 오류 발생 이름은 여러개인데 값은 여러개라
+
+select count(comm), -- NULL이 아닌 얘들 만 갯수를 센다
+		count(*)	-- NULL까지 포함해서 모두 갯수를 센다.
+from emp;
+-- 오류 발생 이름은 여러개인데 값은 여러개라
+```
 
