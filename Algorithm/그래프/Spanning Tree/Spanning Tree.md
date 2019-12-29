@@ -57,14 +57,74 @@ greedy method를 이용해 MST를 구한다
 ##### 주의점
 
 - 이미 선택된 간선들과 사이클을 이루는지 꼭 확인
-  - 사이클을 이룬다면 MST가 아니다.
-
+  
+- 사이클을 이룬다면 MST가 아니다.
+  
 - 사이클 여부를 확인하는 방법
 
   - 추가하고자 하는 간선의 양 끝점이 같은 집합에 속해있는지 먼저 검사해야한다.
 
     -> union-find 알고리즘
     
+    
+
+```python
+def main() :
+    n,m = input().split()
+
+    n = int(n)
+    m = int(m)
+
+    matrix =[];
+
+    for i in range(m) :
+        temp = input().split()
+        matrix.append([int(temp[2]),int(temp[0]),int(temp[1])]);
+
+    parent = [i for i in range(n+1)]
+    level = [i for i in range(n+1)]
+
+    temp = None
+    matrix.sort()
+
+    weight = 0
+    leng = len(matrix)
+    for i in range(leng) :
+        if(i==0) :
+            weight+=matrix[i][0]
+            merge(matrix[i][1],matrix[i][2],level,parent)
+            continue;
+        else :
+            if merge(matrix[i][1], matrix[i][2], level, parent) :
+                weight += matrix[i][0]
+
+
+    print(weight)
+
+def find(u,parent) :
+    if u==parent[u] :
+        return u;
+    parent[u] = find(parent[u],parent);
+    return parent[u];
+
+def merge(u, v,level,parent) :
+    u = find(u,parent)
+    v = find(v,parent)
+    if (u == v) :
+        return False
+    if (level[u] > level[v]) :
+        temp =u
+        u=v
+        v=temp
+    parent[u] = v
+    if (level[u] == level[v]) :
+        level[v]+=1
+    return True
+
+main()
+```
+
+
 
 1. Prim's algorithm
 
