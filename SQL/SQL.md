@@ -462,3 +462,155 @@ from emp;
 -- 오류 발생 이름은 여러개인데 값은 여러개라
 ```
 
+### 조인
+
+두 개 이상의 테이블을 연결하여 하나의 테이블처럼 출력하는 것
+
+
+
+##### INNER JOIN
+
+```sql
+select * 
+from emp,dept 
+where emp.deptno = dept.deptno;
+```
+
+양측 테이블에서 emp.deptno 가 dept.deptno 일치하는 행들을 합쳐서 보여준다.
+
+만약 일치하는 값이 없는 행들은 버려진다.
+
+
+
+##### OUTER JOIN
+
+```sql
+select * 
+from emp,dept 
+where emp.deptno = dept.deptno(+);
+-- right outer
+
+select * 
+from emp,dept 
+where emp.deptno = dept.deptno(+);
+-- left outer
+```
+
+일치하는 행이 없다라도 dept.deptno를 가지고 있는 모든 값을 출력한다. 물론 일치하지 않기 때문에 emp 값이 있는 부분은 null로 채워서 출력한다.
+
+
+
+```sql
+select *
+from emp e, salgrade s
+where e.sal BETWEEN s.losal AND s.hisal;
+```
+
+이런 식으로 양측의 범위 사이에 있는 월급의 등급의 등급을 매기는 것도 가능하다.
+
+
+
+만약 양 측 외부 조인을 둘다 하고 싶다면
+
+```sql
+select * 
+from emp,dept 
+where emp.deptno(+) = dept.deptno(+);
+--error
+
+select * 
+from emp,dept 
+where emp.deptno = dept.deptno(+);
+Union
+select * 
+from emp,dept 
+where emp.deptno = dept.deptno(+);
+--각각 외부조인을 한 다음에 합하면 된다.
+```
+
+
+
+```SQL
+--(1)
+select *
+from table1 join table2 using(조인 칼럼명)
+where 행에 대한 조건
+
+--(2)
+select *
+from table1 join table2 on (조인 조건)
+where 행에 대한 조건
+
+--(3)
+select *
+from table1 left join table2 using(조인 칼럼명) on (조인 조건)
+where 행에 대한 조건
+
+--(4)
+select *
+from table1 right join table2 using(조인 칼럼명) on (조인 조건)
+where 행에 대한 조건
+
+--(5)
+select *
+from table1 full join table2 using(조인 칼럼명) on (조인 조건)
+where 행에 대한 조건
+```
+
+
+
+
+
+##### SELF JOIN
+
+```sql
+select e.empno AS "사원번호",
+    e.ename AS "사원이름", 
+    NVL(TO_CHAR(d.empno),'없음') AS "관리자번호", 
+    NVL(d.ename, '없음') AS "관리자이름"
+from emp e,emp d
+where e.mgr = d.empno;
+```
+
+이런 식으로 자기 테이블 그대로 조인해서 관리자의 이름을 가져 오는 방식으로 사용 할 수 있다.
+
+
+
+##### SubQuery
+
+```sql
+select *
+from (select Query)
+```
+
+서브 쿼리로 뽑힌 테이블로 부터 셀렉 명령어를 실행하는 것
+
+서브 쿼리 부터 실행된다.
+
+
+
+```sql
+select *
+from emp
+where sal > (select * 
+             from emp w
+             here ename='ADAMS')
+-- 에러가 없다.
+select *
+from emp
+where sal > (
+    select * 
+    from emp 
+    where ename='ADAMS'
+	OR ename = 'JONES')
+--에러가 난다. 단일 행이 아니라 다중행이라 비교가 불가능하기 때문
+select *
+from emp
+where sal > ALL (
+    select * 
+    from emp 
+    where ename='ADAMS'
+	OR ename = 'JONES')
+--에러가 없다. 더 큰 값과 비교하기 때문이다.
+```
+
