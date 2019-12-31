@@ -614,3 +614,93 @@ where sal > ALL (
 --에러가 없다. 더 큰 값과 비교하기 때문이다.
 ```
 
+- ANY,SOME
+  - 서브쿼리의 행중 하나라도 맞으면 true
+- ALL
+  - 서브쿼리의 모든 행이 맞아야 true
+
+
+
+## DML
+
+### Create
+
+```sql
+Create table dept_temp
+	AS select * from dept;
+-- dept테이블 안의 모든 데이터를 새로 생성한 테이블에 복사
+```
+
+
+
+데이터 베이스의 변경은 commit해줘야함.
+
+commit 안하면 꺼버리면 적용이 안됨.
+
+### Insert
+
+```sql
+Insert into tablename (칼럼 리스트)
+values (각 열 마다 데이터)
+--예시
+Insert into dept_temp (deptno,ename,loc)
+values (50,'DATABASE', NULL)
+-- 칼럼 리스트와 데이터 갯수가 안 맞으면 에러가 난다
+Insert into dept_temp (deptno,ename)
+values (50,'DATABASE')
+-- 위와 똑같이 들어간다. 지정해주지 않는 칼럼은 NULL삽입
+```
+
+
+
+
+
+```sql
+Create table dept_temp
+	AS select * 
+	from emp
+	where 1<>1;
+-- emp 테이블의 모든 칼럼을 복사하지만 데이터는 비어있다.
+-- 1보다 크지만 1보다 작다.
+```
+
+
+
+### UPDATE
+
+```sql
+update dept
+	set DNAME = 'DATABASE',
+		LOC = 'SEOUL'
+where DEPTNO =40
+-- 부서명이 40인 칼럼의 부서명과 지역이 바뀌었다.
+-- 만약 where 로 조건을 주지 않으면 모든 데이터가 변경 된다.
+```
+
+수정한 내용을 되돌리고 싶을 떄
+
+```sql
+ROLLBACK;
+```
+
+영원히 반영하고 싶을때
+
+```sql
+commit
+```
+
+
+
+## 트랜젝션
+
+더이상 분할 할 수 없는 최소 수행 단위
+
+즉, 반드시 한번에 수행해야 되는 작업
+
+1. 트랜젝션의 시작 
+   - 처음 시작된 DML 명령어
+2. 트랜 젝션의 끝
+   - commit 이나 rollback같은 종료 명령어(TCL)
+   - DDL 같은 명령어가 실행 됬을때
+     - 자동으로 commit이 된다.
+3. Select명령어는 트랜 젝션과 아무런 상관 없다.

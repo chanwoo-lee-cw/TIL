@@ -2376,3 +2376,65 @@ URL req = new URL("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1168064000");
 			}	
 ```
 
+## JDBC 프로그래밍
+
+- java.API
+
+- java.sql
+
+- javax.sql
+
+- DBMS 에 무관하게 프로그램을 개발할 수 있다.
+
+- 구성 : JDBC API + JDBC Driver
+
+  ​			(인터페이스) (인터페이스의 구현 클래스)
+
+  ​			DBMS에 무관 DBMS에 따라 달라진다.
+
+- 팩토리메서드 :  객체 생성을 대신 해주는 일반 매서드
+
+
+
+- sql 명령어를 수행시키는 기능을 지원하는 객체
+
+```java
+ - statement
+excutementQuery() : ResultSet //select 명령어
+excutementUpdate() : int	//그 외의 모든 SQL
+statement stmt = Connection 객체의 createStatement();
+```
+
+- jdbc 프로그램의 구현 순서
+  1. jdbc Driver 로딩 - Class.forName()
+  2. DBMS 에 접속 - DriverManager.getConnection("jdbc url", "계정", "암호")
+  3. Statement/PreparedStatement 객체 생성
+  4. 처리하려는 기능에 따라서 SQL문을 전달하고 수행시킨다.
+  5. 결과 처리
+     - ResultSet 객체
+     - next(), getXXX()
+     - select 명령의 수행 여부 결과에 상관없이 REsultSEt은 반환된다.
+
+
+
+
+
+## URL
+
+uniforn Resource Locator 의 약자로 어떤 자원의 위치를 알리는 단일화(규격화)된 형식의 문자열
+
+
+
+프로토콜 명 : ...........
+
+​	프로토콜 : 통신 규약
+
+http: 인터넷에서의 통신 규약
+
+### JDBC URL
+
+어떤 DBMS를 어떤 JDBC Driver를 통해서 접속할 것인지 하나의 문자열로 구성
+
+Jdbc : DBMS이름:JDMCDriver이름:Driver에서 원하는 대로
+
+Jdbc:oracle:thin:@DBMS네트워크주소 
