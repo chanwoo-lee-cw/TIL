@@ -2409,13 +2409,32 @@ statement stmt = Connection 객체의 createStatement();
   1. jdbc Driver 로딩 - Class.forName()
   2. DBMS 에 접속 - DriverManager.getConnection("jdbc url", "계정", "암호")
   3. Statement/PreparedStatement 객체 생성
+     - Statement의 단점 보완이 PreparedStatement
   4. 처리하려는 기능에 따라서 SQL문을 전달하고 수행시킨다.
   5. 결과 처리
      - ResultSet 객체
      - next(), getXXX()
      - select 명령의 수행 여부 결과에 상관없이 REsultSEt은 반환된다.
+  6. 종료시 close() 필수
 
 
+
+- JDBC 프로그램 패키지 : jdbcsrc
+- ReadVisitor
+
+
+
+#### 메타 데이터
+
+같이 전달된 부가 데이터들
+
+예) 데이터 베이스 이름, 드라이버 정보 등등
+
+- DatabaseMetaData 
+  - 접속된 DB에 대한 정보, JDBC드라이버에 대한 정보 추출
+- ResultSetMetaData
+  - 드라이버가 지원하는 기능을 알아내기 위해서, API론 구현 되있어도 DB드라이버가 지원 안 할 수도 있음
+  - Select 명령을 수행하고, 생성된 ResultSet 객체에 대한 정보를 추출
 
 
 
@@ -2438,3 +2457,4 @@ http: 인터넷에서의 통신 규약
 Jdbc : DBMS이름:JDMCDriver이름:Driver에서 원하는 대로
 
 Jdbc:oracle:thin:@DBMS네트워크주소 
+
