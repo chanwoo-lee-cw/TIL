@@ -2458,3 +2458,31 @@ Jdbc : DBMS이름:JDMCDriver이름:Driver에서 원하는 대로
 
 Jdbc:oracle:thin:@DBMS네트워크주소 
 
+
+
+
+
+## Web 프로그래밍 기술
+
+- 프로그램이 실행하는 위치에 따라 나눠짐
+
+  - web 서버 프로그래밍
+    - web 클라이언트(브라우저)가 요청했을 때 서버에서 실행
+    - servlet, JSP, Spring, Mybtis
+  - web 클라이언트 프로그래밍
+    - web 클라이언트가 요청했을 때 클라이언트에서 실행
+    - HTML5,CSS3,JavaScript,jQuery,Ajax
+
+- 테스트 환경
+
+  - Web 클라이언트 역활의 프로그램 : 브라우저(크롬)
+
+  - Web 서버 역활의 프로그램 : 
+
+    - Servlet, JSP를 처리 할 수 있는 서버
+
+    - WAS(Web Application Server)
+
+      --> Tomcat 9.0
+
+  - Eclipse - Web Project - 
