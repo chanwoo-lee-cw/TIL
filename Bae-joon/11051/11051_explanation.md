@@ -40,7 +40,7 @@ https://www.acmicpc.net/problem/11051
 
 즉 이것을 점화식으로 만들면
 
-```sudo
+```pseudocode
 binomial_coefficient(n,k) :
 	if k==n AND k==1 
 		return 1
