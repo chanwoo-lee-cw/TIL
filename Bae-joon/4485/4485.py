@@ -4,9 +4,13 @@ import heapq
 
 def dijkstra(arr, dist, n):
     pq = []
+    # 각 위치의 rol값과, col 값을 힙에 저장한다.
     heapq.heappush(pq, (arr[0][0], 0, 0))
+    
     while pq:
+        # i,j 위치의 가중치를 저장 즉 arr[i][j] 위치의 가중치를 저장한다.
         v, i, j = heapq.heappop(pq)
+        # 각자 4방향의 가중치를 고려햐본다.
         if dist[i][j] < v:
             continue
         if i - 1 >= 0:
@@ -37,7 +41,9 @@ while True:
     if not n:
         break
     arr = []
+    # 언더라인, 굳이 i,j같은 값을 표현할 필요가 없이 단순 반복문을 사용할때 사용한다.
     for _ in range(n):
         arr.append([int(x) for x in input().rstrip().split()])
+
     dist = [[MAXNUM for _ in range(n)] for __ in range(n)]
     print('Problem {}: {}'.format(c, dijkstra(arr, dist, n)))

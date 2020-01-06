@@ -77,3 +77,25 @@ radio.나 check box는 value 값이 필수임.
 - CSS를 다르게 적용하려는 태그들 또는 태그의 컨텐트에 정의하는 용도의 태그들
   - \<div> - 여러 태그들을 묶거나 또는 태그에 대하여 CSS를 적용하고 싶을때.
   - <span> 
+
+
+
+
+
+## JavaScript의 DOM 객체
+
+- 각자 위치를 객체로 만든다.
+- 즉, HTML객체, 그 하위의 객체 HEAD, BODY객체 그 하위의 TITLE 객체 등등 같이 각자 모든 요소를 트리구조의 객체로 만들고, javascript로 사용한다.
+
+
+
+
+
+- img[src]
+- img[src=duke.png]
+- img[src=$png] 
+  - png로 끝나는 모든 것을 지정한다
+
+
+
+display : none , block, inline,inline-block
