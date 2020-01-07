@@ -99,3 +99,152 @@ radio.나 check box는 value 값이 필수임.
 
 
 display : none , block, inline,inline-block
+
+
+
+### 구문
+
+1. javascript 코드 작성 방법
+   1. 오로지 구문만 있으면 된다. main 이런거 필요없다.
+2. 데이터 타입과 변수선언
+   1. 숫자, 문자열타입, 논리타입, 객체타입(배열타입), undefined 타입
+
+```javascript
+var 변수명;
+var 변수명 =초기값;
+   var v1;
+   v1=10 // number
+   v1='10' //String
+   v1= true; // boolean
+      -----------------------> typeof 연산자가 필요
+```
+
+3. 연산자(java와 85% 비슷)   ----> ==, ===, !=, !==, && ,||, delete, typeof...
+4. 제어문 : for foreach, while, do ~ while, break, continue
+5. 함수의 정의와 활용 
+   1. 생성자 함수로 정의 및 생성
+   2. 객체 리터럴로 정의 및 생성
+6. 예외처리
+   1. 예외처리는 가능하면 하지 말자, 비용이 많이듬
+7. API
+   1. 표준 API: 함수, 생성자 함수
+   2. BOM API 
+      1. HTML5 API 
+         - canvas API - 캔버스용도로 주로 씌으는  API
+         - webstorage - 브라우저가 정해져있는 규격에 폴더에 저장함. 웹에 맡기지 않아도 된다.
+
+
+
+
+
+### 삽입 위치
+
+- JavaScript 코드는 가급적\<body> 태그의 마지막 부분 즉,\</body> 태그의 바로 위에 삽입한다.
+  - 자바 스크립트 코드가 도는 동안 HTML 코드가 정지 되기 때문에 , 자바 스크립트 코드의 처리 시간은 오래 걸리기 때문에 먼저 HTML부터 출력하고 자바 스크립트 코드를 처리한다.
+
+- for…in 반복문 사용이 가능하다(for-each 문이라고도 핚다.)
+
+  ```javascript
+  
+  ```
+
+NaN의 약어 Not a number : 연산할 수 없는 상황이 아니면 Nan출력
+
+불리언 형도 숫자로 간주 : true면 1 false면 0
+
+
+
+`비교식1 && 비교식2`
+
+`비교식1 || 비교식2`
+
+- &&와  ||를 이용해서 if문 대신해서 구현 가능
+
+```javascript
+if(a>b)
+    window.alert(a);
+
+//---------> 같은 출력
+a>b && window.alert(a);
+a<=b && window.alert(a);
+```
+
+
+
+```javascript
+window.alert()	// 경고메세지를 출력 하는 서브창을 디스플레이 
+    			//-> 서브창을 클릭 안하면 아무것도 안됨
+window.prompt()	// 사용으로부터 데이터를 입력받는 서브창을 디스플레이
+window.confrim()	//확인받는 목적으로 사용되는 API로서
+					//Yes/no형식으로 데이터를 입력받는 서브창을 디스플레이
+```
+
+
+
+### 배열
+
+1. 다양한 타입의 데이터를 하나의 배열에 구성 가능
+2. 배열 생성 후에도 크기 변경 가능
+
+
+
+- 생성
+
+```js
+//리터럴을 이용해 생성
+var a1 = [];
+var a2 = [10,20,30];
+var a3 = [true,'가나다',100];
+
+a1.length
+a2.length
+a3.length
+a3[1]
+// API를 이용해 생성
+var a4 = new Array();
+var a5 = new Array(10);		//10이라는 배열의 크기 지정, int형 매개변수가 1개일 경우에 한해
+var a6 = new Array(10,20);	// 배열을 생성해 10,20을 넣어라
+var a7 = new Array(true,3.5,'aaa','aa');
+```
+
+
+
+```js
+var fruits = [10,3,6,20,7];
+document.getElementById("demo").innerHTML = fruits;
+
+function myFunction() {
+  fruits.sort();
+  document.getElementById("demo").innerHTML = fruits;
+}
+//10,20,3,6,7 이 출력된다. 문자열을 기본으로 생각하기 때문에 '10','20' 같이 생각하기 때문 
+
+//방법
+var fruits = [10,3,6,20,7];
+document.getElementById("demo").innerHTML = fruits;
+
+function myFunction() {
+  fruits.sort(function(a, b){return a-b});
+  document.getElementById("demo").innerHTML = fruits;
+}
+//3,6,7,10,20
+
+//역순
+var fruits = [10,3,6,20,7];
+document.getElementById("demo").innerHTML = fruits;
+
+function myFunction() {
+  fruits.sort(function(a, b){return b-a});
+  document.getElementById("demo").innerHTML = fruits;
+}
+//20,10,7,6,3
+```
+
+
+
+```js
+for(var i in a1)  // for(int data : ary)
+	document.write("<h4>"+ a1[i] +"</h4>");
+//for each 문은 undefined 아닌 값만 뽑는다. undefined 인 부분은 그냥 넘어간다.
+```
+
