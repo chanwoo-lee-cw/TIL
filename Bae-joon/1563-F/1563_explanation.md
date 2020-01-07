@@ -1,24 +1,36 @@
 ## 백준 2169번 풀이
 
-https://www.acmicpc.net/problem/2169
+https://www.acmicpc.net/problem/1563
 
 ### 문제
 
-*NASA에서는 화성 탐사를 위해 화성에 무선 조종 로봇을 보냈다. 실제 화성의 모습은 굉장히 복잡하지만, 로봇의 메모리가 얼마 안 되기 때문에 지형을 N×M 배열로 단순화 하여 생각하기로 한다.*
+*백준중학교에서는 학기가 끝날 무렵에 출결사항을 보고 개근상을 줄 것인지 말 것인지 결정한다. 이 학교는 이상해서 학생들이 학교를 너무 자주 빠지기 때문에, 개근상을 주는 조건이 조금 독특하다.*
 
-*지형의 고저차의 특성상, 로봇은 움직일 때 배열에서 왼쪽, 오른쪽, 아래쪽으로 이동할 수 있지만, 위쪽으로는 이동할 수 없다. 또한 한 번 탐사한 지역(배열에서 하나의 칸)은 탐사하지 않기로 한다.*
+*출결사항이 기록되는 출결은 출석, 지각, 결석이다.*
 
-*각각의 지역은 탐사 가치가 있는데, 로봇을 배열의 왼쪽 위 (1, 1)에서 출발시켜 오른쪽 아래 (N, M)으로 보내려고 한다. 이때, 위의 조건을 만족하면서, 탐사한 지역들의 가치의 합이 최대가 되도록 하는 프로그램을 작성하시오.*
+*개근상을 받을 수 없는 사람은 지각을 두 번 이상 했거나, 결석을 세 번 연속으로 한 사람이다.*
 
+*한 학기가 4일이고, O를 출석, L을 지각, A를 결석이라고 했을 때, 개근상을 받을 수 있는 출결정보는*
 
+```
+OOOO OOOA OOOL OOAO OOAA OOAL OOLO OOLA OAOO OAOA 
+OAOL OAAO OAAL OALO OALA OLOO OLOA OLAO OLAA AOOO 
+AOOA AOOL AOAO AOAA AOAL AOLO AOLA AAOO AAOA AAOL
+AALO AALA ALOO ALOA ALAO ALAA LOOO LOOA LOAO LOAA 
+LAOO LAOA LAAO
+```
+
+*총 43가지이다.*
+
+*한 학기는 N일이다. N이 주어졌을 때, 개근상을 받을 수 있는 출결정보의 개수를 세는 프로그램을 작성하시오.*
 
 ### 입력
 
-*첫째 줄에 N, M(1≤N, M≤1,000)이 주어진다. 다음 N개의 줄에는 M개의 수로 배열이 주어진다. 배열의 각 수는 절댓값이 100을 넘지 않는 정수이다. 이 값은 그 지역의 가치를 나타낸다.*
+*첫째 줄에 N이 주어진다. N은 1,000보다 작거나 같다.*
 
 ### 출력
 
-*첫째 줄에 최대 가치의 합을 출력한다.*
+*첫째 줄에 정답을 1,000,000으로 나눈 나머지를 출력한다.*
 
 ***
 
@@ -26,97 +38,40 @@ https://www.acmicpc.net/problem/2169
 
 ### 풀이
 
- 처음엔 감이 잡히지 않아서 각 테이블로 갈 수 있는 루트의 경우의 수부터 세기 시작했다.
+일단 처음에는 뒤에 붙히는 방식으로 규칙을 찾아보려고 했지만, 도저히 규칙을 찾을 수 없었다.
 
-일단은 작은 경우부터
-
-n=2, m=2
-
-| 1 | 1 |
-| 2 | 2 |
-
-n=3, m=2
-
-| 1 | 1 |
-| 2 | 2 |
-| 4 | 4 |
-
-n=2, m=3
-
-| 1 | 1 | 1 |
-| 3 | 3 | 3 |
-
-n=3, m=3
-
-| 1 | 1 | 1 |
-| 3 | 3 | 3 |
-| 9 | 9 | 9 |
-
-n줄의 각 항목의 접근을 하기 위한 경우의 수는 위의 모든 경우의 수를 더하는 경우와 똑같다.
-
-이건 경우의 수일 뿐 도움이 되진 않았지만, 일단 어떻게 하는지 감이 잡히기 시작했다.
+그래서 규칙을 찾아보려고 했지만
 
 
 
-예를 들면 (2,1)의 위치를 가려면
+그래서 이번에는 조합문제인가 싶어서 n개중에서 지각 2개를 뽑고 결석 이어져 있는 결석 3개를 전부 뽑아서 배치하는 경우를 고려해봤다.
 
-\| > | ∨ |   |
-
-\|ㅇ| <  |   |
-
----
-
-\| > | > | ∨ |
-
-\|ㅇ| < | <  |
-
----
-
-\| ∨ |    |    |
-
-\|ㅇ |    |    |
-
-같은 경우 밖에 없는데, 즉 바로 위에서 내려오거나, 아니면 오른쪽으로 쭉 갔다가 왼쪽부터 내려오거나 같은 경우 밖에 없었다. 한 방향을 잡으면 쭉 잡고 달려오는 경우이다.
+하지만, 이것도 중복이 너무 많이 생기는 문제가 생겼다.
 
 
 
-즉 쉽게 말해 , 한 줄의 각 왼쪽에서 오는 것 오른쪽에서 오는 것 의 값들의 각자 최대 값을 하면 된다
-
-각,  위치의 값은 위에서 바로 온 것, 옆에서 바로 온것, 아니면 위에서 바로 온 것 3중 하나이다.
+그래서, 이번엔 연속이라는 것에 착안해서 와인잔 문제를 생각했다. 그 이전것과 같이 계산하는 건데 그것을 생각하면 지각을 어떻게 세야할지 감이 잡히지 않아서 이것도 컷이였다.
 
 
 
-일단 **베이스 케이스**
+하지만, 여기서 감을 좀 잡았는데 지각이 문제라면 지각을 다른 변수로 즉 2차원 배열로 빼는 것으로 고려해봤다.
 
-첫번째 줄인 경우, 이거는 그냥 그냥 오른쪽으로 가는 경우니 쭉 채우면 된다.
-
-```sudo
-dp[1][1] <- matrix[1][1]
-for i=2...m
-	dp[1][j] <- matrix[1][j]+ dp[1][j-1]
+```pyhton
+dp[o][a]
 ```
 
+이런 방식으로 하지만, 이것도 또 막혔는데 지각 처리가 좀 곤란하다는 문제였다.
 
-
-**점화식**
-
-각 각 방향에서 온 것을 찾으면 된다. 단, 한 줄을 통째로 계산해야 하니 임시로 만들 2줄을 만든다. 왜 두줄이냐 하면 왼쪽으로 할지 오른쪽에서 할지의 두 줄이다.
+그래서 지각도 밖으로 뺐다.
 
 
 
-그리고 각 줄의 위부터 내려오는 경우, 왼쪽에서 오는 경우, 오른쪽에서 오는 경우 각각 최대값을 구한다.
+하지만, 이제 풀 수 있을거 같은 점에서 막혔다.
 
-```sudo
-for i=2...n
-	temp[0][0] <- dp[i-1][1];
-    for j = 1.... m
-		temp[0][j] <- max(temp[0][j-1], dp[i-1][j])+ matrix[i][j];
+예를 들면 n날에 출석을 했다 치면
 
-    temp[1][m+1] <- dp[i-1][m];
-    for j = m.... 1  : -1 
-		temp[1][j] <- max(temp[1][j+1], dp[i-1][j]) + matrix[i][j];
-	for j = 1... m
-         dp[i][j] =<- max(temp[0][j], temp[1][j]);
+```pseudocode
+
 ```
 
 
@@ -127,58 +82,42 @@ for i=2...n
 
 ### 전체 코드
 
-```java
-import java.util.Scanner;
- 
-public class Main {
- 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int m = in.nextInt();
-         
-        int[][] matrix = new int[n+1][m+1];
-        int[][] dp = new int[n+1][m+1];
-        int[][] temp = new int[2][m+2];
-         
-        for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= m; j++){
-                matrix[i][j] = in.nextInt();
-            }
-        }
-         
-        dp[1][1] = matrix[1][1];
-         
-        for(int j = 2; j <= m; j++) dp[1][j] = matrix[1][j]+ dp[1][j-1];
-         
-        for(int i = 2; i <= n; i++) {
-             
-            temp[0][0] = dp[i-1][1];
-            for(int j = 1; j <= m; j++) {
-                temp[0][j] = Math.max(temp[0][j-1], dp[i-1][j])+ matrix[i][j];
-            }
-             
-            temp[1][m+1] = dp[i-1][m];
-            for(int j = m; j >= 1; j--) {
-                temp[1][j] = Math.max(temp[1][j+1], dp[i-1][j]) + matrix[i][j];
-            }
-             
-            for(int j = 1; j <= m; j++) {
-                dp[i][j] = Math.max(temp[0][j], temp[1][j]);
-            }
-        }
-//        for(int i = 1; i <= n; i++) {
-//            for(int j = 1; j <= m; j++){
-//                System.out.printf("%4d",dp[i][j]);
-//            }
-//            System.out.println();
-//        }
-        
-        System.out.println(dp[n][m]);
-         
-        in.close();
-    }
- 
-}
+```python
+import sys
+
+input = sys.stdin.readline
+sys.setrecursionlimit(1000000000)
+memo = {}  # memoization
+
+
+def dp(total, day, late, abs):
+    # 지각이 2번 이상이면 fail
+    if 2 <= late:
+        return 0
+
+    # 결석 3연속이면 fail
+    if 3 <= abs:
+        return 0
+
+    # 개근상 조건 충족
+    if day == total:
+        return 1
+
+    # memoization 기록 가져오기
+    # day, late, abs가 다음과 같은 값일 경우 개근상을 받을 수 있는 경우의 수
+    if (day, late, abs) in memo:
+        return memo[(day, late, abs)]
+
+    # day째 되는 날에, 그 이후 날들에 출석하거나 지각하거나,결석하였을 때 개근상을 받을 수 있는 경우의 수에 대한 기록
+    memo[(day, late, abs)] = dp(total, day + 1, late, 0) + dp(total, day + 1, late + 1, 0) + dp(total, day + 1, late,
+                                                                                                abs + 1)
+    return memo[(day, late, abs)]
+
+
+if __name__ == "__main__":
+    total = int(input().strip())
+    # 출석 일 수, 지각수, 연속 결석 수
+    print(dp(total, 0, 0, 0) % 1000000)
+
 ```
 
