@@ -284,3 +284,44 @@ function([매개변수]) {
 
 
 함수는 리턴 값이 없더라도 무조건 undefined가 출력된다
+
+
+
+``` js
+	var obj ={
+			name : "듀크",
+			eat : function(food) {
+				writeColor(this.name + "가 " + food + "를 먹어요!!","h3","green");
+			}
+	}
+	obj.eat("바나나");
+	obj.eat("딸기");
+
+	hr();
+	
+	writeColor(typeof obj,'h2',"red");
+	obj.project = "자바 스크립트";
+	obj.study = function() {
+		writeColor(this.name + "가 " + obj.project + "를 동부해요!!","h3","magenta");
+	}
+	obj.study();
+
+	hr();
+	
+	for(var key in obj)
+		write(key + ":" + obj[key],"h4");
+
+	hr();
+
+	write(obj.project,"h4");
+	write(obj["project"],"h4");
+```
+
+자바 스크립트는 같은 멤버 안에 있는 인스턴스 접근할때 무조건 this를 붙혀야 한다.
+
+객체가 이미 선언 한 다음에 인스턴스를 추가하는게 가능하다.
+
+이런식으로 일반 객체도 전부 뽑아 내는게 가능하다.
+
+키 값을 직접 줘서 접근도 가능하다.
+
