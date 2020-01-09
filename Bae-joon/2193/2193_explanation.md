@@ -1,4 +1,4 @@
-## 백준 2805번 풀이
+## 백준 2193번 풀이
 
 #https://www.acmicpc.net/problem/2193
 

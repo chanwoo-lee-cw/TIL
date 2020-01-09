@@ -325,3 +325,92 @@ function([매개변수]) {
 
 키 값을 직접 줘서 접근도 가능하다.
 
+
+
+### prototype
+
+- 생성자 함수만 사용이 가능하다.
+
+``` js
+function Student(name, sub1, sub2, sub3)
+ this.name = name;
+ this.sub1 = sub1;
+ this.sub2 = sub2;
+ this.sub3 = sub3;
+}
+Student.prototype.getName = function() {
+ return this.name;
+}
+Student.prototype.geSum = function() {
+ return this.sub1+this.sub2+this.sub3;
+}
+Student.prototype.getAvg = function() {
+ this.getSum() / 3;
+}
+```
+
+- student 안에 매서드를 선언한다면 각각 객체마다 매서드 영역이 할당 되지만, prototype을 사용한다면 하나의 매서드만 선언되고 모두가 공유하게 된다. static과 조금은 비슷하다고 생각하면 된다.
+
+
+
+
+
+### BOM
+
+- window,document,location(다른 웹 페이지로 이동 가능한 기능), history(뒤로가고 앞으로 가고, 브라우저 방문 후 정볼르 담고 있다.), navigator(브라우저 정보를 추출), screen
+
+#### 꼭 기억해야 되는 명령어
+
+- location.href : 페이지 이동을 구현하고자 할 때
+- location.reload() : 새로고침을 요청한다.
+
+
+
+```html
+<body>
+<form name="fm">
+	<select id="choice" onchange="go();">
+        <!-- onchange는 change 이벤트가 발생하면 ""안의 함수를 실행시켜라-->
+		<option value="">---관심있는 기술을 선택해 주세요---</option>
+		<option value="http://www.w3schools.com/js/default.asp">Learn JavaScript</option>
+		<option value="http://www.w3schools.com/js/js_htmldom.asp">
+            											Learn HTML DOM</option>
+		<option value="http://www.w3schools.com/jquery/default.asp">Learn jQuery</option>
+		<option value="http://www.w3schools.com/xml/ajax_intro.asp">Learn AJAX</option>
+		<option value="http://www.w3schools.com/js/js_json_intro.asp">Learn JSON</option>
+	</select>
+</form>
+<script>
+function go(){	
+    //옵션으로 선택된 주소의 값을 추출해서 location.href에 넣는다.
+    //location.href 주소를 이동하는 bom 명령어
+    
+	//location.href = document.getElementById("choice").value;
+    // document.getElementById 의 ()안의 아이디 즉 # 값을 얻어온다
+	location.href = document.querySelector("#choice").value;
+    // document.querySelector() ()안의  제공한 선택자 또는 선택자 뭉치와 일치하는 문서 내 첫 번째 Element를 반환합니다. 일치하는 요소가 없으면 null을 반환합니다.
+	//location.href = "http://www.naver.com/";
+}
+</script>
+</body>
+```
+
+
+
+```html
+<script>
+	write(navigator.platform, "h3");
+    // 브라우저에 대한 정보를 얻어온다.
+	write(navigator.userAgent, "h3");
+    // 이용자의 정보를 얻어온다.
+	var str = navigator.userAgent;
+	if (str.match(/(ipad)|(iphone)|(ipod)|(android)|(webos)/i))
+		write("모바일 디바이스 이군요", "h2");
+	else
+		write("모바일 디바이스가 아니군요", "h2");
+</script>
+```
+
+
+
+- navigator.userAgent
