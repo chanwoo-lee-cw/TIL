@@ -366,6 +366,10 @@ Student.prototype.getAvg = function() {
 
 
 
+- navigator.userAgent
+
+
+
 ```html
 <body>
 <form name="fm">
@@ -400,11 +404,13 @@ function go(){
 ```html
 <script>
 	write(navigator.platform, "h3");
-    // 브라우저에 대한 정보를 얻어온다.
+    // 디바이스 대한 정보를 얻어온다. 예를들면 몇 비트 컴퓨터인지.
+    // ex ) Win16, Win32, Win64, MacIntel ,Mac
 	write(navigator.userAgent, "h3");
-    // 이용자의 정보를 얻어온다.
+    // 이 페이지를 랜더링 하고 있는 클라이언트 머신과 브라우저 정보를 하나의 문자열로 추출
 	var str = navigator.userAgent;
 	if (str.match(/(ipad)|(iphone)|(ipod)|(android)|(webos)/i))
+        // /.../i 사이 안에 하나라도 맞는거라도 있으면 확인한다.
 		write("모바일 디바이스 이군요", "h2");
 	else
 		write("모바일 디바이스가 아니군요", "h2");
@@ -413,4 +419,91 @@ function go(){
 
 
 
-- navigator.userAgent
+```html
+<script>
+	//변수를 선언합니다.
+	var child = window.open('/edu/first.html', '', 'width=300, height=200');
+    //팝업 창을 띄우는 것을 차일드로 크기를 300, 200으로 정한다.
+	var width = screen.width;
+	var height = screen.height;
+    // 높이와 너비를 전체화면으로 설정 
+	child.moveTo(0, 0);	
+	child.resizeTo(width, height);
+    //0,0 위치에 설정해둔 높이와 너비로 출력 즉, 전체 화면
+	window.setInterval(function () {
+	    child.resizeBy(-20, -20);
+	    child.moveBy(10, 10);
+	}, 2000);  
+    //window.setInterval로 2000미리초 즉 2초마다 함수를 실행, 차일드의 크기를 20씩 줄고 현재 위치에서 10,10을 더한 위치로 움직인다.
+</script>
+```
+
+
+
+
+
+### DOM(Document Object Model)
+
+- 브라우저의 HTML 파서가 서버로부터 전달받은 HTML 문서의 내용을 파싱하고 랜더링할 때 인식된 HTML 태그, 속성 그리고 텍스트로 구성된 컨텐츠를 하나하나 javaScript 객체로 생성한다. 이 때 만들어진 DOM객체들(Element 객체, Text객체) 부모자식 관계를 유지해서 트리 구조를 형성한다.
+
+  --> javaScript 코드로 HTML 태그나 속성 그리고 컨텐츠를 읽거나 변경할 수 있게 지원해서 동적인 웹페이지를 생성
+
+
+
+1. 필요한 태그를 찾는 방법
+
+   - document.getElementsByTagName("태그명") : NodeList
+
+   - document.getElementById("태그id속성의값") : Node
+
+   - document.getElementsByClassName("태그의Class속성값") : NodeList
+
+     
+
+   - document.querySelector("CSS선택자") : Node
+
+   - document.querySelectAll("CSS선택자")  : NodeList
+
+     - 1번, 3번 5번 같은 경우는 복수의 리턴을 한다.
+
+2. 태그의 내용이나 속성을 읽고 변경하는 방법, 삭제하는 방법
+
+   - 찾은 Element객체.innerHTML
+   - 찾은 Element객체.textContent
+   - 찾은 Element객체.getAttribute("속성명")
+   - 찾은 Element객체.setAttribute("속성명",속성값)
+   - 찾은 Element객체.removeAttribute("속성명")
+   - 찾은 Element객체.속성명
+   - 찾은 Element객체.속성명 - 속성값
+
+3. 태그에서 발생하는 이벤트 또는 브라우저 객체서 발생하는 이벤트(window)에 대한 이벤 핸들러 구현방법
+
+   1. 인라인 이벤트 모델
+
+      - \<button onclick="코드">1\</button>
+
+   2. 전역적 이벤트 모델(고전 이벤트 모델)
+
+      - \<button>2\</button>
+
+        ```js
+        var dom = document.getElementsTagName("button")[0];
+        dom.onclick = function() { 
+        	//코드 
+        };
+        ```
+
+   3. 표준 이벤트 모델
+
+      - \<button>\</button>
+
+        ```js
+        var dom = document.getElementsTagName("button")[0];
+        dom.addEventLisner("click",function() {
+            //코드
+        });
+        ```
+
+        
+
+      
