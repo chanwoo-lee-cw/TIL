@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>시간정보 출력하기</h1>
+<hr>
+<button onclick="startTime()">시간을 알려주라옹...</button>
+<button onclick="stopTime()">시간 출력을 종료하라옹...</button>
+<output></output>
+<script>
+// setInterval()을 사용하여 동일한 기능 구현
+var target = document.getElementsByTagName("output")[0];
+var setId;
+function startTime() {
+	setId = window.setInterval(function(){
+		var d = new Date();
+		target.innerHTML = "<h2>"+d.toLocaleString()+"</h2>";
+	}, 1000);
+}
+function stopTime() {
+	//target.innerHTML = "";
+	window.clearInterval(setId);
+}
+</script>
+</body>
+</html>

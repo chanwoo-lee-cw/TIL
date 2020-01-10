@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>고차함수 활용 예</h1>
+	<hr>
+	<p>5초후 화면전환</p>
+	<script>
+		var displayDate = function() {
+			var d = new Date();
+			document.write(d.toLocaleString() + "<br>");
+		};
+		var time = 5000;
+		var time2 = 6000;
+		window.setInterval(displayDate, time);
+		window.setInterval(displayDate, time2);
+	</script>
+</body>
+</html>

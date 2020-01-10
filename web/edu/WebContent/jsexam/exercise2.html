@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	h2 {
+		color : blue;
+	}
+</style>
+</head>
+<body>
+<h1>구구단</h1>
+<hr>
+
+<script>
+	
+	
+	var num1 = window.prompt("숫자를 입력해 주세요.");
+	var num2 = window.prompt("숫자를 입력해 주세요.");
+	var cal = window.prompt("연산자를 입력해 주세요.");
+	
+	
+	
+	if(cal=='+') {
+		document.writeln("<h2 style=\"color: blue\">" + num1 +"와"+ num2+"의 " + cal + "의 연산 결과는 ");
+		document.writeln((Number(num1)+Number(num2)) + "입니다 " + "</h2>");
+	}
+	else if(cal=='-') {
+		document.writeln("<h2 style=\"color: blue\">" + num1 +"와"+ num2+"의 " + cal + "의 연산 결과는 ");
+		document.writeln((num1-num2) + "입니다 "+ "</h2>");
+	}
+	else if(cal=='*') {
+		document.writeln("<h2 style=\"color: blue\">" + num1 +"와"+ num2+"의 " + cal + "의 연산 결과는 ");
+		document.writeln((num1*num2) + "입니다 "+ "</h2>");
+	}
+	else if(cal=='/') {
+		document.writeln("<h2 style=\"color: blue\">" + num1 +"와"+ num2+"의 " + cal + "의 연산 결과는 ");
+		document.writeln((num1/num2) + "입니다 "+ "</h2>");
+	}
+	else if(cal=='%') {
+		document.writeln("<h2 style=\"color: blue\">" + num1 +"와"+ num2+"의 " + cal + "의 연산 결과는 ");
+		document.writeln((num1%num2) + "입니다 "+ "</h2>");
+	}
+	else {
+		document.writeln("<h2 style=\"color: red\">");
+		document.writeln("+, -, *, /, % 만 입력 가능 </h2>");
+	}
+
+
+
+
+
+</script>
+
+</body>
+</html>

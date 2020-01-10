@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+</head>
+<body>
+<h1>배열1</h1>
+<hr>
+<pre>
+<script>
+	var arr = new Array(10);
+	document.write("정렬 전 :");
+	for(var i=0; i<10;i++) {
+		arr[i]=Math.floor(Math.random()*50) +1;
+		
+	}
+	document.write(arr + "<br>정렬후 : ");
+	document.write(arr.sort(function(a, b){return a-b}));
+</script>
+</pre>
+</body>
+</html>

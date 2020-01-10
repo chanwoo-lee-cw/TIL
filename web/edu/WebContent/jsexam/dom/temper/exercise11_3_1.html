@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2></h2>
+	<button data-color="red">빨강색</button>
+	<button data-color="blue">파랑색</button>
+	<button data-color="yellow">노랑색</button>
+	
+	<script>
+		var h2dom = document.getElementsByTagName("h2")[0];
+		var dateInfo = new Date();
+		h2dom.textContent = "오늘은 "+dateInfo.getFullYear() + "년 "
+							+(dateInfo.getMonth()+1)+"월 " 
+							+dateInfo.getDate()+ "일입니다.";
+		
+		var btns = document.getElementsByTagName("button");
+
+		var total = function(colorname){
+			h2dom.style.color = this.getAttribute("data-color");
+		};
+
+		for (var i = 0 ; i < btns.length ; i++){
+			btns[i].addEventListener("click", total);
+		}
+	</script>
+</body>
+</html>

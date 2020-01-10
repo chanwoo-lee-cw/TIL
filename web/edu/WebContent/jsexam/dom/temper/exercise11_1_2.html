@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2></h2>
+	<button onclick="total(this, 'red')">빨강색</button>
+	<button onclick="total(this, 'blue')">파랑색</button>
+	<button onclick="total(this, 'yellow')">노랑색</button>
+	
+	<script>
+		var h2dom = document.getElementsByTagName("h2")[0];
+		var dateInfo = new Date();
+		h2dom.textContent = "오늘은 "+dateInfo.getFullYear() + "년 "
+							+(dateInfo.getMonth()+1)+"월 " 
+							+dateInfo.getDate()+ "일입니다.";
+		var old;
+		var total = function(me, color) {
+			if(old)
+				old.style.backgroundColor = 'white';
+			me.style.backgroundColor = color;
+			h2dom.style.color = color;
+			old = me;
+		}
+	</script>
+</body>
+</html>

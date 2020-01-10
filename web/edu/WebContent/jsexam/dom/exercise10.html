@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+</style>
+</head>
+<body>
+	<h1>exercise10</h1>
+	<hr>
+
+
+	<script>
+		var move = Math.floor(Math.random()*3)+1
+		var moving = ["","다음","네이버","구글"];
+		var str = moving[move] + "로 이동할래요?"
+		if(confirm(str)==true) {
+			if(move==1) location.href = "https://www.daum.net/";
+			else if(move==2) location.href = "https://www.naver.com/";
+			else if(move==3) location.href = "https://www.google.com/";
+		
+		}
+		else {
+				location.href = "../../first.html"
+		}
+		
+	</script>
+</body>
+</html>

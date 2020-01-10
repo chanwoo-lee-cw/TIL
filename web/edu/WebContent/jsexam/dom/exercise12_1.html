@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ * {
+ 	text-align : center;
+ }
+ button {
+ 	width : 10%;
+ 	height : 100px;
+ 	background-color : white;
+ }
+</style>
+</head>
+
+<body>
+	<h1>구구단</h1>
+	<button class = "number" data-int="1">1단</button>
+	<button class = "number" data-int="2">2단</button>
+	<button class = "number" data-int="3">3단</button>
+	<button class = "number" data-int="4">4단</button>
+	<button class = "number" data-int="5">5단</button>
+	<button class = "number" data-int="6">6단</button>
+	<button class = "number" data-int="7">7단</button>
+	<button class = "number" data-int="8">8단</button>
+	<button class = "number" data-int="9">9단</button>
+	<br>
+	<output></output>
+	<script>
+		var dom = document.querySelectorAll(".number");
+		var outputdom = document.getElementsByTagName("output")[0];
+		var old;
+		var total = function() {
+			if(old)
+				old.style.backgroundColor = 'white';
+			this.style.backgroundColor = "red";
+			dan=this.getAttribute("data-int")
+			outputdom.innerHTML = "";
+			for(var i =1;i<10;i++) {
+				outputdom.innerHTML =  outputdom.innerHTML +"<h3>"+ (dan + " X " + i + " = " + (dan*i) )+ "</h3>";
+			}
+			old = this;
+		}
+		for(var i in dom) 	
+			dom[i].onclick = total;
+	</script>
+</body>
+</html>
+

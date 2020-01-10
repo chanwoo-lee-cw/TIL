@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	section {
+		border : 1px solid lime;	
+		padding :10%;
+		margin : 0px auto;	
+	}
+	div {
+		border : 1px solid blue;	
+		width : 80%;
+		padding :10%;
+		margin : 0px auto;	
+	}
+	h1 {
+		border : 1px solid red;	
+		width : 80%;
+		padding :10%;
+		margin : 0px auto;		
+	}
+</style>
+
+</head>
+<body onclick="alert('body태그');">
+  <section onclick="alert('section태그');">
+	<div onclick="alert('div태그');">
+		<h1>테스트</h1>
+	</div>
+  </section>
+<script>
+function clickHandler() {
+	var list = document.getElementsByTagName("h1");
+	list[0].addEventListener("click", displayAlert);	
+	list = document.getElementsByTagName("section");
+	list[0].addEventListener("click", displayAlert);	 
+}
+function displayAlert(e) {
+	window.alert("h1 태그가 클릭됨!!"+this+e.target+e.currentTarget);
+	//e.stopPropagation();  	
+}
+window.addEventListener("load", clickHandler);
+</script>
+</body>
+</html>
+
+
+
+

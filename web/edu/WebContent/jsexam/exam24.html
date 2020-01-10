@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>자바스크립트의 객체 생성과 사용(생성자함수)</h2>
+<hr>
+<script src="util.js"></script>
+<script>
+function Student(p1,p2,p3,p4) {
+	this.name = p1;
+	this.kor = p2;
+	this.eng = p3;
+	this.math = p4;
+	this.getSum = function() {
+		return this.kor + this.eng + this.math;
+	}
+	this.getAvg = function() {
+		return this.getSum() /3;
+	}
+	this.toString = function() {
+		return this.name + "학생의 총점은 " + this.getSum() + "입니다.";
+	}
+}
+
+var student1 = new Student('둘리',90,80,95);
+// 자바 스크립트에서 new는 비어있는 {} 객체를 만든 다음에 Student를 넣는 형식이다.
+// 만약 new를 안 쓴다면 this가 가르치는 것은 windows객체를 가르키게 된다.
+var student2 = new Student('도우너',80,90,95);
+var student3 = new Student('또치',90,70,95);
+
+writeColor("학생 1 :"+student1,"h3","blue");
+writeColor("학생 2 :"+student2,"h3","red");
+writeColor("학생 3 :"+student3,"h3","green");
+</script>
+</body>
+</html>
+
+
+
+
+
+
