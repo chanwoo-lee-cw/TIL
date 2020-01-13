@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="draw_m()">
+	<canvas id="m" style="border:1px solid red" width="500" height="400">
+	
+	</canvas>
+<script>
+	function draw_m() {
+		var canvas = document.getElementById('m');
+		
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d'); 
+			
+			ctx.translate(100,200);
+			ctx.beginPath();
+			ctx.arc(0,0,100,0,Math.PI*2, false);
+			ctx.strokeStyle = "yellow";
+			ctx.fillStyle = "yellow";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(-35,-25,15,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(35,-25,15,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.stroke();
+			
+			
+			ctx.beginPath();
+			ctx.arc(-35,-30,5,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(35,-20,5,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(0,20,30,Math.PI/4,Math.PI, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			
+			//얼굴 1개
+			
+			ctx.translate(300,200);
+			ctx.beginPath();
+			ctx.arc(0,0,100,0,Math.PI*2, false);
+			ctx.strokeStyle = "yellow";
+			ctx.fillStyle = "yellow";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(-35,-25,15,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(35,-25,15,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.stroke();
+			
+			
+			ctx.beginPath();
+			ctx.arc(-40,-30,5,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(30,-30,5,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.arc(0,20,30,Math.PI/4,Math.PI, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			// 얼굴 2개
+			
+			ctx.translate(0,-250);
+			ctx.beginPath();
+			ctx.arc(0,0,100,0,Math.PI*2, false);
+			ctx.strokeStyle = "yellow";
+			ctx.fillStyle = "yellow";
+			ctx.fill();
+			ctx.stroke();
+			
+			
+			
+	
+			ctx.beginPath();
+			ctx.arc(-35,-25,20,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.arc(35,-25,20,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+
+			ctx.beginPath();
+			ctx.arc(-35,-25,5,0,Math.PI*2, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+
+			
+			ctx.beginPath();
+			ctx.arc(0,20,30,0,Math.PI, false);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "black";
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.lineWidth=7;
+			ctx.beginPath();
+			ctx.moveTo(0,-100);
+		    ctx.quadraticCurveTo(50,50,100,0);
+		    ctx.stroke();
+		    
+			// 얼굴 3개
+			
+		}
+		
+	}
+</script>
+
+</body>
+</html>

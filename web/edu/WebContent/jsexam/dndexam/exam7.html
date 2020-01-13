@@ -1,0 +1,88 @@
+<!-- 파일명 : drag_drop/filedrag.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>drag &amp; drop 예제</title>
+<style type="text/css">
+.hover {
+    border: 10px solid #000;
+    background-color: #bbb;
+}
+</style>
+<script defer>
+window.onload = function() {
+    var readButton = document.getElementById("read");
+    readButton.onclick = function(event) {
+        readFile(document.getElementById("file").files[0]);
+        return false;
+    }
+    
+    var target = document.getElementById("droparea");
+    
+    target.ondragover = function(event) {
+        if(event.preventDefault) event.preventDefault();
+        return false;
+    }
+    
+    target.ondragenter = function(event){
+        target.classList.add('hover');
+        return false;
+    }
+
+    target.ondragleave = function(event){
+        target.classList.remove('hover');
+        return false;
+    }
+ 
+     target.ondrop = function(event){
+        if(event.preventDefault) event.preventDefault();
+        target.classList.remove('hover');
+        var filedata = event.dataTransfer.files[0];
+        readFile(filedata);
+    }
+}
+
+function readFile(file) {
+    document.getElementById("fileName").textContent = file.name;
+    document.getElementById("fileSize").textContent = "(" + file.size + "byte)";
+
+    var reader = new FileReader();
+
+    reader.onload = function() {
+        var display = document.getElementById("droparea");
+        display.textContent = reader.result;
+    };
+
+    reader.onerror = function(evt) {
+        alert(evt.target.error.code);
+    };
+
+    var encodingList = document.getElementById("encoding");
+    var encoding = encodingList.options[encodingList.selectedIndex].value;  
+
+    reader.readAsText(file, encoding);  
+};
+</script>
+</head>
+
+<body>
+<section id="content">
+    <h1>Drag &amp; Drop 그리고 File I/O 예제</h1>
+	<p>텍스트 파일을 끌어다 놓아보세요.</p>
+    <article>
+    <input id="file" type="file">
+    <select id="encoding">
+        <option>EUC-KR</option>
+        <option>UTF-8</option>
+    </select>
+    <button id="read">읽기</button><br />
+    <div>
+        <span id="fileName">File Name</span>
+        <span id="fileSize">File Size</span>
+    </div>
+    <textarea id="droparea" class="droparea" readonly style="width:600px; height:400px;"></textarea>
+    </article>
+</section>
+</body>
+</html>

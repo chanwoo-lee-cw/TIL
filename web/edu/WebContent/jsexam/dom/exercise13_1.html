@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{
+	 text-align : center;
+}
+</style>
+</head>
+
+<body>
+	<button onclick="total(true)">이미지보이기</button>
+	<button onclick="total(false)">이미지숨기기</button>
+	<br>
+		<div>
+		
+		<!-- <img src = "...."> -->
+		
+		</div>
+	<script src="../util.js"></script>
+	<script>
+
+	var divdom = document.getElementsByTagName("div")[0];
+	//var imgdom = document.getElementsByTagName("img")[0];
+	//imgdom.stlye.display = 'none';
+	//이런 식으로도  css의 속성을 정해 줄 수도 있다.
+
+	var total = function(option) {
+		if(option == true) {
+			divdom.innerHTML = "<img src =\"../../images/duke_luau.png\" style=\"display:block\">";
+			// imgdom.stlye.display = 'blcok';
+			// divdom.setAttribute("src","../../images/duke_luau.png' style='display:block'>")
+			// 이런 식으로 src를 지정하는 것도 가능하다.
+			
+		}
+		else {
+			divdom.innerHTML = "<img src =\"../../images/duke_luau.png\" style=\"display:none\">";
+			// imgdom.stlye.display = 'none';
+			// divdom.setAttribute("src","")
+			// 이런 식으로 src를 지정하는 것도 가능하다.
+		}
+	}
+	</script>
+</body>
+</html>
+

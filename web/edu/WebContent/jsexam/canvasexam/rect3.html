@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="application/javascript">  
+
+function draw_m() {  
+  var canvas = document.getElementById('m'); 
+   
+ if(canvas.getContext){  
+   var ctx = canvas.getContext('2d'); 
+
+    ctx.fillStyle = "rgb(200,0,0)";  
+    ctx.fillRect (10, 10, 100, 100);   
+ 
+    ctx.fillStyle = "rgba(0,0,200, 0.5)";  
+    ctx.fillRect (50, 50, 100, 100); 	
+  
+    ctx.clearRect(60, 60, 40, 40);
+  
+    ctx.strokeStyle="rgb(200,0,250)";
+    ctx.strokeRect(200, 50, 70, 150);  	 
+  }
+  else {
+    alert("사파리 브라우저나 파이어폭스 1.5 이상의 브라우저에서만 사이트 내용을 제대로 볼 수 있습니다.")
+  }
+
+}
+  
+</script>  
+</head>  
+
+<body onload="draw_m()">  
+<canvas id="m" width="400" height="300" ></canvas>
+</body>  
+</html>  

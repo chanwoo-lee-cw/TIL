@@ -491,19 +491,74 @@ function go(){
         dom.onclick = function() { 
         	//코드 
         };
+        dom.onclick = null;
+       // 한번만 실행 하고 전역 이벤트를 삭제하고 싶을때
         ```
 
    3. 표준 이벤트 모델
 
       - \<button>\</button>
-
+   
         ```js
         var dom = document.getElementsTagName("button")[0];
         dom.addEventLisner("click",function() {
             //코드
-        });
+       });
+        dom.removeEventListner("click",function() { 
+	//코드
+        })
+       // 한번만 실행 하고 전역 이벤트를 삭제하고 싶을때
         ```
-
         
-
       
+
+
+
+#### 이벤트
+
+- 이벤트 
+
+  - 웹 페이지 상에서 마우스, 키보드 등을 통해 발생하는 액션
+  - 웹 브라우저에서 자동으로 발생하는 액션
+
+- 이벤트 핸들러(리스터)
+
+  - 이벤트가 발생했을 때 수행되는 기능을 구현한 함수
+
+- 이벤트 타겟
+
+  - 이벤트가 발생한 대상 DOM 객체
+
+  - 이벤트 타겟을 정하는 방법
+
+    1. this
+
+    2. 핸들러에 매개변수(e)를 하나 정의한 후 : e.target
+
+       -> 매개변수에 이벤트 객체를 전달
+
+- data - XXX : id를 정할 수 없을때 임의로 정한 데이터들
+  - data-라고 붙어 있으면 -가 붙어 있어서 .으로 추출 불가능 getAttribute 로 뽑아내야 한다.
+
+
+
+
+
+#### Default 이벤트 핸들러
+
+- HTML 태그에 디폴트로 등록있는 이벤트 핸들러를 의미한다.
+- 태그에 따라서는 눈에 띄는 디폴트 이벤트 핸들러 가지고 있다.
+- \<a> click 이벤트에 대한 핸들러를 내장하고 있다.
+- \<form> : submit 이벤트에 대한 핸들러를 내장하고 있다.
+
+
+
+```html
+<a href = "http://java.sum.com/">...</a>
+<a href = "test.html">...</a>
+<a href = "#memo">...</a>
+<!-- 같은 페이지 내의 id = memo의 위치로 움직인다.-->
+<a href = "test.html#subject">...</a>
+<!-- 다른 페이지로 움직이고 subject가 가장 상단에 위치하는 위지로 이동-->
+```
+
