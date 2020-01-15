@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>주소와 위도경도 변환 서비스</h1>
+	<hr>
+	<input type="text" id="myText">
+	<button onclick="myFunction()">Try it</button>
+	<h2 id="output"></h2>
+
+	<script>
+		
+
+	 		var request = new XMLHttpRequest();
+	 		request.onload = function(event) {
+	 			if (request.status == 200) {
+	 				var jsonObj = JSON.parse(request.responseText);
+	 				var target = document.getElementById('output');
+	 				target.innerHTML = "변환된 위도와 경도 : "+jsonObj.results[0].geometry.location.lat +":" + jsonObj.results[0].geometry.location.lng;
+	 			}
+	 		};
+	 		function myFunction() {
+				var x = document.getElementById("myText").value;
+				var queryString = "https://maps.googleapis.com/maps/api/geocode/json?address="+encodeURIComponent(x)+"&key=AIzaSyD8k2DWC_7yFHCrH6LDR3RfITsmWMEqC8c";
+				request.open('GET', queryString, true);
+		 		request.send();
+			}
+	 		
+	</script>
+
+
+</body>
+</html>

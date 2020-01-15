@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>오늘의 날씨 정보</h1>
+<hr>
+<output id="weahter"></output>
+<script>
+	window.onload = function() {
+		var request = new XMLHttpRequest();
+ 		request.onload = function(event) {
+ 			if (request.status == 200) {
+ 				var jsonObj = JSON.parse(request.responseText);
+ 				// XML 인 경우에는 responseXML을 사용해야 한다.
+ 				var target = document.getElementById('weahter');
+ 				target.innerHTML = "기준 시간 : " + jsonObj.time + "<br>" +
+ 									"기온 : " + jsonObj.temp + "<br>" +
+ 									"<img src = '/edu/" + jsonObj.img +"' width ='100'>";
+ 			}
+ 		}
+	
+		request.open('GET', 'content/weather.jsp', true);
+		request.send();
+	};
+</script>
+</body>
+</html>

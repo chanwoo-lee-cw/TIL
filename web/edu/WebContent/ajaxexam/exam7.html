@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <meta charset='utf-8'>
+     <title>New Web Project</title>
+     <script>	
+     window.onload = function() {
+ 		var request = new XMLHttpRequest();
+ 		request.onload = function(event) {
+ 			if (request.status == 200) {
+ 				var str = request.responseText;
+ 				var target = document.getElementById('output');
+ 				target.innerHTML = str;
+ 			}
+ 		};
+ 		request.open('GET', 'http://70.12.115.160:8000/edu/ajaxexam/content/rss2.jsp', true);
+ 		request.send();
+ 	};
+		
+     </script>
+    </head>
+    <body>
+        <h1 style="text-align : center">Ajax 로 다른 사이트의 내용을 끌어옵니다.</h1>
+        <div id="output" style="width:350px; margin : 10px auto"></div>
+    </body>
+</html>

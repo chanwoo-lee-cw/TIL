@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>New Web Project</title>
+
+</head>
+<body>
+	<h1>JavaScript로 구현하는 Ajax 프로그램-XML</h1>
+	<hr>
+	<script>
+		window.onload = function() {
+			var request = new XMLHttpRequest();
+			request.onload = function(event) {
+				if (request.status == 200) {
+					var xml = request.responseXML;
+					var rootE = xml.getElementsByTagName('testxml');
+					var output = "";
+					for (var i = 1; i < rootE[0].childNodes.length; i += 2)
+						output += "<h2>"
+								+ rootE[0].childNodes[i].firstChild.nodeValue
+								+ "</h2>";
+					document.body.innerHTML += output;
+				}
+			};
+			request.open('GET', 'content/testxml.xml', true);
+			request.send();
+		};
+	</script>
+</body>
+</html>
+
+
+
+
+
