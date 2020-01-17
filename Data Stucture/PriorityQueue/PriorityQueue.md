@@ -138,11 +138,12 @@ def heappop():
 
     k = 1
     while (2*k < size):
-        i = (2*k if queue[2*k] < queue[2*k + 1] else 2*k + 1)
+       	if(2*k+1>size) :
+            i = (2*k if queue[2*k] < queue[2*k + 1] else 2*k + 1)
+        else :
+            i = 2 * k
         if (queue[k] > queue[i]):
-            temp=queue[k]
-            queue[k]= queue[i]
-            queue[i]= temp
+            swap(queue[k], queue[i])
             k=i
         else:
             break
