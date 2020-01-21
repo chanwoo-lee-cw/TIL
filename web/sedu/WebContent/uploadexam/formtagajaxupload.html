@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FileUpload 실습</title>
+<style>
+	input {
+		margin : 5px;
+	}
+</style>
+</head>
+<body>
+<h1>file 타입의 input 태그 테스트(Ajax)</h1>
+<form id="f">
+   파일<input type="file" name="theFile"  multiple><br>
+  <input type="submit" value="업로드" 
+                     onclick="uploadAjax();return false;">
+</form>
+<script>
+function uploadAjax() {
+	var xhr = new XMLHttpRequest();
+	var data = new FormData(document.getElementById("f"));
+	xhr.onload=function() { alert(xhr.responseText); };
+	xhr.onerror=function(e) { alert(e); };
+	xhr.open("POST", "/sedu/upload", true);
+	xhr.send(data); 
+}
+</script>
+</body>
+</html>
+
