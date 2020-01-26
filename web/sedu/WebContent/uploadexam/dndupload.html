@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drag and Drop File Upload</title>
+<link rel="stylesheet" href="ajax.css">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css">
+<style>
+    * {
+        font-family: 'Jeju Gothic', serif;
+        font-size: 17px;
+    }
+    h1 {       
+        font-size: 25px;
+    }
+</style>
+<script>
+	var databox;
+	function initiate() {
+		databox = document.getElementById('databox');
+		databox.addEventListener('dragover', function(e) {
+			e.preventDefault();
+		}, false);
+		// 드롭 이벤트 핸들러
+		databox.addEventListener('drop', dropped, false);
+	}
+	function dropped(e) {
+		e.preventDefault();
+		// 기본 이벤트를 해지한다.
+		var files = e.dataTransfer.files;
+		var xhr = new XMLHttpRequest();
+		var result = "";
+		var data = new FormData();
+		// FormData() 객체를 생성해서 멀티 파트로 처리한다. FormData()로 생성한다는 것은 멀티 파트로 생성해서 보내겠다는 뜻이다.
+		for (var f = 0; f < files.length; f++) {
+				data.append('myuploadfile'+f, files[f]);
+		}
+		xhr.open("POST", "/sedu/upload", false);
+		// false : 비동기 통신이 아니다. 즉, load이벤트를 등록하지 않아도 된다.
+		xhr.send(data);
+		// 이 send는 서버로부터 응답이 올때까지 기다린다.
+		if(xhr.status == 200){
+			 result = "업로드 성공!!";				
+		} else {
+			result = " 업로드 실패!!";			
+		}	
+		databox.innerHTML += result;				
+	}
+	window.addEventListener('load', initiate, true);
+</script>
+</head>
+<body>
+	<section id="databox">
+		<p> 업로드하려는 파일을 드래그하여 여기 드롭하세요....</p>
+	</section>
+</body>
+</html>
