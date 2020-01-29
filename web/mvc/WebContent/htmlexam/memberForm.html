@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form method="POST" action="/mvc/member">
+		<h1>회원 정보를 입력하세요</h1>
+		<hr>
+		<p>
+			<input type="text" name="mname" value = "이름을 입력하세요." onclick=this.value=null> <br> 
+			<input type="text" name="mphone" value = "전화 번호를 입력하세요." onclick=this.value=null> <br> 
+			<input type="text" name="maccount" value = "계정을 입력하세요." onclick=this.value=null> <br> 
+			<input type="text" name="mpassword" value = "패스워드를 입력하세요." onclick=this.value=null> <br>
+		</p>
+		<input type="submit" value="전송"> <br>
+		<input type="reset" value="재전송"> <br>
+	</form>
+</body>
+</html>
