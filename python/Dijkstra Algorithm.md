@@ -9,7 +9,7 @@
    input = sys.stdin.readline
    INF = sys.maxsize
    
-   def Dijkstra(vertex, edge, start, edgeList) :
+   def Dijkstra(vertex, edge, start, graph) :
        dij = [INF]*(vertex+1)
        dij[start] = 0
        que = []
