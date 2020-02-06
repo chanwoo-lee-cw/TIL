@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- p로 property 대체 constructor를 대체  -->
+
+<bean id="messageBean" class="sample6.MessageBeanImpl"  
+      c:name="Dooly"   p:outputter-ref="outputRef"  
+      p:phone="123-4567" />
+       <!-- -ref 프로퍼디 명 뒤에다 -ref를 붙혀서 값 대신 래퍼런스를 전달하겠다고 알려줌. -->
+<bean id="outputRef" class="sample6.FileOutput"  
+      p:filePath="data.txt"/>
+
+
+<!-- <bean id="messageBean" class="sample6.MessageBeanImpl">
+	<constructor-arg  value="Dooly"/>	
+	<property name="phone"  value="123-4567"/>
+	<property name="outputter" ref="outputRef"/>
+</bean>
+
+<bean id="outputRef" class="sample6.FileOutput">
+	<property name="filePath">
+		<value>data.txt</value>
+	</property>
+</bean> -->
+
+</beans>
+
+
+
+

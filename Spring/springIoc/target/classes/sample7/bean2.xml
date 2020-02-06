@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="developer" class="sample7.Developer" 
+    c:name="Dooly" c:salary="1500000"    p:dept="Development 1 Team"/>
+<bean id="engineer" class="sample7.Engineer" 
+    c:name="Duke" c:salary="2500000"    p:dept="Technology 1 Team"/>
+    <!-- prefix 정의하는 파일 bean2 -->
+</beans>

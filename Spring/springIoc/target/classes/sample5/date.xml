@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- DTD 가 정의 되어 있지 않는 것은 http://www.springframework.org/schema/beans/spring-beans.xsd의 룰을 따른다. -->
+
+<bean id="hong" class="sample5.DateVo">
+	<property name="name" value="Duke"/>
+	<property name="birth" value="1990-01-01"/>
+</bean>
+<!-- 디폴트 생성자로 객체를 생성하고, 그 다음에 저 값들을 넣는다. 즉, 생성이 끝나고 값을 넣는다 -->
+
+<bean id="lee" class="sample5.DateVo" 
+	p:name="Dooly"  p:birth="2000-12-12"/>	
+</beans>
+
+ 
+ 

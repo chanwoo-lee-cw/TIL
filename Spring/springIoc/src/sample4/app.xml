@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 이 문서에서 처리될 Bean 들이 어떻게 처리될 건지 알려주는 기능  -->
+
+<bean id="test" class="sample4.AbstractTest" 
+                          factory-method="getInstance"/>
+                          <!-- factory-method라는 속성을 지정하여 생성자 대신 팩토리 매서드로 객체 생성한다. -->
+
+</beans>

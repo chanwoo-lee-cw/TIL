@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="foo0" class="sample2.Foo" scope="prototype"/> 
+<!-- prototyp/sigleton(default) -->
+
+<bean id="foo1" class="sample2.Foo">
+	<constructor-arg value="XYZ"/>	
+</bean>
+
+<bean id="foo2" class="sample2.Foo">
+	<constructor-arg  value="ABC"/>
+	<constructor-arg  value="100"/>
+	<!-- 타입을 생략하도 알아서 맞는거에 넣어서 준다. 근데 스트링 스트링을 위에 복사해서 줬더니 스트링 스트링에 들어가더라. -->
+</bean>
+
+<bean id="foo3" class="sample2.Foo">
+	<constructor-arg index="1"  type="int"  value="50"/>
+	<constructor-arg index="0"  type="java.lang.String" value="xyz"/>
+	<constructor-arg index="2"  type="boolean" value="true"/>
+	<!-- index를 생략하면 무조건 차례대로 들어간다. -->
+</bean>
+
+<bean id="foo4" class="sample2.Foo">
+	<constructor-arg ref="bar" />
+	<!-- bar 객체의 참조값을 준다. 밑에 있는 것을 생성한다음에 그 겂을 준다. -->
+</bean>
+
+<bean id="bar"  class="sample2.Bar" />
+
+<!-- bean 태그 갯수만큼 객체 생성한다. -->
+	
+</beans>
+
+
+
+
+
+
+
+
