@@ -45,11 +45,15 @@ Spring IoC, Spring JDBC, Spring MVC, Spring Android, Spring Hadoop
     1. Construction Injection : 생성자를 통해서 객체 바인딩(의존관계를 연결) - 요청할 때마다 원하는 것을 받는다. 
     2.  Setter Injection : setter메서드를 이용해서 객체 바인딩(의존관계를 연결)  - 미리 세팅해 주고 원하는 것을 받는다.
 
+
+
 #### Maven
 
 - 자바용 프로젝트 관리 도구
 - 만약 라이브러리를 하나하나 직접 가져오지 않게 해주고, 만약 업데이트가 있다면 자동으로 라이브러리 업데이트 해준다.
 - 이곳 저곳 사이트에 나눠져 있는 라이브러를 통합 관리하는 사이트가 있다.
+
+
 
 #### autowire
 
@@ -72,38 +76,73 @@ Spring IoC, Spring JDBC, Spring MVC, Spring Android, Spring Hadoop
 
 
 
+필드에 설정된 @Autowired  - Spring FW 전용
+
+1. 타입으로 찾아서 1개이면 해당 객체 주입
+2. 타입으로 찾아서 2개 이상이면 변수명과 동일한 id 값을 갖는 객체 주입
+3. 없으면 NoSuchBeanDefinitionException 발생
+        (required = false 속성을 사용하여 없으면 null 이 되게 지정 가능)
+4. @Qualifier(value="xxx")를 추가로 사용해서 변수명이 아닌 다른 이름 지정 가능
 
 
-서블릿 할때 상속하는 것
 
-http seiion의 객체
 
-인액티브 객체
 
-get과 포스트의 차이점
+필드에 설정된 @Resource  - Java
+(1) 변수명과 동일한 id 값을 갖는 빈을 찾아서 해당 객체 주입
+(2) 타입으로 찾아서 1개이면 객체 주입
+(3) 타입으로 찾아서 2개이상 이면 NoUniqueBeanDefinitionException 발생
+(4) 없으면 NoSuchBeanDefinitionException 발생
 
-쿼리 문자열이 전달 되었을때 그런게 없을때
 
-ser과 set어트리 부트
 
-jsp내장객체와 EL 내장객체
+### MVC
 
-세션객체 삭제하고 싶을때
+HTML은 Webapp 밑에 리소스에 보관한다.
 
-수행상의 특징
+WEB-INF는 라이브러리 같은 것에 보관 클라이언트가 접근 불관
 
-요청하는 클라이언트의 ip주소 알아내는 방법
+이 밑에 빈 설정 파일을 spring 디렉토리 안에 보관한다.
 
-Spring Ioc가 무엇이냐
 
-seterinjection 처리하고 싶을때
 
-필터 한문제
+기본 세팅
 
-스코프 4종류
+```XML
+	<filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+<!-- 이 서버에 있는 모든 페이지는 CharacterEncodingFilter라는 필터를 거쳐라-->
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+<!-- 인코딩이라는 이름이 UTF-8 이라는 값을 저장-->
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+```
 
-statement의 설명문
+WEB.XML에 인코딩을 하는 필터를 건다.
 
-요청방식이 안 맞으면 응답되는 코드 405코드
 
-POL.xml
+
+```XML
+<properties>
+		<java-version>1.8</java-version>
+		<!-- 1.8로 바꾸자 -->
+		<org.springframework-version>5.0.2.RELEASE</org.springframework-version>
+		<!-- 5.0.2로 바꾸자 -->
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+	</properties>
+```
+
+POM.XML 내용을 바꾸자.
+
+버전을 3.1.1로 놔두면 멀티 파일 같은 것을 미지원한다.
+
+
+
