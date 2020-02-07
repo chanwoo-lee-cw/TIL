@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class UserServiceImpl implements UserService{
 	//or @Autowired
 	@Resource
+	// 리소스의 경우에는 동일한 이름의 객체가 있는지 찾는다.
 	User member;
 	
 	public void setMember(User member) {

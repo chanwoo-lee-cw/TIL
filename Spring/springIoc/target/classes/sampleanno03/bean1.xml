@@ -7,10 +7,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 <context:component-scan base-package="sampleanno03"/>
+<!-- baan component 스프링이 관리하는 컨테이너 라는 뜻 -->
+<!-- sampleanno03의 패키지 안의 모든 자바 클래스를 스캔해서 처리해달라는 뜻이다.  -->
 <bean id="favoriteFood" class="sampleanno03.Food" 
-				p:foodName="Noodle" p:foodPrice="2500"/>
+				p:foodName="Bread" p:foodPrice="2500"/>
 <bean id="unFavoriteFood" class="sampleanno03.Food" 
-				p:foodName="Bread" p:foodPrice="1500"/> 
+				p:foodName="Noodle" p:foodPrice="1500"/> 
+<!-- 위의 저것이 있으면 이 이후에 @component가 있는 것을 알아서 객체 생성하고, @Autowired가 있는 것을 알아서 넣어준다. -->
 </beans>
 
 

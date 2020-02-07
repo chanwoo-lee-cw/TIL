@@ -9,6 +9,7 @@
 	<bean id="userName" class="java.lang.String">
 		<constructor-arg value="dooly" />
 	</bean>
+	<!-- 스트링은 소스 코드가 없으니 객체 생성이 불가능하다. -->
 
 </beans>
 

@@ -14,6 +14,7 @@
 				p:name="Duke" p:age="30" p:score="90.5" />
 <bean id="dept" class="java.lang.String"  c:_0="development"/>
 <!-- <bean id="engineer" class="sampleanno04.Engineer"  /> -->
+<!-- 이건 anotation으로 할 수 없기 때문에 bean 태그로 해야한다. 왜냐하면 스트링은 자바가 내장하고 있는 객체고 우리가 간섭할 수 없기 때문 -->
 
 </beans>
 

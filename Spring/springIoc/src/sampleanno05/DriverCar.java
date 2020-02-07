@@ -9,10 +9,10 @@ public class DriverCar {
 		System.out.println("**** Container Initialization End ****");
 		Car tire2=factory.getBean("carTire", Car.class);
 		tire2.drive();
-		/*
-		 * Tire tire=factory.getBean("vestTire", Tire.class);
-		 * System.out.println(tire.getBrand());
-		 */
+
+		 Tire tire=factory.getBean("vestTire", Tire.class);
+		 System.out.println(tire.getBrand());
+
 		((ClassPathXmlApplicationContext)factory).close();	
 	}
 }

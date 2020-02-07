@@ -14,6 +14,12 @@ public class TvUser {
 		tv.volumeUp();
 		tv.volumeDown();
 		
+		tv=(Tv)factory.getBean(args[1]);   //samsung or lg
+		tv.powerOn();
+		tv.powerOff();
+		tv.volumeUp();
+		tv.volumeDown();
+		
 		((ClassPathXmlApplicationContext)factory).close();
 	}
 }
