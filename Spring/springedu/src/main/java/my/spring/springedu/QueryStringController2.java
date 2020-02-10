@@ -11,6 +11,8 @@ import vo.QueryVO;
 public class QueryStringController2 {	
 	@RequestMapping("/querystring5")
 	public ModelAndView proc(QueryVO vo) {
+		// queryVO라는 이름으로 저장한다.
+		// 다른건 없다면 null을 보관하지만 int, double 형은 값이 안온다면 0을 보관한다
 		ModelAndView mav = new ModelAndView();
 		String name = vo.getTestName();
 		int age = vo.getTestAge();
@@ -32,6 +34,7 @@ public class QueryStringController2 {
 	}
 	@RequestMapping("/querystring7")
 	public ModelAndView proc(HttpServletRequest request) {
+		// requset를 받아서 직접 쿼리 추출을 하겠다는 의미이다.
 		ModelAndView mav = new ModelAndView();
 		String name =request.getParameter("testName");
 		int age = Integer.parseInt(request.getParameter("testAge"));
@@ -51,9 +54,3 @@ public class QueryStringController2 {
 		return mav;
 	}
 }
-
-
-
-
-
-
