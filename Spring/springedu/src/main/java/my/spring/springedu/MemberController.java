@@ -16,6 +16,7 @@ public class MemberController {
 	@RequestMapping(value = "/member", 
             method = RequestMethod.POST)
 	public ModelAndView proc(MemberVO vo) {
+		// 자동적으로 memberVO라는 이름으로 리퀘스트 객체에 보관한다.
 		ModelAndView mav = new ModelAndView();
 		
 		
@@ -23,6 +24,7 @@ public class MemberController {
 			vo.setMname("없음");
 		
 		mav.addObject("member", vo);
+		// 만약 memberVO라는 이름으로 꺼낼꺼면  보관하지 않아도 괜찮다.
 		// 모델에 보관하면 자동으로 requsetscope에 보관
 		mav.setViewName("memberView");
 		return mav;
