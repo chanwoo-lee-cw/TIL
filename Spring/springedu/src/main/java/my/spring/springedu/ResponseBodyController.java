@@ -49,8 +49,11 @@ public class ResponseBodyController {
 		MyModel my = new MyModel();
 		my.setFlowerName("ROSE");
 		my.setNum(5);
-		my.setId(id);		
+		my.setId(id);
+		System.out.print(my);
+		// MyModel [flowerName=ROSE, num=5, id=10]
 		return my;
+		//{"flowerName":"ROSE","num":5,"id":"10"}
 	}	
 	
 	@RequestMapping(value = "/body/json2/{id}", produces = "application/json; charset=utf-8")
@@ -68,6 +71,8 @@ public class ResponseBodyController {
 		my.setId(id);
 		list.add(my);
 		return list;
+		//[{"flowerName":"ROSE","num":5,"id":"10"},{"flowerName":"LILY","num":5,"id":"10"}]
+		// 즉 리스트 전부가 변경되어 반환된다.
 	}
 
 	
@@ -127,6 +132,7 @@ public class ResponseBodyController {
 	@RequestMapping(value = "/body/json4/{id}", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<HashMap<String, String>> getByIdInJSON4(@PathVariable String id) {
+		// 리던 값이 해쉬맵 형태
 		List<HashMap<String, String>> list = new ArrayList<>();
 		HashMap<String, String> map1 = new HashMap<>();
 		map1.put("aa", "10");
@@ -140,6 +146,7 @@ public class ResponseBodyController {
 	}
 
 	@RequestMapping(value = "/body/xml1/{id}", produces = "application/xml; charset=utf-8")
+	// xml형식으로 리턴해 주는 프로듀스
 	@ResponseBody
 	public MyModel getByIdInXML1(@PathVariable String id) {
 		MyModel my = new MyModel();
@@ -147,6 +154,12 @@ public class ResponseBodyController {
 		my.setNum(5);
 		my.setId(id);
 		return my;
+//		<myModel>
+//			<flowerName>ROSE</flowerName>
+//			<id>10</id>
+//			<num>5</num>
+//		</myModel>
+// 		즉, 클래스명이 맨 앞이 소문자가 되서 루트 엘레멘트가 된다.
 	}
 
 	
