@@ -22,9 +22,14 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	<!-- 보내는 리졸버에다 /WEB-INF/views/를 앞에다 뒤에다 .jsp를 붙힌다. 즉, jsp말고 html을 붙히면 jsp가 받는다. -->
 	
 	<context:component-scan base-package="my.spring.springedu" />
+	<context:component-scan base-package="dao" />
+	<context:component-scan base-package="service" />
 	<!-- my.spring.springedu디렉토리의 annotation을 찾아서 해달라는 것을 업급해주는 것이다. -->
 	
 	

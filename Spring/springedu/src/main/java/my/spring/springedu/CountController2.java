@@ -27,6 +27,7 @@ public class CountController2 {
 	public void handle(HttpSession s, String who) {
 		if(who != null) {
 			s.removeAttribute(who);
+			// 세션 객체를 사용하는건 가능하지만 직접 세션 객체를 삭제하는건 안되서 이렇게 일정 부분만 지우는거임.
 			System.out.println(who + " deleted!");		
 		}		
 		System.out.println("=============================");
