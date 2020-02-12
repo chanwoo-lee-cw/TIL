@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap"
+	rel="stylesheet">
+<style>
+* {
+	font-family: 'Sunflower', sans-serif;
+	text-align: center;
+}
+
+#circle {
+	margin: auto;
+	width: 300px;
+	height: 100px;
+	border: 1pt solid #000000;
+	background: #ffffff;
+	border-radius: 50%;
+	background: radial-gradient( #66ffcc,white ,#ffff66 );
+}
+</style>
+</head>
+<body>
+	<h1>우리 팀 소개</h1>
+	<hr>
+	<button onclick="requestTeamName()">우리 팀 명</button>
+	<button onclick="requestTeamMember()">우리 팀원</button>
+	<br>
+	<br>
+
+	<div id="circle">
+		<output id="teamnameoutput"></output>
+	</div>
+	<output id="output"></output>
+	<script>
+		function requestTeamName() {
+			var teamNameRequest = new XMLHttpRequest();
+			teamNameRequest.onload = function(event) {
+				if (teamNameRequest.status == 200) {
+					var outputDom = document.getElementById("teamnameoutput");
+					var jsonObj = JSON.parse(teamNameRequest.responseText);
+					console.log(jsonObj);
+					outputDom.innerHTML = "<h2>" + jsonObj.teamName + "<h2>";
+				}
+			}
+			teamNameRequest.open('GET', '/springedu/myteam/json', true);
+			teamNameRequest.send();
+		}
+
+		function requestTeamMember() {
+			var teamMemberRequest = new XMLHttpRequest();
+			teamMemberRequest.onload = function(event) {
+				if (teamMemberRequest.status == 200) {
+					var outputDom = document.getElementById("output");
+					var jsonObj = JSON.parse(teamMemberRequest.responseText);
+					outputDom.innerHTML = null;
+					for (var i = 0; i < jsonObj.teamMember.length; i++)
+						outputDom.innerHTML += "<h2>"
+								+ jsonObj.teamMember[i].name + " : "
+								+ jsonObj.teamMember[i].nicName + "<h2>";
+				}
+			}
+			teamMemberRequest.open('GET', '/springedu/myteam/json', true);
+			teamMemberRequest.send();
+		}
+	</script>
+</body>
+</html>

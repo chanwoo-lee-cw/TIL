@@ -16,6 +16,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<!-- 클라이언트가 보내는 리소스를 resources에 매핑하라? 대충 그런 뜻이였음 -->
+	<!-- 클라이언트가 직접 접근이 가능한 폴더이다. -->
+	<resources mapping="/mypage/**" location="/mypage/" />
+	<!-- 이런 식으로 추가하면 클라이언트도 이제 mypage도 직접 접근,요청이 가능하다. -->
+	<!--  그리고 폴더도 추가하자. -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
