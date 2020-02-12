@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.VisitorMapper">
+ 	<select id="selectVisitor"  resultType="model.vo.VisitorVO">
+    	select name, to_char(writedate,'yyyy"년"mm"월"dd"일"') writedate, memo from visitor
+ 	</select>
+ 	 <select id="selectVisitor1"  resultType="model.vo.VisitorVO">
+    	select name, to_char(writedate,'yyyy"년"mm"월"dd"일"') writedate, memo
+    	from visitor where id <![CDATA[<]]> 5 
+ 	</select>
+  	<insert id="insertVisitor"  parameterType="model.vo.VisitorVO">
+  		insert into visitor (name, writedate, memo) values (#{name},sysdate, #{memo})
+    	</insert>
+	<select id="searchVisitor" parameterType="string" resultType= "model.vo.VisitorVO">
+    	select name, to_char(writedate,'yyyy"년"mm"월"dd"일"') writedate, memo 
+    	from visitor where memo like '%'||#{key}||'%'
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
