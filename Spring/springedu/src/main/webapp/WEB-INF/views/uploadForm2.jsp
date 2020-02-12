@@ -12,9 +12,10 @@
 <%
 	if( request.getAttribute("msg") == null ) {
 %>
-	<form action="/springedu/upload2" 
+	<form action="/springedu/upload3" 
 	               enctype="multipart/form-data" method="post">
     	<input type="file" name="mfile" multiple/>
+    	<!-- 파일의 갯수만큼을 나오고 올릴시 올린 파일들 전부 출력 -->
     	<input type="submit" value="파일올리기"/>
 	</form>
 <%
