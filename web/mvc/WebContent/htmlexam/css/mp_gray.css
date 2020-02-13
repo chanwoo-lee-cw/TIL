@@ -1,0 +1,8 @@
+/** Menu_Position Gray**/
+
+.Menu_Position { background-image:url(../img/bc_bg.png); background-repeat:repeat-x; height:30px; line-height:30px; color:#9b9b9b; border:solid 1px #cacaca; border-radius: 5px; width:100%; overflow:hidden; margin:5px 0; padding:0px; }
+
+.Menu_Position a { float:left; background:url(../img/bc_separator.png) no-repeat right top; font-size:12px; color:#454545; line-height:30px; height:30px; text-decoration:none; padding:0 20px 0 10px; }
+.Menu_Position a:hover { color:#35acc5; }
+
+.Menu_Position i { color:#ff6600; }

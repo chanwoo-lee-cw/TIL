@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="header">
+<block cond="!$li->top_icolor">{@ $li->top_icolor = '#fff'}</block>
+
+	<!--// LOGO -->
+	<div cond="$li->logo_img" class="logo-item"><a href="<!--@if($li->index_url)-->{$li->index_url}<!--@else-->{getUrl('')} ">
+	<img src="{$li->logo_img}" onmouseover="this.src='{$layout_info->logo_imgh}'" onmouseout="this.src='{$li->logo_img}'" align="absmiddle" alt=""/></a></div>
+
+	<!--// Top menu -->
+	<block cond="!$li->gnbh_h">{@ $li->gnbh_h = '10'}</block>
+	<block cond="!$li->gnbh_color">{@ $li->gnbh_color = '#fff'}</block>
+
+	<span style='display:none;'></span>
+	<div id="gnbh" style="top:{$li->gnbh_h}px;" >
+		<ul class="gnbh">
+				{@$_menu_depth=1}{@$selected_menu=$val}
+				<li class="current">
+					<a href="{$val['href']}" onclick="window.open(this.href);return false;" style="color:{$li->gnbh_color}"><span>{$val['link']}</span></a>
+					<ul>
+						{@ $idx = 1 }
+						
+						<li class="sub">
+							<a href="{$v2['href']}"  class="parent " onclick="window.open(this.href);return false;" ><span>{$v2['link']}</span></a>
+							<ul>
+							
+								<li>
+									<a href="{$v3['href']}" class="parent"  onclick="window.open(this.href);return false;" ><span>{$v3['link']}</span></a>
+									<ul>
+										
+										<li>
+											<a href="{$v4['href']}" onclick="window.open(this.href);return false;" ><span>{$v4['link']}</span></a>
+										</li>
+										  
+									</ul>
+								</li>
+								  
+							</ul>
+						</li>
+						{@$idx++}
+						  
+					</ul>
+				</li>
+			 
+		 
+		</ul>
+	</div>
+
+	<!-- Search -->
+	<div class="side">
+		<ul>
+			<li cond="$li->enable_intergration_search == 'Y'" class="click">
+			<load target="js/search.js" />
+				<div class="search-wrapper">
+					<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+						<div class="input-holder">
+							<input type="hidden" name="vid" value="{$vid}" />
+							<input type="hidden" name="mid" value="{$mid}" />
+							<input type="hidden" name="act" value="IS" />
+							<input type="text" name="is_keyword" value="{$is_keyword}" required="required" placeholder="Search..." />
+							<button class="search-icon" title="{$lang->cmd_search}" onclick="searchToggle(this, event);"><span></span></button>
+						</div>
+						<span class="close" onclick="searchToggle(this, event);"></span>
+					</form>
+				</div>
+			</li>
+			<style>
+				.search-wrapper .input-holder .search-icon span::before { background: {$li->top_icolor};}
+				.search-wrapper .input-holder .search-icon span::after { border: 4px solid {$li->top_icolor};}
+				.search-wrapper .close::before, .search-wrapper .close::after { background: {$li->top_icolor};}
+				.search-wrapper.active .input-holder { background:#555; }
+				.search-wrapper .input-holder input[type=text] { color:#fff;}
+				input::-webkit-input-placeholder { color:#888; }
+			</style>
+		</ul>
+
+		<!-- login -->
+		<ul>
+			<li class="hover">
+				<!--@if($is_logged)-->
+					<!-- after_login -->
+					<a href="{getUrl('act', 'dispMemberInfo')}" class="login_after">
+						<!--@if($logged_info->profile_image->src)-->
+							<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}" />
+						<!--@else-->
+							<img src="img/ico_default.jpg" alt="{$logged_info->nick_name}" />
+						 
+					</a>
+					<div class="ly ly_login">
+							{@ $oPointModel = &getModel('point'); $point = $oPointModel->getPoint($logged_info->member_srl); $oModuleModel = &getModel('module');  $config = $oModuleModel->getModuleConfig('point'); $level = $oPointModel->getLevel($point, $config->level_step); }
+						<ul>
+							<li class="member_{$logged_info->member_srl}">{$logged_info->nick_name}님 환영합니다</li>
+							<li>Level:{$level} / Point:{$point} /
+							{@$oCommunicationModel = &getModel('communication'); $output = $oCommunicationModel->getMessages("R");}쪽지{$output->total_count}개
+							</li>
+							<li loop="$logged_info->menu_list => $key, $val"><a href="{getUrl('act', $key, 'member_srl', '', 'page', '')}">{Context::getLang($val)}</a></li>
+							<li><a href="{getUrl('act', 'dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+							<li cond="$layout_info->layout_srl && $logged_info->is_admin == 'Y'"><a href="{getUrl('act','dispLayoutAdminModify','layout_srl',$layout_info->layout_srl)}">{$lang->cmd_layout_management}</a></li>
+							<li cond="$logged_info->is_admin == 'Y'">
+								<a href="{getUrl('', 'module', 'admin')}" target="_blank" title="{$lang->cmd_management}"><span>{$lang->cmd_management}</span></a>
+							</li>
+						</ul>
+						<span class="edg"></span>
+					</div>
+					<!-- /after_login -->
+				<!--@else-->
+					<!-- before_login -->
+					<a href="{getUrl('act', 'dispMemberLoginForm')}" id="ly_btn"><i class="fas fa-sign-in-alt" style="color:{$li->slide_text_color}"></i><span class="blind">{$lang->cmd_login}/{$lang->cmd_signup}</span></a>
+					<div class="ly ly_login">
+						<ul>
+							<li><a id="ly_login_btn" href="{getUrl('act', 'dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+							<li><a href="{getUrl('', 'act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+						</ul>
+						<span class="edg"></span>
+					</div>
+					<!-- /before_login -->
+				 
+			</li>
+		</ul>
+	</div>
+
+</div>
+
+<!-- Login widget -->
+<section cond="$li->use_login_widget != 'N'" class="login_widget" style="display:none">
+	<load target="css/widget.login.min.css" />
+	<div class="ly_dimmed"></div>
+	<div class="signin">
+		<div class="login-header">
+			<h1>LOGIN</h1>
+		</div>
+		<div class="login-body">
+			<form action="{getUrl('', 'act', 'procMemberLogin')}" method="post" autocomplete="off">
+				<input type="hidden" name="act" value="procMemberLogin" />
+				<input type="hidden" name="success_return_url" value="{getCurrentPageUrl()}" />
+				<fieldset>
+					<legend class="blind">{$lang->cmd_login}</legend>
+					<div class="control-group">
+						<div class="group">
+							<input type="text" name="user_id" id="uemail" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="uemail">{$lang->user_id}</label>
+						</div>
+						<div class="group">
+							<input type="password" name="password" id="upw" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="upw">{$lang->password}</label>
+						</div>
+					</div>
+					<div cond="$XE_VALIDATOR_MESSAGE" class="control-group">
+						<p class="error">{$XE_VALIDATOR_MESSAGE}</p>
+					</div>
+					<div class="control-group">
+						<label class="chk_label" for="keepid_opt">
+							<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" />
+							<span class="checkbox"></span> {$lang->keep_signed}
+						</label>
+						<div id="warning">
+							<p style="text-align:right;"><i class="xi-close"></i></p>
+							<p>{str_replace('\n\n', '<br />', $lang->about_keep_signed)}</p>
+							<div class="edg"></div>
+						</div>
+						<button type="submit" class="btn_submit">{$lang->cmd_login}</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="login-footer">
+			<a href="{getUrl('act', 'dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a>
+			<span class="f_bar">|</span>
+			<a href="{getUrl('act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a>
+		</div>
+			<div cond="$li->sns == 'Y'" class="snsLogin">
+				{@ $oSocialxeModel = getModel('socialxe');}
+				<a cond="!$li->sns_facebook" class="facebook" href="{$oSocialxeModel->snsAuthUrl('facebook', 'login')}" title="Facebook 계정으로 로그인합니다"><span class="blind">Facebook</span></a>
+				<a cond="!$li->sns_twitter" class="twitter" href="{$oSocialxeModel->snsAuthUrl('twitter', 'login')}" title="Twitter 계정으로 로그인합니다"><span class="blind">Twitter</span></a>
+				<a cond="!$li->sns_google" class="google" href="{$oSocialxeModel->snsAuthUrl('google', 'login')}" title="Google 계정으로 로그인합니다"><span class="blind">Google</span></a>
+				<a cond="!$li->sns_naver" class="naver" href="{$oSocialxeModel->snsAuthUrl('naver', 'login')}" title="Naver 계정으로 로그인합니다"><span class="blind">Naver</span></a>
+				<a cond="!$li->sns_kakao" class="kakao" href="{$oSocialxeModel->snsAuthUrl('kakao', 'login')}" title="Kakao 계정으로 로그인합니다"><span class="blind">Kakao</span></a>
+			</div>
+		<a href="#" class="btn_ly_popup"><span class="blind">닫기</span></a>
+	</div>
+
+	<script>
+	jQuery(function ($) {
+		var keep_msg = $("#warning");
+		$(".chk_label").on("mouseenter mouseleave focusin focusout", function (e) {
+			if(e.type == "mouseenter" || e.type == "focusin") {
+				keep_msg.show();
+			}
+			else {
+				keep_msg.hide();
+			}
+		});
+		$("#ly_login_btn, #ly_btn").click(function () {
+			$(".login_widget").show();
+			return false;
+		});
+		$(".btn_ly_popup").click(function () {
+			$(".login_widget").hide();
+			return false;
+		});
+		$("input").blur(function () {
+			var $this = $(this);
+			if ($this.val()) {
+				$this.addClass("used");
+			}
+			else {
+				$this.removeClass("used");
+			}
+		});
+	});
+	</script>
+</section>
+</body>
+</html>

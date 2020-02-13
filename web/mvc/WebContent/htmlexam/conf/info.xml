@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+	<title xml:lang="ko">FullPage</title>
+	<description xml:lang="ko">FullPage Layout</description>
+	<version>1.0</version>
+	<date>2018-12-07</date>
+	<author email_address="mbg1346@naver.com" link="http://moonhouse.co.kr/">
+		<name xml:lang="ko">80san</name>
+	</author>
+	<menus>
+		<menu name="GNB" maxdepth="3" default="true">
+			<title xml:lang="ko">메인 메뉴</title>
+		</menu>
+		<menu name="Smart" maxdepth="2" >
+			<title xml:lang="ko">반응형 메뉴</title>
+		</menu>
+	</menus>
+	<extra_vars>
+
+		<group>
+			<title xml:lang="ko">본문</title>
+			<var name="fullpage_select" type="select">
+				<title xml:lang="ko">페이지 형태</title>
+				<options value="bgimg">
+					<title xml:lang="ko">이미지</title>
+				</options>
+				<options value="bgcolor">
+					<title xml:lang="ko">배경색</title>
+				</options>
+			</var>
+			<var name="area_location" type="select">
+				<title xml:lang="ko">내용영역 위치</title>
+				<options value="true">
+					<title xml:lang="ko">중앙</title>
+				</options>
+				<options value="false">
+					<title xml:lang="ko">상단</title>
+				</options>
+			</var>
+			<var name="title_size" type="text">
+				<title xml:lang="ko">타이틀폰트 크기</title>
+				<description xml:lang="ko">기본 5em</description>
+			</var>
+			<var name="title_color" type="text">
+				<title xml:lang="ko">타이틀폰트 색상</title>
+				<description xml:lang="ko">기본 #fff</description>
+			</var>
+			<var name="subtitle_size" type="text">
+				<title xml:lang="ko">Sub 타이틀폰트 크기</title>
+				<description xml:lang="ko">기본 1em</description>
+			</var>
+			<var name="subtitle_color" type="text">
+				<title xml:lang="ko">Sub 타이틀폰트 색상</title>
+				<description xml:lang="ko">기본 #fff</description>
+			</var>
+			<var name="content0_show" type="select">
+				<title xml:lang="ko">Section0 Content</title>
+				<description xml:lang="ko">Section0에 Content영역 출력(3군데 섹션중 1곳만 적용)</description>
+				<options value="Y">
+					<title xml:lang="ko">ON</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">Off</title>
+				</options>
+			</var>
+			<var name="content1_show" type="select">
+				<title xml:lang="ko">Section1 Content</title>
+				<description xml:lang="ko">Section1에 Content영역 출력(3군데 섹션중 1곳만 적용)</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">ON</title>
+				</options>
+			</var>
+			<var name="content2_show" type="select">
+				<title xml:lang="ko">Section2 Content</title>
+				<description xml:lang="ko">Section2에 Content영역 출력(3군데 섹션중 1곳만 적)</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">ON</title>
+				</options>
+			</var>
+			<var name="content_width" type="text">
+				<title xml:lang="ko">Content Ares 가로폭</title>
+				<description xml:lang="ko">내용영역의 가로폭을 선택 (기본 100%)</description>
+			</var>
+			<var name="content_color" type="text">
+				<title xml:lang="ko">Content Ares 칼라</title>
+				<description xml:lang="ko">내용영역의 배경색상을 지정합니다.(기본 투명)</description>
+			</var>
+			<var name="content_radius" type="select">
+				<title xml:lang="ko">Content Ares 모서리</title>
+				<description xml:lang="ko">내용영역 모서리를 타원으로 설정</description>
+				<options value="N">
+					<title xml:lang="ko">직각</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">타원</title>
+				</options>
+			</var>
+			<var name="content_shadow" type="select">
+				<title xml:lang="ko">Content Ares 그림자</title>
+				<description xml:lang="ko">내용영역 그림자 설정</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+			<var name="menu_p" type="select">
+				<title xml:lang="ko">현재위치 사용</title>
+				<description xml:lang="ko">현재위치 메뉴(빵메뉴) 출력.</description>
+				<options value="N">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+			<var name="mp_bg_color" type="select">
+				<title xml:lang="ko">　┖  현재위치메뉴의 색상</title>
+				<options value="white1">
+					<title xml:lang="ko">화이트</title>
+				</options>
+				<options value="black1">
+					<title xml:lang="ko">블랙</title>
+				</options>
+				<options value="black">
+					<title xml:lang="ko">블랙1</title>
+				</options>
+				<options value="white">
+					<title xml:lang="ko">화이트1</title>
+				</options>
+				<options value="gray">
+					<title xml:lang="ko">회색</title>
+				</options>
+			</var>
+			<var name="add_header" type="textarea">
+				<title xml:lang="ko">레이아웃전체 설정</title>
+				<description xml:lang="ko">레이아웃에 전체에 적용될 AD나 테그</description>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">옵션</title>
+			<var name="smart_menu" type="select">
+				<title xml:lang="ko">반응형 메뉴</title>
+				<description xml:lang="ko">화면넓이가 1024px 이하시 출력되는 3선 메뉴(모바일 지원)</description>
+				<options value="Y">
+					<title xml:lang="ko">Yes</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">No</title>
+				</options>
+			</var>
+			<var name="scroll_user" type="select">
+				<title xml:lang="ko">페이지 스크롤</title>
+				<description xml:lang="ko">페이지내용이 화면을 초과할시 스크롤 사용</description>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+			</var>
+			<var name="scroll_user_gap" type="text">
+				<title xml:lang="ko">　┖  스크롤 사용시 상하 간격</title>
+				<description xml:lang="ko">페이지 스크롤 사용시 상단 / 하단 간격(기본 150px 숫자만)</description>
+			</var>
+			<var name="navigation_user" type="select">
+				<title xml:lang="ko">우측 네비게이션</title>
+				<description xml:lang="ko">페이지 우측에 네비게이션 표시 사용</description>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+			</var>
+			<var name="navi_down_user" type="select">
+				<title xml:lang="ko">하단 네비게이션</title>
+				<description xml:lang="ko">페이지 하단에 네비게이션 표시 사용</description>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+			</var>
+			<var name="control_arrows_user" type="select">
+				<title xml:lang="ko">상하 화살표</title>
+				<description xml:lang="ko">페이지 상하단에 화살표 페이지 넘김 사용</description>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+			</var>
+			<var name="loop_user" type="select">
+				<title xml:lang="ko">페이지 Loop</title>
+				<description xml:lang="ko">첫페이지 와 끝페이지 바로 연결</description>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+			</var>
+			<var name="menu_user" type="select">
+				<title xml:lang="ko">Page Menu</title>
+				<description xml:lang="ko">페이지들의 메뉴바를 상단 좌측에 출력</description>
+				<options value="N">
+					<title xml:lang="ko">No</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">Yes</title>
+				</options>
+			</var>
+			<var name="tooltips_user" type="select">
+				<title xml:lang="ko">우측 네비 메뉴명</title>
+				<description xml:lang="ko">우측 네미게이션에 메뉴명 사용</description>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+			</var>
+			<var name="scrollbar_user" type="select">
+				<title xml:lang="ko">스크롤바</title>
+				<description xml:lang="ko">스크롤바 출력</description>
+				<options value="false">
+					<title xml:lang="ko">No</title>
+				</options>
+				<options value="true">
+					<title xml:lang="ko">Yes</title>
+				</options>
+			</var>
+			<var name="smart_fullpage" type="select">
+				<title xml:lang="ko">반응형 풀페이지</title>
+				<description xml:lang="ko">스마트폰에서도 풀페이지 적용</description>
+				<options value="Y">
+					<title xml:lang="ko">Yes</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">No</title>
+				</options>
+			</var>
+			<var name="one_title" type="text">
+				<title xml:lang="ko">1페이지 메뉴명</title>
+				<description xml:lang="ko">페이지메뉴와 우측네비메뉴에 나타날 메뉴명.(기본 1st)</description>
+			</var>
+			<var name="two_title" type="text">
+				<title xml:lang="ko">2페이지 메뉴명</title>
+				<description xml:lang="ko">페이지메뉴와 우측네비메뉴에 나타날 메뉴명.(기본 2nd)</description>
+			</var>
+			<var name="three_title" type="text">
+				<title xml:lang="ko">3페이지 메뉴명</title>
+				<description xml:lang="ko">페이지메뉴와 우측네비메뉴에 나타날 메뉴명.(기본 3rd)</description>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">상단</title>
+			<var name="header_show" type="select">
+				<title xml:lang="ko">상단 영역</title>
+				<description xml:lang="ko">상단 영역의 출력를 결정하세요.</description>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">Off</title>
+				</options>
+			</var>
+			<var name="tbg_color" type="text">
+				<title xml:lang="ko">상단 배경색</title>
+				<description xml:lang="ko">상단영역의 배경색상을 지정합니다.(기본 #000)</description>
+			</var>
+			<var name="bg_img" type="image">
+				<title xml:lang="ko">상단 이미지</title>
+				<description xml:lang="ko">상단영역에 이미지를 사용하시려면 등록해주세요.</description>
+			</var>
+			<var name="layout_bgimg_repeat" type="select">
+				<title xml:lang="ko">상단이미지 적용방식</title>
+				<description xml:lang="ko">상단이미지의 적용방식을 선택해 주세요.(기본 바둑판)</description>
+				<options value="repeat">
+					<title xml:lang="ko">바둑판식</title>
+				</options>
+				<options value="no-repeat">
+					<title xml:lang="ko">반복안함</title>
+				</options>
+				<options value="repeat-x">
+					<title xml:lang="ko">가로 반복</title>
+					</options>
+				<options value="repeat-y">
+					<title xml:lang="ko">세로 반복</title>
+				</options>
+			</var>
+			<var name="layout_bgimg_align" type="select">
+				<title xml:lang="ko">상단이미지 정렬방식</title>
+				<description xml:lang="ko">상단이미지의 정렬위치을 선택해 주세요. (기본 중앙)</description>
+				<options value="center">
+					<title xml:lang="ko">중앙</title>
+				</options>
+				<options value="left">
+					<title xml:lang="ko">좌측</title>
+				</options>
+				<options value="right">
+					<title xml:lang="ko">우측</title>
+				</options>
+			</var>
+			<var name="layout_bgimg_top" type="select">
+				<title xml:lang="ko">상단이미지 상하정렬방식</title>
+				<description xml:lang="ko">상단이미지의 상하정렬위치을 선택해 주세요.(기본 상단)</description>
+				<options value="0">
+					<title xml:lang="ko">상단</title>
+				</options>
+				<options value="50">
+					<title xml:lang="ko">중앙</title>
+				</options>
+				<options value="100">
+					<title xml:lang="ko">하단</title>
+				</options>
+			</var>
+			<var name="gnbh_color" type="text">
+				<title xml:lang="ko">상단1차메뉴 칼라</title>
+				<description xml:lang="ko">상단1차메뉴의 글색상을 지정합니다.(기본 #fff)</description>
+			</var>
+			<var name="top_icolor" type="text">
+				<title xml:lang="ko">상단아이콘 칼라</title>
+				<description xml:lang="ko">상단아이콘(검색, 설정)의 색상을 지정합니다.(기본 #fff)</description>
+			</var>
+			<var name="logo_img" type="image">
+				<title xml:lang="ko">로고 이미지</title>
+			</var>
+			<var name="logo_imgh" type="image">
+				<title xml:lang="ko">로고 Hover 이미지</title>
+			</var>
+			<var name="logo_text" type="text">
+				<title xml:lang="ko">사이트 로고 문자</title>
+				<description xml:lang="ko">모바일시 로고이미지 대신 문자 출력</description>
+			</var>
+			<var name="logo_url" type="text">
+				<title xml:lang="ko">사이트 로고 링크 주소</title>
+			</var>
+			<var name="use_login_widget" type="select">
+				<title xml:lang="ko">로그인 위젯</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="enable_intergration_search" type="select">
+				<title xml:lang="ko">통합 검색</title>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">하단</title>
+			<var name="footer_show" type="select">
+				<title xml:lang="ko">하단 영역</title>
+				<description xml:lang="ko">하단 영역의 출력를 결정하세요.</description>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">Off</title>
+				</options>
+			</var>
+			<var name="bbg_color" type="text">
+				<title xml:lang="ko">하단 영역 바탕칼라</title>
+				<description xml:lang="ko">하단 영역의 바탕칼라를 입력하세요.(기본 #000)</description>
+			</var>
+			<var name="footer_copyright" type="textarea">
+				<title xml:lang="ko">카피라이트 내용</title>
+			</var>
+			<var name="copyright_t_color" type="text">
+				<title xml:lang="ko">카피라이트 칼라</title>
+				<description xml:lang="ko">카피라이트문자 색상을 지정합니다.(기본 #fff)</description>
+			</var>
+			<var name="mail" type="text">
+				<title xml:lang="ko">E-mail 주소</title>
+				<description xml:lang="ko">E-mail 주소를 등록하세요.</description>
+			</var>
+			<var name="copy_etc1" type="textarea">
+				<title xml:lang="ko">기타 문구1</title>
+				<description xml:lang="ko">주소, 전화번호등</description>
+			</var>
+			<var name="copy_etc2" type="textarea">
+				<title xml:lang="ko">기타 문구2</title>
+				<description xml:lang="ko">주소, 전화번호등</description>
+			</var>
+		</group>
+
+		<!-- 메인 0 Section 시작 -->
+		<group>
+			<title xml:lang="ko">Section zero</title>
+			<var name="use_section0" type="select">
+				<title xml:lang="ko">Section0</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="section0_image" type="image">
+				<title xml:lang="ko">Section0 이미지</title>
+				<description xml:lang="ko">Section0의 배경 이미지를 선택합니다.</description>
+			</var>
+			<var name="section0_color" type="text">
+				<title xml:lang="ko">Section0 색상</title>
+				<description xml:lang="ko">Section0 배경 색상을 입력합니다.(기본값: #5b927d)</description>
+			</var>
+			<var name="section0_title" type="text">
+				<title xml:lang="ko">Section0 제목</title>
+				<description xml:lang="ko">Section0 제목을 입력합니다.</description>
+			</var>
+			<var name="section0_subtitle" type="text">
+				<title xml:lang="ko">Section0 소제목</title>
+				<description xml:lang="ko">Section0 소제목을 입력합니다.</description>
+			</var>
+			<var name="section0_html" type="textarea">
+				<title xml:lang="ko">Section0 내용</title>
+				<description xml:lang="ko">Section0 내용을 입력합니다.(html 사용)</description>
+			</var>
+			<var name="section0s_html" type="textarea">
+				<title xml:lang="ko">Section0 모바일 내용</title>
+				<description xml:lang="ko">Section0 모바일 내용을 입력합니다.(미작성시 Section0 내용 출력)</description>
+			</var>
+			<var name="intro0_top" type="text">
+				<title xml:lang="ko">Intro0 영역 상단 간격</title>
+				<description xml:lang="ko">Intro0 영역 상단 간격을 입력(기본 0px)</description>
+			</var>
+		</group>
+		<!-- 메인 0 Section 끝 -->
+
+		<!-- 메인 1 Section 시작 -->
+		<group>
+			<title xml:lang="ko">Section one</title>
+			<var name="use_section1" type="select">
+				<title xml:lang="ko">Section1</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="section1_1_image" type="image">
+				<title xml:lang="ko">Section1 Slide1 이미지</title>
+				<description xml:lang="ko">Section1 Slide1 의 배경 이미지를 선택합니다.</description>
+			</var>
+			<var name="section1_2_image" type="image">
+				<title xml:lang="ko">Section1 Slide2 이미지</title>
+				<description xml:lang="ko">Section1 Slide2 의 배경 이미지를 선택합니다.</description>
+			</var>
+			<var name="section1_color" type="text">
+				<title xml:lang="ko">Section1 색상</title>
+				<description xml:lang="ko">Section1 배경 색상을 입력합니다.(기본값: #f3b96c)</description>
+			</var>
+			<var name="section1_1_title" type="text">
+				<title xml:lang="ko">Section1_1 제목</title>
+				<description xml:lang="ko">Section1_1 제목을 입력합니다.</description>
+			</var>
+			<var name="section1_1_subtitle" type="text">
+				<title xml:lang="ko">Section1_1 소제목</title>
+				<description xml:lang="ko">Section1_1 소제목을 입력합니다.</description>
+			</var>
+			<var name="section1_1_html" type="textarea">
+				<title xml:lang="ko">Section1_1 내용</title>
+				<description xml:lang="ko">Section1_1 내용을 입력합니다.(html 사용)</description>
+			</var>
+			<var name="section1_1s_html" type="textarea">
+				<title xml:lang="ko">Section1_1 모바일 내용</title>
+				<description xml:lang="ko">Section1_1 모바일 내용을 입력합니다.(미작성시 Section1_1 내용 출력)</description>
+			</var>
+			<var name="section1_2_title" type="text">
+				<title xml:lang="ko">Section1_2 제목</title>
+				<description xml:lang="ko">Section1_2 제목을 입력합니다.</description>
+			</var>
+			<var name="section1_2_subtitle" type="text">
+				<title xml:lang="ko">Section1_2 소제목</title>
+				<description xml:lang="ko">Section1_2 소제목을 입력합니다.</description>
+			</var>
+			<var name="section1_2_html" type="textarea">
+				<title xml:lang="ko">Section1_2 내용</title>
+				<description xml:lang="ko">Section1_2 내용을 입력합니다.(html 사용)</description>
+			</var>
+			<var name="section1_2s_html" type="textarea">
+				<title xml:lang="ko">Section1_2 모바일 내용</title>
+				<description xml:lang="ko">Section1_2 모바일 내용을 입력합니다.(미작성시 Section1_2 내용 출력)</description>
+			</var>
+			<var name="intro1_1_top" type="text">
+				<title xml:lang="ko">Intro1_1 영역 상단 간격</title>
+				<description xml:lang="ko">Intro1_1 영역 상단 간격을 입력(기본 0px)</description>
+			</var>
+			<var name="intro1_2_top" type="text">
+				<title xml:lang="ko">Intro1_2 영역 상단 간격</title>
+				<description xml:lang="ko">Intro1_2 영역 상단 간격을 입력(기본 0px)</description>
+			</var>
+		</group>
+		<!-- 메인 1 Section 끝 -->
+
+		<!-- 메인 2 Section 시작 -->
+		<group>
+			<title xml:lang="ko">Section two</title>
+			<var name="use_section2" type="select">
+				<title xml:lang="ko">Section2</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="section2_image" type="image">
+				<title xml:lang="ko">Section2 이미지</title>
+				<description xml:lang="ko">Section2의 배경 이미지를 선택합니다.</description>
+			</var>
+			<var name="section2_color" type="text">
+				<title xml:lang="ko">Section2 색상</title>
+				<description xml:lang="ko">Section0 배경 색상을 입력합니다.(기본값: #9C4998)</description>
+			</var>
+			<var name="section2_title" type="text">
+				<title xml:lang="ko">Section2 제목</title>
+				<description xml:lang="ko">Section2 제목을 입력합니다.</description>
+			</var>
+			<var name="section2_subtitle" type="text">
+				<title xml:lang="ko">Section2 소제목</title>
+				<description xml:lang="ko">Section2 소제목을 입력합니다.</description>
+			</var>
+			<var name="section2_html" type="textarea">
+				<title xml:lang="ko">Section2 내용</title>
+				<description xml:lang="ko">Section2 내용을 입력합니다.(html 사용)</description>
+			</var>
+			<var name="section2s_html" type="textarea">
+				<title xml:lang="ko">Section2 모바일 내용</title>
+				<description xml:lang="ko">Section2 모바일 내용을 입력합니다.(미작성시 Section2 내용 출력)</description>
+			</var>
+			<var name="intro2_top" type="text">
+				<title xml:lang="ko">Intro2 영역 상단 간격</title>
+				<description xml:lang="ko">Intro2 영역 상단 간격을 입력(기본 0px)</description>
+			</var>
+		</group>
+		<!-- 메인 2 Section 끝 -->
+
+		<group>
+			<title xml:lang="ko">Html영역</title>
+			<var name="html0_width" type="text">
+				<title xml:lang="ko">Html 0 영역 가로폭</title>
+				<description xml:lang="ko">Html 0 영역의 가로폭을 선택 (기본 100%)</description>
+			</var>
+			<var name="html0_color" type="text">
+				<title xml:lang="ko">Html 0 영역 칼라</title>
+				<description xml:lang="ko">Html 0 영역의 배경색상을 지정합니다.(기본 투명)</description>
+			</var>
+			<var name="html0_radius" type="select">
+				<title xml:lang="ko">Html 0 영역 모서리</title>
+				<description xml:lang="ko">Html 0 영역 모서리를 타원으로 설정</description>
+				<options value="N">
+					<title xml:lang="ko">직각</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">타원</title>
+				</options>
+			</var>
+			<var name="html0_shadow" type="select">
+				<title xml:lang="ko">Html 0 영역 그림자</title>
+				<description xml:lang="ko">Html 0 영역 그림자 설정</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+
+			<var name="html1_1_width" type="text">
+				<title xml:lang="ko">Html 1_1 영역 가로폭</title>
+				<description xml:lang="ko">Html 1_1 영역의 가로폭을 선택 (기본 100%)</description>
+			</var>
+			<var name="html1_1_color" type="text">
+				<title xml:lang="ko">Html 1_1 영역 칼라</title>
+				<description xml:lang="ko">Html 1_1 영역의 배경색상을 지정합니다.(기본 투명)</description>
+			</var>
+			<var name="html1_1_radius" type="select">
+				<title xml:lang="ko">Html 1_1 영역 모서리</title>
+				<description xml:lang="ko">Html 1_1 영역 모서리를 타원으로 설정</description>
+				<options value="N">
+					<title xml:lang="ko">직각</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">타원</title>
+				</options>
+			</var>
+			<var name="html1_1_shadow" type="select">
+				<title xml:lang="ko">Html 1_1 영역 그림자</title>
+				<description xml:lang="ko">Html 1_1 영역 그림자 설정</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+
+			<var name="html1_2_width" type="text">
+				<title xml:lang="ko">Html 1_2 영역 가로폭</title>
+				<description xml:lang="ko">Html 1_2 영역의 가로폭을 선택 (기본 100%)</description>
+			</var>
+			<var name="html1_2_color" type="text">
+				<title xml:lang="ko">Html 1_2 영역 칼라</title>
+				<description xml:lang="ko">Html 1_2 영역의 배경색상을 지정합니다.(기본 투명)</description>
+			</var>
+			<var name="html1_2_radius" type="select">
+				<title xml:lang="ko">Html 1_2 영역 모서리</title>
+				<description xml:lang="ko">Html 1_2 영역 모서리를 타원으로 설정</description>
+				<options value="N">
+					<title xml:lang="ko">직각</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">타원</title>
+				</options>
+			</var>
+			<var name="html1_2_shadow" type="select">
+				<title xml:lang="ko">Html 1_2 영역 그림자</title>
+				<description xml:lang="ko">Html 1_2 영역 그림자 설정</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+
+			<var name="html2_width" type="text">
+				<title xml:lang="ko">Html 2 영역 가로폭</title>
+				<description xml:lang="ko">Html 2 영역의 가로폭을 선택 (기본 100%)</description>
+			</var>
+			<var name="html2_color" type="text">
+				<title xml:lang="ko">Html 2 영역 칼라</title>
+				<description xml:lang="ko">Html 2 영역의 배경색상을 지정합니다.(기본 투명)</description>
+			</var>
+			<var name="html2_radius" type="select">
+				<title xml:lang="ko">Html 2 영역 모서리</title>
+				<description xml:lang="ko">Html 2 영역 모서리를 타원으로 설정</description>
+				<options value="N">
+					<title xml:lang="ko">직각</title>
+				</options>
+				<options value="">
+					<title xml:lang="ko">타원</title>
+				</options>
+			</var>
+			<var name="html2_shadow" type="select">
+				<title xml:lang="ko">Html 2 영역 그림자</title>
+				<description xml:lang="ko">Html 2 영역 그림자 설정</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+		</group>
+
+		<group>
+		<title xml:lang="ko">배경 슬라이더</title>
+			<var name="bgimg_slide" type="select">
+				<title xml:lang="ko">배경이미지 슬라이더</title>
+				<description xml:lang="ko">배경이미지 슬라이드 선택.</description>
+				<options value="">
+					<title xml:lang="ko">Off</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">On</title>
+				</options>
+			</var>
+			<var name="slide_interval" type="text">
+				<title xml:lang="ko">슬라이딩 시간 간격</title>
+				<description xml:lang="ko">슬라이드 이미지간의 시간 간격(기본 5000(5초))</description>
+			</var>
+			<var name="slide_transition" type="select">
+				<title xml:lang="ko">슬라이딩 전개방식</title>
+				<description xml:lang="ko">슬라이딩의 전개방식을 선택해 주세요.(기본 Fade)</description>
+				<options value="1">
+					<title xml:lang="ko">Fade</title>
+				</options>
+				<options value="2">
+					<title xml:lang="ko">Slide Top</title>
+				</options>
+				<options value="3">
+					<title xml:lang="ko">Slide Right</title>
+					</options>
+				<options value="4">
+					<title xml:lang="ko">Slide Bottom</title>
+				</options>
+				<options value="5">
+					<title xml:lang="ko">Slide Left</title>
+				</options>
+				<options value="6">
+					<title xml:lang="ko">Carousel Right</title>
+				</options>
+				<options value="7">
+					<title xml:lang="ko">Carousel Left</title>
+				</options>
+				<options value="0">
+					<title xml:lang="ko">None</title>
+				</options>
+			</var>
+			<var name="transition_speed" type="text">
+				<title xml:lang="ko">전개방식 시간</title>
+				<description xml:lang="ko">슬라이딩 전개방식의 시간(기본 2000(2초))</description>
+			</var>
+			<var name="slide_content" type="select">
+				<title xml:lang="ko">슬라이더 출력형태</title>
+				<description xml:lang="ko">슬라이더의 출력형태를 선택</description>
+				<options value="1">
+					<title xml:lang="ko">기본형태</title>
+				</options>
+				<options value="2">
+					<title xml:lang="ko">썸네일 출력</title>
+				</options>
+			</var>
+			<var name="s_img_loc" type="select">
+				<title xml:lang="ko">슬라이더 화면출력</title>
+				<description xml:lang="ko">슬라이더 화면 출력을 선택</description>
+				<options value="fixed">
+					<title xml:lang="ko">화면고정</title>
+				</options>
+				<options value="absolute">
+					<title xml:lang="ko">이미지고정</title>
+				</options>
+			</var>
+			<var name="s_img_top" type="text">
+				<title xml:lang="ko">이미지의 상단 높이</title>
+				<description xml:lang="ko">이미지의 상단 높이를 지정, 뭔밍?은 기본^.^(기본 0)</description>
+			</var>
+			<var name="s_img_left" type="text">
+				<title xml:lang="ko">이미지의 좌측 간격</title>
+				<description xml:lang="ko">이미지의 좌측 간격을 지정, 뭔밍?은 기본^.^(기본 0)</description>
+			</var>
+			<var name="s_img_b" type="text">
+				<title xml:lang="ko">슬라이딩 배경 칼라</title>
+				<description xml:lang="ko">슬라이딩 배경영역의 색상을 지정(기본 #fff)</description>
+			</var>
+			<var name="slider1_image" type="image">
+				<title xml:lang="ko">이미지1</title>
+			</var>
+			<var name="slider1_description_en" type="text">
+				<title xml:lang="ko">이미지1 영문</title>
+			</var>
+			<var name="slider1_description_kr" type="text">
+				<title xml:lang="ko">이미지1 한글</title>
+			</var>
+			<var name="slider2_image" type="image">
+				<title xml:lang="ko">이미지2</title>
+			</var>
+			<var name="slider2_description_en" type="text">
+				<title xml:lang="ko">이미지2 영문</title>
+			</var>
+			<var name="slider2_description_kr" type="text">
+				<title xml:lang="ko">이미지2 한글</title>
+			</var>
+			<var name="slider3_image" type="image">
+				<title xml:lang="ko">이미지3</title>
+			</var>
+			<var name="slider3_description_en" type="text">
+				<title xml:lang="ko">이미지3 영문</title>
+			</var>
+			<var name="slider3_description_kr" type="text">
+				<title xml:lang="ko">이미지3 한글</title>
+			</var>
+			<var name="slider4_image" type="image">
+				<title xml:lang="ko">이미지4</title>
+			</var>
+			<var name="slider4_description_en" type="text">
+				<title xml:lang="ko">이미지4 영문</title>
+			</var>
+			<var name="slider4_description_kr" type="text">
+				<title xml:lang="ko">이미지4 한글</title>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">SNS로그인</title>
+			<var name="sns" type="select">
+				<title xml:lang="ko">SocialXE 로그인</title>
+				<description xml:alng="ko">※ "SocialXE 모듈" 미설치 사용선택시 디자인 깨어집니다. 주의 바랍니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="sns_facebook" type="select">
+				<title xml:lang="ko">  ┖  SocialXE Facebook 사용</title>
+				<description xml:alng="ko">소셜 로그인 링크 항목에서 Facebook을 등록합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="sns_twitter" type="select">
+				<title xml:lang="ko">  ┖  SocialXE Twitter 사용</title>
+				<description xml:alng="ko">소셜 로그인 링크 항목에서 Twitter를 등록합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="sns_google" type="select">
+				<title xml:lang="ko">  ┖  SocialXE Google 사용</title>
+				<description xml:alng="ko">소셜 로그인 링크 항목에서 Google를 등록합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="sns_naver" type="select">
+				<title xml:lang="ko">  ┖  SocialXE Naver 사용</title>
+				<description xml:alng="ko">소셜 로그인 링크 항목에서 Naver를 등록합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+			<var name="sns_kakao" type="select">
+				<title xml:lang="ko">  ┖  SocialXE Kakao 사용</title>
+				<description xml:alng="ko">소셜 로그인 링크 항목에서 Kakao를 등록합니다.</description>
+				<options value="">
+					<title xml:lang="ko">사용(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
+		</group>
+
+	</extra_vars>
+</layout>

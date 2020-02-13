@@ -1,0 +1,9 @@
+/** Menu_Position **/
+.Menu_Position { background:#ffffff; height:30px; margin-bottom:5px; border:1px solid #e5e5e5; }
+.Menu_Position ul { margin:0; padding:0; list-style:none; }
+.Menu_Position ul li { background:url(../img/menuPositionArrow.gif) no-repeat right top; float:left; height:30px; padding:1px 20px 0 10px; text-decoration: none;}
+.Menu_Position ul li a { font-size:12px; color:#808080; text-decoration:none; line-height:30px; }
+.Menu_Position ul li a:hover { color:#000000; }
+.Menu_Position ul li.home a { background:url() no-repeat left 7px; display:block; width:17px; height:32px; }
+.Menu_Position ul li.home a:hover { background-position:left 7px; }
+.Menu_Position ul li.home a span { display:none; }
