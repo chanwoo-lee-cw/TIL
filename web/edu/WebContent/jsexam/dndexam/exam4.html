@@ -24,21 +24,29 @@
 	  //elem.style.visibility='hidden';
 	  //elem.style.display='none';
 	  //elem.parentNode.removeChild(elem);
+	  // 원래 박스에서 사라지게끔 하고 있으면 이 3개중 하나를 선택하면 된다.
 	}
 	function dragged(e){
 	  var elem=e.target;
 	  e.dataTransfer.setData('aa', elem.getAttribute('id'));
 	  e.dataTransfer.setDragImage(e.target, 0, 0);
+	  // 드래그를 했을때 이미지를 무조건 왼쪽 위를 기준으로 해서 끌고 간다.
+	  // 왼쪽 위부터 끌고가는게 아니면 이상한데서 놓여진다.
 	}
 	function dropped(e){
 	  e.preventDefault();
+	  // 이미지가 새창으로 뜨는 걸 막기 위해 이벤트를 초기화
 	  var id=e.dataTransfer.getData('aa');
+	  // aa라는 이름으로 이미지가 드롭 되었다.
 	  var elem=document.getElementById(id);
 
 	  var posx=e.pageX-drop.offsetLeft;
 	  var posy=e.pageY-drop.offsetTop;
+	  // 드롭된 이미지의 기준으로 하는데 페이지 위쪽을 기준으로 해서 캔버스의 크기만큼 빼준다
+	  // e.page가 현재 페이지를 기준으로 놓여진 위치, drop.offsetLeft이 캔버스의 위치
 
 	  canvas.drawImage(elem,posx,posy);//, 70, 70);
+	  // elem 이라는 이름으로 전달 받은 이미지를 현재 마우스의 x,y의 좌표에 그린다
 	 
 	}
 	window.addEventListener('load', initiate, false);

@@ -20,7 +20,7 @@
  	<hr>
 <%
 	for (int i=1;i<=9;i++){
-		out.print(dan + " x " + i + " = "  + dan*i + "<br>");	
+		out.print(String.format("%d x %d = %d <br>",dan,i,dan*i));	
 	}
  } else {
 %>

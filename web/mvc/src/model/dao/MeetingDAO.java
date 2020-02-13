@@ -7,4 +7,5 @@ public interface MeetingDAO {
 	public boolean insert(MeetingVO vo);
 	public List<MeetingVO> search(String keyword);
 	public boolean delete(int eNo);	
+	public boolean update(MeetingVO vo);
 }

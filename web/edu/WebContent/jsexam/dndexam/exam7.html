@@ -22,6 +22,8 @@ window.onload = function() {
     
     target.ondragover = function(event) {
         if(event.preventDefault) event.preventDefault();
+        // 만약 이벤트가 preventDefault를 지원하고 있으면 프리벤트 디폴트를 해제한다.
+        // 즉, 기본 이벤트를 지원하고 있는 브라우저면 해제한다.
         return false;
     }
     
@@ -34,11 +36,14 @@ window.onload = function() {
         target.classList.remove('hover');
         return false;
     }
+    // 위 함수와 함께 타겟이 올라가면 클래스에 hover 추가 아니면 삭제
  
      target.ondrop = function(event){
         if(event.preventDefault) event.preventDefault();
+        // 프리벤트 디폴트를 지원하는 브라우저면 프리벤트 디폴트를 해제한다.
         target.classList.remove('hover');
         var filedata = event.dataTransfer.files[0];
+        //파일을 여러개 주어도 한개의 폴더만 읽는다
         readFile(filedata);
     }
 }
@@ -48,20 +53,25 @@ function readFile(file) {
     document.getElementById("fileSize").textContent = "(" + file.size + "byte)";
 
     var reader = new FileReader();
+    //파일을 읽기 위해 파일 리더 객체를 생성
 
     reader.onload = function() {
         var display = document.getElementById("droparea");
         display.textContent = reader.result;
+        // 다 읽었으면 읽어진 내용을 출력한다.
     };
 
     reader.onerror = function(evt) {
         alert(evt.target.error.code);
     };
+    // 만약 파일을 읽는 도중 에러가 나면 알려준다.
 
     var encodingList = document.getElementById("encoding");
-    var encoding = encodingList.options[encodingList.selectedIndex].value;  
+    // 어떤 캐릭터로 읽을 것인가. 밑에 HTML에 나와있는 캐릭터 셋을 읽어온다.
+    var encoding = encodingList.options[encodingList.selectedIndex].value;
 
     reader.readAsText(file, encoding);  
+    // 읽어온 캐릭터 셋 파일과 함께 캐릭터 셋을 전달한다.
 };
 </script>
 </head>
@@ -75,6 +85,7 @@ function readFile(file) {
     <select id="encoding">
         <option>EUC-KR</option>
         <option>UTF-8</option>
+        <!-- 캐릭터 셋을 선언한다. -->
     </select>
     <button id="read">읽기</button><br />
     <div>
@@ -82,6 +93,7 @@ function readFile(file) {
         <span id="fileSize">File Size</span>
     </div>
     <textarea id="droparea" class="droparea" readonly style="width:600px; height:400px;"></textarea>
+    <!-- 텍스트 에어리어지만, readonly속성을 줘서 읽는 것만 되지 삭제는 안되게 설정했다. -->
     </article>
 </section>
 </body>

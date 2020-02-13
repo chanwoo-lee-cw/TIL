@@ -6,38 +6,41 @@
 </head>
 <body onload="draw_m()">
 
-	<button onclick="save();">저장하기</button>
-	<button onclick="restore();">불러오기</button>
-	<button onclick="initialize();">청소하기</button>
-	<br>
+	
+
 	<canvas id="m" style="border: 1px solid red" width="500" height="400">
 	
 	</canvas>
+		<br>
+	<button onclick="save();">저장하기</button>
+	<button onclick="restore();">불러오기</button>
+	<button onclick="initialize();">청소하기</button>
 	<script>
-	function save() {
-		alert(canvas.toDataURL());
-		localStorage.setItem("canvas", canvas.toDataURL());
-	}
-	function restore() {
-		var img = new Image();
-	    img.src = localStorage.getItem("canvas");
-	    img.onload = function() {
-	    	ctx.drawImage(img, 0, 0);        
-	    }
-	}
-	function initialize() {
-		canvas = document.getElementById('m');
-		if (canvas.getContext) {
-			ctx = canvas.getContext('2d');
-			ctx.clearRect(0,0,500,400);
+	var canvas = document.getElementById('m');
+		function save() {
+			alert(canvas.toDataURL());
+			localStorage.setItem("canva", canvas.toDataURL());
 		}
-	}
+		function restore() {
+			var img = new Image();
+			img.src = localStorage.getItem("canva");
+			img.onload = function() {
+				ctx.drawImage(img, 0, 0);
+			}
+		}
+		function initialize() {
+			canvas = document.getElementById('m');
+			if (canvas.getContext) {
+				ctx = canvas.getContext('2d');
+				ctx.clearRect(0, 0, 500, 400);
+			}
+		}
 		function draw_m() {
-			var canvas = document.getElementById('m');
 			
 			if (canvas.getContext) {
 				var ctx = canvas.getContext('2d');
-
+				ctx.save();
+				// ctx 의 초기 상태를 저장한다. 즉 현재의 자표 저장
 				ctx.translate(100, 200);
 				ctx.beginPath();
 				ctx.arc(0, 0, 100, 0, Math.PI * 2, false);
@@ -172,12 +175,12 @@
 
 				// 얼굴 3개
 				ctx.closePath();
-				ctx.moveTo(-400,-100);
+				//ctx.translate(-400, -150);
+				ctx.restore();
+				// 저장된 ctx 초기 상태를 불러온다.
 			}
 
 		}
-		
-		
 	</script>
 
 </body>

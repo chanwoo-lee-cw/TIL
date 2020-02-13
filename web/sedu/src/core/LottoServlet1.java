@@ -23,7 +23,6 @@ public class LottoServlet1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/json; charset=utf-8");
 		int num = Integer.parseInt((request.getParameter("num")));
 		int ranNum = (int) (Math.random() * 6 + 1);
 

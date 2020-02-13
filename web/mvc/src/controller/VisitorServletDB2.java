@@ -7,14 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.dao.VisitorMybatisDAO;
+import model.dao.VisitorMybatisDAO2;
 import model.vo.VisitorVO;
 @WebServlet("/visitormybatis")
 public class VisitorServletDB2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keyword = request.getParameter("keyword");
 		
-		VisitorMybatisDAO dao = new VisitorMybatisDAO();
+		VisitorMybatisDAO2 dao = new VisitorMybatisDAO2();
 		if(keyword == null) {
 			List<VisitorVO> list = dao.listAll();
 			for(VisitorVO vo : list) {
@@ -36,7 +36,7 @@ public class VisitorServletDB2 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");		
 		String name = request.getParameter("name");
 		String memo = request.getParameter("content");
-		VisitorMybatisDAO dao = new VisitorMybatisDAO();
+		VisitorMybatisDAO2 dao = new VisitorMybatisDAO2();
 		VisitorVO vo = new VisitorVO();
 		vo.setName(name);
 		vo.setMemo(memo);

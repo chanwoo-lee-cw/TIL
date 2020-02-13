@@ -22,7 +22,7 @@ public class GetPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
 		//쿼리 문자에 대한 인코딩을 진행해줘야 한다.
 		out.print("<h2>요청 방식 : "+request.getMethod()+"</h2>");
 		out.print("<h2>Query 문자열 : "+request.getParameter("name")+"</h2>");

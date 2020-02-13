@@ -16,18 +16,16 @@ public class VisitorDAO {
 		List<VisitorVO> list = new ArrayList<>();
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		try (Connection conn = DriverManager.getConnection
-				("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest", 
-						"jdbctest");
+		try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest",
+				"jdbctest");
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery
-				("select name, to_char(writedate, "
-				+ "'yyyy\"년\" mm\"월\" dd\"일\"'), memo from visitor");) {
+				ResultSet rs = stmt.executeQuery(
+						"select name, to_char(writedate, " + "'yyyy\"년\" mm\"월\" dd\"일\"'), memo from visitor");) {
 			VisitorVO vo;
-			while(rs.next()) {
+			while (rs.next()) {
 				vo = new VisitorVO();
 				vo.setName(rs.getString(1));
 				vo.setWriteDate(rs.getString(2));
@@ -39,21 +37,21 @@ public class VisitorDAO {
 		}
 		return list;
 	}
+
 	public List<VisitorVO> search(String keyword) {
 		List<VisitorVO> list = new ArrayList<>();
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		try (Connection conn = DriverManager.getConnection
-				("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest", "jdbctest");
+		try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest",
+				"jdbctest");
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery
-				("select name, to_char(writedate, 'yyyy\"년\" mm\"월\" dd\"일\"'), memo "
-						+"from visitor where memo like '%"+keyword+"%'");) {
+				ResultSet rs = stmt.executeQuery("select name, to_char(writedate, 'yyyy\"년\" mm\"월\" dd\"일\"'), memo "
+						+ "from visitor where memo like '%" + keyword + "%'");) {
 			VisitorVO vo;
-			while(rs.next()) {
+			while (rs.next()) {
 				vo = new VisitorVO();
 				vo.setName(rs.getString(1));
 				vo.setWriteDate(rs.getString(2));
@@ -65,20 +63,21 @@ public class VisitorDAO {
 		}
 		return list;
 	}
+
 	public boolean insert(VisitorVO vo) {
 		boolean result = true;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		try (Connection conn = DriverManager.getConnection
-				("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest", "jdbctest");
-				PreparedStatement pstmt = conn.prepareStatement(
-						"insert into visitor values(?, sysdate, ?)");) {
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "jdbctest",
+					"jdbctest");
+			PreparedStatement pstmt = conn.prepareStatement("insert into visitor values(?, sysdate, ?)");
 			pstmt.setString(1, vo.getName());
-			pstmt.setString(2,  vo.getMemo());
-			pstmt.executeUpdate();			
+			pstmt.setString(2, vo.getMemo());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			result = false;
 			e.printStackTrace();
@@ -86,5 +85,3 @@ public class VisitorDAO {
 		return result;
 	}
 }
-
-

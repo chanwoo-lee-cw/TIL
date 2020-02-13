@@ -30,7 +30,7 @@ public class MeetingJDBCDAO implements MeetingDAO {
 			MeetingVO vo;
 			while (rs.next()) {
 				vo = new MeetingVO();
-				vo.setId(rs.getString("id"));
+				vo.setId(Integer.parseInt(rs.getString("id")));
 				vo.setName(rs.getString("name"));
 				vo.setTitle(rs.getString("title"));
 				vo.setMeetingDate(rs.getString("day"));
@@ -88,7 +88,7 @@ public class MeetingJDBCDAO implements MeetingDAO {
 			MeetingVO vo;
 			while(rs.next()) {
 				vo = new MeetingVO();
-				vo.setId(rs.getString("id"));
+				vo.setId(Integer.parseInt(rs.getString("id")));
 				vo.setName(rs.getString("name"));
 				vo.setTitle(rs.getString("title"));
 				vo.setMeetingDate(rs.getString("day"));
@@ -123,5 +123,31 @@ public class MeetingJDBCDAO implements MeetingDAO {
 		}
 		return result;
 	}
+	public boolean update(MeetingVO vo) {
+		boolean result = true;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		try(Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","jdbctest","jdbctest");
+				PreparedStatement pstmt = conn.prepareStatement(
+						"update meeting set " + 
+						"name = ?, " + 
+						"title = ?, " + 
+						"meetingdate = to_date(?, 'yyyy-mm-dd\"T\"hh24:mi' ) " + 
+						"where id = ?");){
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getTitle());
+			pstmt.setString(3, vo.getMeetingDate());
+			pstmt.setInt(4, vo.getId());
+			pstmt.executeUpdate();			
+		}catch(SQLException e){
+			result = false;
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 
 }

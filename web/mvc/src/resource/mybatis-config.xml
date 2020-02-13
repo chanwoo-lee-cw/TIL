@@ -18,7 +18,8 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="resource/VisitorMapper.xml"/>  
+    <mapper resource="resource/VisitorMapper.xml"/>
+    <mapper resource="resource/MeetingMapper.xml"/>  
   </mappers>
 </configuration>
 

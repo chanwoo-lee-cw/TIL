@@ -40,7 +40,7 @@ form #columntitle, #columnwriter, #columncontents {
 </style>
 </head>
 <body>
-	<h1>뉴스 게시판</h1>
+	<h1 onclick="location.href='/mvc/news'">뉴스 게시판</h1>
 	<table>
 		<tr>
 			<th>번호</th>
@@ -50,10 +50,10 @@ form #columntitle, #columnwriter, #columncontents {
 			<th>조회수</th>
 		</tr>
 		<c:forEach var="item" items="${requestScope.list }">
-			<tr onclick="location.href='/mvc/news?action=read&newsid=${item.id}'">
+			<tr>
 				<td>${item.id}</td>
-				<td id="title">${item.title}</td>
-				<td>${item.writer}</td>
+				<td id="title" onclick="location.href='/mvc/news?action=read&newsid=${item.id}'">${item.title}</td>
+				<td onclick="location.href='/mvc/news?searchtype=작가&searchkeyword=${item.writer}'">${item.writer}</td>
 				<td>${item.writedate}</td>
 				<td>${item.cnt}</td>
 			</tr>
@@ -61,6 +61,40 @@ form #columntitle, #columnwriter, #columncontents {
 	</table>
 	
 	<button onclick="displayDiv(1);">뉴스 작성</button>
+	
+	
+	
+	<div style="text-align : center"> 
+	<% String pagenum = request.getParameter("pagenum"); 
+		if(pagenum == null) {
+			for(int i =1;i<=5 ; i++) {
+				%>
+					<span onclick="location.href='/mvc/news?pagenum=<%=i %>'"> <%=i %></span>
+				<%
+			}
+		}else {
+			int pgnum=Integer.parseInt(pagenum);
+			if(pgnum<=5) {
+				for(int i =1;i<pgnum ; i++) {
+					%>
+						<span onclick="location.href='/mvc/news?pagenum=<%=i %>'"> <%=i %></span>
+					<%
+				}
+				for(int i =pgnum;i<pgnum+5 ; i++) {
+					%>
+						<span onclick="location.href='/mvc/news?pagenum=<%=i %>'"> <%=i %></span>
+					<%
+				}
+			}
+			else {
+				for(int i =pgnum-5;i<pgnum+6 ; i++) {
+					%>
+						<span onclick="location.href='/mvc/news?pagenum=<%=i %>'"> <%=i %></span>
+					<%
+				}
+			}
+		}
+	%> </div>
 	
 	<form method = "post" action = "/mvc/news" id="colwrite" style="display: none">
 		<input id="columntitle" name="title" placeholder="제목을 입력해주세요"><br> 
@@ -82,6 +116,15 @@ form #columntitle, #columnwriter, #columncontents {
 		<input type="button" value="확인" onclick="displayDiv(0)"> 
 		<input type="submit" value="수정"> 
 		<input type="button" value="삭제" onclick="location.href='/mvc/news?action=delete&newsid=${column.id}'">
+	</form>
+	
+	<form method = "GET" action = "/mvc/news?action=search" id ="keysearch">
+		<select name="searchtype">
+        	<option>제목</option>
+        	<option>작가</option>
+    	</select>
+    	<input type="text" name="searchkeyword">
+    	<input type="submit" value="뉴스 검색"> 
 	</form>
 	
 	<script>

@@ -25,6 +25,7 @@ public class EduServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 //		String name = request.getParameter("gname");
+
 		int grade = Integer.parseInt(request.getParameter("ggrade"));
 		RequestDispatcher rd = null;
 		switch (grade / 10) {

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.MeetingJDBCDAO;
+import model.dao.MeetingMybatisDAO;
 import model.vo.MeetingVO;
 
 /**
@@ -33,28 +33,28 @@ public class MeetingServlet extends HttpServlet {
 		String delid =request.getParameter("delid");
 		
 		if(delid!=null) {
-			MeetingJDBCDAO dao = new MeetingJDBCDAO();
+			MeetingMybatisDAO dao = new MeetingMybatisDAO();
 			boolean result = dao.delete(Integer.parseInt(delid));
 			//request.getRequestDispatcher("/meeting").forward(request, response);
 		}
 		if(keyword == null) {
-			MeetingJDBCDAO dao = new MeetingJDBCDAO();
+			MeetingMybatisDAO dao = new MeetingMybatisDAO();
 			List<MeetingVO> list = dao.listAll();
 			
 			request.setAttribute("list", list);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView_jstl.jsp");
 			for (MeetingVO vo : list)
 				System.out.println(vo);
 			rd.forward(request, response);
 		}
 		else {
-			MeetingJDBCDAO dao = new MeetingJDBCDAO();
+			MeetingMybatisDAO dao = new MeetingMybatisDAO();
 			List<MeetingVO> list = dao.search(keyword);
 			
 			request.setAttribute("list", list);
 			
-			RequestDispatcher impossible = request.getRequestDispatcher("/jspexam/meetingView.jsp");
+			RequestDispatcher impossible = request.getRequestDispatcher("/jspexam/meetingView_jstl.jsp");
 			for (MeetingVO vo : list)
 				System.out.println(vo);
 			impossible.forward(request, response);
@@ -78,7 +78,7 @@ public class MeetingServlet extends HttpServlet {
 		vo.setTitle(title);
 		vo.setMeetingDate(meetingDate);
 		
-		MeetingJDBCDAO dao = new MeetingJDBCDAO();
+		MeetingMybatisDAO dao = new MeetingMybatisDAO();
 		
 		boolean result = dao.insert(vo);
 		if(result)

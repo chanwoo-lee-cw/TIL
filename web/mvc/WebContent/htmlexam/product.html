@@ -17,5 +17,28 @@ img {
 	<a href="/mvc/product?pid=p001"><img src="/mvc/images/apple.gif"></a>
 	<a href="/mvc/product?pid=p002"><img src="/mvc/images/banana.jpg"></a>
 	<a href="/mvc/product?pid=p003"><img src="/mvc/images/halabong.jpg"></a>
+	<br>
+
+	<button onclick="toClear()">장바구니 비우기</button>
+	<br>
+	<output id="output"></output>
+
+	<script>
+		var toClear = function() {
+			var request = new XMLHttpRequest();
+			request.open('GET', '/mvc/product?pid=p000', true);
+			request.send();
+			request.onload = function(event) {
+				if (request.status == 200) {
+					var jsonObj = JSON.parse(request.responseText);
+					console.log(jsonObj);
+					// XML 인 경우에는 responseXML을 사용해야 한다.
+					var target = document.getElementById('output');
+					target.innerHTML = "<h2>" + jsonObj.msg + "<h2><br>";
+				}
+			}
+		}
+
+	</script>
 </body>
 </html>

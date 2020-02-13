@@ -2,6 +2,7 @@ package controller;
 
 import model.vo.ProductVO;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class ProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.setContentType("text/json; charset=utf-8");
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("prodList") == null) {
@@ -31,6 +32,13 @@ public class ProductServlet extends HttpServlet {
 		}
 		ProductVO vo =(ProductVO)session.getAttribute("prodList");
 		switch (request.getParameter("pid")) {
+		case "p000" :
+			session.invalidate();
+			String str = "{\"msg\" : \"장바구니가 비어졌어요!\"}";
+//	        System.out.print(str);
+	        PrintWriter out = response.getWriter();
+	        out.println(str);
+			return;
 		case "p001" :
 			vo.setApplenum(1);
 			break;

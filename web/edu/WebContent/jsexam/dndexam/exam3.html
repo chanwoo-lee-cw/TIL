@@ -16,11 +16,14 @@
 	  drop.addEventListener('drop', dropped, false);
 	}
 	function dragged(e){
-	  elem=e.target; // this 동일 : 이벤트가 발생된 대상 DOM 객체
+	  var elem=e.target; // this 동일 : 이벤트가 발생된 대상 DOM 객체
+	  // elem=e.target;
+	  // 자바 스크립트는 앞에 var을 선언 하지 않으면 자동으로 전역 변수가 된다.
 	  e.dataTransfer.setData('Text', elem.getAttribute('id'));
+	  // transfer에다 text라는 이름으로 id를 저장했다.
 	}
 	function dropped(e){
-	  e.preventDefault();
+	  var e.preventDefault();
 	  var id=e.dataTransfer.getData('Text');
 	  if(id!="image4"){
 	    var src=document.getElementById(id).src;

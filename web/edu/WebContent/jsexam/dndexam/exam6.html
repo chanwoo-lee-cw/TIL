@@ -13,12 +13,16 @@
 	}
 	function dropped(e){
 	  e.preventDefault();
+	  // 이벤트 해체
 	  var files=e.dataTransfer.files;
+	  // transfer 객체로부터 파일을 받아온다.
 	  var list='';
 	  for(var f=0;f<files.length;f++){
 	    list+='File: '+files[f].name+' '+files[f].size+' '+files[f].type+'<br>';
 	  }
+	  // 파일의 갯수만큼 문자열로 만들어서 list로 붙힌다.
 	  drop.innerHTML=list;
+	  // 드롭된
 	}
 	window.addEventListener('load', initiate, false);
   </script>

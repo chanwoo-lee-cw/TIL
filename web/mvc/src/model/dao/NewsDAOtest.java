@@ -13,14 +13,14 @@ import model.vo.NewsVO;
 
 class NewsDAOtest {
 
-//	@Test
-//	void test() {
-//		NewsDAO dao = new NewsDAO();
-//		List<NewsVO> list = dao.listAll();
-//		System.out.println(list.size());
-//		for (NewsVO vo : list)
-//			System.out.println(vo);
-//	}
+	@Test
+	void test() {
+		NewsDAO dao = new NewsDAO();
+		List<NewsVO> list = dao.listAll(1);
+		System.out.println(list.size());
+		for (NewsVO vo : list)
+			System.out.println(vo);
+	}
 	
 //	@Test
 //	void test1() {
@@ -34,14 +34,12 @@ class NewsDAOtest {
 //		System.out.println("삽입 테스트");
 //		NewsDAO dao = new NewsDAO();
 //		NewsVO vo = new NewsVO();
+//		for(int i =0 ; i <100 ;i++) {
 //		vo.setWriter("alpha");
-//		vo.setTitle("go home");
+//		vo.setTitle(i+" test");
 //		vo.setContent("hegohome");
 //		boolean result = dao.insert(vo);
-//		if(result)
-//			System.out.println("삽입 성공");
-//		else
-//			fail("삽입 실패");
+//		}
 //	}
 
 //	@Test
@@ -69,6 +67,19 @@ class NewsDAOtest {
 //			System.out.println("삭제 성공");
 //		else
 //			fail("삭제 실패");
+//	}
+	
+//	@Test
+//	void test() {
+//		NewsDAO dao = new NewsDAO();
+//		List<NewsVO> list = dao.search("1", "null");
+//		System.out.println(list.size());
+//		for (NewsVO vo : list)
+//			System.out.println(vo);
+//		list = dao.search("ㅁㄴㅇ", "listwriter");
+//		System.out.println(list.size());
+//		for (NewsVO vo : list)
+//			System.out.println(vo);
 //	}
 
 }

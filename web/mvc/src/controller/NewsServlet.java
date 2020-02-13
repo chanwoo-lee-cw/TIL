@@ -27,6 +27,7 @@ public class NewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String newsid = request.getParameter("newsid");
+		String searchkeyword = request.getParameter("searchkeyword");
 
 		NewsDAO newsdao = new NewsDAO();
 //		System.out.println(request.getParameter("action"));
@@ -44,12 +45,26 @@ public class NewsServlet extends HttpServlet {
 					System.out.println("삭제 실패");
 			}
 		}
-
-//		if(action == null && newsid == null) {
-		List<NewsVO> list = newsdao.listAll();
+		List<NewsVO> list = null;
+		if(searchkeyword!=null) {
+			String searchtype = request.getParameter("searchtype");
+			if(searchtype.equals("제목")) {
+				list = newsdao.search(searchkeyword, "null");
+			}else if(searchtype.equals("작가")) {
+				list = newsdao.search(searchkeyword, "listwriter");
+			}
+		}
+		else {
+			if(request.getParameter("pagenum") == null) {
+				list = newsdao.listAll(0);
+			}
+			else{
+				int pagenum = Integer.parseInt(request.getParameter("pagenum"))-1;
+				System.out.print(pagenum);
+				list = newsdao.listAll(pagenum);
+			}
+		}
 		request.setAttribute("list", list);
-//		}
-
 		request.getRequestDispatcher("/jspexam/news.jsp").forward(request, response);
 	}
 
