@@ -36,7 +36,6 @@ public class NewsController {
 	@RequestMapping("/listOne")
 	public ModelAndView newsView(int newsid) {
 		
-		System.out.print("111111111111111");
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("list", listAll());
@@ -66,7 +65,7 @@ public class NewsController {
 	public ModelAndView newsSearch(String searchkeyword, String searchtype) {
 		ModelAndView mav = new ModelAndView();
 		List<NewsVO> list = null;
-
+		
 		if (searchtype.equals("제목")) {
 			list = newsdao.search(searchkeyword, "null");
 		} else if (searchtype.equals("작가")) {

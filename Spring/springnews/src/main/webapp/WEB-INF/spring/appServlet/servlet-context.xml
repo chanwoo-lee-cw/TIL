@@ -33,7 +33,7 @@
 	<!-- 보내는 리졸버에다 /WEB-INF/views/를 앞에다 뒤에다 .jsp를 붙힌다. 즉, jsp말고 html을 붙히면 jsp가 
 		받는다. -->
 
-	<!--
+
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName"
@@ -59,7 +59,7 @@
 		<beans:constructor-arg index="0"
 			ref="sqlSessionFactory" />
 	</beans:bean>
--->
+
 <!-- 이부분은 멀티 파트와 sql에 관한 부분 Mapper.xml 이 없으므로 에러 나니까 필요하면 열자-->
 
 

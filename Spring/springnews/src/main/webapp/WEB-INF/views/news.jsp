@@ -73,7 +73,8 @@ form #columntitle, #columnwriter, #columncontents {
 		<input type="button" value="취소" onclick="displayDiv(0)">
 	</form>
 
-	<form method = "post" action = "/springnews/update?newsid=${column.id}" id="columnview" style="display: none">
+	<form method = "post" action = "/springnews/update" id="columnview" style="display: none">
+		<input type="hidden" name="id" value="${column.id}">
 		<input id="columntitle" name="title" placeholder="제목을 입력해주세요" value="${column.title }"><br> 
 		<input id="columnwriter" name="writer" placeholder="작성자명을 입력해주세요" value="${column.writer }"><br>
 		<textarea id="columncontents" name="contents" rows="5" cols="50" placeholder="내용을 입력해주세요">${column.content }</textarea>
