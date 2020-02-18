@@ -2,10 +2,13 @@ package my.spring.springnews;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.NewsDAO;
@@ -13,7 +16,7 @@ import vo.NewsVO;
 
 @Controller
 public class NewsController {
-
+	
 	@Autowired
 	NewsDAO newsdao = null;
 
@@ -37,9 +40,8 @@ public class NewsController {
 	public ModelAndView newsView(int newsid) {
 		
 		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("list", listAll());
 		mav.addObject("column", newsdao.listOne(newsid));
+		mav.addObject("list", listAll());
 		mav.setViewName("news");
 
 		return mav;

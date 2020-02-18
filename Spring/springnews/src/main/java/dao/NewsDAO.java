@@ -1,11 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +61,7 @@ public class NewsDAO implements NewsDAOinterface {
 		String statement = "resource.NewsMapper.deleteNews";
 		if (session.insert(statement, eNo) == 1)
 			result = true;
-
-//		 
+ 
 		return result;
 	}
 	
@@ -77,10 +70,12 @@ public class NewsDAO implements NewsDAOinterface {
 	public List<NewsVO> listAll() {
 		// TODO Auto-generated method stub
 		System.out.println("Mybatis 를 사용 DB 연동-listAll ");
+		
+		int result = session.selectOne("resource.NewsMapper.selectTotalNewsNum");
+		System.out.print(result);
+		
 		List<NewsVO> list = new ArrayList<NewsVO>();
-
 		String statement = "resource.NewsMapper.selectNews";
-
 		list = session.selectList(statement);
 
 		System.out.println(session.getClass().getName());
@@ -98,6 +93,10 @@ public class NewsDAO implements NewsDAOinterface {
 
 		String statement = "resource.NewsMapper.selectOneNews";
 		NewsVO searchOne = session.selectOne(statement, id);
+		
+		searchOne.setCnt(searchOne.getCnt()+1);
+		statement = "resource.NewsMapper.updateViews";
+		session.update(statement,searchOne);
 			
 		return searchOne;
 	}

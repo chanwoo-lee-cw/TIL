@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.NewsMapper">
 
+	<select id="selectMaxCountNews"  resultType="int">
+ 		select max(rownum)
+		from news;
+ 	</select>
+	
  	<select id="selectNews"  resultType="vo.NewsVO">
  		select id, writer, title, content, to_char(writedate,'yyyy"년" mm"월" dd"일"') AS "writedate", cnt from news
  	</select>
@@ -40,6 +45,16 @@
 		set writer = #{writer}, title = #{title}, content = #{content}
 		where id = #{id}
 	</update>
+	
+	<update id="updateViews" parameterType="vo.NewsVO" >
+		update news
+		set cnt = #{cnt}
+		where id = #{id}
+	</update>
+	
+	<select id="selectTotalNewsNum" resultType="Integer">
+ 		SELECT count(id) from news
+	</select>
 	
 </mapper>
 
