@@ -20,9 +20,9 @@ public class NewsController {
 	@Autowired
 	NewsDAO newsdao = null;
 
-	public List<NewsVO> listAll() {
+	public List<NewsVO> listAll(int pagenum) {
 		List<NewsVO> list = null;
-		list = newsdao.listAll();
+		list = newsdao.listAll(pagenum);
 		return list;
 	}
 

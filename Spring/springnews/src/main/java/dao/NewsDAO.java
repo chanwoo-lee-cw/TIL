@@ -67,16 +67,19 @@ public class NewsDAO implements NewsDAOinterface {
 	
 
 	
-	public List<NewsVO> listAll() {
+	public List<NewsVO> listAll(int pagenum) {
 		// TODO Auto-generated method stub
 		System.out.println("Mybatis 를 사용 DB 연동-listAll ");
 		
 		int result = session.selectOne("resource.NewsMapper.selectTotalNewsNum");
-		System.out.print(result);
+		PagingControl paging = new PagingControl(result);
+
+		if(pagenum!=0)
+			paging.pgNum=pagenum;
 		
 		List<NewsVO> list = new ArrayList<NewsVO>();
 		String statement = "resource.NewsMapper.selectNews";
-		list = session.selectList(statement);
+		list = session.selectList(statement,pagenum);
 
 		System.out.println(session.getClass().getName());
 		return list;
