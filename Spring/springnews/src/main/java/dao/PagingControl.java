@@ -22,48 +22,71 @@ public class PagingControl {
 		pgNum = 0; 	    	// 현재 페이지 넘버
 	}
 	
-	public int getPageCount( ) {
-		return ((postCnt-1)/lineCnt)+1;
+	public int getPageCount() {
+		return ((postCnt - 1) / lineCnt) + 1;
 	}
-	
-	public int getPageStart( ) {
-//		((현재 페이지넘버-1)/ 한 화면의 페이지 개수)*한 화면의 페이지 개수+1
-		return ((pgNum-1)/pageCnt)*pageCnt+1;
+	public int getPageStart() {
+		return ((pgNum - 1) / pageCnt) * pageCnt + 1;
 	}
-	
-	public int getPageEnd( ) {
-		//각 화면 별 시작 페이지 번호 + 한 화면의 페이지 개수 - 1 과 전체 페이지 개수 중에서 작은 값
-		int start = getPageStart();
-		return (start + pageCnt-1)<postCnt/lineCnt ? (start + pageCnt-1) : postCnt/lineCnt;
+	public int getPageEnd() {
+		return Math.min(getPageStart() + pageCnt - 1, getPageCount());
 	}
-	
-	public boolean isPreData( ) {
-		boolean result = false;
-		if(pgNum-5>0)
-			result = true;
-		return result;
-		
+	public boolean isPreData() {
+		return getPageStart() != 1;
 	}
-	
-	public boolean isNextData( ) {
-		boolean result = false;
-		if(pgNum+5<postCnt)
-			result = true;
-		return result;
-		
+	public boolean isNextData() {
+		return getPageEnd() < getPageCount();
 	}
-	
-	public int getWritingStart( ) {
-		return getWritingEnd()-lineCnt+1;
-		
+	public int getWritingStart() {
+		return getWritingEnd() - lineCnt + 1;
 	}
-	
 	public int getWritingEnd() {
-		return pgNum*lineCnt;
+		return pgNum * lineCnt;
 	}
 	
-	public String returnAll() {
-		return ""+getPageCount() + "\n" + getPageStart()+ "\n" +getPageEnd( )+ "\n" +isPreData( )+ "\n" +isNextData( )+ "\n" +getWritingStart( )+ "\n" +getWritingEnd();
-	}
+	
+//	public int getPageCount( ) {
+//		return ((postCnt-1)/lineCnt)+1;
+//	}
+//	
+//	public int getPageStart( ) {
+////		((현재 페이지넘버-1)/ 한 화면의 페이지 개수)*한 화면의 페이지 개수+1
+//		return ((pgNum-1)/pageCnt)*pageCnt+1;
+//	}
+//	
+//	public int getPageEnd( ) {
+//		//각 화면 별 시작 페이지 번호 + 한 화면의 페이지 개수 - 1 과 전체 페이지 개수 중에서 작은 값
+//		int start = getPageStart();
+//		return (start + pageCnt-1)<postCnt/lineCnt ? (start + pageCnt-1) : postCnt/lineCnt;
+//	}
+//	
+//	public boolean isPreData( ) {
+//		boolean result = false;
+//		if(pgNum-5>0)
+//			result = true;
+//		return result;
+//		
+//	}
+//	
+//	public boolean isNextData( ) {
+//		boolean result = false;
+//		if(pgNum+pageCnt<postCnt)
+//			result = true;
+//		return result;
+//		
+//	}
+//	
+//	public int getWritingStart( ) {
+//		return getWritingEnd()-lineCnt+1;
+//		
+//	}
+//	
+//	public int getWritingEnd() {
+//		return pgNum*lineCnt;
+//	}
+//	
+//	public String returnAll() {
+//		return ""+getPageCount() + "\n" + getPageStart()+ "\n" +getPageEnd( )+ "\n" +isPreData( )+ "\n" +isNextData( )+ "\n" +getWritingStart( )+ "\n" +getWritingEnd();
+//	}
 
 }

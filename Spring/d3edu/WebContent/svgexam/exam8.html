@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>가로형 막대그래프</title>
+		<style>
+			svg {
+				border: 1px solid black;
+			}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>프로그램으로 SVG 요소 생성</h1>
+		<div id="graphArea"></div>
+		<script>
+		d3.select("#graphArea")		// svg 요소를 생성하는 div 요소를 지정
+		.append("svg")					// svg 요소를 추가
+		.attr("width", "320px")		// svg 요소의 가로 넓이를 설정
+		.attr("height", "240px")	// svg요소 세로 높이를 설정
+		</script>
+	</body>
+</html>

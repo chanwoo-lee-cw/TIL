@@ -1,0 +1,14 @@
+<svg width="380pt" height="100pt" xmlns="http://www.w3.org/2000/svg">
+<defs>
+	<style>
+	@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	</style>	
+    <linearGradient id="gradient">
+    <stop stop-color="#ED6E46" offset="0%"/>
+    <stop stop-color="green" offset="100%"/>
+    </linearGradient>
+</defs>
+<text x="30" y="120" fill="url(#gradient)" font-size="80" font-family= "'Jeju Hallasan', serif">
+	봄이오나봐요!
+</text>
+</svg>

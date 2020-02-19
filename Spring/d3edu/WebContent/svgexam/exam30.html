@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>애니메이션</h1>
+<hr>
+<svg width="600" height="400">
+  <g id="graphics" font-size="30">
+    <rect width="100%" height="100%" fill="lightyellow"/>
+    <g>
+    <circle cx="50" cy="100" r="50" fill="gray">
+      <animate attributeName="cx" attributeType="XML" 
+               begin="0;graphics.click"
+               values="50;500;300;400;50" 
+               dur="20s"
+               calcMode="linear" />
+      <animate attributeName="fill" attributeType="XML"  
+               begin="0;graphics.click"
+               dur="20s" 
+               values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+               calcMode="linear" />
+    </circle>
+    <text x="50" y="100">linear</text>
+    </g>
+    <g>
+    <circle cx="50" cy="300" r="50" fill="gray">
+      <animate attributeName="cx" attributeType="XML"  
+               begin="0;graphics.click"
+               values="50;500;300;400;50" 
+               dur="20s"
+               calcMode="discrete" />
+      <animate attributeName="fill" attributeType="XML" 
+               begin="0;graphics.click"
+               dur="20s" 
+               values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+               calcMode="discrete" />
+    </circle>
+    <text x="50" y="300">discrete</text>
+  </g>
+  </g>
+</svg>
+</body>
+</html>
