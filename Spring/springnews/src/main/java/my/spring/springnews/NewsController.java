@@ -6,31 +6,47 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.NewsDAO;
+import dao.PagingControl;
 import vo.NewsVO;
 
+@SessionAttributes("paging")
 @Controller
 public class NewsController {
 	
 	@Autowired
 	NewsDAO newsdao = null;
+	
+	@ModelAttribute("paging")
+	public PagingControl zeroProd() { 
+		int result = 1;
+		return new PagingControl(result);
+	}
 
-	public List<NewsVO> listAll(int pagenum) {
+	public List<NewsVO> listAll(PagingControl paging) {
+		System.out.println("here");
 		List<NewsVO> list = null;
-		list = newsdao.listAll(pagenum);
+		list = newsdao.listAll(paging);
 		return list;
 	}
 
 	@RequestMapping("/newsmain")
-	public ModelAndView newsMain() {
+	public ModelAndView newsMain(
+			@RequestParam(value="pagenum", defaultValue="0")int pagenum,
+			@ModelAttribute("paging") PagingControl paging) {
 		ModelAndView mav = new ModelAndView();
+		
 
-		mav.addObject("list", listAll());
+		paging.pgNum=pagenum;
+
+		mav.addObject("list", listAll(paging));
 		mav.setViewName("news");
 
 		return mav;
@@ -41,7 +57,7 @@ public class NewsController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("column", newsdao.listOne(newsid));
-		mav.addObject("list", listAll());
+//		mav.addObject("list", listAll());
 		mav.setViewName("news");
 
 		return mav;
@@ -57,7 +73,7 @@ public class NewsController {
 		else
 			System.out.println("삭제 실패");
 
-		mav.addObject("list", listAll());
+//		mav.addObject("list", listAll());
 		mav.setViewName("news");
 
 		return mav;
@@ -102,7 +118,7 @@ public class NewsController {
 		else
 			System.out.println("삽입 실패");
 
-		mav.addObject("list", listAll());
+//		mav.addObject("list", listAll());
 		mav.setViewName("news");
 
 		return mav;
@@ -117,7 +133,7 @@ public class NewsController {
 		else
 			System.out.println("업데이트 실패");
 
-		mav.addObject("list", listAll());
+//		mav.addObject("list", listAll());
 		mav.setViewName("news");
 
 		return mav;

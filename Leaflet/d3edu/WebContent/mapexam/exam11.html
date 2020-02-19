@@ -32,6 +32,7 @@
 			var data = JSON.parse(xhr.responseText);
   	  		L.geoJson(data).addTo(mymap).bindPopup(function (layer) {
       			return layer.feature.properties.CTP_KOR_NM;
+      			// layer라는 레어이어에 feature라는 속성으로  properties.CTP_KOR_NM;라는 값을 읽어와서 그린다.
   			});
 		}
  	 };

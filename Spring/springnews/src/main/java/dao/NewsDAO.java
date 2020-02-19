@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import vo.NewsVO;
 
@@ -67,19 +69,16 @@ public class NewsDAO implements NewsDAOinterface {
 	
 
 	
-	public List<NewsVO> listAll(int pagenum) {
+	public List<NewsVO> listAll(PagingControl paging) {
 		// TODO Auto-generated method stub
 		System.out.println("Mybatis 를 사용 DB 연동-listAll ");
 		
-		int result = session.selectOne("resource.NewsMapper.selectTotalNewsNum");
-		PagingControl paging = new PagingControl(result);
-
-		if(pagenum!=0)
-			paging.pgNum=pagenum;
+		paging.postCnt = session.selectOne("resource.NewsMapper.selectTotalNewsNum");
+		
 		
 		List<NewsVO> list = new ArrayList<NewsVO>();
 		String statement = "resource.NewsMapper.selectNews";
-		list = session.selectList(statement,pagenum);
+		list = session.selectList(statement,paging.getPgNum());
 
 		System.out.println(session.getClass().getName());
 		return list;
@@ -130,7 +129,11 @@ public class NewsDAO implements NewsDAOinterface {
 	}
 
 
-
+	@Override
+	public List<NewsVO> listAll(int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

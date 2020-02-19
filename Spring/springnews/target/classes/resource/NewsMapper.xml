@@ -9,8 +9,10 @@
 		from news;
  	</select>
 	
- 	<select id="selectNews"  resultType="vo.NewsVO">
- 		select id, writer, title, content, to_char(writedate,'yyyy"년" mm"월" dd"일"') AS "writedate", cnt from news
+ 	<select id="selectNews"  resultType="vo.NewsVO" parameterType="_int">
+ 		select id, writer, title, content, cnt, to_char(writedate,'yyyy"년" mm"월" dd"일"') AS "writedate"
+		from (select id, writer, title, content, writedate, cnt ,rownum rnum from news) 
+		where rnum between  1+10*#{pagenum} and 10+10*#{pagenum}
  	</select>
  	
  	<select id="selectOneNews" resultType="vo.NewsVO" parameterType="_int" >

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.List, java.util.ArrayList, vo.NewsVO"%>
+	import="java.util.List, java.util.ArrayList, vo.NewsVO, dao.PagingControl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -59,6 +59,22 @@ form #columntitle, #columnwriter, #columncontents {
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<%
+	PagingControl paging = (PagingControl)session.getAttribute("paging");
+	%>
+	
+	<% if(paging.isPreData( )) { %>
+		<span onclick="location.href='/springnews/newsmain?pagenum=<%=paging.getPageStart( ) - 1%>'">◀</span>
+	<%} %>
+	
+	<% for(int i=paging.getPageStart( );i<paging.getPageEnd( )+1;i++) {%>
+		<span onclick="location.href='/springnews/newsmain?pagenum=<%=i%>'"> <%= i %> </span>
+	<% } %>
+	
+	<% if(paging.isNextData( )) { %>
+		<span onclick="location.href='/springnews/newsmain?pagenum=<%=paging.getPageEnd( )+1%>'">▶</span>
+	<%} %>
 	
 	<button onclick="displayDiv(1);">뉴스 작성</button>
 	
