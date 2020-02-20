@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam5.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+<h2>외부 파일 읽어오기</h2>
+<hr>
+자바스크립트 콘솔에서 확인하셩...
+<script>
+d3.csv("cities.csv",function(data) {console.log(data)});
+d3.json("tweets.json",function(data) {console.log(data)});	
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SVG</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style>
+			svg { width: 320px; height: 240px; border: 1px solid black; }
+			.bar { fill : orange; }
+		</style>
+	</head>
+	<body>
+		<h1>특정 순서의 도형 다루기</h1>
+		<svg>
+			<rect class="bar" x="0" y="10" width="60" height="25" />
+			<rect class="bar" x="0" y="50" width="100" height="25" />
+			<rect class="bar" x="0" y="90" width="160" height="25" />
+			<rect class="bar" x="0" y="130" width="220" height="25" />
+		</svg>
+		<script>
+		d3.selectAll(".bar")	// CSS 클래스 이름에 bar를 지정
+		.style("fill", function(d,i){	// 2번째의 파라미터에 함수를 지정
+			if(i == 2){	// 순서를 조사
+				return "red";	// 3번째라면 빨간색을 나타내는 문자를 반환
+			}	
+		})
+		
+		// 3번째 rect태그를 빨간색으로 칠한다.
+		// 매개변수는 2개 첫번째 매개변수는 바인딩된 데이터, i는 매개변수가 나온다.
+		// 첫번째 객체는 바인딩된 데이터가 없기 때문에 undifined가 반환 된다.
+
+		</script>
+	</body>
+</html>

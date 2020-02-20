@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Sample</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style>
+			svg { width: 320px; height: 240px; border: 1px solid black; }
+			.bar { fill : orange; }
+		</style>
+	</head>
+	<body>
+		<h1>데이터에 따라 그래프 표시</h1>
+		<div>
+			<button data-src="mydata1.csv">mydata1.csv 불러오기</button>
+			<button data-src="mydata2.csv">mydata2.csv 불러오기</button>
+			<button data-src="mydata3.csv">mydata3.csv 불러오기</button>
+		</div>
+		<svg id="myGraph"></svg>
+		<script>
+		// 버튼을 클릭하면 해당하는 CSV 파일 읽어들이기
+		d3.selectAll("button").on("click", function(){
+			var csvFile = this.getAttribute("data-src");	// data-src 속성을 읽어들임(즉 CSV 파일 이름)
+			// CSV 파일을 불러와 그래프 표시
+			d3.csv(csvFile, function(error, data){
+				var dataSet = [ ];	// 데이터를 저장할 배열 준비
+				for(var i=0; i<data.length; i++){	// 데이터 줄 개수만큼 반복
+					dataSet.push(data[i]["상품A"]);	// 상품A의 레이블 데이터만 추출
+				}
+				alert(dataSet);
+				// 그래프 그리기
+				d3.select("#myGraph")
+				  .selectAll("rect")	
+				  .data(dataSet)	
+				  .enter()	
+				  .append("rect")	
+				  .attr("class", "bar")	
+				  .attr("width", function(d,i){	// 넓이 지정. 2번째 파라미터에 함수를 지정
+						return d;	// 데이터 값을 그대로 넓이로 반환
+				  })
+				  .attr("height", 20)	// 높이 지정
+				  .attr("x", 0)	// X 좌표를 0으로 지정
+				  .attr("y", function(d, i){	// Y 좌표를 지정함
+						return i * 25	// 표시 순서에 25를 곱해 위치를 계산
+				  })
+			});
+		})
+		</script>
+	</body>
+</html>

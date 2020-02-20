@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam7.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+<h2>스케일(어떤 범위의 숫자를 다른 범위의 숫자로 변경하는거) 익히기</h2>
+<hr>
+자바스크립트 콘솔에서 확인하셩...
+<script>
+var newRamp = d3.scale.linear().domain([500000,13000000]).range(["blue","red"]);
+console.log(newRamp(1000000));	
+console.log(newRamp(9000000));	
+console.log(newRamp.invert("#ad0052")); // NaN : invert()는 숫자에만 사용 가능
+console.log(newRamp(500000));	
+console.log(newRamp(13000000));
+</script>
+</body>
+</html>

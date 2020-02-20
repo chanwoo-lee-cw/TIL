@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>가로형 막대그래프</title>
+		<style>
+			#myGraph rect {
+				stroke : rgb( 160, 0, 0 );
+				stroke-width : 1px;
+				fill : rgb( 255, 0, 0 );
+			}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>가로형 막대그래프</h1>
+		<button id="updateButton">데이터 업데이트</button>
+		<svg id="myGraph"></svg>
+		<script>
+		// 막대 그래프 데이터(데이터셋)
+		var dataSet = [300, 130, 5, 60, 240];
+		// 데이터를 기반으로 그리기
+		d3.select("#myGraph")				
+			.selectAll("rect")					
+			.data(dataSet)						
+			.enter()									
+			.append("rect")						
+			.attr("x", 0)							
+			.attr("y", function(d,i){			
+				return i * 25;					
+			})
+			.attr("width", function(d, i){	
+				return d +"px";					
+			})
+			.attr("height", "20px")			
+
+		// 버튼 클릭 시의 처리
+		d3.select("#updateButton").on("click", function(){
+			for(var i=0; i<dataSet.length; i++){
+				dataSet[i] = Math.floor(Math.random() * 320);	// 0〜320 미만의 값을 생성
+			}
+			d3.select("#myGraph")					// SVG 요소 지정
+				.selectAll("rect")						// SVG로 사각형을 표시할 요소를 지정
+				.data(dataSet)						// 데이터 바인드
+				.transition()							// 변환 표시
+				.attr("width", function(d, i){		// 넓이를 배열의 내용에 따라 계산
+					return d +"px";					// 데이터의 값을 그대로 넓이로 함
+				})
+		})
+		</script>
+	</body>
+</html>

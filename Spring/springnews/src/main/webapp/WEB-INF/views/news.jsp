@@ -72,7 +72,9 @@ form #columntitle, #columnwriter, #columncontents {
 		<span onclick="location.href='/springnews/newsmain?pagenum=<%=i%>'"> <%= i %> </span>
 	<% } %>
 	
-	<% if(paging.isNextData( )) { %>
+	<% if(paging.isNextData( )) {
+		
+		%>
 		<span onclick="location.href='/springnews/newsmain?pagenum=<%=paging.getPageEnd( )+1%>'">▶</span>
 	<%} %>
 	

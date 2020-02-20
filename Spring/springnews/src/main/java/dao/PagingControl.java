@@ -35,7 +35,10 @@ public class PagingControl {
 		return getPageStart() != 1;
 	}
 	public boolean isNextData() {
-		return getPageEnd() < getPageCount();
+		if(getPageEnd() < getPageCount()) 
+			if(postCnt/lineCnt!= getPageEnd( )) 
+				return true;
+		return false;
 	}
 	public int getWritingStart() {
 		return getWritingEnd() - lineCnt + 1;

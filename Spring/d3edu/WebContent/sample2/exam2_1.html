@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam2.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+	<h2>enter(), exit() 의 기능을 확실히 이해하자!</h2>
+	<hr>
+	<div>111</div>
+	<div>222</div>
+	<script>
+		var binddiv=d3.select('body').selectAll("div").data([ 'aaa'x])
+		
+		
+				binddiv
+				.enter()
+				.append('div')
+				.text(function(d, i) {
+					console.log("1 : " + d + i);
+					return d + "-" + i
+				})
+				binddiv.text(function(d, i) {
+					console.log("2 : " + d + i);
+					return d + "-" + i
+				})
+	</script>
+</body>
+</html>

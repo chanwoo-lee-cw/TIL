@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam8.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+<h2>스케일(어떤 범위의 숫자를 다른 범위의 숫자로 변경하는거) 익히기</h2>
+<hr>
+자바스크립트 콘솔에서 확인하셩...
+<script>
+var x = d3.time.scale()
+.domain([new Date(2000, 0, 1), new Date(2000, 0, 2)])
+.range([0, 960]);
+console.log(x(new Date(2000, 0, 1,  5))); // 200
+console.log(x(new Date(2000, 0, 1, 16))); // 640
+console.log(x(new Date(2000, 0, 1, 0))); // 0
+console.log(x(new Date(2000, 0, 2, 0))); // 960
+console.log(x.invert(200)); // Sat Jan 01 2000 05:00:00 GMT+0900 (대한민국 표준시)
+console.log(x.invert(640)); // Sat Jan 01 2000 16:00:00 GMT+0900 (대한민국 표준시)
+console.log(x.invert(0)); // Sat Jan 01 2000 00:00:00 GMT+0900 (대한민국 표준시)
+console.log(x.invert(960)); // Sun Jan 02 2000 00:00:00 GMT+0900 (대한민국 표준시)
+</script>
+</body>
+</html>
+
+
+
