@@ -40,4 +40,10 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/prodBoard", method = RequestMethod.GET)
+	public String prodBoard() {
+		System.out.print("123123");
+		return "prodBoard";
+	}
+	
 }
