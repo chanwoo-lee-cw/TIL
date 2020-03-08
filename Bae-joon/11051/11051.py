@@ -1,6 +1,8 @@
 import sys
 input = sys.stdin.readline()
-dp = [[0]*1000 for i in range(1000)]
+sys.setrecursionlimit(1000000000)
+
+dp = [[0]*1001 for i in range(1001)]
 
 def binomial_coefficient(n,k) :
     if k==n or k==0 :
