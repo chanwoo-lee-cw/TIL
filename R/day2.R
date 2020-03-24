@@ -326,3 +326,22 @@ emp[emp$sal>=2000,c("ename","sal")]
 subset(emp, select=c("ename","sal"), subset=(sal>=2000 & sal<=3000))
 emp[emp$sal>=2000 & emp$sal <=3000, c("ename","sal")]
 
+
+# 리스트
+y <- c(0,25,50,75,100)
+z <- c(50, 50, 50, 50,50)
+y == z
+y != z
+y > z
+y < z
+y >= z
+y <= z
+y == 50 # c(50, 50, 50, 50, 50)
+y > 50
+
+num1 <- 11 # c(11)
+num2 <- 3  # c(3)
+num1 / num2
+num1 %% num2
+num1 %/% num2
+
