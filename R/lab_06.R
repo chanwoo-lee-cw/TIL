@@ -54,17 +54,17 @@ exam4(10,0,'%%')
 
 #문제6
 exam6 <- function(...) {
-  inputItem<-list(...)
+  inputItem<-c(...)
   for (data in inputItem) {
     if(is.na(data)) {
-      cat("na는 출력불가\n")
+      cat("NA는 출력불가\n")
     } else if(data<=100 & 85<=data) {
-      cat("상")
+      cat("상\n")
     } else if(data<=84 & 70<=data) {
-      cat("중")
+      cat("중\n")
     } else if(data<=69) {
-      cat("하")
+      cat("하\n")
     }
   }
 }
-exam6(c(50,40,50,80,10,0,60))
+exam6(c(50,40,50,80,10,NA,60))
