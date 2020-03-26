@@ -65,3 +65,17 @@ A(10,"A",T)
 하나의 벡터에 뉴머릭, char 논리형 3개를 같이 넣으면 가장 큰 자료행인 char 로 바뀌어 저장된다
 
 A("10","A","T")
+
+
+
+
+
+html_nodes(x, css, xpath), 
+
+html_node(x, css, xpath) 
+
+html_text(x, trim=FALSE) 
+
+html_attrs(x) 
+
+html_attr(x, name, default = "") - 주어진 속성이 없을 때 기본적으로 주어질 값
