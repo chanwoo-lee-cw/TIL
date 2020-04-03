@@ -17,6 +17,6 @@ if __name__ == '__main__':
 
     k = int(input().strip())
 
-    for count in range(k) :
+    for _ in range(k) :
         i,j,x,y = map(int,input().strip().split())
         print(dp[x][y]-dp[i-1][y]-dp[x][j-1]+dp[i-1][j-1])
