@@ -248,3 +248,101 @@ class 클래스 이름 {
 }
 ```
 
+### 객체의 비구조화 할당문
+
+```typescript
+export IPerson {
+    name : string
+    age : number
+}
+
+let personName = 'jack'
+let personAge = 32
+```
+
+위의 방에서 위처럼 하나로 묶는것
+
+아래같이 따로따로가 아니라
+
+즉 캡슐화
+
+#### 비구조화
+
+```typescript
+import {IPerson, Icompany} from './IPerson_Icompany'
+let jack : IPerson = {name : 'jack', age:32'}
+// 선언부
+
+let name = jack.name, age = jack.age
+let {name , age} = jack
+// 둘다 같은 결과값이 나온다
+```
+
+#### 잔여 연산자
+
+```typescript
+let address : any = {
+    country : 'Korea',
+    city : 'Seoul',
+    address1 : '강남',
+   	address2 : '좀더 자세한 주소'
+    address3 : '세부 주소'
+}
+
+const {country, city, ...detail}
+console.log(detail)
+```
+
+실행 결과
+
+```
+{ 	address1 : '강남',
+   	address2 : '좀더 자세한 주소'
+    address3 : '세부 주소' }
+```
+
+선언된 변수 의외에는 전부 detail이라는 변수 아래로 묶어준다.
+
+
+
+#### 전개 연산자
+
+구조화 되있는 객체의 속성을 모두 전개해서 새로운 객체로 만들어 주는 것을 말한다.
+
+```typescript
+let part1 = {name : 'jane'}, part2 :{age : 22}, part3 : {city : '서울' , country : '한국'}
+let merge = {...part1, ...part2, ...part3}
+cosole.log(merge)
+```
+
+실행 결과
+
+```
+{name : 'jane', age : 22, city : '서울' , country : '한국'}
+```
+
+
+
+### 객체의 형변환
+
+```typescript
+(<타입>객체)
+(객체 as 타입)
+```
+
+
+
+```typescript
+export default interface INameable {
+    name : string
+};
+```
+
+```typescript
+import INameable  from './INameable'
+let obj : object = {name 'jack'}
+
+let name1 = (<INameable>obj).name
+let name2 = (obj as INameable).name
+```
+
