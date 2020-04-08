@@ -32,7 +32,6 @@ vec3 <- c(7,8,9)
 # rbind 행 단위로 연결한다. cbind 열 단위로 연결한다.
 mat1 <- rbind(vec1,vec2,vec3); mat1
 mat2 <- cbind(vec1,vec2,vec3); mat2
-mat1 <- rbind(mat1,vec1);
 # 1행 1열 매트릭스가 필요 없다면 벡터로 추출한다.
 mat1[1,1]
 #똑같이 뽑는데도 다른 이유는 이름이 있다면 이름도 같이 뽑는다.
