@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<testxml>
-	<name>자바스크립트</name>
-	<age>23</age>
-	<kind>웹앱개발 전용 OOP 언어</kind>
-	<!-- 자식 노드는 총 7개, 이유는 각각 개행 문자들도 각각 자식 노드로 들어가기 때문이다. 즉 첫번째 자식 노드는 \n이 들어가 있다. -->
-</testxml>
-	
