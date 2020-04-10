@@ -21,6 +21,12 @@ def selectionSort(arr) :
 
 
 
+## 시간 복잡도
+
+O(n^2)
+
+
+
 ## 참고
 
 http://seleccionenc.blogspot.com/
