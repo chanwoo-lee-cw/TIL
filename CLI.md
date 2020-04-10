@@ -54,6 +54,28 @@
   - `git log --oneline` : 깃 로그를 한줄로 보여준다.
   - `git log --oneline -1` : 마지막 커밋을 한줄로 보여준다.
 
+- `git remote` : 깃 원격 저장소들을 보여준다.
+
+  - `git remote -v` : 깃 원격 저장소의 주소까지 같이 나온다
+  - `git remote add origin [원격 저장소의 주소]` : 깃 원격 저장소를 등록한다.
+    - 원격 저장소는 git 이 자동적으로 정하는 이름이 orgin 이라고하기 때문이다.
+
+- `git push -u origin master` : master브렌치의 커밋된 내용을 master에 넣는다. (**u**pload)
+
+- `git clone [원격저장소 주소]` : 원격 저장소에 있는 git을 fork 해서 복사해서 만든다.
+
+  - `git clone [원격저장소 주소] [로컬저장소 이름]` : 원격 저장소에 있는 git을 fork 해서  [로컬저장소 이름]으로복사해서 만든다.
+  - 같은 로컬을 한 저장소가 여러개의 원격 저장소에 연결되어 있을 수도 있다.
+    - 예) origin : 사용자가 보는 코드가 들어감
+    - test : 진짜 테스트 서버 - 올리면 QA팀이 조사함 : 이상한 데이터를 넣는다.
+    - stage : 테스트를 거쳐서 마지막 점검하는 부분
+
+- `git fetch`
+
+  - pull 은 fetch and merge가 합쳐진 리포
+
+- git remote remove origin : 이어진 원격 저장소를 지운다.
+
 
 
 `-`  2개는 보통 static 한 명령어를 쓸 때 쓴다. 보통 풀네밍
@@ -61,3 +83,4 @@
 `-` 한개일 때는 보통 약어일 경우가 많다. 보통 약어
 
 물론, 규칙이 그렇게 정해져 있는게 많다.
+
