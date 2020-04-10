@@ -6,9 +6,7 @@
 
 ## Master Theorem
 
-$$
-T(n) = a * T(\frac n b) + f(n)
-$$
+<img src="./공식1.png" alt="공식1" style="zoom:80%;" />
 
 일단. 마스터 정리를 쓰기 위한 점화식은 이러한 형태로 나타낼 수 있다.
 
@@ -33,13 +31,9 @@ $$
 이다.
 
 이 3개로 구해야 될것은
-$$
-C_0 = \log_{b} a = \log a / \log a
-$$
+<img src="./공식2.png" alt="공식2" style="zoom:80%;" />
 이렇게 구한 C<sub>0</sub>로 θ를 구한다.
-$$
-θ(n^{C_0})
-$$
+<img src="./공식3.png" alt="공식3" style="zoom:80%;" />
 여기서 말하는  C<sub>0</sub>는 노드의 갯수로, 즉 재귀를 통해 호출되는 함수의 갯수라고 보면 된다.
 
 
@@ -49,48 +43,26 @@ $$
 각각의 경우의 시간 복잡도는  T(n)이 된다.
 
 1. f(n)이 n<sup>C<sub>0</sub></sup>보다 상대적으로 작을 때
-   $$
-   f(n) = O(n^{C_0-ε})
-   $$
-
-   $$
-   T(n) = θ(n^{C_0})
-   $$
+<img src="./공식4.png" alt="공식1" style="zoom:80%;" />
 
    즉  f(n)이 무시된다.
 
 2. f(n)과 n<sup>C<sub>0</sub></sup>가 상대적으로 비슷할 때
-   $$
-   f(n) = θ(n^{C_0} * (\log n)^k) \ \ \ \ \ \ \ \  \therefore for\ k >0
-   $$
-
-$$
-T(n) = θ(f(n)*\log n) = θ(n^{C_0}*(\log n)^{k+1})
-$$
+<img src="./공식5.png" alt="공식5" style="zoom:80%;" />
 
 이런 공식이 되는 이유는 그림을 보면 되는데
 
 ![그림1](./그림1.jpg)
-$$
-\therefore 1+a+a^2+...+a^{\log_{b} n}
-$$
+<img src="./공식6.png" alt="공식6" style="zoom:80%;" />
 이런 식이 된다.
 
 각 노드는 하단으로 내려갈 수록  a의 거듭 제곱으로 증가하는데 트리의 깊이는 로그 만큼의 깊이이다.
 
 그리고 가장 마지막의 로그 부분은 로그 법칙에 의해 교환된다.
-$$
-a^{\log_{b} n} = n^{\log_{b} a}
-$$
+<img src="./공식7.png" alt="공식7" style="zoom:80%;" />
 
 
 3. f(n)과 n<sup>C<sub>0</sub></sup>가 상대적으로 클 때
 
-$$
-f(n) = Ω(n^{C_0+ε})
-$$
-
-$$
-T(n) = θ(f(n))
-$$
+<img src="./공식8.png" alt="공식8" style="zoom:80%;" />
 
