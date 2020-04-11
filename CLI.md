@@ -25,22 +25,30 @@
 - `rm [파일명]` : 파일을 삭제함(**r**e**m**ove)
 
   - `rm -r [디렉토리 명]` :  디렉토리를 삭제(**r**ecursion)
-  - `rm -rf [디렉토리 명]` : 
+  - `rm -rf [디렉토리 명]` : 디렉토리를 강제로 삭제
 
 - `code` : VScode를 연다 
 
   - `code . ` : 현재 디렉토리를 기준으로 VScode를 연다.
+
+- `git branch [브렌치 이름] ` : 
+
+- `rm -rf .git` : 깃 로그를 지워서 레포지토리를 해방함
 
 
 
 # Git
 
 - `git init` : 현재 디렉토리를 기준으로
+
 - `git status` : 무엇을 staging 할 수 있는지, 무엇을 staging 되어 있는지 상태 확인
+
 - `git add [파일명/폴더명]` :  staging area에 파일을 추가(**add**)
+
 - `git rm --cached [파일명]` : staging area에 있는 파일을 다시 내린다
   - `git rm --cached -r [디렉토리명]` : staging area에 있는 디렉토리를 다시 내린다
   - `git restore --cached [파일명]` : staging area에 있는 파일을 다시 내린다.(rm의 다른 표현이다)
+  
 - `git reset [파일명]` : 똑같이 staging area에 있는 파일을 다시 내리긴 한데, 복원에 가깝다. staging area에서 내리기 위해서만 쓰기엔 위험한 명령어
 
 - `git commit -m "커밋메세지"` : 현재 상태를 저장한다.
@@ -74,13 +82,31 @@
 
   - pull 은 fetch and merge가 합쳐진 리포
 
-- git remote remove origin : 이어진 원격 저장소를 지운다.
+- `git remote remove origin` : 이어진 원격 저장소를 지운다.
 
+- `git branch [브렌치 이름]` : 새로운 브렌치를 만든다
 
+- `git checkout [브렌치 이름]` : 다른 브렌치로 옮겨 간다.
+
+- `git branch -d [브렌치 이름]` : 브렌치 삭제 
+
+  -  소프트 삭제 :  merge되지 않은건 삭제 되지 않는다.
+
+- `git branch -D [브렌치 이름]` : 브렌치 삭제 
+
+  - 브렌치 완전 삭제
+
+- `git merge [브렌치 이름]` : 브렌치를 합친다.
+
+  - 현재 있는 브렌치가 주체가 되어야 한다. 즉 master랑 합치는 거면 master가 주체가 된다.
+
+- `git checkout -b [branch]` : 브렌치 생성 후 이동
 
 `-`  2개는 보통 static 한 명령어를 쓸 때 쓴다. 보통 풀네밍
 
 `-` 한개일 때는 보통 약어일 경우가 많다. 보통 약어
 
 물론, 규칙이 그렇게 정해져 있는게 많다.
+
+
 

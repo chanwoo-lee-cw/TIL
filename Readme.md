@@ -45,8 +45,6 @@
 
 ### Graph
 
-## c++
-
 ## Data Stucture
 
 - 힙
