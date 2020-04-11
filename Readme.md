@@ -44,8 +44,6 @@
 
 ## Bae-joon
 
-## c++
-
 ## Data Stucture
 
 - 힙
