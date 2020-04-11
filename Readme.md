@@ -14,24 +14,27 @@
 
 - [LIS(Longest Increasing Subsequence)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Dynamic_Programming/LIS(Longest_Increasing_Subsequence).md)
 
-### 시간 공간 복잡도
-
-- [Master Theorem]([https://github.com/Alphanewbie/TIL/blob/master/Algorithm/%EC%8B%9C%EA%B0%84%2C%EA%B3%B5%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84/Master%20Theorem/Master%20Theorem.md](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/시간%2C공간복잡도/Master Theorem/Master Theorem.md))
-
 ### 이분 탐색
 
-- [Lower bound, Upper_bound]([https://github.com/Alphanewbie/TIL/blob/master/Algorithm/%EC%9D%B4%EB%B6%84%ED%83%90%EC%83%89/Lower%20bound%2C%20Upper_bound.md](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/이분탐색/Lower bound%2C Upper_bound.md))
-- [Parametric Search]([https://github.com/Alphanewbie/TIL/blob/master/Algorithm/%EC%9D%B4%EB%B6%84%ED%83%90%EC%83%89/Parametric%20Search.md](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/이분탐색/Parametric Search.md))
+- [Lower_bound, Upper_bound](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Lower_bound%2CUpper_bound.md)
+- [파라메트릭 서치(Parametric Search)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Parametric_Search.md)
 
 ### 정수론
 
-- [에라토스테네스의 체]([https://github.com/Alphanewbie/TIL/blob/master/Algorithm/%EC%A0%95%EC%88%98%EB%A1%A0/%EC%97%90%EB%9D%BC%ED%86%A0%EC%8A%A4%ED%85%8C%EB%84%A4%EC%8A%A4%EC%9D%98%20%EC%B2%B4/%EC%97%90%EB%9D%BC%ED%86%A0%EC%8A%A4%ED%85%8C%EB%84%A4%EC%8A%A4%EC%9D%98%20%EC%B2%B4.md](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/정수론/에라토스테네스의 체/에라토스테네스의 체.md))
+- [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Number_theory/Eratosthenes_sieve/Eratosthenes_sieve.md)
+
+## Time Complexity, Space Complexity
+
+- [마스터 정리(Master Theorem)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Time_Complexity%2CSpace_Complexity/Master_Theorem/Master_Theorem.md)
 
 ### 정렬
 
-- 앞으로 정리하자
+- [버블정렬(Buble Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Bubble_Sort/Buble_Sort.md)
+- [삽입정렬(Insertion Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Insertion_Sort/Insertion_Sort.md)
+- [병합정렬(Merge Sort)](https://github.com/Alphanewbie/TIL/tree/master/Algorithm/Sort/Merge_Sort)
+- [선택정렬(Selection Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Selection_Sort/Selection_Sort.md)
 
-## andorid test
+## Andorid test
 
 ### 개요
 
@@ -40,10 +43,6 @@
 ## Azure
 
 ## Bae-joon
-
-### Dynamic Programming
-
-### Graph
 
 ## Data Stucture
 
