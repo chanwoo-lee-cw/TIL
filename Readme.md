@@ -31,7 +31,7 @@
 
 - [버블정렬(Buble Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Bubble_Sort/Buble_Sort.md)
 - [삽입정렬(Insertion Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Insertion_Sort/Insertion_Sort.md)
-- [병합정렬(Merge Sort)](https://github.com/Alphanewbie/TIL/tree/master/Algorithm/Sort/Merge_Sort)
+- [병합정렬(Merge Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Merge_Sort/Merge_Sort.md)
 - [선택정렬(Selection Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Selection_Sort/Selection_Sort.md)
 
 ## Andorid test
