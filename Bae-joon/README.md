@@ -2,21 +2,21 @@
 
 ## Dynamic Programming
 
-- [1463 - 1로 만들기](https://www.acmicpc.net/problem/1463)
-- [9095 - 1, 2, 3 더하기](https://www.acmicpc.net/problem/9095)
-- [피보나치 함수](https://www.acmicpc.net/problem/1003)
-- [2×n 타일링](https://www.acmicpc.net/problem/11726)
-- [RGB거리](https://www.acmicpc.net/problem/1149)
-- [ 계단 오르기](https://www.acmicpc.net/problem/2579)
-- [ 이친수](https://www.acmicpc.net/problem/2193)
-- [ 정수 삼각형](https://www.acmicpc.net/problem/1932)
-- [ 포도주 시식](https://www.acmicpc.net/problem/2156)
-- [연속합](https://www.acmicpc.net/problem/1912)
-- [ 쉬운 계단 수](https://www.acmicpc.net/problem/10844)
-- [가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)
-- [ 2×n 타일링 2](https://www.acmicpc.net/problem/11727)
-- [ 파도반 수열](https://www.acmicpc.net/problem/9461)
-- [ 카드 구매하기](https://www.acmicpc.net/problem/11052)
+- [1로 만들기](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1463)
+- [1, 2, 3 더하기](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/9095)
+- [피보나치 함수](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1003)
+- [2×n 타일링](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11726)
+- [RGB거리](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1149)
+- [ 계단 오르기](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/2579)
+- [ 이친수](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/2193)
+- [ 정수 삼각형](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1932)
+- [ 포도주 시식](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/2156)
+- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1912)
+- [ 쉬운 계단 수](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10844)
+- [가장 긴 증가하는 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11053)
+- [ 2×n 타일링 2](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11727)
+- [ 파도반 수열](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/9461)
+- [ 카드 구매하기](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11052)
 - [ 퇴사](https://www.acmicpc.net/problem/14501)
 - [초콜릿 자르기](https://www.acmicpc.net/problem/2163)
 - [스티커](https://www.acmicpc.net/problem/9465)
@@ -58,7 +58,8 @@
 
 - [연속합](https://www.acmicpc.net/problem/1912)
 - [ 초콜릿 자르기](https://www.acmicpc.net/problem/2163)
-- [ Z](https://www.acmicpc.net/problem/1074)
+- [Z](https://www.acmicpc.net/problem/1074)
+- [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1712)
 
 ## Binary Search
 
