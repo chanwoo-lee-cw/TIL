@@ -14,9 +14,7 @@ int main()
     {
         if (A + i * B < C * i) {
             while (A + i * B < C * i)
-            {
                 i--;
-            }
             i++;
             break;
         }
