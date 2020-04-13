@@ -1,3 +1,5 @@
+# 재귀로 구현한 BFS
+
 import sys
 import queue
 # python 재귀의 한계를 풀어준다
