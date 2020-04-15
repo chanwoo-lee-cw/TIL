@@ -1,7 +1,7 @@
 type stringNumberFunc = (a: string,b: number) => void
 // 타입은 매개변수를 (a: string,b: number)로 받고 리턴값이 void인 함수를 선언하겠다고 사전에 선언하는것
 // 즉 함수의 시그니쳐, 함수의 구조를 선언해주는 역활
-// 잘못된 매개변수를 선언하는 것을 막아주는 역활
+// C로 생각하면 structure같은 것이다. 자료형을 묶고 리턴 값을 사전에 정해 줄 수 있다.
 
 let f : stringNumberFunc = function(a : string, b : number):void{}
 let g : stringNumberFunc = function(x : string, y : number):void{}
