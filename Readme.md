@@ -45,15 +45,19 @@
 
 ## Bae-joon
 
+너무 길어져서 따로 정리했다.
+
+[Bae-joon](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon#bae-joon)
+
 ## Data Stucture
 
-- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Queue/Queue.md)
-- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Stack/Stack.md)
+- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Queue/Queue.md)
+- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Stack/Stack.md)
 - 힙
-  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/PriorityQueue/PriorityQueue.md)
+  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/PriorityQueue/PriorityQueue.md)
 - 트리
-- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Segment_Tree/Segment_Tree.md)
-- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Union Find_Disjoint_Set/Union Find,Disjoint_Set.md)
+- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Segment_Tree/Segment_Tree.md)
+- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Union Find_Disjoint_Set/Union Find,Disjoint_Set.md)
 
 ## Python
 
