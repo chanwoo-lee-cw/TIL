@@ -47,10 +47,13 @@
 
 ## Data Stucture
 
+- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Queue/Queue.md)
+- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Stack/Stack.md)
 - 힙
-- 스택
-- 큐
+  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/PriorityQueue/PriorityQueue.md)
 - 트리
+- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Segment_Tree/Segment_Tree.md)
+- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data Stucture/Union Find_Disjoint_Set/Union Find,Disjoint_Set.md)
 
 ## Python
 

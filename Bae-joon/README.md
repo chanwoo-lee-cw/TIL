@@ -83,3 +83,8 @@
 
 - [쿼드트리](https://www.acmicpc.net/problem/1992)
 - [Z](https://www.acmicpc.net/problem/1074)
+
+## Data Structure
+
+- [스택](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10828)
+
