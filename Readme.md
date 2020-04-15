@@ -14,16 +14,16 @@
 
 - [LIS(Longest Increasing Subsequence)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Dynamic_Programming/LIS(Longest_Increasing_Subsequence).md)
 
-### 이분 탐색
+### Binary Search
 
 - [Lower_bound, Upper_bound](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Lower_bound%2CUpper_bound.md)
 - [파라메트릭 서치(Parametric Search)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Parametric_Search.md)
 
-### 정수론
+### Math
 
 - [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Number_theory/Eratosthenes_sieve/Eratosthenes_sieve.md)
 
-## Time Complexity, Space Complexity
+### Time Complexity, Space Complexity
 
 - [마스터 정리(Master Theorem)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Time_Complexity%2CSpace_Complexity/Master_Theorem/Master_Theorem.md)
 
@@ -43,6 +43,8 @@
 
 ## Azure
 
+
+
 ## Bae-joon
 
 너무 길어져서 따로 정리했다.
@@ -57,7 +59,7 @@
   - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/PriorityQueue/PriorityQueue.md)
 - 트리
 - [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Segment_Tree/Segment_Tree.md)
-- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Union Find_Disjoint_Set/Union Find,Disjoint_Set.md)
+- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/tree/master/Data_Stucture/Union_Find%2CDisjoint_Set)
 
 ## Python
 

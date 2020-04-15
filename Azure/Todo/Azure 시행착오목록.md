@@ -24,7 +24,7 @@ env\scripts\activate`
    의 부분은 가상 환경을 구축하는 과정이였다.
 
    [^가상 환경]: 패키지가 시스템 전체에 설치되는 것이 아니라, 특정 응용 프로그램에 사용되도록 설치될 수 있도록 하는 반 격리 된 파이썬 환경입니다.
-[^ venv]:virtual environment를 만들어주는 패키지다. gradle, maven처럼 **프로젝트의 라이브러리 버전을 매니지먼트**해준다 [참고](https://ssaemo.tistory.com/132)
+   [^ venv]:virtual environment를 만들어주는 패키지다. gradle, maven처럼 **프로젝트의 라이브러리 버전을 매니지먼트**해준다 [참고](https://ssaemo.tistory.com/132)
 
 ​	
 
@@ -177,6 +177,7 @@ SET FLASK_APP=application.py
     
    	echo json_encode($response); 
    ?>?
+   ```
 ```
    
 이런 코드로 고쳐서 
@@ -189,16 +190,16 @@ SET FLASK_APP=application.py
    
    ```error
    Failed to connect to MySQL: SSL connection is required. Please specify SSL options and retry.
-   ```
-   
+```
+
    이런 에러가 떴다. 
-   
+
    즉, SSL연결이 필요하다. 즉 인증서 문제였다.
-   
+
    [인증서 바인딩 방법](https://docs.microsoft.com/ko-kr/azure/mysql/howto-configure-ssl)
-   
+
    인증서를 바인딩 해주고 연결 부분을 이렇게 고쳤더니
-   
+
    ```php
    $con = mysqli_init();
    mysqli_ssl_set($conn,NULL,NULL, "/var/www/html/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL) ; 
@@ -210,5 +211,5 @@ SET FLASK_APP=application.py
    		die('Failed to connect to MySQL: '.mysqli_connect_error());
    	}
    ```
-   
+
    정상 작동하였다.
