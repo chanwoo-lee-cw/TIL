@@ -35,15 +35,18 @@
 - [선택정렬(Selection Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Selection_Sort/Selection_Sort.md)
 - [퀵정렬(Quick_Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Quick_Sort/Quick_Sort.md)
 
-## Andorid test
+## Android
 
-### 개요
-
-개인적으로 안드로이드로 만들다가  생긴 문제들과 자잘한 코드
+[안드로이드에 대한 면접 질문들](https://github.com/Alphanewbie/TIL/blob/master/Android/Android.md)
 
 ## Azure
 
+### AZ-300
 
+#### Azure 솔류션 설계
+
+- [Azure 아키텍쳐 핵심 요쇼](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_아키텍쳐_핵심_요쇼.md)
+- [Azure 보안을 위한 디자인](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_보안을_위한_디자인.md)
 
 ## Bae-joon
 
@@ -51,7 +54,7 @@
 
 [Bae-joon](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon#bae-joon)
 
-## Data Stucture
+## Data structure
 
 - [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Queue/Queue.md)
 - [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Stack/Stack.md)
