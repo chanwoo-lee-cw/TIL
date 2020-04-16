@@ -21,7 +21,7 @@
 
 ### Math
 
-- [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Number_theory/Eratosthenes_sieve/Eratosthenes_sieve.md)
+- [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Math/Eratosthenes_sieve/Eratosthenes_sieve.md)
 
 ### Time Complexity, Space Complexity
 
