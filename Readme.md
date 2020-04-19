@@ -37,7 +37,7 @@
 
 ## Android
 
-[안드로이드에 대한 면접 질문들](https://github.com/Alphanewbie/TIL/blob/master/Android/Android.md)
+[안드로이드에 대한 면접 질문들](https://github.com/Alphanewbie/TIL/blob/master/Andorid/Android.md)
 
 ## Azure
 
