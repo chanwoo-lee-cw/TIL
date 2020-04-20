@@ -52,7 +52,7 @@ greedy method를 이용해 MST를 구한다
      2. 아니라면 다음 간선을 탐색한다.
   4. 반복한다.
 
-![Kruskal](.\Kruskal.webp)
+![Kruskal](./Kruskal.webp)
 
 ##### 주의점
 
