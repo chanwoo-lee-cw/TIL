@@ -24,8 +24,6 @@ public:
 
     // 소멸자 함수
     ~SingleLinkedList() {
-        
-
         Node<T>* parent = head;
         Node<T>* child = head;
 
@@ -327,6 +325,22 @@ public:
             ptr = ptr->next;
         }
     }
+
+    // 재귀의 모든 요소 출력 , 초기 값으로 head를 준다.
+    // void recuitdisplay() {
+    //     Node<T>* ptr = head;
+    //     redisplay(ptr);
+    // }
+
+   
+    // void redisplay(Node<T>* ptr) {
+        
+    //     if (ptr != nullptr)
+    //     {
+    //         cout << ptr->item << endl;
+    //         redisplay(ptr->next);
+    //     }
+    // }
 };
 
 

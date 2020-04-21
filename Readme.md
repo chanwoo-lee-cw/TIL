@@ -58,6 +58,7 @@
 
 - [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Queue/Queue.md)
 - [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Stack/Stack.md)
+- [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Linked_List/LinkedList.md)
 - 힙
   - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/PriorityQueue/PriorityQueue.md)
 - 트리
