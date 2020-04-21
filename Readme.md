@@ -56,16 +56,28 @@
 
 ## Data structure
 
-- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Queue/Queue.md)
-- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Stack/Stack.md)
-- [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Linked_List/LinkedList.md)
+- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Queue/Queue.md)
+- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Stack/Stack.md)
+- [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Linked_List/LinkedList.md)
 - 힙
-  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/PriorityQueue/PriorityQueue.md)
+  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/PriorityQueue/PriorityQueue.md)
 - 트리
-- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_Stucture/Segment_Tree/Segment_Tree.md)
-- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/tree/master/Data_Stucture/Union_Find%2CDisjoint_Set)
+- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Segment_Tree/Segment_Tree.md)
+- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/tree/master/Data_stucture/Union_Find%2CDisjoint_Set)
+
+## C++
+
+- [new와 malloc의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new%EC%99%80_malloc%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new와_malloc의_차이.md))
+- [null과 nullptr의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null%EA%B3%BC_nullptr%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null과_nullptr의_차이.md))
+- [struct와 class의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct%EC%99%80_class%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct와_class의_차이.md))
+- [vector](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/vector.md)
 
 ## Python
+
+- input과 readline
+- List,Tuple,Dictionary
+- Python의 우선순위 큐
+- 언더 스코어
 
 ## Typescript
 
