@@ -4,7 +4,7 @@ def main() :
     n = int(n)
     m = int(m)
 
-    matrix =[];
+    matrix =[]
 
     for i in range(m) :
         temp = input().split()
@@ -22,7 +22,7 @@ def main() :
         if(i==0) :
             weight+=matrix[i][0]
             merge(matrix[i][1],matrix[i][2],level,parent)
-            continue;
+            continue
         else :
             if merge(matrix[i][1], matrix[i][2], level, parent) :
                 weight += matrix[i][0]
@@ -32,9 +32,9 @@ def main() :
 
 def find(u,parent) :
     if u==parent[u] :
-        return u;
-    parent[u] = find(parent[u],parent);
-    return parent[u];
+        return u
+    parent[u] = find(parent[u],parent)
+    return parent[u]
 
 def merge(u, v,level,parent) :
     u = find(u,parent)
