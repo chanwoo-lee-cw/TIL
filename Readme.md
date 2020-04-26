@@ -48,6 +48,10 @@
 - [Azure 아키텍쳐 핵심 요쇼](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_아키텍쳐_핵심_요쇼.md)
 - [Azure 보안을 위한 디자인](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_보안을_위한_디자인.md)
 
+### DevOps
+
+- [DevOps 설정 방법]([https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/%EC%84%A4%EC%A0%95%EB%B2%95.md](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md))
+
 ## Bae-joon
 
 너무 길어져서 따로 정리했다.
@@ -56,14 +60,14 @@
 
 ## Data structure
 
-- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Queue/Queue.md)
-- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Stack/Stack.md)
-- [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Linked_List/LinkedList.md)
+- [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Queue/Queue.md)
+- [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Stack/Stack.md)
+- [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Linked_List/LinkedList.md)
 - 힙
-  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/PriorityQueue/PriorityQueue.md)
-- 트리
-- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_stucture/Segment_Tree/Segment_Tree.md)
-- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/tree/master/Data_stucture/Union_Find%2CDisjoint_Set)
+  - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/PriorityQueue/PriorityQueue.md)
+- 이진 트리(Binary Tree)
+- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Segment_Tree/Segment_Tree.md)
+- [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Union_Find%2CDisjoint_Set/Union_Find%2CDisjoint_Set.md)
 
 ## C++
 
