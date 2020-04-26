@@ -50,7 +50,7 @@
 
 ### DevOps
 
-- [DevOps 설정 방법]([https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/%EC%84%A4%EC%A0%95%EB%B2%95.md](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md))
+- [DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
 
 ## Bae-joon
 
@@ -71,17 +71,18 @@
 
 ## C++
 
-- [new와 malloc의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new%EC%99%80_malloc%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new와_malloc의_차이.md))
-- [null과 nullptr의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null%EA%B3%BC_nullptr%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null과_nullptr의_차이.md))
-- [struct와 class의 차이]([https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct%EC%99%80_class%EC%9D%98_%EC%B0%A8%EC%9D%B4.md](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct와_class의_차이.md))
+- [new와 malloc의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new와_malloc의_차이.md)
+- [null과 nullptr의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null과_nullptr의_차이.md)
+- [struct와 class의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct와_class의_차이.md)
 - [vector](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/vector.md)
 
 ## Python
 
-- input과 readline
-- List,Tuple,Dictionary
-- Python의 우선순위 큐
-- 언더 스코어
+- [input과 readline](https://github.com/Alphanewbie/TIL/blob/master/python/List%2CTuple%2CDictionary.md)
+- [List,Tuple,Dictionary](https://github.com/Alphanewbie/TIL/blob/master/python/List%2CTuple%2CDictionary.md)
+- [Python의 우선순위 큐](https://github.com/Alphanewbie/TIL/blob/master/python/Python의_우선순위_큐.md)
+- [언더 스코어](https://github.com/Alphanewbie/TIL/blob/master/python/언더_스코어.md)
+- [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
 ## Typescript
 
