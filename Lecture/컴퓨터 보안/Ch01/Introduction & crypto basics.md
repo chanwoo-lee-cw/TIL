@@ -171,3 +171,108 @@
 
 
 
+### One-time Pad
+
+![그림6](./그림6.png)
+
+#### 작동 방식
+
+- 임의 데이터 블록을 이용하는 암호 시스템
+  1. Plaintext와 동일한 크기의 키를 생성한다
+     - 단, 키는 무작위여야한다.
+  2. 이 키를 수신자와 발신자가 둘 다 모두 가지고 있어야 한다.
+  3. 발신자는 Plaintext을 Key와 XOR연산을 하여 암호화 시켜서 보낸다
+  4. 수신자는 Ciphertext를 다시 Key와 XOR연산하면 원래의 Plaintext가 나오게 된다.
+
+#### 원리
+
+C = Ciphertext
+
+P = Plaintext
+
+Key = K
+
+이런 약자를 사용해보자
+
+------
+
+C = P XOR K
+
+P = C XOR K = (P XOR K) XOR K = P XOR (K XOR K)  = P XOR 0 = P
+
+이런 비트 연산으로 원래의 Plaintext가 복호화 된다.
+
+#### 안정성
+
+- 수학적 안정성이 증면된 방법된 방법중 하나
+
+  1. 키는 무작위로 생성
+  2. 길이만큼 키가 생산된다.
+
+- 아무런 키를 넣어도 풀리긴 한다. 
+
+  -> 단, 전혀 다른 의미가 된다.
+
+- 가짜 키에 맞춰도 의미있는 문장을 만들 수 있기 때문에, 키가 맞는지 구분할 수 없다.
+
+#### 한계
+
+- 한번 쓴 키를 다시 쓸 수 없다.
+- Ciphertext와 같은 길이의 Key를 어떻게 전달할 것인가.
+
+##### 같은 키를 다시 못 쓰는 이유
+
+C1 = 첫번째 암호문
+
+C2 = 두번째로 전달된 암호문
+
+P1 = 첫번째 암호문을 풀면 나오는 평문
+
+----
+
+C1 XOR C2 XOR P1 = (P1 XOR K) XOR (P2 XOR K) XOR P1 = (P1 XOR P1) XOR (K XOR K) XOR P2
+
+​	= 0 XOR 0 XOR P2 = P2
+
+즉, 한번 사용된 암호문의 평문이 노출 되면 그 다음 평문들을 그대로 복호화 할 수 있다.
+
+
+
+### Claude Shannon
+
+Claude Shannon이 제안한 암호학의 2가지 원칙
+
+1. Confusion
+   - 원래의 Plaintext로부터 값이 변해서 Ciphertext로부터 복호화 하기 어려워야한다.
+2. Diffusion
+   - Ciphertext의 단 1bit라도 변경되면 Ciphertext는 변경 이전의 Ciphertext와 절반 이상이 달라져야한다.
+
+**=> 이 2가지를 섞어서 쓰는게 안전하다**
+
+
+
+### 보안 공격의 분류
+
+- 공격자가 어떠한 것을 할 수 있느냐의 분리 기능
+
+  - Ciphertext only attack
+
+    - 공격자는 임의의 Ciphertext만이 주어진다.
+
+      -> 패킷만 빼돌리면 되는거라 간단히 할 수 있는 상황
+
+  - Known plaintext attack
+
+    - 공격자는 몇개의 Plaintext를 알고 있다.
+
+      -> 공격자가 과거의 Plaintext와 Ciphertext 둘 다 알고 있는 상황
+
+  - Chosen plaintext attack
+
+    - 공격자가 필요한 Plaintext와 Ciphertext 몇 번 만들어 낼 수 있다.
+    - Lunchtime attack : 점심 시간에 몰래 가서 평문과 암호문을 만들어 낸다는 의미
+
+  - Adaptively chosen plaintext attack
+
+    - 공격자가 필요할 때마다 Plaintext와 Ciphertext를 만들어 낼 수 있다.
+    - plaintext attack
