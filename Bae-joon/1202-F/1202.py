@@ -1,7 +1,11 @@
+# https://www.acmicpc.net/problem/1202
+# 보석 도둑
 import sys
 import heapq
 
 input = sys.stdin.readline
+
+# n개의 가방에 k개의 물건을 1개씩 넣는 문제. DP문제
 
 def knap(k, item, backpack) :
     total_value = 0
