@@ -22,6 +22,7 @@
 ### Math
 
 - [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Math/Eratosthenes_sieve/Eratosthenes_sieve.md)
+- [최대 공약수, 최소 공배수](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Math/GCD%2CLCM/GCD%2CLCM.md)
 
 ### Time Complexity, Space Complexity
 
