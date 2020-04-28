@@ -69,6 +69,7 @@
 - [Z](https://www.acmicpc.net/problem/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1712)
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/11653)
+- [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2609)
 
 
 
@@ -76,7 +77,7 @@
 
 - [나무 자르기](https://www.acmicpc.net/problem/2805)
 - [숫자 카드 2](https://www.acmicpc.net/problem/10816)
-- [ 공유기 설치](https://www.acmicpc.net/problem/2110)
+- [공유기 설치](https://www.acmicpc.net/problem/2110)
 
 
 
@@ -90,10 +91,7 @@
 ## Data Structure
 
 - [스택](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10828)
-
 - [괄호](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/9012)
-
 - [제로](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10773)
-
 - [트리 순회](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1991)
 
