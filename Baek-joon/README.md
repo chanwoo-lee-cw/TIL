@@ -45,10 +45,14 @@
 - [무한 수열](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1351)
 - [신나는 함수 실행](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/9184)
 
+
+
 ## Graph
 
 - [섬의 개수](https://www.acmicpc.net/problem/4963)
 - [돌멩이 제거](https://www.acmicpc.net/problem/1867)
+- [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1197)
+- [녹색 옷 입은 애가 젤다지?](https://www.acmicpc.net/problem/4485)
 
 
 
@@ -56,12 +60,17 @@
 
 - [보석 도둑](https://www.acmicpc.net/problem/1202)
 
+
+
 ## Math
 
 - [연속합](https://www.acmicpc.net/problem/1912)
 - [초콜릿 자르기](https://www.acmicpc.net/problem/2163)
 - [Z](https://www.acmicpc.net/problem/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1712)
+- [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/11653)
+
+
 
 ## Binary Search
 
@@ -69,14 +78,14 @@
 - [숫자 카드 2](https://www.acmicpc.net/problem/10816)
 - [ 공유기 설치](https://www.acmicpc.net/problem/2110)
 
-## Dijkstra Algorithm
 
-- [녹색 옷 입은 애가 젤다지?](https://www.acmicpc.net/problem/4485)
 
 ## Divide and Conquer
 
 - [쿼드트리](https://www.acmicpc.net/problem/1992)
 - [Z](https://www.acmicpc.net/problem/1074)
+
+
 
 ## Data Structure
 
@@ -87,4 +96,4 @@
 - [제로](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10773)
 
 - [트리 순회](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1991)
-- 
+
