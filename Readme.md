@@ -83,7 +83,7 @@
 
 - [Command Line Interface](https://github.com/Alphanewbie/TIL/blob/master/Linux/CLI.md)
 - [VIm editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
-- WSL
+- [WSL](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
 ## Typescript
 
@@ -91,14 +91,14 @@
 
 ### 컴퓨터 보안
 
-- Ch01-Introduction&_crypto_basics
+- [Ch01-Introduction&_crypto_basics](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터_보안/Ch01-Introduction%26_crypto_basics/Introduction %26 crypto basics.md)
 
 ### 화일구조
 
-- Ch01-화일의 기본 개념
-- Ch02-순차,임의_화일
+- [Ch01-화일의 기본 개념](https://github.com/Alphanewbie/TIL/blob/master/Lecture/화일구조/Ch01-화일의_기본개념/Ch01-화일의_기본개념.md)
+- [Ch02-순차,임의_화일](https://github.com/Alphanewbie/TIL/tree/master/Lecture/화일구조/Ch02-순차%2C임의_화일)
 
-## Bae-joon
+## Baek-joon
 
 ### Dynamic Programming
 
