@@ -83,7 +83,7 @@
 
 - [Command Line Interface](https://github.com/Alphanewbie/TIL/blob/master/Linux/CLI.md)
 - [VIm editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
-- WSL
+- [WSL(Windows Subsystem for Linux)](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
 ## Typescript
 
