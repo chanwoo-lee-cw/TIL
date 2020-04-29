@@ -83,7 +83,7 @@
 
 - [Command Line Interface](https://github.com/Alphanewbie/TIL/blob/master/Linux/CLI.md)
 - [VIm editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
-- [WSL](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
+- [WSL(Windows Subsystem for Linux)](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
 ## Typescript
 
@@ -159,22 +159,23 @@
 ### Math
 
 - [연속합](https://www.acmicpc.net/problem/1912)
-- [초콜릿 자르기](https://www.acmicpc.net/problem/2163)
-- [Z](https://www.acmicpc.net/problem/1074)
+- [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2163)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1712)
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/11653)
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2609)
 
 ### Binary Search
 
-- [나무 자르기](https://www.acmicpc.net/problem/2805)
-- [숫자 카드 2](https://www.acmicpc.net/problem/10816)
-- [공유기 설치](https://www.acmicpc.net/problem/2110)
+- [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2805)
+- [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/10816)
+- [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2110)
 
 ### Divide and Conquer
 
-- [쿼드트리](https://www.acmicpc.net/problem/1992)
-- [Z](https://www.acmicpc.net/problem/1074)
+- [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1992)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
+- [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2630)
 
 ### Data Structure
 
