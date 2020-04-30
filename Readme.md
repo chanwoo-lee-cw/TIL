@@ -91,14 +91,14 @@
 
 ### 컴퓨터 보안
 
-- Ch01-Introduction&_crypto_basics
+- [Ch01-Introduction&_crypto_basics](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터_보안/Ch01-Introduction%26_crypto_basics/Introduction %26 crypto basics.md)
 
 ### 화일구조
 
-- Ch01-화일의 기본 개념
-- Ch02-순차,임의_화일
+- [Ch01-화일의 기본 개념](https://github.com/Alphanewbie/TIL/blob/master/Lecture/화일구조/Ch01-화일의_기본개념/Ch01-화일의_기본개념.md)
+- [Ch02-순차,임의_화일](https://github.com/Alphanewbie/TIL/tree/master/Lecture/화일구조/Ch02-순차%2C임의_화일)
 
-## Bae-joon
+## Baek-joon
 
 ### Dynamic Programming
 
@@ -159,22 +159,23 @@
 ### Math
 
 - [연속합](https://www.acmicpc.net/problem/1912)
-- [초콜릿 자르기](https://www.acmicpc.net/problem/2163)
-- [Z](https://www.acmicpc.net/problem/1074)
+- [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2163)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1712)
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/11653)
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2609)
 
 ### Binary Search
 
-- [나무 자르기](https://www.acmicpc.net/problem/2805)
-- [숫자 카드 2](https://www.acmicpc.net/problem/10816)
-- [공유기 설치](https://www.acmicpc.net/problem/2110)
+- [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2805)
+- [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/10816)
+- [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2110)
 
 ### Divide and Conquer
 
-- [쿼드트리](https://www.acmicpc.net/problem/1992)
-- [Z](https://www.acmicpc.net/problem/1074)
+- [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1992)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
+- [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2630)
 
 ### Data Structure
 
