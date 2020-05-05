@@ -238,3 +238,46 @@ int main()
 ```
 
 
+
+### 다른 사람의 코드
+
+```python
+n = int(input())
+
+data = [[' ']*n for i in range(n)]
+
+i,j = 0,-1 # 행과 열의 시작
+s = 1 # 행과 열의 증감을 다루기 위한 변수
+
+# 첫번째 줄 완성
+for p in range(n):
+        j = j + s
+        data[i][j] = '#'
+n -= 1
+
+while True:
+    if n <= 0:
+        break
+
+    for p in range(n):
+        i = i + s
+        data[i][j] = '#'
+
+    s = s * -1
+
+    for p in range(n):
+        j += s
+        data[i][j] = '#'
+    n -= 2
+
+for i in range(len(data)):
+    for j in range(len(data[0])):
+        print(data[i][j],end=' ')
+    print()
+    
+# 출처 : https://level.goorm.io/exam/60331/%EB%B9%99%EA%B8%80%EB%B9%99%EA%B8%80-1/quiz/1
+```
+
+이 코드는 처음부터 2차원 배열을 선언해서 한줄씩 뽑는게 아니라, 아예 1,1 부터 1,n까지 #을 채우고 다시 n,n까지 #을 채우는 등의 아예 루트를 따라가는 방식으로 했다.
+
+그리고 다시 s를 -1을 대입해서 오히려 역순으로 n,n에서 n,1까지따라갔다.
