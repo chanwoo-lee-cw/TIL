@@ -123,7 +123,7 @@
 - [2×n 타일링 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11727)
 - [파도반 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9461)
 - [ 카드 구매하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11052)
-- [퇴사](https://www.acmicpc.net/problem/14501)
+- [퇴사](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14501)
 - [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
 - [스티커](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9465)
 - [다리 놓기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1010)
