@@ -36,9 +36,23 @@
 - [선택정렬(Selection Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Selection_Sort/Selection_Sort.md)
 - [퀵정렬(Quick_Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Quick_Sort/Quick_Sort.md)
 
-## Android
+## Common_sense
 
-[안드로이드에 대한 면접 질문들](https://github.com/Alphanewbie/TIL/blob/master/Andorid/Android.md)
+- [안드로이드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Android.md)
+
+- [C와 Java의 차이점](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/C와_Java차이.md)
+
+- [Garbage Collection](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Garbage_collection.md)
+
+- [Java](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Java.md)
+
+- [Java와 JavaScript의 차이](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Java와_JavaScript의_차이.md)
+
+- [객체지향의 4가지 특성](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/객체_지향의_4가지_특성.md)
+
+- [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
+
+- [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 
 ## Azure
 
@@ -147,35 +161,35 @@
 
 ### Graph
 
-- [섬의 개수](https://www.acmicpc.net/problem/4963)
-- [돌멩이 제거](https://www.acmicpc.net/problem/1867)
-- [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1197)
-- [녹색 옷 입은 애가 젤다지?](https://www.acmicpc.net/problem/4485)
+- [섬의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4963)
+- [돌멩이 제거](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1867)
+- [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1197)
+- [녹색 옷 입은 애가 젤다지?](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4485-F)
 
 ### **Greedy** Algorithms
 
-- [보석 도둑](https://www.acmicpc.net/problem/1202)
+- [보석 도둑](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1202-F)
 
 ### Math
 
-- [연속합](https://www.acmicpc.net/problem/1912)
-- [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2163)
-- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
+- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912)
+- [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1712)
-- [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/11653)
-- [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2609)
+- [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11653)
+- [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
 
 ### Binary Search
 
-- [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2805)
-- [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/10816)
-- [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2110)
+- [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2805)
+- [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10816)
+- [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2110)
 
 ### Divide and Conquer
 
-- [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1992)
-- [Z](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/1074)
-- [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Baek-joon/2630)
+- [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1992)
+- [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
+- [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2630)
 
 ### Data Structure
 
