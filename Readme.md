@@ -37,21 +37,13 @@
 - [퀵정렬(Quick_Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Quick_Sort/Quick_Sort.md)
 
 ## Common_sense
-
 - [안드로이드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Android.md)
-
 - [C와 Java의 차이점](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/C와_Java차이.md)
-
 - [Garbage Collection](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Garbage_collection.md)
-
 - [Java](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Java.md)
-
 - [Java와 JavaScript의 차이](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Java와_JavaScript의_차이.md)
-
 - [객체지향의 4가지 특성](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/객체_지향의_4가지_특성.md)
-
 - [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
-
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 
 ## Azure
@@ -172,7 +164,7 @@
 
 ### Math
 
-- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912)
+- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912-F)
 - [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1712)
