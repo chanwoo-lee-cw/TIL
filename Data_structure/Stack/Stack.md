@@ -355,3 +355,39 @@ int main()
 }
 ```
 
+
+
+
+
+### 자바의 제네릭 스택
+
+```java
+class Stack<T> {
+	final int STACK_MAX = 101;
+	int top;
+	T[] stack;
+
+	@SuppressWarnings("unchecked")
+	Stack() {
+		top = -1;
+		stack = (T[]) new Object[STACK_MAX];
+	}
+
+	public void push(T item) {
+		if (top == 100) {
+			System.out.println("스택이 가득참");
+			return;
+		}
+		stack[++top] = item;
+	}
+
+	public T pop() {
+		if (top == -1) {
+			System.out.println("스택이 비었습니다.");
+			return null;
+		}
+		return stack[top--];
+	}
+}
+```
+
