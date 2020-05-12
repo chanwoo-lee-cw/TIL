@@ -123,7 +123,8 @@ SELECT SUM(DECODE(job,'ANALYST',sal)) as "ANALYST",
 FROM emp;
 
 
-
+-- ROLLUP 그룹에 대한 연산 결과 뿐만 아니라, 전체에 대한 연산 결과도 반환
+-- 즉, 직업별 월급 합과, 전체의 월급합 둘 다 출력
 SELECT job, sum(sal)
 FROM emp
 GROUP BY ROLLUP(job);
@@ -132,6 +133,7 @@ SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY ROLLUP(deptno, job);
 
+-- 
 SELECT job, sum(sal)
 FROM emp
 GROUP BY CUBE(job);
@@ -140,14 +142,18 @@ SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY CUBE(deptno,job);
 
+-- 두 세트에 대해 그룹한다.
+-- 다른 그룹은 NULL이 된다.
 SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY GROUPING SETS(deptno, job);
 
+-- 전체에 대해서도 그룹한다.
 SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY GROUPING SETS(deptno, job, () );
 
+-- 큐브와 똑같다. 즉, (deptno, job)을 묶어줘야 그룹에 대한 결과가 나온다.
 SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY GROUPING SETS(deptno, job, (deptno, job), () );
@@ -209,13 +215,14 @@ WHERE sortno >= 3 AND sortno <= 5
 
 
 
-
+-- ename='KING'인 직원을 시작으로  CONNECT BY prior empno = mgr;연결 구조로로 계층 구조로 만들어라.
 SELECT rpad(' ', level*3)  || ename  as  employee , level, sal, job
   FROM emp
   START WITH ename='KING'
   CONNECT BY prior empno = mgr;
 
 
+-- level*3 만큼 앞을 띄워라, 즉 계층 구조를 알아보기 편해진다.
 SELECT rpad(' ', level*3)  || ename  as  employee , level, sal, job
   FROM emp
   START WITH ename='KING'
@@ -228,7 +235,7 @@ SELECT rpad(' ', level*3)  || ename  as  employee , level, sal, job
   START WITH  ename='JONES'
   CONNECT BY prior empno = mgr ;
   
-
+-- SYS_CONNECT_BY_PATH(ename,'/') 패스 정보로 문자열을 만들어서 알려준다.
 SELECT ename, SYS_CONNECT_BY_PATH(ename,'/')  as  path 
   FROM emp
   START WITH ename='KING'
