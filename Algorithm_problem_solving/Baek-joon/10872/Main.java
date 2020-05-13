@@ -1,5 +1,7 @@
 import java.io.*;
 
+// https://www.acmicpc.net/problem/10872
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -12,6 +14,7 @@ public class Main {
 		System.out.print(factorial(n));
 	}
 
+// 	재귀의 형식으로 계산한다.
 	public static int factorial(int n) {
 //		System.out.println(n);
 //		0!은 1이다.
