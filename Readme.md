@@ -169,6 +169,7 @@
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1712)
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11653)
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
+- [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
 
 ### Binary Search
 
@@ -188,4 +189,5 @@
 - [괄호](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9012)
 - [제로](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10773)
 - [트리 순회](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1991)
+- [균형잡힌 세상](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4949)
 
