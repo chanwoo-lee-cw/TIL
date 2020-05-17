@@ -145,6 +145,69 @@ int Socket(int family, int type, int protocol)
 - 연결 함수는 *ECONNREFUSED*를 반환한다.
     - 함수는 지정된 *errno*을 error(-1)로 반환한다. 
 
+### A Simple Daytime Server
+```c
+// intro/daytimecpsrv.c
+
+#include "unp.h"
+#include <time.h>
+
+int main(int argc, char **argv)
+{
+    int listenfd, connfd;
+    struct sockaddr_in servaddr;
+    char buff[MAXLINE];
+    time_t ticks;
+
+    listenfd = Socket(AF_INET, SOCK_STREAM,0);
+
+    bzero(&servaddr, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    servaddr.sin_port = htons(13);
+
+    Bind(listenfd, (SA *)&servaddr, sizeof(servaddr));
+
+    Listen(listenfd,LISTENQ);
+
+    for(;;) {
+        connfd = Accept(listenfd,(SA *)NULL,NULL);
+
+        ticks = time(NULL);
+        snprint(buff, sizeof(buff), "%.25s\r\n",ctime(&ticks));
+        Write(connfd,buff,strlen(buff));
+
+        Close(connfd);
+    }
+}
+```
+- TCP소켓을 생성한다.
+    - listening descriptor (*listenfd*)
+- 잘 알려진 포트를 소켓에 바인딩
+    - *INADDR_ANY*는 서버가 임의 인터페이스의 클라이언트 연결을 받는 것을 사용한다.
+- 소켓을 listening socket으로 변환
+    - 들어오는 연결은 kernel에 의해 받아들여질 것이다.
+    - *LISENQ*는 최대 연결 수를 지정한다.
+- 클라이언트 연결 수락
+    - 서버 프로세스는 *accept*이 호출 될때까지 sleep한다.
+    - connected descriptor (connfd)
+- Send reply
+    - *time*은 현재 시간(초)를 반환한다.
+    - *ctime*은 이것의 integer값을 사람이 읽을 수 있는 stringㅎㅇ으로 변환한다.
+        Mon May 26 20:58:40 2003 
+    - *snprintf*에 버퍼 오버플로우를 검사가 추가된다.
+    - *Write*에 의해 메세지가 전송된다.
+- Terminate connection
+    - close connected descriptor
+
+#### 요정
+- 힌 클라이언트의 서비스를 다른 클라이언트와 중복할 수 있는 어떤 방법이 필요하다.
+    - 우리 서버는 한번에 하나의 클라이언트만 처리한다.(iterative server)
+    - 동시 서버는 여러 클라이언트를 동시에 처리한다.
+        - 포크 또는 스레드 함수 사용
+- 시스템이 가동되는 동안 서버를 실행해야한다.
+    - daemon : 터미널에 없는 백그라운드에서 실행할 수 있는 프로세스
+
 -----
 [^WAN]: LAN과 LAN사이를 광범위한 지역 단위로 구성하는 네트워크.
 [^LAN]: 사용자가 포함된 지역 네트워크를 의미한다. 공유기나 스위치를 이용해서 연결하게 된다.
