@@ -41,3 +41,20 @@ struct sockaddr_in {
     unit32_t        sin6_scope_id;  // 미사용
 };
 ```
+
+#### 일반 소켓 구조
+- 지원되는 모든 프로토콜을 처리하기 위해
+```c
+struct sockaddr {
+    unit8_t     sa_len;
+    sa_family   sa_family;      // address family : AF xxx 값
+    char        sa_data[14];    // 프로토콜 확인 주소
+};
+```
+- 예. int bind(int, struct sockaddr *, socklen_t);
+    - bind(sockfd, (struct sockaddr *) &serv, sizeof(serv));
+
+#### 소켓 주소 구조 비교
+![그림2](./그림2.png)
+
+###
