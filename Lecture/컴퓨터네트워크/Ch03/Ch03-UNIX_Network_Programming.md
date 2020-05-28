@@ -57,4 +57,19 @@ struct sockaddr {
 #### 소켓 주소 구조 비교
 ![그림2](./그림2.png)
 
-###
+### Value-Result Arguments
+#### 프로세스에서 커널로 전달된 소켓 주소 구조
+- 프로세스가 만든 구조체를 커널이 참조
+![그림3](./그림3.png)
+
+### Byte Ordering Functions
+#### Little-endian vs Big-endian
+- Big-endian
+    - 큰 단위가 앞에 나오는 것을 말한다.
+        - MSB at lower address -> Big endian
+        - 사람이 읽는 방식과 똑같으므로 보기 편하다.
+    - 작은 단위가 앞에 나오는 것을 말한다.
+        - LSB at lower address -> Little endian
+        - 주로 수정되는 부분은 작은 자릿 수 이므로 컴퓨터의 계산이 빠르다.
+
+![그림4](./그림4.png)

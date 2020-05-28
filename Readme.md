@@ -170,6 +170,7 @@
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11653)
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
 - [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
+- [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
 
 ### Binary Search
 
