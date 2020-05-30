@@ -152,7 +152,7 @@ int main()
     int n = NULL;
     string command;
     int num = NULL;
-    Stack<int> stk;
+    Stack<int> *stk;
 
     cin >> n;
 
