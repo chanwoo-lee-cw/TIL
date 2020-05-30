@@ -196,4 +196,5 @@
 - [제로](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10773)
 - [트리 순회](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1991)
 - [균형잡힌 세상](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4949)
+- [큐 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/18258)
 
