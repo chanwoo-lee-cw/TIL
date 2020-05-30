@@ -1,18 +1,19 @@
 // https://www.acmicpc.net/problem/18258
 #include <iostream>
 
-#define QUESIZE  2000001;
+#define QUESIZE 2000001;
 
 using namespace std;
 
+// 큐 클래스
 template<typename T> class Queque
 {
 private:
-	T* que;
-	int item;
-	int head;
-	int tail;
-	int curSize;
+	T* que;             // 큐를 저장할 리스트
+	int item;           // 큐의 들어가 있는 item의 갯수
+	int head;           // 원형 큐를 위한 머리
+	int tail;           // 원형 큐를 위한 꼬리 
+	int curSize;        // 큐의 사이즈
 public:
 	Queque()
 	{
@@ -30,6 +31,8 @@ public:
 		item = NULL;
 	}
 
+    // 큐가 꽉 차있는지 확인 하는 함수
+    // 총 MAX개의-1 만큼 차 있어야 한다.
 	bool isFull()
 	{
 		if (head==( (tail + 1) % curSize) ) {
@@ -40,6 +43,7 @@ public:
 		}
 	}
 
+    // 큐가 비어있는지 확인하는 함수
 	bool isEmpty()
 	{
 		if (head == tail)
@@ -47,6 +51,7 @@ public:
 		return false;
 	}
 
+    // 큐에 tail에 push
 	void push(T value)
 	{
 		if (!isFull())
@@ -62,6 +67,7 @@ public:
 		}
 	}
 
+    // head에서 pop
 	T pop()
 	{
 		if (!isEmpty())
@@ -79,6 +85,7 @@ public:
 		}
 	}
 
+    // head에 있는 값(큐의 제일 앞에 있는 값)을 출력
 	T front()
 	{
 		if (!isEmpty())
@@ -91,6 +98,8 @@ public:
 			return -1;
 		}
 	}
+
+    // tail에 있는 값(큐의 가장 마지막에 있는 값)을 출력
 	T back()
 	{
 		if (!isEmpty())
@@ -104,6 +113,7 @@ public:
 		}
 	}
 
+    // 현재 큐에 들어가 있는 값의 갯수
 	int size()
 	{
 		return item;
@@ -112,7 +122,10 @@ public:
 
 int main()
 {
+    // 빠른 입출력을 위한 함수
 	cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    
 	int n;
 	Queque<int> queue;
 	string command;
@@ -127,7 +140,7 @@ int main()
 		if (command.compare("push") == 0)
 		{
 			num = 0;
-			scanf("%d", &num);
+			cin >>num;
 			queue.push(num);
 		}
 		else if (command.compare("pop") == 0)
