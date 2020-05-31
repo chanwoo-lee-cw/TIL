@@ -154,7 +154,7 @@ def heappop():
 
 
 
-## C++ 코드
+## 최대 힙 C++ 코드
 
 ```c++
 template<typename T> class Heap
@@ -179,48 +179,54 @@ public:
 
 	void push(T item)
 	{
-		arr[++len] = item;
-		int size = len;
-		while (size != 1)
+		int i;
+		i = ++len;
+
+		while ((i != 1) && (item > arr[i / 2]))
 		{
-			
-			if (arr[int(size / 2)] > arr[size])
-			{
-				swap(arr[int(size / 2)], arr[size]);
-			}
-			else
-				break;
+			arr[i] = arr[i / 2];
+			i /= 2;
 		}
+
+		arr[i] = item;
 	}
 
 	T pop()
 	{
-		if (len == 0)
-			return NULL;
+		int parent, child;
+		T item, temp;
 
-		int out = arr[1];
-		arr[1] = arr[len--];
-		
-		int k = 1;
-		int i = NULL;
+		item = arr[1];
+		temp = arr[len--];
+		parent = 1;
+		child = 2;
 
-		while (2 * k <= len) {
-			if (2 * k + 1 > len)
-				i = arr[2 * k] < arr[2 * k + 1] ? 2 * k : 2 * k + 1;
-			else
-				i = 2 * k;
-				
-			if (arr[k] > arr[i])
-			{
-				swap(arr[k], arr[i]);
-				k = i;
-			}
-			else
-			{
+		while (child <= len)
+		{
+			if ((child < len) && (arr[child] < arr[child + 1]))
+				child++;
+			if (temp >= arr[child])
 				break;
-			}
+			arr[parent] = arr[child];
+			parent = child;
+			child *= 2;
 		}
-		return out;
+		arr[parent] = temp;
+		return item;
+	}
+
+	void printAll()
+	{
+		for (int i = 0; i < len; i++)
+		{
+			cout << arr[i + 1] << " ";
+		}
+		cout << "\n";
+	}
+
+	int getLength()
+	{
+		return len;
 	}
 };
 ```
