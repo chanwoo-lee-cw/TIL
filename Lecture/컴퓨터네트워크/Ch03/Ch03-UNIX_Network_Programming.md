@@ -118,13 +118,61 @@ int memcmp(const void *ptr1, const void *ptr2, size_t nbytes);
 ```
 
 ### Address Conversion Functions
-#### IPv4 (a:ASCII, n: numeric)
+#### IPv4 (a : ASCII, n : numeric)
 ```c
 #include <arpa/inet.h>
 
 int inet_aton(const char *strptr, struct in_addr *addrptr);
-//Retruns : 1 if string was valid, 0 on error
+//IP주소를 네트워크 바이트 순서의 정수형으로 정렬
+// Returns : 1 if string was valid, 0 on error
+
 in_addr_t inet_addr(const char *strptr);
-// Retrun : 32-bit binary network bype ordered IPv4 address;
-//INADDR_NONE if error
+// Return : 32-bit binary network bype ordered IPv4 address;
+// INADDR_NONE if error
+//성공시 in_addr_t 타입의 정수 값 return, 실패시 INADDR_NONE return.
+
+char *inet_ntoa(struct in_addr inaddr);
+// Return : pointer to dotted-decimal string
+// 성공시 IP주소 문자열의 주소값, 실패시 -1 return.
+```
+- inet_aton("206.168.112.96", &foo.sin_addr);
+    - foo.sin_addr에 지정된 ip 를 네트워크 바이트로 저장한다.
+- str = inet_ntoa(foo.sin_addr);
+    - 네트워크 바이트 순서의 32비트의 값을 주소값으로 변환
+
+#### IPv4 and IPv6 (p : presentation, n : numerics)
+```c
+#include <arpa/inet.h>
+int inet_pton(int family, const char * strptr, void *addrptr);
+// Reuturns : 1 if OK, 0 if input not a valid presentation format, -1 on error
+
+const char *inet_ntop(int family, const void, char *strptr, size_t len);
+// Return: pointer to result if OK, NULL on error
+```
+- 각자 IP 주소를 빅 엔디안 이진데이터로 변환하거나 빅엔디안 이진 데이터를 IP형태로 변경하는 것.
+
+- inet_pton(AF_INET, "206.168.112.96", &foo.sin_addr);
+- inet_ntop(AF_INET, &foo.sin_addr, str, sizeof(str));
+    - char str[INET_ADDRSTRLEN];	// for IPv4
+    - char str[INET_ADDRSTRLEN6];	// for IPv6
+
+### Stream Read/Write Functions
+- Stream socckets(예. TCP소켓)는 요구한 read/write functions보다 더 적은 바이트를 읽는다.
+    - 커널의 버퍼 제한 때문 일수도 있음.
+    - 요청된 데이터 양에 도달하려면 읽기 쓰기는 반복적으로 호출
+
+#### 스트림 소켓 지원 함수
+```c
+#include "udp.h"
+ssize_t readn(int filedes, void * buff, size_t nbytes);
+ssize_t writen(int filedes, const void *buff, size_t nbytes);
+ssize_t readline(int filedes, void *buff, size_t maxien);
+// All return : number of bytes read or writen, -1 on error
+```
+ 
+ ### Stream Read/Write Functions
+ #### readn function
+```c
+#include "unp.h"
+
 ```
