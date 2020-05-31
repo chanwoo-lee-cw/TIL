@@ -157,13 +157,15 @@ def heappop():
 ## 최대 힙 C++ 코드
 
 ```c++
+// MaxHeap
 template<typename T> class Heap
 {
 private:
-	T *arr;
-	int maxsize;
-	int len;
+	T	*arr;			// heap array
+	int	maxsize;		// heap max size
+	int	len;			// heap current size
 public:
+	// heap init
 	Heap()
 	{
 		maxsize = HEAPMAXSIZE;
@@ -171,30 +173,39 @@ public:
 		arr = new T[HEAPMAXSIZE];
 	}
 
+	//heap delete
 	~Heap()
 	{
 		len = 0;
 		delete arr;
 	}
 
+	// item push
 	void push(T item)
 	{
 		int i;
-		i = ++len;
+		i = ++len;			
+		// put the value in the last position of heap
 
+		// exchange it with prants to find a location for item to enter
 		while ((i != 1) && (item > arr[i / 2]))
 		{
 			arr[i] = arr[i / 2];
 			i /= 2;
 		}
 
+		// put item in the location you find it
 		arr[i] = item;
 	}
 
+	// pop the maximum value in the current heap
 	T pop()
 	{
-		int parent, child;
-		T item, temp;
+		int parent, child;		
+		// position for exploration
+		T item, temp;			
+		// item : output value
+		// temp : value kept to fill a location that has disappered from the heap
 
 		item = arr[1];
 		temp = arr[len--];
@@ -204,13 +215,18 @@ public:
 		while (child <= len)
 		{
 			if ((child < len) && (arr[child] < arr[child + 1]))
+			// whidh of the child is the lower value
 				child++;
 			if (temp >= arr[child])
+			// if you find the place you want, break
 				break;
+			// exchange the two value of parent and child
 			arr[parent] = arr[child];
+			// reset each position
 			parent = child;
 			child *= 2;
 		}
+		// put the stored values in the location
 		arr[parent] = temp;
 		return item;
 	}
