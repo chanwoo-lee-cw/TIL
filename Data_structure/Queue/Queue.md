@@ -49,68 +49,79 @@
 ### 큐 ADT
 
 ```c++
-template<class T> class Queue {
-    // 큐 구조
-    private :
-    	int front;
-    	int rearr;
-    	int M; // 큐의 크기
-    	T *values;
-    
-    Queue() {
-    // 큐 초기화
-    	M = Queue_size; // 이건 매크로로 명시하자.
-        values = new T[M];
-        front = 0;
-        rear;
-	}
-    
-    ~Queue() {
-        // 큐 삭제
-        delete values;
-    }
-    
-    void push(T value)
+template<typename T> class Queue
+{
+private:
+	T* queue;
+	int maxsize;
+	int front;
+	int rear;
+
+public:
+	Queue() 
 	{
-        // 큐의 최후단에 데이터 추가
-		if(!isFull())
+		maxsize = QUEUESIZE;
+		queue = new T[maxsize];
+		front = 0;
+		rear = 0;
+	}
+
+	~Queue()
+	{
+		maxsize = NULL;
+		delete(queue);
+		front = NULL;
+		rear = NULL;
+	}
+
+	void push(T item)
+	{
+		if (isFull())
 		{
-			values[rear] = value;
-			rear = (rear + 1) % M;
+			return;
 		}
 		else
-			cout << "Queue is Full" << endl;
+		{
+			rear = (rear + 1) % maxsize;
+			queue[rear] = item;
+		}
 	}
 
-	void pop()
+	T pop()
 	{
-        // 큐의 전단에서 데이터 출력 후 삭제
-		if(!empty())
-			front = (front + 1) % M;
+		if (isEmpty()) 
+		{
+			return NULL;
+		}
 		else
-			cout << "Queue is Empty" << endl;
-	}
-
-	bool empty()
-	{
-        // 큐가 비어있는지 검사한다.
-		if(rear == front)
-			return true;
-		else 
-			return false;
+		{
+			front = (front + 1) % maxsize;
+			return queue[front];
+		}
 	}
 
 	bool isFull()
 	{
-        // 큐가 가득차 있는지 검사
-		if((rear + 1) % M == front) 
+		if ((rear + 1) % maxsize == front)
 			return true;
-		else 
+		else
 			return false;
 	}
-};
 
-// 출처 : https://dpdpwl.tistory.com/67
+	bool isEmpty()
+	{
+		if (front == rear)
+			return true;
+		else
+			return false;
+	}
+
+	int isSize()
+	{
+		int tmp = rear - front;
+		return tmp >= 0 ? tmp : maxsize + tmp;
+	}
+};
 ```
 
 

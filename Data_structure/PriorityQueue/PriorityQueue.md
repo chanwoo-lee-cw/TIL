@@ -154,16 +154,18 @@ def heappop():
 
 
 
-## C++ 코드
+## 최대 힙 C++ 코드
 
 ```c++
+// MaxHeap
 template<typename T> class Heap
 {
 private:
-	T *arr;
-	int maxsize;
-	int len;
+	T	*arr;			// heap array
+	int	maxsize;		// heap max size
+	int	len;			// heap current size
 public:
+	// heap init
 	Heap()
 	{
 		maxsize = HEAPMAXSIZE;
@@ -171,56 +173,76 @@ public:
 		arr = new T[HEAPMAXSIZE];
 	}
 
+	//heap delete
 	~Heap()
 	{
 		len = 0;
 		delete arr;
 	}
 
+	// item push
 	void push(T item)
 	{
-		arr[++len] = item;
-		int size = len;
-		while (size != 1)
+		int i;
+		i = ++len;			
+		// put the value in the last position of heap
+
+		// exchange it with prants to find a location for item to enter
+		while ((i != 1) && (item > arr[i / 2]))
 		{
-			
-			if (arr[int(size / 2)] > arr[size])
-			{
-				swap(arr[int(size / 2)], arr[size]);
-			}
-			else
-				break;
+			arr[i] = arr[i / 2];
+			i /= 2;
 		}
+
+		// put item in the location you find it
+		arr[i] = item;
 	}
 
+	// pop the maximum value in the current heap
 	T pop()
 	{
-		if (len == 0)
-			return NULL;
+		int parent, child;		
+		// position for exploration
+		T item, temp;			
+		// item : output value
+		// temp : value kept to fill a location that has disappered from the heap
 
-		int out = arr[1];
-		arr[1] = arr[len--];
-		
-		int k = 1;
-		int i = NULL;
+		item = arr[1];
+		temp = arr[len--];
+		parent = 1;
+		child = 2;
 
-		while (2 * k <= len) {
-			if (2 * k + 1 > len)
-				i = arr[2 * k] < arr[2 * k + 1] ? 2 * k : 2 * k + 1;
-			else
-				i = 2 * k;
-				
-			if (arr[k] > arr[i])
-			{
-				swap(arr[k], arr[i]);
-				k = i;
-			}
-			else
-			{
+		while (child <= len)
+		{
+			if ((child < len) && (arr[child] < arr[child + 1]))
+			// whidh of the child is the lower value
+				child++;
+			if (temp >= arr[child])
+			// if you find the place you want, break
 				break;
-			}
+			// exchange the two value of parent and child
+			arr[parent] = arr[child];
+			// reset each position
+			parent = child;
+			child *= 2;
 		}
-		return out;
+		// put the stored values in the location
+		arr[parent] = temp;
+		return item;
+	}
+
+	void printAll()
+	{
+		for (int i = 0; i < len; i++)
+		{
+			cout << arr[i + 1] << " ";
+		}
+		cout << "\n";
+	}
+
+	int getLength()
+	{
+		return len;
 	}
 };
 ```
