@@ -199,3 +199,8 @@
 - [큐 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/18258)
 - [카드2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2164)
 
+## Programmers
+### Brute Force
+- [모의고사](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Programers/brute_force/Mock_test)
+### Stack, Queue
+- [탑](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Programers/Stack,Queue/Top)
