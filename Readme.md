@@ -176,6 +176,11 @@
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
 - [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
 - [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
+- 순열(nPr)
+    - [순열 - N과 M(1)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15649/15649.py)
+    - [중복순열 - N과 M(3)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15651/Main.java)
+- 조합(nCr)
+    - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
 
 ### Binary Search
 
