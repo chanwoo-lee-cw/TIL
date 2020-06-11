@@ -35,6 +35,11 @@ que2 = PriorityQueue(maxsize=MAX)	# MAX의 값에 따라 우선 순위 큐의 �
 
 # 방법2
 que3 = []
+
+#초기화 - 자동으로 힙으로 만들어준다.
+que4 = [7,6,2,5,2]
+heapq.heapfy(queq4)
+
 ```
 
 
