@@ -175,4 +175,152 @@ ssize_t readline(int filedes, void *buff, size_t maxien);
 ```c
 #include "unp.h"
 
+ssize_t readn(int fd, void *vptr, size_t n)     // n 바이트를 읽어온다.
+{
+    size_t nleft;
+    ssize_t nread;
+    char *ptr;
+
+    ptr = vptr;
+    nleft = n;
+    while (nleft > 0)
+    {
+        if (nread = read(fd, ptr, nleft) < 0)
+        {
+            if(errno == EINTR)
+                nread =0;       // 만약 에러가 반환 된다면 read를 다시 호출한다.
+            else
+                return (-1);
+        }
+        else if (nread == 0)
+            break;              // 파일의 끝에 도달한다혐 끝에 도달했다고 호출한다.
+        
+        nleft -= nread;
+        ptr += nread;
+    }
+    return (n - nleft);         // 0이상을 리턴하게 된다.
+}
+```
+
+#### writen function
+```c
+#include "unp.h"
+
+sszie_t writen(int fd, const void *vptr, size_t n)  // n 바이트를 쓴다.
+{
+    size_t nleft;
+    ssize_t nwritten;
+    const char *ptr;
+
+    ptr = vptr;
+    nleft = n;
+
+    while (nleft > 0)
+    {
+        if ((nwritten = write(fd, prt, nleft)) <= 0)
+        {
+            if (nwritten < 0 && errno == EINTR)
+                nwritten = 0;                   // 파일이 존재하는데 에러라면 write를 다시 호출한다.
+            else
+                return (-1);                    // 파일도 없고 에러라면 에러 리턴
+            nleft -= nwritten;
+            ptr += nwritten;
+        }
+        return (n);
+    }
+}
+```
+#### readline function (slow version)
+```c
+#include "unp.h"
+
+// 매우 느린 버전 -- 오직 예시로 작성되었다.
+ssize_t readline(int fd, void *vptr, size_t maxlen)
+{
+    ssize_t n, rc;
+    char c, *ptr;
+
+    ptr = vptr;
+    for (n = 1; n < maxlen; n++)
+    {
+    again:
+        if ((rc = read(fd, &c, 1)) == 1)
+        {
+            *ptr++ = c;
+            if (c == '\n')
+                break;          // 새로운 줄을 저장한다. fget같이
+        }
+        else if (rc == 0)
+        {
+            *ptr = 0;
+            return (n - 1);     // EOF, n - 1 바이트를 읽는다.
+        }
+        else
+        {
+            if (errno == EINTR)
+                goto again;
+            return (-1);        // error, 에러넘버가 read()에 의해 세팅된다.
+        }
+    }
+    *ptr = 0;                   // fget과 같은 방식으로 null이 종료 시킨다.
+    return (n);
+}
+```
+
+#### readline function (buffering version)
+```c
+#include "unp.h"
+
+static int read_cnt;
+static char *read_ptr;
+static char read_buf[MAXLINE];
+
+static ssize_t my_read(int fd, char *ptr)
+{
+    if (read_cnt <= 0)
+    {
+    again:
+        if ((read_cnt = read(fd, read_buff, sizeof(read_buf))) < 0)
+        {
+            if (errno == EINTR)
+                goto again;
+            return (-1);
+        }
+        else if (read_cnt == 0)
+            return 0;
+        read_ptr = read_buf;
+    }
+
+    read_cnt--;
+    *ptr = *read_ptr++;
+    return 1
+}
+
+ssize_t readline(int fd, void *vptr, size_t maxlen)
+{
+    ssize_t n, rc;
+    char c, *ptr;
+
+    ptr = vptr;
+    for (n = 1; n < maxlen; n++)
+    {
+        if ((rc = read(fd, &c, 1)) == 1)
+        {
+            *ptr++ = c;
+            if (c == '\n')
+                break; // 새로운 줄을 저장한다. fget같이
+        }
+        else if (rc == 0)
+        {
+            *ptr = 0;
+            return (n - 1); // EOF, n - 1 바이트를 읽는다.
+        }
+        else
+        {
+            return (-1); // error, 에러넘버가 read()에 의해 세팅된다.
+        }
+    }
+    *ptr = 0; // fget과 같은 방식으로 null이 종료 시킨다.
+    return (n);
+}
 ```
