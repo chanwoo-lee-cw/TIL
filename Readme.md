@@ -1,8 +1,8 @@
-# TIL
+#  TIL
 
-## Algorithm
+## 1. Algorithm
 
-### Graph
+### 1.1. Graph
 
 - [Bipartite Graph](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Bipartite_Graph/Bipartite_Graph.md)
 - [Max Flow Algorithm](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Max_Flow_Algorithm/Max_Flow_Algorithm.md)
@@ -10,25 +10,25 @@
 - [Dijkstra Algorithm](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Shortest_Path_Problem/Dijkstra_Algorithm/Dijkstra_Algorithm.md)
 - [Minimum Spanning Tree](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Spanning_Tree/Spanning_Tree.md)
 
-### Dynamic Programming
+### 1.2. Dynamic Programming
 
 - [LIS(Longest Increasing Subsequence)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Dynamic_Programming/LIS(Longest_Increasing_Subsequence).md)
 
-### Binary Search
+### 1.3. Binary Search
 
 - [Lower_bound, Upper_bound](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Lower_bound%2CUpper_bound.md)
 - [파라메트릭 서치(Parametric Search)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Binaray_Search/Parametric_Search.md)
 
-### Math
+### 1.4. Math
 
 - [에라토스테네스의 체(Eratosthenes_sieve)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Math/Eratosthenes_sieve/Eratosthenes_sieve.md)
 - [최대 공약수, 최소 공배수](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Math/GCD%2CLCM/GCD%2CLCM.md)
 
-### Time Complexity, Space Complexity
+### 1.5. Time Complexity, Space Complexity
 
 - [마스터 정리(Master Theorem)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Time_Complexity%2CSpace_Complexity/Master_Theorem/Master_Theorem.md)
 
-### Sort
+### 1.6. Sort
 
 - [버블정렬(Buble Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Bubble_Sort/Buble_Sort.md)
 - [삽입정렬(Insertion Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Insertion_Sort/Insertion_Sort.md)
@@ -36,7 +36,7 @@
 - [선택정렬(Selection Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Selection_Sort/Selection_Sort.md)
 - [퀵정렬(Quick_Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Quick_Sort/Quick_Sort.md)
 
-## Common_sense
+## 2. Common_sense
 - [안드로이드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Android.md)
 - [C와 Java의 차이점](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/C와_Java차이.md)
 - [Garbage Collection](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Garbage_collection.md)
@@ -46,20 +46,20 @@
 - [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 
-## Azure
+## 3. Azure
 
-### AZ-300
+### 3.1. AZ-300
 
-#### Azure 솔류션 설계
+#### 3.1.1. Azure 솔류션 설계
 
 - [Azure 아키텍쳐 핵심 요쇼](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_아키텍쳐_핵심_요쇼.md)
 - [Azure 보안을 위한 디자인](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_보안을_위한_디자인.md)
 
-### DevOps
+### 3.2. DevOps
 
 - [DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
 
-## Data structure
+## 4. Data structure
 
 - [큐(Queue)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Queue/Queue.md)
 - [스택(Stack)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Stack/Stack.md)
@@ -69,14 +69,14 @@
 - [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Segment_Tree/Segment_Tree.md)
 - [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Union_Find%2CDisjoint_Set/Union_Find%2CDisjoint_Set.md)
 
-## C++
+## 5. C++
 
 - [new와 malloc의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/new와_malloc의_차이.md)
 - [null과 nullptr의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/null과_nullptr의_차이.md)
 - [struct와 class의 차이](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/struct와_class의_차이.md)
 - [vector](https://github.com/Alphanewbie/TIL/blob/master/c%2B%2B/vector.md)
 
-## Python
+## 6. Python
 
 - [input과 readline](https://github.com/Alphanewbie/TIL/blob/master/python/List%2CTuple%2CDictionary.md)
 - [List,Tuple,Dictionary](https://github.com/Alphanewbie/TIL/blob/master/python/List%2CTuple%2CDictionary.md)
@@ -84,33 +84,34 @@
 - [언더 스코어](https://github.com/Alphanewbie/TIL/blob/master/python/언더_스코어.md)
 - [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
-## Linux
+## 7. Linux
 
 - [Command Line Interface](https://github.com/Alphanewbie/TIL/blob/master/Linux/CLI.md)
 - [VIm editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
 - [WSL(Windows Subsystem for Linux)](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
-## Typescript
+## 8. Typescript
 
-## Lecture
+## 9. Lecture
 
-### 컴퓨터 보안
+### 9.1. 컴퓨터 보안
 
 - [Ch01-Introduction&_crypto_basics](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터_보안/Ch01-Introduction%26_crypto_basics/Introduction&_crypto_basics.md)
 
-### 화일구조
+### 9.2. 화일구조
 
 - [Ch01-화일의 기본 개념](https://github.com/Alphanewbie/TIL/blob/master/Lecture/화일구조/Ch01-화일의_기본개념/Ch01-화일의_기본개념.md)
 - [Ch02-순차,임의_화일](https://github.com/Alphanewbie/TIL/tree/master/Lecture/화일구조/Ch02-순차%2C임의_화일)
 
-### 컴퓨터 네트워크
+### 9.3. 컴퓨터 네트워크
 
 - [Ch01. UNIX Network Programming.md]([https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch01/Ch01-UNIX_Network_Programming.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터네트워크/Ch01/Ch01-UNIX_Network_Programming.md))
 - [Ch02. Transport Layer]([https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch02/Ch02-Transport_Layer.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터네트워크/Ch02/Ch02-Transport_Layer.md))
+- [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-UNIX_Network_Programming.md)
 
-## Baek-joon
+## 10. Baek-joon
 
-### Dynamic Programming
+### 10.1. Dynamic Programming
 
 - [1로 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1463)
 - [1, 2, 3 더하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9095)
@@ -148,25 +149,25 @@
 - [격자상의 경로](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10164)
 - [기타리스트](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1495)
 - [점프 점프](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11060)
-- [ 공통 부분 문자열](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/5582)
+- [공통 부분 문자열](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/5582)
 - [로봇 조종하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2169)
 - [자두나무](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2240)
 - [고층 빌딩](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1328-F)
 - [무한 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1351)
 - [신나는 함수 실행](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9184)
 
-### Graph
+### 10.2. Graph
 
 - [섬의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4963)
 - [돌멩이 제거](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1867)
 - [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1197)
 - [녹색 옷 입은 애가 젤다지?](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4485-F)
 
-### **Greedy** Algorithms
+### 10.3. **Greedy** Algorithms
 
 - [보석 도둑](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1202-F)
 
-### Math
+### 10.4. Math
 
 - [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912-F)
 - [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
@@ -182,19 +183,19 @@
 - 조합(nCr)
     - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
 
-### Binary Search
+### 10.5. Binary Search
 
 - [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2805)
 - [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10816)
 - [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2110)
 
-### Divide and Conquer
+### 10.6. Divide and Conquer
 
 - [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1992)
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2630)
 
-### Data Structure
+### 10.7. Data Structure
 
 - [스택](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10828)
 - [괄호](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9012)
@@ -204,8 +205,11 @@
 - [큐 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/18258)
 - [카드2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2164)
 
-## Programmers
-### Brute Force
+## 11. Programmers
+### 11.1. Brute Force
 - [모의고사](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Programers/brute_force/Mock_test)
-### Stack, Queue
+### 11.2. Stack, Queue
 - [탑](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Programers/Stack,Queue/Top)
+- [다리를 지나는 트럭](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/Stack%2CQueue/truck/truck.py)
+### 11.3. Heap
+- [더 맵게](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/Heap/More_spicy/More_spicy2.py)
