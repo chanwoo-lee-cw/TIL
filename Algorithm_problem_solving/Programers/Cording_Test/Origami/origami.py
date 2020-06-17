@@ -1,3 +1,4 @@
+# https://programmers.co.kr/learn/courses/30/lessons/62049
 import sys
 
 # 종이접기 : 가운데는 아래로 내려가 있고 그 가운데를 대칭으로 위, 아래를 바꾸면 된다.
