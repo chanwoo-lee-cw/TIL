@@ -163,7 +163,7 @@
 - [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1197)
 - [녹색 옷 입은 애가 젤다지?](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4485-F)
 
-### 10.3. **Greedy** Algorithms
+### 10.3. Greedy Algorithms
 
 - [보석 도둑](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1202-F)
 
@@ -204,6 +204,7 @@
 - [균형잡힌 세상](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4949)
 - [큐 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/18258)
 - [카드2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2164)
+- [후위 표기식](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1918)
 
 ## 11. Programmers
 ### 11.1. Brute Force

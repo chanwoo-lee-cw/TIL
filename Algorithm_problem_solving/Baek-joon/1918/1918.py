@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1918
 from sys import stdin
 
 # 연산자 우선 순위를 반환
