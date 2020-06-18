@@ -223,6 +223,6 @@
 ### 11.5 DFS,BFS
 - [여행 경로](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/DFS%2CBFS/Travel_route/travel_route.py)
 
-### Dynamic_Programming
+### 11.6 Dynamic Programming
 - [2*n 타일링](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/Dynamic_Programming/2Xn_tiling/2Xn_tiling.py)
 - [타일 장식물](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/Dynamic_Programming/Tile_ornament/tile_ornament.py)
