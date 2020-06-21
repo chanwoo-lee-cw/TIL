@@ -14,25 +14,19 @@
 
    처음에 `py -3 -m venv env`코드를 치니 cmd창이 멈추는 것 같아서 여기서 에러가 뜨는 줄알았다.
 
-   ![](C:\Users\overe\AppData\Roaming\Typora\typora-user-images\image-20200326223421001.png)
+   ![](./image-20200326223334242.png)
 
    그런데 알고 보니 원래 저기까지 되는게 정상이고, 그 다음에 `env\scripts\activate`를 입력하면 바로 가상 화면을 구축하는 시스템, 즉 정상 작동하는 것
 
    `py -3 -m venv env
-env\scripts\activate`
+   env\scripts\activate`
    
-   의 부분은 가상 환경을 구축하는 과정이였다.
-
-   [^가상 환경]: 패키지가 시스템 전체에 설치되는 것이 아니라, 특정 응용 프로그램에 사용되도록 설치될 수 있도록 하는 반 격리 된 파이썬 환경입니다.
-   [^ venv]:virtual environment를 만들어주는 패키지다. gradle, maven처럼 **프로젝트의 라이브러리 버전을 매니지먼트**해준다 [참고](https://ssaemo.tistory.com/132)
-
-​	
-
+   의 부분은 가상 환경[^가상환경][^venv]을 구축하는 과정이였다.
 
    하지만 에러가 뜨는게 있었는데 이 에러는 
 
    `pip install -r requirements.txt
-SET FLASK_APP=application.py
+   SET FLASK_APP=application.py
    flask run`
 
    부분에서 에러가 나는 것이였는데 이건 내가 파이썬을 쓰면서 pip install과 flask를 설치하지 않아서 생긴 에러였다.
@@ -178,9 +172,9 @@ SET FLASK_APP=application.py
    	echo json_encode($response); 
    ?>?
    ```
-```
+
    
-이런 코드로 고쳐서 
+   이런 코드로 고쳐서 
    
    한줄 한줄 지우면서 테스트 해본 결과
    
@@ -190,7 +184,7 @@ SET FLASK_APP=application.py
    
    ```error
    Failed to connect to MySQL: SSL connection is required. Please specify SSL options and retry.
-```
+   ```
 
    이런 에러가 떴다. 
 
@@ -213,3 +207,8 @@ SET FLASK_APP=application.py
    ```
 
    정상 작동하였다.
+
+-----
+[^가상환경]: 패키지가 시스템 전체에 설치되는 것이 아니라, 특정 응용 프로그램에 사용되도록 설치될 수 있도록 하는 반 격리 된 파이썬 환경입니다.
+
+[^venv]: virtual environment를 만들어주는 패키지다. gradle, maven처럼 **프로젝트의 라이브러리 버전을 매니지먼트**해준다 [참고](https://ssaemo.tistory.com/132)

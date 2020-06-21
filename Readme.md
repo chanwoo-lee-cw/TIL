@@ -57,7 +57,8 @@
 
 ### 3.2. DevOps
 
-- [DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
+- [SpringBoot DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
+- [SpringMVC-Mybatis DevOps 설정법](https://github.com/Alphanewbie/TIL/blob/master/Azure/SpringMVC_DevOps/SpringMVCDev.md)
 
 ## 4. Data structure
 
@@ -205,6 +206,7 @@
 - [큐 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/18258)
 - [카드2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2164)
 - [후위 표기식](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1918)
+- [후위 표기식2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1935)
 
 ## 11. Programmers
 ### 11.1. Brute Force
