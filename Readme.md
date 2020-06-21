@@ -57,7 +57,8 @@
 
 ### 3.2. DevOps
 
-- [DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
+- [SpringBoot DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
+- [SpringMVC-Mybatis DevOps 설정법](https://github.com/Alphanewbie/TIL/blob/master/Azure/SpringMVC_DevOps/SpringMVCDev.md)
 
 ## 4. Data structure
 
