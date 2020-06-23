@@ -1,30 +1,39 @@
-def foumular_generrate(number, cnt):
-    # 가능한 수식 '','+','-','*','/','(',')'
-    # 전혀 상관 없는거 ' ','(',
-    # 셋중 하나 '','-'
-    # 수식중 하나 '+','-','*','/'
-    # 리스트 하나 선언하고 붙히자
-    formula = []
-    while cnt != 0 :
-        formula.a
+import sys
+sys.setrecursionlimit(1000000000)
 
-    pass
-    
+def memozation(dp, pos, N, number):
+    fomular = []
+    posN = N
+    cnt = 1
+    while posN < number*10:
+        fomular.append([pos + posN, cnt])
+        fomular.append([pos - posN, cnt])
+        fomular.append([pos * posN, cnt])
+        fomular.append([pos // posN, cnt])
+        posN = posN*10 + N
+        cnt += 1
+    for item, cnt in fomular:
+        if 0 < item and item < number*N+1:
+            if dp[item] > dp[pos]:
+                dp[item] = dp[pos] + cnt
+                memozation(dp, item, N, number)
 
 
 def solution(N, number):
-    for i in range(1,9):
-        
-        if i == 1 and N == number :
-            return 1
-        
-        pass
-    answer = 0
-    return -1
+    dp = [float('inf')]*(number*N+1)
+    posN = N
+    cnt = 1
+    while posN < number*10:
+        dp[posN] = cnt
+        memozation(dp, posN, N, number)
+        posN = posN*10 + N
+        cnt += 1
+    
+    return dp[number] if dp[number] < 8 else -1
 
 
 if __name__ == "__main__":
-    N = 5
-    number = 12
-    solution(N, number)
+    N = 2
+    number = 11
+    print(solution(N, number))
     pass
