@@ -23,7 +23,7 @@ def solution(lines):
         heapq.heappush(timelist, [endtime+1, False])
         heapq.heappush(timelist, [starttime+0.001, True])
 
-    while not (not timelist):
+    while timelist:
         _, outputType = heapq.heappop(timelist)
         # 현재 돌아가고 있는 프로그램의 객수만 구하면 되므로 프로그램 하나가 시작되면 +1 하나가 종료되면 -1
         if outputType :
