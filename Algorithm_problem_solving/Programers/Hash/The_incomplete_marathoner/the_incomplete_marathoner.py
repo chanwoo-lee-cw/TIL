@@ -1,3 +1,5 @@
+# https://programmers.co.kr/learn/courses/30/lessons/42576
+
 def solution(participant, completion):
     person_dic = {}
     for person in participant:
