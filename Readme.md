@@ -183,6 +183,7 @@
     - [중복순열 - N과 M(3)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15651/Main.java)
 - 조합(nCr)
     - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
+    - [조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
 
 ### 10.5. Binary Search
 
