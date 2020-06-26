@@ -55,10 +55,47 @@ int connect(int sockfd, const struct sockaddr *servaddr, socklen_r addrlen);
     connect error: No route to host
     ```
 
+### bind Function
+```c
+#include<sys/socket.h>
+int bind (int sockfd, const struct sockaddr *myaddr, socklen_t addlen);
+// Return 0 if OK, -1 on error
+```
+- 소켓에 로컬 프로토콜 주소(IP + Port)를 할당한다.
+  ![그림3](./그림3.png)
+- IPv4 와일드 카드 주소 설정
+  ``` c
+  struct sockaddr_in servaddr;
+  servaddr.sin_addr.s_addr = htonl(INADDR_ANY); //wildcard
+  ```
+- 앱에서 백로그에 대해 지정할 값을 선택하십시오.
+  - 5는 종종 부적합
+  - 상수 설정에는 서버를 다시 컴파일 해야함.
+  - 솔루션에서 환경변수 LEARQ 사용
 
+### listen Fuction
+```C
+#include<sys/socket.h>
+int listen(inst sockfd, int backlog);
+// Return 0 if OK, -1 on error
+```
+- 연결되지 않은 소켓을 passive 소켓으로 변환시킨다.
+  - 커널은 이 소켁에 오는 연결 요청을 수락해야한다.
+- 백로그는 커널이 이 소켓에 queue 하는 최대 연결 수를 지정한다.
+![그림4](./그림4.png)
 
-
-
+```c
+void Listen(int fd, int backlog)
+{
+  char *ptr;  //can override 2nd arguemnt with environment variable
+  if ( (ptr = getenv("LISTENNQ")) !=NULL)
+    backlog = atoi(ptr);
+  if (listen (fd, backlog) < 0)
+    err_sys ("listen error")
+}
+```
+- 백로그를 위해 queue중인 연결 번호
+  ![그림5](./그림5.png)
 ----
 
 [^주소 결정 프로토콜]: 네트워크 상에서 IP주소를 물리적 네트워크 주소도 bind시키기 위해 사용되는 프로토콜
