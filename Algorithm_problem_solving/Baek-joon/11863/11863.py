@@ -9,7 +9,7 @@ class Queue:
         self.head = -1
         self.fulsize = n
         self.currsize = n
-        self.arr = [i+1 for i in range(n)]
+        self.arr = [i+1 for i in range(n+1)]
         self.rear = n-1
 
     def put(self, num):
