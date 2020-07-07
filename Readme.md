@@ -180,10 +180,14 @@
 - [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
 - 순열(nPr)
     - [순열 - N과 M(1)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15649/15649.py)
+    - [순열 - N과 M(5)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15654/15654.py)
     - [중복순열 - N과 M(3)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15651/Main.java)
+    - [중복순열 - N과 M(7)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15656/15656.py)
 - 조합(nCr)
     - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
-    - [조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
+    - [조합 - N과 M(6)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15655/Main.java)
+    - [중복 조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
+    - [중복 조합 - N과 M(8)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15657/15657.py)
 
 ### 10.5. Binary Search
 
@@ -208,6 +212,7 @@
 - [카드2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2164)
 - [후위 표기식](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1918)
 - [후위 표기식2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1935)
+- [요세푸스 문제 0](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11863)
 
 ## 11. Programmers
 ### 11.1. Brute Force

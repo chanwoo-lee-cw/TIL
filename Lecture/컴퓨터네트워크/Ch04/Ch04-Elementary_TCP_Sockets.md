@@ -96,6 +96,52 @@ void Listen(int fd, int backlog)
 ```
 - 백로그를 위해 queue중인 연결 번호
   ![그림5](./그림5.png)
+
+### accept Function
+```C
+#include <sys/socket.h>
+
+int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addlen);
+// Retruns : non- negative desciptor if OK, -1 on error
+```
+- TCP server는 큐로부터 다음으로 완료된 conn을 반환함
+  - 만약 연결 대기열(queue)가 비었다면, 프로세스는 sleep(blocking)한다
+- cliaddr 와 addrlen은 클라이언트의 주소와 그것의 사이즈를 반환한다.
+  - 클라이언트 주소에 관심이 없는 경우 null(즉, 0) 설정
+- fn의 리턴값은 새로운 소켓 설명자이다.
+  - 리턴값은 소켓에 연결되고, arg 안의 sockfd은 리스닝 소켓이다.
+  - 연결이 사용된 다음에, 이것은 closed된다.
+
+#### Example: value-result arguments
+- code
+``` c
+len = sizeof(cliaddr);
+connfd = Accept(listenfd, (SA *) &cliaddr, &len);
+printf("connection from %s, port %d\n",
+        Inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff)),
+        ntohs(cliaddr.sin_port));
+ticks = time(NULL);
+snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
+Wirte(connfd, buff, strlen(buff));
+
+Close(connfd)
+```
+- output
+```
+# daytimetcpsrvl
+connection from 127.0.0.1, port 43388
+connection from 192.168.1.20, port 43389
+```
+
+### Socket
+- Socket 쌍은 TCP 연결에 필요하다.
+  - 4개의 튜플이 연결의 두 엔드포인트에서 정의된다.
+    - local IP addr, local port, foreign IP addr, foreign port
+  - 모든 TCP연결을 고유하게 식별합니다.
+  - 두 엔드포인트(IP addr와 Port)를 식별하는 두 값을 종종 소켓이라고 부른다.
+
+### Concurrent Server Socket
+
 ----
 
 [^주소 결정 프로토콜]: 네트워크 상에서 IP주소를 물리적 네트워크 주소도 bind시키기 위해 사용되는 프로토콜
