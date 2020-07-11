@@ -141,6 +141,17 @@ connection from 192.168.1.20, port 43389
   - 두 엔드포인트(IP addr와 Port)를 식별하는 두 값을 종종 소켓이라고 부른다.
 
 ### Concurrent Server Socket
+- 21번 포트가 passive open 되있는 TCP서버
+  ![그림6](./그림6.png)
+
+- 클라이언트로부터 서버에게 Connect request
+  ![그림7](./그림7.png)
+
+- 하위 핸들 클라이언트를 가지는 동시 서버
+  ![그림8](./그림8.png)
+
+  두 번째 클라이언트가 같은 서버에 연결
+  ![그림9](./그림9.png)
 
 ----
 
