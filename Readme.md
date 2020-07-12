@@ -178,6 +178,10 @@
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
 - [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
 - [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
+- [수 정렬하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2750)
+
+### 10.5. DFS, BFS
+
 - 순열(nPr)
     - [순열 - N과 M(1)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15649/15649.py)
     - [순열 - N과 M(5)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15654/15654.py)
@@ -188,22 +192,24 @@
     - [조합 - N과 M(6)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15655/Main.java)
     - [중복 조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
     - [중복 조합 - N과 M(8)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15657/15657.py)
+- [N-Queen](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9663)
 
-### 10.5. Binary Search
+### 10.6. Binary Search
 
 - [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2805)
 - [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10816)
 - [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2110)
 
-### 10.6. Divide and Conquer
+### 10.7. Divide and Conquer
 
 - [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1992)
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2630)
 
-### 10.7. Data Structure
+### 10.8. Data Structure
 
 - [스택](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10828)
+- [덱](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10866)
 - [괄호](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9012)
 - [제로](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10773)
 - [트리 순회](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1991)
