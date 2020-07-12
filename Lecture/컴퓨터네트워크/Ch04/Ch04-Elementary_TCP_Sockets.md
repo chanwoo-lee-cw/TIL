@@ -113,27 +113,29 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addlen);
   - 연결이 사용된 다음에, 이것은 closed된다.
 
 #### Example: value-result arguments
-- code
-``` c
-len = sizeof(cliaddr);
-connfd = Accept(listenfd, (SA *) &cliaddr, &len);
-printf("connection from %s, port %d\n",
-        Inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff)),
-        ntohs(cliaddr.sin_port));
-ticks = time(NULL);
-snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-Wirte(connfd, buff, strlen(buff));
 
-Close(connfd)
-```
+- code
+  ``` c
+  len = sizeof(cliaddr);
+  connfd = Accept(listenfd, (SA *) &cliaddr, &len);
+  printf("connection from %s, port %d\n",
+          Inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff)),
+          ntohs(cliaddr.sin_port));
+  ticks = time(NULL);
+  snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
+  Wirte(connfd, buff, strlen(buff));
+
+  Close(connfd)
+  ```
 - output
-```
-# daytimetcpsrvl
-connection from 127.0.0.1, port 43388
-connection from 192.168.1.20, port 43389
-```
+  ```
+  # daytimetcpsrvl
+  connection from 127.0.0.1, port 43388
+  connection from 192.168.1.20, port 43389
+  ```
 
 ### Socket
+
 - Socket 쌍은 TCP 연결에 필요하다.
   - 4개의 튜플이 연결의 두 엔드포인트에서 정의된다.
     - local IP addr, local port, foreign IP addr, foreign port
@@ -141,19 +143,25 @@ connection from 192.168.1.20, port 43389
   - 두 엔드포인트(IP addr와 Port)를 식별하는 두 값을 종종 소켓이라고 부른다.
 
 ### Concurrent Server Socket
+
 - 21번 포트가 passive open 되있는 TCP서버
+ 
   ![그림6](./그림6.png)
 
 - 클라이언트로부터 서버에게 Connect request
+ 
   ![그림7](./그림7.png)
 
 - 하위 핸들 클라이언트를 가지는 동시 서버
+ 
   ![그림8](./그림8.png)
 
 - 두 번째 클라이언트가 같은 서버에 연결
+ 
   ![그림9](./그림9.png)
 
 ### fork Function
+
 ```C
 #include<unistd.h>
 pid_t fork(void);
@@ -168,7 +176,70 @@ pid_t fork(void);
 ### exec Function
 - 기존 프로세스(호출된 프로세스)는 디스크(새로운 프로그램)에서 실행가능한 프로그램 파일을 실행한다.
 - 실행은 현재 프로세스 이미지를 새프로그램 파일로 교체하고 프로그램을 실행한다.
-![그림10](./그림10.png) 
+![그림10](./그림10.png)
+
+### Concurrent Servers
+- 일반적인 동시 서버의 개요
+
+```C
+pid_t pid;
+int listenfd, connfd;
+
+listenfd = Socket(....);
+// fill in socketaddt_in() with server's well-Known port
+Bind(listenfd, ...);
+Listen(listenfd, LISTENQ);
+
+for(;;) {
+  connfd = Accept(listenfd, ...);
+  if( (pid = Fork()) == 0) {
+    Close(listenfd);
+    doit(connfd);
+    Close(connfd);
+    exit(0);
+  }
+  Close(connfd);
+}
+```
+1. before accept returns
+
+  ![그림11](./그림11.png)
+
+2. after return from accept
+ 
+  ![그림12](./그림12.png)
+
+3. after fork returns
+ 
+  ![그림13](./그림13.png)
+
+4. after close sockets
+
+  ![그림14](./그림14.png)
+
+### close Function
+```C
+#include<unistd.h>
+int close(int sockfd);
+// Return 0 if OK, -1 on error
+```
+- 소켓을 닫고 TCP 연결을 종료하다.
+  - close()는 즉시 프로세스를 반환한다.
+  - 그러나 TCP는 이미 대기열에 있는 데이터를 전송함
+- DRC(Descriptor Reference Counts)
+  - 설명자를 사용하는 프로세스 수(예: 소켓fd)
+  - 오직 DRC만 0에 도달한다면, TCP 연결이 FIN에 의해 닫히기 시작한다.
+  - 동시 서버에서 상위 프로세스가 사용되지 않는 소켓을 닫지 않으면, TCP 연결을 종료할 수 없음
+
+### getsockname and getpeername
+```C
+#include<sys/socket.h>
+int getsockname(int sockfd, struct sockaddr *localaddr, socklen_t * addrlen);
+int getpeername(int sockfd, struct sockaddr *localaddr, socklen_t * addrlen);
+// Both return: 0 if OK, -1 on error
+```
+- getsockname returns the local addr/port with a socket
+- getpeername returns the foreign addr/port with a socket
 
 ----
 
