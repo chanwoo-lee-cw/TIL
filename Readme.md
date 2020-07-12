@@ -106,9 +106,10 @@
 
 ### 9.3. 컴퓨터 네트워크
 
-- [Ch01. UNIX Network Programming.md]([https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch01/Ch01-UNIX_Network_Programming.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터네트워크/Ch01/Ch01-UNIX_Network_Programming.md))
-- [Ch02. Transport Layer]([https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch02/Ch02-Transport_Layer.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터네트워크/Ch02/Ch02-Transport_Layer.md))
-- [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-UNIX_Network_Programming.md)
+- [Ch01. UNIX Network Programming.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch01/Ch01-Introduction.md)
+- [Ch02. Transport Layer](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch02/Ch02-Transport_Layer.md)
+- [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-Sockets_Introduction.md)
+- [Ch04. Elementary TCP Sockets](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch04/Ch04-Elementary_TCP_Sockets.md)
 
 ## 10. Baek-joon
 
@@ -219,6 +220,7 @@
 - [후위 표기식](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1918)
 - [후위 표기식2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1935)
 - [요세푸스 문제 0](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11863)
+- [AC](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/5430)
 
 ## 11. Programmers
 ### 11.1. Brute Force
