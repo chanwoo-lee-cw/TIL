@@ -115,7 +115,7 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addlen);
 #### Example: value-result arguments
 
 - code
-``` c
+  ``` c
   len = sizeof(cliaddr);
   connfd = Accept(listenfd, (SA *) &cliaddr, &len);
   printf("connection from %s, port %d\n",
