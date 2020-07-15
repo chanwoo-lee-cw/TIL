@@ -25,6 +25,7 @@ def merge(u, v):
 
 if __name__ == "__main__":
     T = int(input().strip())
+
     for _ in range(T):
         F = int(input().strip())
         peoplenum = 0
@@ -33,19 +34,23 @@ if __name__ == "__main__":
         level = [1] * (2*F)
         # 빠른 위치 검색을 위한 딕셔너리
         names = {}
+
         for _ in range(F):
             # 입력받은 문자열을 찾는다.
-            first, second = input().strip().split()
+            firstname, secondname = input().strip().split()
             # 딕셔너리에 없다면 이름을 추가하고 번호를 부여한다.
-            if first not in names:
-                names[first] = peoplenum
+            first = names.get(firstname)
+            second = names.get(secondname)
+
+            if first is None:
+                names[firstname] = peoplenum
+                first = peoplenum
                 peoplenum = peoplenum + 1
-            if second not in names:
-                names[second] = peoplenum
+            if second is None:
+                names[secondname] = peoplenum
+                second = peoplenum
                 peoplenum = peoplenum + 1
             # 각각 딕셔버리로부터 번호를 받아온다.
-            first = names.get(first)
-            second = names.get(second)
             temp1 = parent[first]
             temp2 = parent[second]
             # 두 이름을 union find
@@ -59,5 +64,5 @@ if __name__ == "__main__":
                 while temp2 in parent:
                     find(parent.index(temp2))
                 cnt = parent.count(temp1)
-            
+
             print(cnt)
