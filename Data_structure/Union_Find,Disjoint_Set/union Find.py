@@ -5,18 +5,18 @@ import sys
 input = sys.stdin.readline
 print = sys.stdout.write
 
-def find(u, parent):
+def find(u):
 # 입력된 u의 root 부모가 누구인지 찾아내는 과정
     if (u == parent[u]):
         return u;
-    parent[u] = find(parent[u], parent);
+    parent[u] = find(parent[u]);
     return parent[u];
 
 
-def merge(u, v, level, parent):
+def merge(u, v):
 # u,v를 하나로 묶는다.
-    u = find(u, parent)
-    v = find(v, parent)
+    u = find(u)
+    v = find(v)
 	
     if (u == v):
 	# 루트가 같은지 확인한다. 같다면 그냥 반환
@@ -24,9 +24,7 @@ def merge(u, v, level, parent):
 		
     if (level[u] > level[v]) :
 	# 루트의 길이를 비교해서 더 짧은 쪽으로 연 연결한다.
-        temp = u;
-        u = v;
-        v = temp;
+        u, v = v, u
 
     parent[u] = v
 
@@ -44,10 +42,10 @@ if __name__=='__main__':
     for i in range(m):
         line = list(map(int,input().split()))
         if (line[0] == 0):
-            merge(line[1], line[2], level, parent)
+            merge(line[1], line[2], level)
         elif (line[0] == 1):
-            u = find(line[1], parent)
-            v = find(line[2], parent)
+            u = find(line[1])
+            v = find(line[2])
             if (u == v):
                 print("yes\n")
             else:
