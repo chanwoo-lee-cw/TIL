@@ -2,7 +2,7 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-n, m = list(map(int, input().strip().split()))
+n, m = map(int, input().strip().split())
 want = list(map(int, input().strip().split()))
 deq = deque(range(1, n+1))
 
