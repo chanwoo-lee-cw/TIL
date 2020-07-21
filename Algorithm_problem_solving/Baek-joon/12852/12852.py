@@ -5,17 +5,12 @@ input = sys.stdin.readline
 
 
 def solution(n):
-    if n < 1:
-        return float('Inf')
-    elif dp[n] != float('Inf'):
-        return dp[n]
-    if n % 3 == 0:
-        dp[n] = min(dp[n], solution(n//3)+1)
-    if n % 2 == 0:
-        dp[n] = min(dp[n], solution(n//2)+1)
-    dp[n] = min(dp[n], solution(n-1)+1)
-    
-    return dp[n]
+    for i in range(2,n+1):
+        dp[i] = dp[i-1] + 1
+        if i%3 == 0 and dp[i//3] + 1 < dp[i]:
+            dp[i] = dp[i//3] + 1
+        if i%2 == 0 and dp[i//2] + 1 < dp[i]:
+            dp[i] = dp[i//2] + 1
 
 
 def output(n):
@@ -43,7 +38,8 @@ if __name__ == "__main__":
     dp = [float('Inf')] * (N+1)
     dp[1] = 0
     outputlist = []
-    print(solution(N))
+    solution(N)
+    print(dp[N])
     output(N)
     for item in outputlist:
         print(item, end =' ')
