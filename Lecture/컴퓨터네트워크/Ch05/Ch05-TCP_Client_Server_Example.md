@@ -123,3 +123,32 @@ int main(int argc, char **argv)
   - 그래서, 우리는 이 문제를 해결해야 한다.
     ![그림7](./그림7.png)
   
+### wait and waitpid Functions
+- child 의 좀비 process를 정리한다.
+  ```C
+  #include<sys/wait.h>
+  pid_t wait(int *statioc);
+  pid_t waitpid(pid_t pid, int *statioc, int options);
+  // Both return:process ID if OK, 0 or -1 on error
+  ```
+    - **wait()** 는 존재하는 children 이 종료될때까지 block 한다.
+    - **waitpid()** gives us more control
+      - 어떤 프로세스를 wait시킬 것인가(pid; -1은 첫번째 child)
+      - 옵션의 WNOHANG: 종료된 하위 항목이 없는 경우 차단하지 않음
+- 5개의 연결이 있는 TCP 클라이언트
+  ```c
+  for(i=0; i<5; i++) {
+      sockfd[i] = Socket(AF_INET, SOCK_STREAM, 0);
+      
+      bzero(&servaddr, sizeof(servaddr));
+      servaddr.sin_family = AF_INET;
+      servaddr.sin_port = htons(SERV_PORT);
+      Inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+
+      Connect(sockfd[i], (SA *) &servaddr, sizeof(servaddr));
+  }
+
+  str_cli(stdin, sockfd[0]);    // do it all
+
+  exit(0);
+  ```
