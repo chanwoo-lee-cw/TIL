@@ -90,8 +90,65 @@ int main(int argc, char **argv)
 - after starting the client in a server
     ![그림3](./그림3.png)
 
+### Normal Termination
 - closing client in a server
     ![그림4](./그림4.png)
 
 - 상위 서버 프로세스가 하위 서버 프로세스를 종료한 후 SIGCHLD 신호를 처리하지 않을 경우 하위 서버 프로세스는 좀비 상태로 이동한다.
     ![그림5](./그림5.png)
+
+### POSIX Signal Handling
+- signal은 이벤트가 발생한 프로세스에 대한 알림
+  - 비동기식 소프트웨어 인터럽트
+  - signal들은 프로세스나 커널에 의해 보내진다.
+- signal handler
+  - 신호가 도착하면 호출되는 함수
+  - sigaction()은 signal handler 와 signal를 매핑한다.
+  - 그러나 편의를 위해, 이 책은 그림 5.6에 설명된 신호를 사용한다.
+    - Sigfunc *signal(into, Sigfunc *func);
+    - void sig_child(in signo);
+    - 예: signal handler(SIGCHLD, sig_child);
+
+### Handling SIGCHLD Signals
+- Zombie state
+  - 좀비 프로세스는 PID, 종료 상태, 리소스 활용률에 대한 정보를 유지한다.
+  - 좀비 프로세스는 커널에서 공간을 차지하며 부모 프로프를 종료한 후 삭제될 것이다.
+- 좀비 프로세스를 청소하기 전에 부모 프로세스를 wait()나 waitpid()를 호출해 정리해야한다.
+- SIGCHLD signal handler ver.1 and output
+    ![그림6](./그림6.png)
+- handling Interrupted System Call in server
+  - 느린 시스템콜은 영원히 차단할 수 있는 시스템함수이다.
+    - accept(), read(), ...
+  - 프로세스가 signal을 감지하면, 느린 시스템 콜로 EINTR 오류를 반환할 수 있다.
+  - 그래서, 우리는 이 문제를 해결해야 한다.
+    ![그림7](./그림7.png)
+  
+### wait and waitpid Functions
+- child 의 좀비 process를 정리한다.
+  ```C
+  #include<sys/wait.h>
+  pid_t wait(int *statioc);
+  pid_t waitpid(pid_t pid, int *statioc, int options);
+  // Both return:process ID if OK, 0 or -1 on error
+  ```
+    - **wait()** 는 존재하는 children 이 종료될때까지 block 한다.
+    - **waitpid()** gives us more control
+      - 어떤 프로세스를 wait시킬 것인가(pid; -1은 첫번째 child)
+      - 옵션의 WNOHANG: 종료된 하위 항목이 없는 경우 차단하지 않음
+- 5개의 연결이 있는 TCP 클라이언트
+  ```c
+  for(i=0; i<5; i++) {
+      sockfd[i] = Socket(AF_INET, SOCK_STREAM, 0);
+      
+      bzero(&servaddr, sizeof(servaddr));
+      servaddr.sin_family = AF_INET;
+      servaddr.sin_port = htons(SERV_PORT);
+      Inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+
+      Connect(sockfd[i], (SA *) &servaddr, sizeof(servaddr));
+  }
+
+  str_cli(stdin, sockfd[0]);    // do it all
+
+  exit(0);
+  ```

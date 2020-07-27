@@ -157,6 +157,8 @@
 - [고층 빌딩](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1328-F)
 - [무한 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1351)
 - [신나는 함수 실행](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9184)
+- [피보나치 수 5](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9184)
+- [1로 만들기 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/12852)
 
 ### 10.2. Graph
 
@@ -180,6 +182,8 @@
 - [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
 - [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
 - [수 정렬하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2750)
+- [베르트랑 공준](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/4948)
+- [감자 농장](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/19536)
 
 ### 10.5. DFS, BFS
 
@@ -188,12 +192,20 @@
     - [순열 - N과 M(5)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15654/15654.py)
     - [중복순열 - N과 M(3)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15651/Main.java)
     - [중복순열 - N과 M(7)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15656/15656.py)
+    - [중복된 수가 있는 수열의 순열 - N과 M(9)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15663/15663.py)
 - 조합(nCr)
     - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
     - [조합 - N과 M(6)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15655/Main.java)
     - [중복 조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
     - [중복 조합 - N과 M(8)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15657/15657.py)
 - [N-Queen](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9663)
+- [단지번호붙이기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2667)
+- [유기농 배추](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1012)
+- [미로 탐색](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2187)
+- [토마토](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7576)
+- [토마토2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7569)
+- [숨바꼭질](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1697)
+- [벽 부수고 이동하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2206)
 
 ### 10.6. Binary Search
 
@@ -221,6 +233,10 @@
 - [후위 표기식2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1935)
 - [요세푸스 문제 0](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11863)
 - [AC](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/5430)
+- [프린터 큐](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1966)
+- [회전하는 큐](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1021)
+- [친구 네트워크](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4195)
+- [공항](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10775)
 
 ## 11. Programmers
 ### 11.1. Brute Force
