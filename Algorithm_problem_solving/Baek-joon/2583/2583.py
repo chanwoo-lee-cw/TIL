@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 # 상하좌우를 저장한다.
@@ -23,6 +24,27 @@ def dfs(y, x):
         dfs(move_y, move_x)
 
 
+def bfs(y, x):
+    # 너비를 저장하기 위한 변수
+    global area_size
+    # 큐
+    queue = deque()
+    queue.append((y, x))
+    # 너비 우선 탐색
+    while queue:
+        y, x = queue.popleft()
+        if paper[y][x]:
+            continue
+        paper[y][x] = True
+        area_size += 1
+        for to_y, to_x in way:
+            move_y = y + to_y
+            move_x = x + to_x
+            if move_y < 0 or move_x < 0 or move_x >= N or move_y >= M or paper[move_y][move_x]:
+                continue
+            queue.append((move_y, move_x))
+
+
 if __name__ == "__main__":
     M, N, K = map(int, input().strip().split())
     paper = [[False] * (M+2) for _ in range(N+2)]
@@ -41,7 +63,7 @@ if __name__ == "__main__":
         for j in range(N):
             if not paper[i][j]:
                 area_size = 0
-                dfs(i, j)
+                bfs(i, j)
                 area.append(area_size)
     # 출력
     area.sort()
