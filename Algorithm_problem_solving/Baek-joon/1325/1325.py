@@ -7,17 +7,22 @@ input = sys.stdin.readline
 def bfs(pos):
     que = deque()
     que.append(pos)
-    this_visited = [False] * (N+1)
+    visited = [False] * (N+1)
     while que:
-        pos = que.popleft()
-        if this_visited[pos]:
+        curr = que.popleft()
+        if visited[curr]:
             continue
-        this_visited[pos] = True
-        for next in link[pos]:
-            if this_visited[next]:
+        elif curr < pos:
+            child_set[pos] = child_set[pos] | child_set[curr]
+            for item in child_set[curr]:
+                visited[item]
+            continue
+        child_set[pos].add(curr)
+        visited[curr] = True
+        for next in link[curr]:
+            if visited[next]:
                 continue
             que.append(next)
-    return this_visited.count(True)
 
 
 if __name__ == "__main__":
@@ -26,11 +31,12 @@ if __name__ == "__main__":
     for _ in range(M):
         A, B = map(int, input().strip().split())
         link[B].append(A)
-    child_num = [0] * (N+1)
+    child_set = [set() for _ in range(N+1)]
+    child_num = [0]*(N+1)
     for i in range(1, N+1):
-        linked = bfs(i)
-        child_num[i] = linked
-    maximum = max(child_num[1:])
+        bfs(i)
+        child_num[i] = len(child_set[i])
+    maximum = max(child_num)
     for i in range(1, N+1):
         if child_num[i] == maximum:
             print(i, end=' ')
