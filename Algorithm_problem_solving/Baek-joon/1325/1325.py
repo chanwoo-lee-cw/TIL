@@ -28,8 +28,3 @@ if __name__ == "__main__":
     for i in range(1, N+1):
         child_num[i] = dfs(i)
     print(child_num)
-        # child_num[i] = len(child_set[i])
-    # maximum = max(child_num)
-    # for i in range(1, N+1):
-    #     if child_num[i] == maximum:
-    #         print(i, end=' ')
