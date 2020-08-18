@@ -159,6 +159,7 @@
 - [신나는 함수 실행](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9184)
 - [피보나치 수 5](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9184)
 - [1로 만들기 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/12852)
+- [가장 긴 바이토닉 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11054)
 
 ### 10.2. Graph
 
@@ -184,6 +185,10 @@
 - [수 정렬하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2750)
 - [베르트랑 공준](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/4948)
 - [감자 농장](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/19536)
+- [곱셈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1629)
+- [행렬 곱셈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2740)
+- [직사각형에서 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1085)
+- [패션왕 신해빈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9375)
 
 ### 10.5. DFS, BFS
 
@@ -206,6 +211,19 @@
 - [토마토2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7569)
 - [숨바꼭질](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1697)
 - [벽 부수고 이동하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2206)
+- [연구소](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14502)
+- [로또](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/6603)
+- [경로 찾기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11403)
+- [영역 구하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2583)
+- [안전 영역](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2468)
+- [알파벳](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1987)
+- [적록색약](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/10026)
+- [이분 그래프](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1707)
+- [케빈 베이컨의 6단계 법칙](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1389)
+- [다리 만들기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2146)
+- [나이트의 이동](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7562)
+- [텀 프로젝트](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9466)
+- [Puyo Puyo](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11559)
 
 ### 10.6. Binary Search
 
@@ -218,6 +236,7 @@
 - [쿼드트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1992)
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2630)
+- [종이의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1780)
 
 ### 10.8. Data Structure
 
@@ -237,6 +256,7 @@
 - [회전하는 큐](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1021)
 - [친구 네트워크](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4195)
 - [공항](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10775)
+- [연결 요소의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11724)
 
 ## 11. Programmers
 ### 11.1. Brute Force
