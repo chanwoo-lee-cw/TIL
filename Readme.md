@@ -200,7 +200,7 @@
     - [중복된 수가 있는 수열의 순열 - N과 M(9)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15663/15663.py)
 - 조합(nCr)
     - [조합 - N과 M(2)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15650/Main.java)
-    - [조합 - N과 M(6)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15655/Main.java)
+    - [조합 - N과 M(6)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15655/15655.py)
     - [중복 조합 - N과 M(4)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15652/15652.py)
     - [중복 조합 - N과 M(8)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15657/15657.py)
 - [N-Queen](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9663)
