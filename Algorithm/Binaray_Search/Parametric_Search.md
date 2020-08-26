@@ -6,7 +6,101 @@
 
 
 
-#### 예시
+### 예시1
+
+https://www.acmicpc.net/problem/2512
+
+파라매트릭 서치의 가장 대표적인 문제, 예산 문제. 줄 수 있는 예산의 최대값을 구하는 문제이다.
+
+가지고 있는 예산이 N이고 줄 수 있는 공평하게 줄 수 있는 예산의 최대값을 구하는 문제, 하지만 돈은 0.1단위로 내려갈 수 없으므로 무조건 정수가 되어야한다. 즉, 최대의 최소값을 구하는 문제이다.
+
+요청된 예산이 120 110 140 150일때, 가지고 있는 예산은 485일때, 최대로 줄 수 있는 예산을 구하는 문제이다.
+
+만약 최대 예산보다 요청된 예산이 적다면 전부 주고, 만약 요청된 예산이 더 크다면 최대 예산 만큼만 주는 문제이다.
+
+
+
+일단 최대로 줄 수 있는 예산을 주어진 예산의 최대값으로, 최소로 줄 수 있는 예산을 0으로 잡고 계산한다.
+
+```python
+min_budget = 0
+max_budget = max(wants)
+```
+
+즉, 예산의 최대값은 이 두 범위의 안에 존재한다.
+
+그러므로 두 범위 안에 존재하는 값을 찾아내는 알고리즘, 이분 탐색을 시작한다.
+
+```python
+while max_budget - min_budget >= 0:
+    mid = (min_budget+max_budget)//2
+    sum = 0
+    for want in wants:
+        sum += want if want <= mid else mid
+        if sum > budget:
+            break
+    ...
+```
+
+하지만, 최대의 최소값을 찾는 문제이다.
+
+```python
+if sum > budget:
+    max_budget = mid - 1
+else:
+    result = mid
+    min_budget = mid + 1
+```
+
+mid 값을 기준으로 각 부서에 줄 수 있는 예산이, 주어진 예산 안에 저장을 한다면
+
+result로 저장한다. 하지만, 예산이 초과되었다면 줄 수 있는 예산을 줄이고 다시 저장한다.
+
+
+
+쭉 반복을 하다보면 결국 주어진 예산으로 줄 수 있는 예산의 최대값이 mid 값으로 저장되게 된다.
+
+
+
+```python
+import sys
+
+input = sys.stdin.readline
+
+
+def parametric(min_budget, max_budget, arr):
+    while max_budget - min_budget >= 0:
+        mid = (min_budget+max_budget)//2
+        sum = 0
+        for want in wants:
+            sum += want if want <= mid else mid
+            if sum > budget:
+                break
+        if sum > budget:
+            max_budget = mid - 1
+        else:
+            result = mid
+            min_budget = mid + 1
+    return result
+
+
+if __name__ == "__main__":
+    N = int(input().strip())
+    wants = list(map(int, input().strip().split()))
+    budget = int(input().strip())
+    wants.sort()
+
+    print(parametric(0, wants[-1], wants))
+
+```
+
+
+
+
+
+
+
+### 예시2
 
 배가 7시간마다 고파지는 사람이 하루를 배부르게 지내기 위한 최소한의 식사횟수는 몇회인지에 구하는 문제가 있다고 가정해보자.**(글에서 주어지는 예시에서는 소수점 첫째자리까지만 계산한다.)**
 
@@ -46,9 +140,13 @@
 
 
 
-#### 시간 복잡도
+### 시간 복잡도
 
 O(logN)
+
+
+
+
 
 
 
