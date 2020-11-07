@@ -75,19 +75,29 @@ RUN apt-get update USER jenkinsv
 ### 2. 만들어진 docker 파일을 build 및 실행
 
    ```bash
-   docker build -t myjenkins:1.01 .
-   # 혹시 빌드된 docker 파일에 이름이 암 붙어 있다면 붙혀준다.
-   docker images
-   docker tag [docker image ID] myjenkins:1.01
-   # docker rum
-   docker run -d -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock --name myjenkins myjenkins:1.01
-   # 젠킨스 내부에 저장되어 있는 password를 꺼내온다.
-   docker exec myjenkins cat /var/jenkins_home/secrets/initialAdminPassword
-   # 젠킨스 내부에 sudo 명령어 설치
-   docker exec -it myjenkins /bin/bash
-   apt-get update
-   apt-get install sudo
-   apt-get update
+# dockerfile
+FROM jenkins/jenkins:lts
+USER root
+# 젠킨스 내부에도 Docerk 설치
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y make
+RUN apt-get autoclean
+RUN apt-get clean
+RUN apt-get autoremove
+RUN apt-get install sudo
+RUN apt-get install sshpass
+RUN apt-get install -y curl
+RUN apt-get -y update
+RUN apt-get -y upgrade
+# sudo 명령어와 sshpass명령어 설치
+RUN curl -fsSL https://get.docker.com/ | sh
+RUN usermod -aG docker jenkins
+# jenkins 안에 Dokcer-compose를 최신 버전으로 설치
+RUN curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+# RUN apt-get update USER jenkinsv
    ```
 
 ### 3. Azure 네트워킹 규칙에 가서 8080 port를 열어준다
