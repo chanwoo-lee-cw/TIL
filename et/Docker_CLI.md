@@ -66,3 +66,34 @@ docker images -f "dangling=true"
 # 즉, <none>:<none> 으로 이루어져 있는 이미지를 말한다
 ```
 
+
+
+## `docker rmi`
+
+```bash
+# 태그가 none인 이미지를 전부 삭제하는 방법
+# djangling 으로 태그가 none인 이미지 전부 출력후 xargs로 삭제
+docker images -f "dangling=true" -q | xargs docker rmi
+docker rmi $(docker images -f "dangling=true" -q)
+docker rmi $(docker images test -f "dangling=true")
+# test라는 이름의 이미지중에 tag가 none 인 이미지 전부 삭제
+docker image prune
+# tag가 none이고 어떤 컨테이너에서도 사용되지 않는 이미지를 전부 지운다.
+```
+
+## `docker prune`
+
+```bash
+docker image prune
+# 어디에도 참조되어 있지 않고, 사용되지도 않고, 태그고 none인 이미지 전부 삭제
+docker image prune -a
+# 위와 같은 조건에서 모든 이미지를 대상으로 동일한 작업 수행
+docker volume prune
+# 사용되지 않는 볼륨을 지운다
+docker cotainer prune
+# 사용되지 않는 컨테이너를 전부 삭제
+docker container prune -f "until=24h"
+# 중지 된지 24시간이 지난 컨테이너만 삭제
+docker system prune
+# 상당의 3개를 전부 포함해서 조건에 맞는 것을 지운다
+```
