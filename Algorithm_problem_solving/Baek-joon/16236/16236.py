@@ -4,14 +4,13 @@ from queue import Queue
 input = sys.stdin.readline
 
 
-class Shark :
+class Shark:
     def __init__(self):
         self.way = [(0, -1), (-1, 0), (1, 0), (0, 1)]
         self.shark_pos = []
         self.shark_size = 2
         self.shark_mv = 0
         self.eatcnt = 0
-        global matrix
 
     def bfs(self):
         visited = [[False] * N for _ in range(N)]
@@ -23,7 +22,7 @@ class Shark :
             if matrix[y][x] > self.shark_size:
                 continue
             elif matrix[y][x] != 0 and matrix[y][x] < self.shark_size:
-                self.what_shark_eat(que ,y, x, mv_cnt)
+                self.what_shark_eat(que, y, x, mv_cnt)
                 del visited
                 return True
             for next in self.way:
