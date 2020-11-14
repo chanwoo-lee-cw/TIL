@@ -43,10 +43,11 @@ class Shark:
             if cnt > mv_cnt:
                 break
             else:
-                if eatable[0] > y:
-                    eatable = (y, x)
-                elif eatable[0] == y and eatable[1] > x:
-                    eatable = (y, x)
+                if matrix[y][x] != 0 :
+                    if eatable[0] > y:
+                        eatable = (y, x)
+                    elif eatable[0] == y and eatable[1] > x:
+                        eatable = (y, x)
         y, x = eatable
         matrix[y][x] = 0
         self.eatcnt += 1
