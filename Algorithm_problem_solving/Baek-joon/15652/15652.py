@@ -9,7 +9,6 @@ def dfs(pos):
         for item in output:
             print(f'{item}', end =' ')
         print()
-        return
     else:
         # 그 본인도 한번은 찾아 줘야 하니 그 본인 부터 검색
         for i in range(pos, N+1):
