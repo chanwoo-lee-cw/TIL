@@ -22,10 +22,8 @@ if __name__=='__main__' :
 
     # 테스트 케이스 중에서 가장 큰 수만큼 미리 전부 계산한다.
     for i in range(2,maxnum + 1) :
-        num1 = dp[i-1]
-        num2 = dp[i-2]
-        dp[i] = [num1[0]+num2[0],num1[1]+num2[1]]
+        dp[i] = [dp[i-1][0]+dp[i-2][0],dp[i-1][1]+dp[i-2][1]]
 
     for i in inputlist :
         resutlt = dp[i]
-        print(str(resutlt[0])+ " " + str(resutlt[1]))
+        print(f"{resutlt[0]} {resutlt[1]}")
