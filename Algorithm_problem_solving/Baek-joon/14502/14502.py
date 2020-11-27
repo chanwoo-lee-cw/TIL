@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/14502
 import sys
 from collections import deque
 import copy
@@ -29,11 +30,12 @@ def bfs(lab, safe, room):
             heapq.heappush(heap, (cnt, date, y, x))
     return safe-3
 
+
 def dfs(pos, wall):
     global maxsafe
     global safe
     if wall == 0:
-        maxsafe = max(maxsafe, bfs(lab ,safe, False))
+        maxsafe = max(maxsafe, bfs(lab, safe, False))
     else:
         for i in range(pos, len(heap)):
             cnt, date, y, x = heap[i]
@@ -45,7 +47,7 @@ def dfs(pos, wall):
             wall += 1
             lab[y][x] = 0
 
-    
+
 N, M = map(int, input().strip().split())
 lab = [[0]*(M) for _ in range(N)]
 que = deque()
@@ -59,16 +61,15 @@ for i in range(N):
         lab[i][j] = insert[j]
         if insert[j] == 2:
             lab[i][j] = 0
-            virus[(i,j)] = True
+            virus[(i, j)] = True
             que.append([i, j, 0])
             safe += 1
         elif insert[j] == 0:
             safe += 1
 heap = []
-room = bfs(lab, safe, True)
+bfs(lab, safe, True)
 
 maxsafe = 0
 dfs(0, wall)
 
 print(maxsafe)
-
