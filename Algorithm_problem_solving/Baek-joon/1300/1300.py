@@ -15,6 +15,7 @@ if __name__ == "__main__":
     # print(temp[k-1])
     start = 1
     end = k
+    result = 0
     while (end - start) >= 0:
         mid = (start + end)//2
         cnt = 0

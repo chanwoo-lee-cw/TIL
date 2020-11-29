@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -33,7 +32,6 @@ public class Main {
     public static int solution(int n, int k, PriorityQueue<Jewel> jewel, int[] back) {
         PriorityQueue<Integer> able_jewel = new PriorityQueue<>();
         int answer = 0;
-        int curr_jewel = 0;
         for (int j = 0; j < k; j++) {
             int curr_back = back[j];
             while (!jewel.isEmpty() && curr_back >= jewel.peek().weight) {
