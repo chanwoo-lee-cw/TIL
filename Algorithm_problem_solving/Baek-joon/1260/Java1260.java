@@ -31,6 +31,7 @@ public class Java1260 {
                 matrix[b].add(a);
             }
         }
+        bf.close();
         for (int i = 1; i < n + 1; i++) {
             Collections.sort(matrix[i]);
         }
