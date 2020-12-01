@@ -11,7 +11,7 @@ https://www.acmicpc.net/problem/1351
 - *A<sub>0</sub> = 1*
 - *A<sub>i </sub>= A<sub>⌊i/P⌋ </sub>+ A<sub>⌊i/Q⌋ </sub>(i ≥ 1)*
 
-*N, P와 Q가 주어질 때, AN을 구하는 프로그램을 작성하시오.*
+*N, P와 Q가 주어질 때, A<sub>N</sub>을 구하는 프로그램을 작성하시오.*
 
 ### 입력
 
