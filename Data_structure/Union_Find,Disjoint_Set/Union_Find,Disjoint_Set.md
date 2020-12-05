@@ -146,7 +146,7 @@ def merge(u, v,level,parent) :
 
 따라서 find의 시간 복잡도는 다음과 같게 변한다.
 
-**find :: O(lgN)**
+**find :: O(logN)**
 
 그다음 union의 시간 복잡도를 보자.
 
@@ -154,7 +154,7 @@ union도 자세히 보면 find에 지배 받음을 알 수 있다.
 
 결국 union의 시간 복잡도도 다음과 같아진다.
 
-**union :: O(lgN)**
+**union :: O(logN)**
 
 사실 아주 정확하게 말하자면 find 연산은 호출할 때마다 수행 시간이 변한다. 따라서 매우 까다로운 시간 복잡도를 가지고 있는데
 
