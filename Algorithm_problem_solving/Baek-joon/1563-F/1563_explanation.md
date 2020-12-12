@@ -243,8 +243,9 @@ def dp(total, day, late, abs):
         return memo[(day, late, abs)]
 
     # day째 되는 날에, 그 이후 날들에 출석하거나 지각하거나,결석하였을 때 개근상을 받을 수 있는 경우의 수에 대한 기록
-    memo[(day, late, abs)] = dp(total, day + 1, late, 0) + dp(total, day + 1, late + 1, 0) + dp(total, day + 1, late,
-                                                                                                abs + 1)
+    memo[(day, late, abs)] = 	dp(total, day + 1, late, 0) \
+    												+ dp(total, day + 1, late + 1, 0) \
+      											+ dp(total, day + 1, late, abs + 1)
     return memo[(day, late, abs)]
 
 
