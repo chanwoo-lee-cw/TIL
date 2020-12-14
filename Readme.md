@@ -162,6 +162,7 @@
 - [가장 긴 바이토닉 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11054)
 - [카드 게임](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11062)
 - [욕심쟁이 판다](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1937)
+- [상자넣기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1965)
 
 ### 10.2. Graph
 
