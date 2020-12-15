@@ -9,10 +9,12 @@
 - [Minimum Vertex Cover.md](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Minimum_Vertex_Cover/Minimum_Vertex_Cover.md)
 - [Dijkstra Algorithm](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Shortest_Path_Problem/Dijkstra_Algorithm/Dijkstra_Algorithm.md)
 - [Minimum Spanning Tree](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Spanning_Tree/Spanning_Tree.md)
+- [A* Algorithm](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/A-Star_Algorithm/A-Star_Algorithm.md)
 
 ### 1.2. Dynamic Programming
 
 - [LIS(Longest Increasing Subsequence)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Dynamic_Programming/LIS(Longest_Increasing_Subsequence).md)
+- [knapsack_problem](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Dynamic_Programming/knapsack_problem.md)
 
 ### 1.3. Binary Search
 
