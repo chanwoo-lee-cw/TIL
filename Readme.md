@@ -131,7 +131,8 @@
 - [가장 긴 증가하는 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11053)
 - [2×n 타일링 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11727)
 - [파도반 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9461)
-- [ 카드 구매하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11052)
+- [카드 구매하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11052)
+- [카드 구매하기2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/16194)
 - [퇴사](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14501)
 - [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
 - [스티커](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9465)
@@ -165,6 +166,7 @@
 - [카드 게임](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11062)
 - [욕심쟁이 판다](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1937)
 - [상자넣기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1965)
+- [돌 게임](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9095)
 
 ### 10.2. Graph
 
@@ -186,7 +188,7 @@
 - [소인수분해](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11653)
 - [최대공약수와 최소공배수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2609)
 - [팩토리얼](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10872)
-- [골드바흐의 추측 ](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
+- [골드바흐의 추측](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9020/9020.cpp)
 - [수 정렬하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2750)
 - [베르트랑 공준](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/4948)
 - [감자 농장](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/19536)
@@ -229,6 +231,7 @@
 - [나이트의 이동](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7562)
 - [텀 프로젝트](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9466)
 - [Puyo Puyo](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11559)
+- [Puyo Puyo](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1759)
 
 ### 10.6. Binary Search
 
