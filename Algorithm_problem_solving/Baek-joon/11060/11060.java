@@ -1,42 +1,34 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bf.readLine());
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		int n = Integer.parseInt(in.nextLine());
+        int[] arr = new int[n + 1];
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        for (int i = 1; i < n + 1; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
 
-		int[] ai = new int[n];
-		int[] dp = new int[n];
+        System.out.println(getMinJump(n, arr));
+    }
 
-		Arrays.fill(dp, -1);
-
-		String[] aList = in.nextLine().split(" ");
-
-		for (int i = 0; i < n; i++) {
-			ai[i] = Integer.parseInt(aList[i]);
-		}
-
-		dp[0] = 0;
-
-		for (int i = 0; i < n - 1; i++) {
-			if (dp[i] == -1)
-				continue;
-			for (int j = 1; j <= ai[i]; j++) {
-				if (i+j >= n) break;
-				if (dp[i + j] == -1)
-					dp[i + j] = dp[i] + 1;
-				else {
-					dp[i+j] = Math.min(dp[i+j], dp[i]+1);
-				}
-
-			}
-		}
-		System.out.print(dp[n-1]);
-//		for (int i=0;i<n;i++) {
-//			System.out.print(ai[i] + " ");
-//		}
-	}
-
+    private static int getMinJump(int n, int[] arr) {
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[1] = 0;
+        for (int i = 1; i <= n; i++) {
+            if (dp[i] == Integer.MAX_VALUE)
+                continue;
+            for (int j = i + 1; j <= n && j <= i + arr[i]; j++) {
+                dp[j] = Math.min(dp[i] + 1, dp[j]);
+            }
+        }
+        return dp[n] == Integer.MAX_VALUE ? -1 : dp[n];
+    }
 }
