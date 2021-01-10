@@ -5,8 +5,9 @@ input = sys.stdin.readline
 
 
 class Shark:
+    way =[(0, -1), (-1, 0), (1, 0), (0, 1)]
+    
     def __init__(self):
-        self.way = [(0, -1), (-1, 0), (1, 0), (0, 1)]
         self.shark_pos = []
         self.shark_size = 2
         self.shark_mv = 0
