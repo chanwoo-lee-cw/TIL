@@ -1,86 +1,83 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
-    private static int[][] way = { { -1, 0 }, { 0, -1 }, { 1, 0 }, { 0, 1 } };
-    private static int n, m;
-    private static int maxSafe;
-    private static ArrayList<int[]> wall = null;
+    public static int n, m;     // 연구소의 좌우 너비를 저장
+    public static int maxSafe = 0;  // 최대 안전 공간의 너비
+    public static int[][] way = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-    public static void main(String[] agrs) throws IOException {
-        Scanner in = new Scanner(System.in);
-        n = in.nextInt();
-        m = in.nextInt();
+    public static void main(String[] args) throws IOException {
+        int[][] lab;     // 연구실 상황
+        int safeArea = 0;   // 현재 안전 공간의 넓이
+        ArrayList<int[]> virus;     // 바이러스의 위치를 저장하는 arr
+        ArrayList<int[]> space ;     // 연구소 내의 빈공간(벽을 세우는 공간)
 
-        int lab[][] = new int[n][m];
-        int safe = 0;
-        int wallCnt = 3;
-        ArrayList<int[]> virus = new ArrayList<int[]>();
-        {
-            BufferedReader bf = null;
-            StringTokenizer st = null;
-            for (int i = 0; i < n; i++) {
-                bf = new BufferedReader(new InputStreamReader(System.in));
-                st = new StringTokenizer(bf.readLine());
-                for (int j = 0; j < n; j++) {
-                    lab[i][j] = Integer.parseInt(st.nextToken());
-                    if (lab[i][j] == 2) {
-                        lab[i][j] = 0;
-                        virus.add(new int[] { i, j, 0 });
-                        safe += 1;
-                    } else if (lab[i][j] == 0) {
-                        safe += 1;
-                        wall.add(new int[] { i, j });
-                    }
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        lab = new int[n][m];   
+        virus = new ArrayList<>();     
+        space = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(bf.readLine());
+            for (int j = 0; j < m; j++) {
+                lab[i][j] = Integer.parseInt(st.nextToken());
+                if (lab[i][j] == 2) {
+                    virus.add(new int[]{i, j});
+                    safeArea++;
+                } else if (lab[i][j] == 0) {
+                    safeArea++;
+                    space.add(new int[]{i, j});
                 }
             }
         }
-        maxSafe = 0;
-        dfs(lab, safe, virus, 0, wallCnt);
+        makeWall(lab, virus, 3, 0, space, safeArea);
         System.out.println(maxSafe);
     }
 
-    private static void dfs(int[][] lab, int safe, ArrayList<int[]> virus, int pos, int wallCnt) {
+    // DFS - 현재 벽을 세우는 경우를 탐색
+    private static void makeWall(int[][] lab, ArrayList<int[]> virus, int wallCnt, int pos, ArrayList<int[]> space, int safeArea) {
         if (wallCnt == 0) {
-            maxSafe = Math.max(maxSafe, bfs(lab, safe, virus));
+            // 더이상 세울 수 있는 벽이 없을 때 탐색
+            maxSafe = Math.max(maxSafe, searchSafeArea(lab, virus, safeArea));
         } else {
-            for (int i = pos; i < wall.size(); i++) {
-                int[] ouput = wall.get(i);
-                lab[ouput[0]][ouput[1]] = 1;
-                wallCnt--;
-                dfs(lab, safe, virus, pos + 1, wallCnt);
-                wallCnt++;
-                lab[ouput[0]][ouput[1]] = 0;
+            for (int i = pos; i < space.size(); i++) {
+                int[] thisMakeWall = space.get(i);
+                lab[thisMakeWall[0]][thisMakeWall[1]] = 1;
+                makeWall(lab, virus, wallCnt - 1, i + 1, space, safeArea - 1);
+                lab[thisMakeWall[0]][thisMakeWall[1]] = 0;
             }
         }
     }
 
-    private static int bfs(int[][] lab, int safe, ArrayList<int[]> virus) {
-        int[][] simul = lab.clone();
-        Queue<int[]> que = new LinkedList<>();
-
-        for (int i = 0; i < virus.size(); i++) {
-            que.add(virus.get(i));
+    // BFS - 바이러스가 퍼졌을 때, 남아있는 안전지대의 수 반환
+    private static int searchSafeArea(int[][] lab, ArrayList<int[]> virus, int safeArea) {
+        boolean[][] visited = new boolean[n][m];    // 방문 여부
+        Queue<int[]> queue = new LinkedList<>(); 
+        for (int[] virusPos : virus) {
+            queue.add(virusPos);
+            visited[virusPos[0]][virusPos[1]] = true;
         }
-        {
-            int[] output = null;
-            while (!que.isEmpty()) {
-                output = que.poll();
-                if (simul[output[0]][output[1]] != 0)
+        int[] curr;
+        int nextY, nextX;
+        while (!queue.isEmpty()) {
+            curr = queue.poll();
+            safeArea--;
+            for (int i = 0; i < 4; i++) {
+                nextY = curr[0] + way[i][0];
+                nextX = curr[1] + way[i][1];
+                if (nextY < 0 || nextY >= n || nextX < 0 || nextX >= m || lab[nextY][nextX] != 0 || visited[nextY][nextX])
                     continue;
-                simul[output[0]][output[1]] = 2;
-                safe -= 1;
-                for (int[] next : way) {
-                    int next_x = output[1] + next[1];
-                    int next_y = output[0] + next[0];
-                    if (next_x < 0 || next_x >= m || next_y < 0 || next_y >= n || simul[next_y][next_x] != 0)
-                        continue;
-                    que.add(new int[] { next_y, next_x, output[2] + 1 });
-                }
+                queue.add(new int[]{nextY, nextX});
+                visited[nextY][nextX] = true;
             }
         }
-        return safe - 3;
+        return safeArea;
     }
 }
