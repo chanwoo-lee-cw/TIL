@@ -119,6 +119,9 @@
 
 - [1로 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1463)
 - [1, 2, 3 더하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9095)
+- [1, 2, 3 더하기 3](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1149)
+- [1, 2, 3 더하기 4](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/15898)
+- [1, 2, 3 더하기 5](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/15990)
 - [피보나치 함수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1003)
 - [2×n 타일링](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11726)
 - [RGB거리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1149)
@@ -129,6 +132,10 @@
 - [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912)
 - [쉬운 계단 수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10844)
 - [가장 긴 증가하는 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11053)
+- [가장 긴 증가하는 부분 수열2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/12015)
+- [가장 긴 증가하는 부분 수열3](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/12738)
+- [가장 긴 증가하는 부분 수열4](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14002)
+- [가장 긴 증가하는 부분 수열5](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14003)
 - [2×n 타일링 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11727)
 - [파도반 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9461)
 - [카드 구매하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11052)
@@ -138,10 +145,12 @@
 - [스티커](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9465)
 - [다리 놓기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1010)
 - [동전 1](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2293)
+- [동전 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2294)
 - [오르막 수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11057-F)
 - [제곱수의 합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1699)
 - [2차원 배열의 합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2167)
 - [LCS](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9251)
+- [LCS2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9252)
 - [이항 계수 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11051)
 - [가장 긴 감소하는 부분 수열](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11722)
 - [합분해](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2225)
@@ -167,6 +176,17 @@
 - [욕심쟁이 판다](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1937)
 - [상자넣기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1965)
 - [돌 게임](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/9095)
+- [이동하기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11048)
+- [점프점프](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11060)
+- [팰린드롬?](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10942)
+- [설탕 배달](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2839)
+- [개근상](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1563-F)
+- [파일 합치기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11066)
+- [평범한 배낭](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12865)
+- [뮤탈리스크](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12869)
+- [크리보드](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11058)
+- [행렬 곱셈 순서](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11049)
+- [BOJ 거리](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12026)
 
 ### 10.2. Graph
 
@@ -174,6 +194,7 @@
 - [돌멩이 제거](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1867)
 - [최소 스패닝 트리](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1197)
 - [녹색 옷 입은 애가 젤다지?](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/4485-F)
+- [줄세우기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2252)
 
 ### 10.3. Greedy Algorithms
 
@@ -181,7 +202,7 @@
 
 ### 10.4. Math
 
-- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912-F)
+- [연속합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1912)
 - [초콜릿 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2163)
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [손익분기점](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1712)
@@ -217,8 +238,13 @@
 - [토마토](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7576)
 - [토마토2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7569)
 - [숨바꼭질](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1697)
+- [숨바꼭질4](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/13913)
 - [벽 부수고 이동하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2206)
+- [벽 부수고 이동하기2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14442)
+- [벽 부수고 이동하기3](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16933)
+- [벽 부수고 이동하기4](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16946)
 - [연구소](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14502)
+- [연구소 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17141)
 - [로또](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/6603)
 - [경로 찾기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11403)
 - [영역 구하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2583)
@@ -231,7 +257,20 @@
 - [나이트의 이동](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7562)
 - [텀 프로젝트](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9466)
 - [Puyo Puyo](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11559)
-- [Puyo Puyo](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1759)
+- [암호 만들기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1759)
+- [이모티콘](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14226)
+- [데스 나이트](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16948)
+- [뱀과 사다리 게임](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16928)
+- [돌 그룹](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12886)
+- [움직이는 미로 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16954)
+- [레이저 통신](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/6087)
+- [소수 경로](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1963)
+- [4연산](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14935)
+- [스타트링크](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/5014)
+- [탈옥](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9376)
+- [말이 되고픈 원숭이](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1600)
+- [아기 상어](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16236)
+- [아기 상어 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17086)
 
 ### 10.6. Binary Search
 
