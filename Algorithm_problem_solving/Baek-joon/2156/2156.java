@@ -1,37 +1,32 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	public static int MAX(int a, int b) {
-		if (a > b) {
-			return a;
-		} else {
-			return b;
-		}
-	}
 
-	public static void main(String args[]) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bf.readLine());
+        int[] wine = new int[n + 1];
+        for (int i = 1; i < n + 1; i++) {
+            wine[i] = Integer.parseInt(bf.readLine());
+        }
+        bf.close();
+        long[] dp = new long[n + 1];
+        System.out.println(getMaxWine(n, wine, dp));
+    }
 
-		Scanner in = new Scanner(System.in);
-		int n = in.nextInt();
-
-		int[] glass = new int[10001];
-		int[] dp = new int[10001];
-
-		for (int i = 1; i <= n; i++) {
-			glass[i] = in.nextInt();
-		}
-		dp[0] = 0;
-		dp[1] = glass[1];
-		if (n >= 2) {
-			dp[2] = MAX(dp[1] + glass[2], dp[0] + glass[2]);
-			for (int i = 3; i <= n; i++) {
-				dp[i] = MAX(dp[i - 1], MAX(dp[i - 3] + glass[i] + glass[i - 1], dp[i - 2] + glass[i]));
-			}
-		}
-
-		System.out.println(dp[n]);
-
-	}
+    private static long getMaxWine(int n, int[] wine, long[] dp) {
+        if (n==1)
+            return wine[1];
+        dp[0] = 0;
+        dp[1] = wine[1];
+        dp[2] = Math.max(dp[1] + wine[2], dp[1]);
+        for (int i = 3; i < n + 1; i++) {
+            dp[i] = Math.max(dp[i - 3] + wine[i - 1] + wine[i], dp[i - 2] + wine[i]);
+            dp[i] = Math.max(dp[i - 1], dp[i]);
+        }
+        return dp[n];
+    }
 
 }
