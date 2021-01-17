@@ -271,6 +271,8 @@
 - [말이 되고픈 원숭이](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1600)
 - [아기 상어](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16236)
 - [아기 상어 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17086)
+- [부분 수열의 합](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1182)
+- [부분 수열의 합 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14225)
 
 ### 10.6. Binary Search
 
