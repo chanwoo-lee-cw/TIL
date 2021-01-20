@@ -99,7 +99,7 @@
 
 ### 9.1. 컴퓨터 보안
 
-- [Ch01-Introduction&_crypto_basics](https://github.com/Alphanewbie/TIL/blob/master/Lecture/컴퓨터_보안/Ch01-Introduction%26_crypto_basics/Introduction&_crypto_basics.md)
+- [Ch01-Introduction&_crypto_basics](https://www.notion.so/ritualforrain/1-6f54b7fbcf4e4291a6586036fb4cba4e)
 
 ### 9.2. 화일구조
 
@@ -108,10 +108,18 @@
 
 ### 9.3. 컴퓨터 네트워크
 
-- [Ch01. UNIX Network Programming.md](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch01/Ch01-Introduction.md)
-- [Ch02. Transport Layer](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch02/Ch02-Transport_Layer.md)
+- [Ch01. UNIX Network Programming.md](https://www.notion.so/ritualforrain/1-48ad50ffbe9d4e5eb59fb0a5d07742df)
+- [Ch02. Transport Layer](https://www.notion.so/ritualforrain/2-5c95d06ec53a443a8b4dfea8cd2c0b4e)
 - [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-Sockets_Introduction.md)
 - [Ch04. Elementary TCP Sockets](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch04/Ch04-Elementary_TCP_Sockets.md)
+
+### 9.4 운영체제
+
+- [운영체제 - 2주차](https://www.notion.so/ritualforrain/2-5ff400efcaff45e2b7d0fb09243c2f30)
+
+### 9.5 프로그램 언어론
+
+- [프로그래밍 언어론 - 1. 개요](https://www.notion.so/ritualforrain/1-9f80cfa572d7444eac1c0b8e31d1dfd8)
 
 ## 10. Baek-joon
 
@@ -273,6 +281,8 @@
 - [아기 상어 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17086)
 - [부분 수열의 합](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1182)
 - [부분 수열의 합 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14225)
+- [연산자 끼워넣기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14888)
+- [연산자 끼워넣기2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15658)
 
 ### 10.6. Binary Search
 
