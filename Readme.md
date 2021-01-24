@@ -1,4 +1,4 @@
-#  TIL
+# TIL
 
 ## 1. Algorithm
 
@@ -39,6 +39,7 @@
 - [퀵정렬(Quick_Sort)](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Sort/Quick_Sort/Quick_Sort.md)
 
 ## 2. Common_sense
+
 - [안드로이드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Android.md)
 - [C와 Java의 차이점](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/C와_Java차이.md)
 - [Garbage Collection](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/Garbage_collection.md)
@@ -117,9 +118,10 @@
 
 - [운영체제 - 2주차](https://www.notion.so/ritualforrain/2-5ff400efcaff45e2b7d0fb09243c2f30)
 
-### 9.5 프로그램 언어론
+### 9.5 프로그래밍 언어론
 
 - [프로그래밍 언어론 - 1. 개요](https://www.notion.so/ritualforrain/1-9f80cfa572d7444eac1c0b8e31d1dfd8)
+- [프로그래밍 언어론 - 3. 이름, 범위, 바인딩](https://www.notion.so/ritualforrain/3-12beb7443da8493b9d5566b6e5275943)
 
 ## 10. Baek-joon
 
