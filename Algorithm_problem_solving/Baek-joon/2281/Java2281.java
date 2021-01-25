@@ -19,7 +19,10 @@ public class Main {
     private static int n;  // 노트의 세로 길이이자, 이름의 갯수
     private static int m;  // 노드의 가로 길이
     private static int[] names; // 적힐 이름의 갯수
-    private static int minPoint;    // 남은 공간들의 제
+    private static int[][] dp; // 적힐 이름의 갯수, dp[length][pos]
+        // dp에서 length를 저장하는 이유. 이 줄에 몇번째로 써졌냐가 아니라
+        // 이름이 어디에 적혀져 있느냐를 기준으로 삼는다.
+        // 행은 고려할 필요가 없는데 저장된 시점에서 어디에 적혀졌느냐가 최소값으로 저장되어 있기 때문이다.
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -28,17 +31,19 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         names = new int[n + 1];
+        dp = new int[n + 1][m + 1];
 
-        minPoint = Integer.MAX_VALUE;
         for (int i = 1; i <= n; i++) {
             names[i] = Integer.parseInt(bf.readLine());
         }
 
+        for (int i = 1; i <= n; i++)
+            Arrays.fill(dp[i], Integer.MAX_VALUE);
+
         st = null;
         bf.close();
 
-        getBlankCnt(1, m+1, 0);
-        System.out.println(minPoint);
+        System.out.println(getBlankCnt(2, 1, names[1]));
     }
 
     /*
@@ -51,16 +56,16 @@ public class Main {
 
     매개변수, 현재 이름의 위치, 현재 칸의 남은 빈칸의 갯수
      */
-    private static void getBlankCnt(int pos, int remain, int point) {
-        if (pos > n) {
-            // 끝에 도착했을
-            minPoint = Math.min(minPoint, point);
-            return;
-        } else {
-            if (remain >= names[pos] + 1)
-                getBlankCnt(pos + 1, remain - (names[pos]+1), point);
-            if(remain != m+1)
-                getBlankCnt(pos, m+1, point + (remain * remain));
+    private static int getBlankCnt(int pos, int line, int length) {
+        if (pos > n)
+            return 0;
+        else if (dp[pos][length] != Integer.MAX_VALUE)
+            return dp[pos][length];
+        // else
+        if (m - length >= names[pos] + 1) {
+            dp[pos][length] = Math.min(dp[pos][length], getBlankCnt(pos + 1, line, length + names[pos] + 1));
         }
+        dp[pos][length] = Math.min(dp[pos][length], getBlankCnt(pos + 1, line + 1, names[pos]) + (m - length) * (m - length));
+        return dp[pos][length];
     }
 }
