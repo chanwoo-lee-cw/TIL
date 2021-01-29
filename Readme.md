@@ -122,6 +122,7 @@
 
 - [프로그래밍 언어론 - 1. 개요](https://www.notion.so/ritualforrain/1-9f80cfa572d7444eac1c0b8e31d1dfd8)
 - [프로그래밍 언어론 - 3. 이름, 범위, 바인딩](https://www.notion.so/ritualforrain/3-12beb7443da8493b9d5566b6e5275943)
+- [프로그래밍 언어론 - 4. 바인딩-범위 규칙](https://www.notion.so/ritualforrain/4-96518ad5235d421288116ce2eac89a01)
 
 ## 10. Baek-joon
 
