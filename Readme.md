@@ -287,6 +287,9 @@
 - [연산자 끼워넣기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14888)
 - [연산자 끼워넣기2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/15658)
 - [두 동전](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16197)
+- [에너지 모으기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16198)
+- [부등호](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2598)
+- [단어 수학](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1339)
 
 ### 10.6. Binary Search
 
