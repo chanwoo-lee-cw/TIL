@@ -272,10 +272,10 @@
 - [이모티콘](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14226)
 - [데스 나이트](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16948)
 - [뱀과 사다리 게임](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16928)
-- [돌 그룹](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12886)
+- [돌 그룹](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12886)
 - [움직이는 미로 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16954)
 - [레이저 통신](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/6087)
-- [소수 경로](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1963)
+- [소수 경로](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1963)
 - [4연산](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14935)
 - [스타트링크](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/5014)
 - [탈옥](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9376)
@@ -290,6 +290,7 @@
 - [에너지 모으기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16198)
 - [부등호](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2598)
 - [단어 수학](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1339)
+- [스도쿠](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2580)
 
 ### 10.6. Binary Search
 
