@@ -8,11 +8,13 @@ public class Main {
     public static int[][] matrix;       // 스토쿠 맵을 저장하는 변수
     public static boolean[][][] check;    // 수가 들어 있는지 체크하기 위한 함수
     public static ArrayList<int[]> blankPostion;    // 빈칸의 위치
+    
 
     public static void main(String[] args) throws IOException {
         matrix = new int[9][9];
         check = new boolean[3][9][10];
         blankPostion = new ArrayList<>();
+        StringBuilder output;       // 출력을 위한 변수
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -25,10 +27,10 @@ public class Main {
                 if (matrix[i][j] == 0) {
                     blankPostion.add(new int[]{i, j});
                 } else {
-                    check[1][i][matrix[i][j]] = true;
-                    check[2][j][matrix[i][j]] = true;
-                    temp = j / 3 + i / 3 * 3;
-                    check[0][temp][matrix[i][j]] = true;
+                    check[1][i][matrix[i][j]] = true;   // 가로줄을 사용한 수를 true로 체크
+                    check[2][j][matrix[i][j]] = true;   // 세로줄을 사용한 수를 true로 체크
+                    temp = j / 3 + i / 3 * 3;           // 각 구역의 번호를 구한다.
+                    check[0][temp][matrix[i][j]] = true;    // 각 구역마다 사용한 숫자를 true로 체크
                 }
             }
         }
@@ -37,7 +39,7 @@ public class Main {
 
         fillBlank(0);
 
-        StringBuilder output = new StringBuilder();     // 출력을 위한 변수
+        output = new StringBuilder();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 output.append(matrix[i][j]);
@@ -46,6 +48,7 @@ public class Main {
             output.append("\n");
         }
         System.out.println(output.toString());
+        output = null;
     }
 
     /*
