@@ -12,11 +12,11 @@
 
 ### vector의 사용
 
-- <vector>  헤더 파일을 추가해야 한다.
+- `<vector>`  헤더 파일을 추가해야 한다.
 
 - std네임스페이스 사용을 해주면 편리하다.
 
-- vector의 선언은 vector<[data type]> [변수 이름]
+- vector의 선언은 `vector<[data type]> [변수 이름]`
 
   ```c++
   #include<vector>
@@ -33,26 +33,30 @@
 
 ### vector의 생성자와 연산자
 
-- **vector v;
-  **- 비어있는 vector v를 생성합니다.
-
+- vector v;
+  
+* 비어있는 vector v를 생성합니다.
   
 
-- **vector v(5);
-  **- 기본값(0)으로 초기화 된 5개의 원소를 가지는 vector v를 생성합니다.
-
+  
+- vector v(5);
+  
+* 기본값(0)으로 초기화 된 5개의 원소를 가지는 vector v를 생성합니다.
   
 
-- **vector v(5, 2);
-  **- 2로 초기화된 5개의 원소를 가지는 vector v를 생성합니다.
-
+  
+- vector v(5, 2);
+  
+- 2로 초기화된 5개의 원소를 가지는 vector v를 생성합니다.
   
 
+  
 - vector<int> v1(5, 2);
-  **vector v2(v1);
-  **- v2는 v1 vector를 복사해서 생성됩니다.
+  **vector v2(v1);**
 
-- vector<int> v1; , vector<int> v2;  가 있고, 내부에 인자들이 있다고 했을때.
+  - v2는 v1 vector를 복사해서 생성됩니다.
+
+- `vector<int> v1;` , `vector<int> v2;`  가 있고, 내부에 인자들이 있다고 했을때.
 
   **연산자 : "==", "!=", "<", ">", "<=", ">=" 로 대소비교 가 가능합니다.**
 
