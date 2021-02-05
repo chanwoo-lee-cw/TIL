@@ -5,7 +5,8 @@ import java.util.*;
 
 //https://www.acmicpc.net/problem/13460
 public class Main {
-    public static int[][] way = new int[][] {{1,0}, {-1,0}, {0,1}, {0,-1}};
+    public static int[][] way = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
     public static void main(String[] args) {
         int n;  // 미로의 세로길이
         int m;  // 미로의 가로길이
@@ -48,20 +49,63 @@ public class Main {
     }
 
     private static int getMinMove(int n, int m, char[][] maze, int[] outHall, Beads beads) {
+        /*
+        일단 베이스로 구슬 하나 빼는 것만 생
+         */
         Queue<BeadMove> queue = new LinkedList<>();
         HashSet<Beads> visited = new HashSet<>();
-        BeadMove curr = new BeadMove(beads.getRedX(), beads.getRedX(), beads.getBlueY(), beads.getBlueX(), 0);
+        BeadMove curr = new BeadMove(beads, 0);
         queue.add(curr);
-        visited.add(curr);
+        visited.add(beads);
 
-        int redY, redX;
-        int blueY, blueX;
-        boolean dontMove;
+        Beads nextBeads;
+        boolean blueMove, redMove;
         while (!queue.isEmpty()) {
             curr = queue.poll();
+            beads = curr.getBeads();
             for (int[] next : way) {
-                dontMove = true;
-                
+
+                while (true) {
+                    /*
+                    경우의 수 2가지, 두 구슬이 붙어 있을때 빨강 파랑 2가지가 붙어 있는 경우.
+                    처리를 어떻게 하느냐가 중요한데...만약 어느 구슬이 어디 있느냐에 따라 방향이 달라짐
+                    */
+                    nextBeads = new Beads(beads.getRedY() + next[0], beads.getRedX() + next[1],
+                            beads.getBlueY() + next[0], beads.getBlueX() + next[1]);
+                    blueMove = nextBeads.blueBeadCanMove(maze);
+                    redMove = nextBeads.redBeadCanMove(maze);
+                    if (blueMove && redMove) {
+                        // 둘다 움직였을때
+                        if(visited.contains(nextBeads))
+                            continue;
+                        visited.add(nextBeads);
+                        queue.add(new BeadMove(nextBeads, curr.move + 1));
+                    } else if (blueMove || redMove) {
+                        // 둘 중 하나만 움직일때, -> 한쪽만 움직이면 다른 한쪽도 다른 돌이 걸리면 break;
+                        if (blueMove) {
+                            if (Beads.checkBeadOverlap(nextBeads.getBlueY(), nextBeads.getBlueX(), beads.getRedY(), beads.getRedX())) {
+                                break;
+                            } else {
+                                if(visited.contains(nextBeads))
+                                    continue;
+                                visited.add(nextBeads);
+                                queue.add(new BeadMove(nextBeads, curr.move + 1));
+                            }
+                        } else {
+                            if (Beads.checkBeadOverlap(nextBeads.getRedY(), nextBeads.getRedX(), beads.getBlueY(), beads.getRedY())) {
+                                break;
+                            } else {
+                                if(visited.contains(nextBeads))
+                                    continue;
+                                visited.add(nextBeads);
+                                queue.add(new BeadMove(nextBeads, curr.move + 1));
+                            }
+                        }
+                    } else {
+                        // 둘 다 못 움직일때
+                        break;
+                    }
+                }
             }
         }
 
@@ -115,6 +159,27 @@ class Beads {
         this.blueX = blueX;
     }
 
+    public static boolean checkBeadOverlap(int firstY, int firstX, int secondY, int secondX) {
+        if (firstY == secondY && firstX == secondX)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean redBeadCanMove(char[][] maze) {
+        if (maze[redY][redX] == '#')
+            return false;
+        else
+            return true;
+    }
+
+    public boolean blueBeadCanMove(char[][] maze) {
+        if (maze[blueY][blueX] == '#')
+            return false;
+        else
+            return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,26 +189,38 @@ class Beads {
     }
 }
 
-class BeadMove extends Beads {
+class BeadMove {
+    Beads beads;
     int move;
 
+    public BeadMove(Beads beads, int move) {
+        this.beads = new Beads();
+        this.move = move;
+    }
+
     public BeadMove(int redY, int redX, int blueY, int blueX, int move) {
-        super(redY, redX, blueY, blueX);
+        beads = new Beads(redY, redX, blueY, blueX);
         this.move = move;
     }
 
-    public int getMove() {
-        return move;
+    public Beads getBeads() {
+        return beads;
     }
 
-    public void setMove(int move) {
-        this.move = move;
+    public void setBeads(Beads beads) {
+        this.beads = beads;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        return super.equals(o);
+        BeadMove beadMove = (BeadMove) o;
+        return move == beadMove.move && beads.equals(beadMove.beads);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(beads, move);
     }
 }
