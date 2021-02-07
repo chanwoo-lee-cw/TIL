@@ -44,6 +44,10 @@ public class Main {
         }
     }
 
+    /*
+    최소의 움직임으로 구슬을 빼내는 수를 반환한다.
+    매개변수 - n,m : 판의 크기 ,maze: 판의 모습, bead: 초기 구슬의 위치
+    */
     private static int getMinMove(int n, int m, char[][] maze, Beads beads) {
         BeadMove curr;      // 현재 구슬의 위치와 채의 현황
         Queue<BeadMove> queue = new LinkedList<>();     // bfs탐색
@@ -109,10 +113,6 @@ public class Main {
 //                        if(!nextPos.checkBeadsOverlap())
 //                            visited.add(nextPos);
 //                    }
-//                    maze[nextPos.getRedY()][nextPos.getRedX()] = 'R';
-//                    maze[nextPos.getBlueY()][nextPos.getBlueX()] = 'B';
-//                    maze[nextPos.getRedY()][nextPos.getRedX()] = '.';
-//                    maze[nextPos.getBlueY()][nextPos.getBlueX()] = '.';
                     if (!blueMove && !redMove) {
                         break;
                     }
@@ -122,7 +122,7 @@ public class Main {
                 if (chekRedOut)
                     return curr.getMove();
                 if (nextPos.checkBeadsOverlap()) {
-                    // 구슬의 위치가 겹치면, 처음 파랑과 빨강의 위치 차이를 계산해 1만큼 벌려준다.
+                    // 구슬의 위치가 겹치면, 처음 파랑과 빨강의 위치 차이를 계산해 거리를 1벌려 겹치지 않게 처리
                     // 서로의 위치 계산
                     int nearY = curr.getBeads().getRedY() - curr.getBeads().getBlueY();   // 음수일때 빨간 구슬이 위
                     int nearX = curr.getBeads().getRedX() - curr.getBeads().getBlueX();   // 음수일때 빨간 구슬이 왼쪽
@@ -207,6 +207,7 @@ class Beads {
         this.blueX = blueX;
     }
 
+    // 구슬이 겹쳤는지 확인하는 매서드
     public boolean checkBeadsOverlap() {
         if (redY == blueY && redX == blueX)
             return true;
