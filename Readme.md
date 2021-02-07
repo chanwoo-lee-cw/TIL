@@ -123,6 +123,7 @@
 - [프로그래밍 언어론 - 1. 개요](https://www.notion.so/ritualforrain/1-9f80cfa572d7444eac1c0b8e31d1dfd8)
 - [프로그래밍 언어론 - 3. 이름, 범위, 바인딩](https://www.notion.so/ritualforrain/3-12beb7443da8493b9d5566b6e5275943)
 - [프로그래밍 언어론 - 4. 바인딩-범위 규칙](https://www.notion.so/ritualforrain/4-96518ad5235d421288116ce2eac89a01)
+- [프로그래밍 언어론 - 4. 아키텍쳐](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 
 ## 10. Baek-joon
 
@@ -291,6 +292,8 @@
 - [부등호](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2598)
 - [단어 수학](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1339)
 - [스도쿠](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2580)
+- [가르침](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1062)
+- [구슬탈출 2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/13460)
 
 ### 10.6. Binary Search
 
