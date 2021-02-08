@@ -91,7 +91,7 @@
 ## 7. Linux
 
 - [Command Line Interface](https://github.com/Alphanewbie/TIL/blob/master/Linux/CLI.md)
-- [VIm editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
+- [Vim editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
 - [WSL(Windows Subsystem for Linux)](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
 ## 8. Typescript
@@ -117,6 +117,7 @@
 ### 9.4 운영체제
 
 - [운영체제 - 2주차](https://www.notion.so/ritualforrain/2-5ff400efcaff45e2b7d0fb09243c2f30)
+- [운영체제 - 3주차(작성중)](https://www.notion.so/ritualforrain/3-ba7cf1506193422c85132ab7d0ac1d8a)
 
 ### 9.5 프로그래밍 언어론
 
