@@ -94,7 +94,9 @@
 - [Vim editor](https://github.com/Alphanewbie/TIL/blob/master/Linux/Vim.md)
 - [WSL(Windows Subsystem for Linux)](https://github.com/Alphanewbie/TIL/blob/master/Linux/WSL/Install_WSL.md)
 
-## 8. Typescript
+## 8. Design Pattern
+
+- [Singleton Pattern](https://www.notion.so/Singleton-Pattern-a68a0d54fae64ac9b4df99288b3ac764)
 
 ## 9. Lecture
 
