@@ -121,6 +121,7 @@
 
 - [운영체제 - 2주차](https://www.notion.so/ritualforrain/2-5ff400efcaff45e2b7d0fb09243c2f30)
 - [운영체제 - 3주차](https://www.notion.so/ritualforrain/3-ba7cf1506193422c85132ab7d0ac1d8a)
+- [운영체제 - 4주차(임시)](https://www.notion.so/ritualforrain/4-d4d5c4aff6334637bf2089e176992e62)
 
 ### 9.5 프로그래밍 언어론
 
