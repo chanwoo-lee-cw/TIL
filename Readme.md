@@ -207,6 +207,7 @@
 - [행렬 곱셈 순서](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11049)
 - [BOJ 거리](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/12026)
 - [가장 큰 정 삼각형](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1915)
+- [BABBA](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9625)
 
 ### 10.2. Graph
 
