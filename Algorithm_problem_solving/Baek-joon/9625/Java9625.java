@@ -7,10 +7,9 @@ public class Main {
         ButtonPush button;
         try {
             BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-            button = new ButtonPush(bf);
+            button = new ButtonPush();
+            button.kPushCntAB(Integer.parseInt(bf.readLine()));
             bf.close();
-
-            button.kPushCntAB();
             button.printCntAB();
         } catch (IOException e) {
             e.printStackTrace();
@@ -18,17 +17,18 @@ public class Main {
     }
 }
 class ButtonPush {
-    private int k;
-    private int cntA;
-    private int cntB;
+    private int cntA;   // A의 갯수
+    private int cntB;   // B의 갯수
 
-    public ButtonPush(BufferedReader bf) throws IOException {
-        this.k = Integer.parseInt(bf.readLine());
+    public ButtonPush() {
         this.cntA = 1;
         this.cntB = 0;
     }
 
-    public void kPushCntAB() {
+    /*
+    K번 버튼을 누른다.
+    */
+    public void kPushCntAB(int k) {
         int currA;
         int currB;
 
@@ -41,6 +41,9 @@ class ButtonPush {
         }
     }
 
+    /*
+    A,B의 갯수를 출력한다.
+    */
     public void printCntAB() {
         System.out.printf("%d %d", cntA, cntB);
     }
