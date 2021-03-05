@@ -211,6 +211,7 @@
 - [파이프옮기기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17070)
 - [Generations of Tribbles](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9507)
 - [구간 합 구하기 5](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11660)
+- [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2631)
 
 ### 10.2. Graph
 
