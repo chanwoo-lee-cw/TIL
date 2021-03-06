@@ -99,6 +99,7 @@
 - [Singleton Pattern](https://www.notion.so/Singleton-Pattern-a68a0d54fae64ac9b4df99288b3ac764)
 - [Factory Method](https://www.notion.so/ritualforrain/Factory-Method-ae30ad4532e64b69a42ef4e78a130216)
 - [Strategy Pattern](https://www.notion.so/ritualforrain/Strategy-Pattern-28b104b399c04f53be8c5492bb03d13c)
+- [Command Pattern](https://www.notion.so/ritualforrain/Command-Pattern-2b7eca6f7c314892a581d6f611061af8)
 
 ## 9. Lecture
 
