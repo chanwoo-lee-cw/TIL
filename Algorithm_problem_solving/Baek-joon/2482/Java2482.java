@@ -11,7 +11,7 @@ public class Main {
         try {
             BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
             coloring = new Coloring(bf);
-            System.out.println(coloring.selectColorCaseNum(0, Integer.parseInt(bf.readLine())));
+            System.out.println(coloring.selectColorCaseNum());
             bf.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -22,35 +22,28 @@ public class Main {
 
 class Coloring {
     private int n;
+    private int k;
     private boolean[] visited;
 
     public Coloring(BufferedReader bf) throws IOException {
         this.n = Integer.parseInt(bf.readLine());
-        this.visited = new boolean[n + 3];
+        this.k = Integer.parseInt(bf.readLine());
     }
 
     /*
-    만약 남은 색의 수가 남은 픽업 수보다 작다면 0 리턴
-    k가 0이 된다면 1리턴
+    dp[n][k] = dp[i - 2][j - 1] + dp[i - 1][j]
+    2간 전에 선택한거 + 이전 칸을 선택한거
      */
-    public int selectColorCaseNum(int pos, int k) {
-        if (k == 0) {
-            return 1;
-        } else if ((n - pos) / 2 < k) {
-            return 0;
+    public long selectColorCaseNum() {
+        long[][] dp = new long[n + 1][k + 1];
+        dp[1][1] = 1;
+        dp[1][0] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= k; j++) {
+                dp[i][j] = (dp[i - 2][j - 1] + dp[i - 1][j]) % 1000000003;
+            }
         }
-        // else
-        int answer = 0;
-        for (int i = pos + 1; i <= n; i++) {
-            if (visited[i - 1])
-                continue;
-            if (i == n && visited[1])
-                continue;
-            visited[i] = true;
-            answer += selectColorCaseNum(i, k - 1);
-            visited[i] = false;
-        }
-        return answer;
+        return dp[n][k];
     }
 
 }
