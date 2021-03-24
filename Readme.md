@@ -213,6 +213,7 @@
 - [Generations of Tribbles](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9507)
 - [구간 합 구하기 5](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11660)
 - [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2631)
+- [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2407)
 
 ### 10.2. Graph
 
