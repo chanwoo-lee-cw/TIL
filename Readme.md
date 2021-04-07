@@ -70,7 +70,6 @@
 - [연결 리스트(Linked List)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Linked_List/LinkedList.md)
 - [우선 순위 큐(PriorityQueue)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/PriorityQueue/PriorityQueue.md)
 - [이진 트리(Binary Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Binary_Tree/Binary_Tree.md)
-- [세그먼트 트리(Segment Tree)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Segment_Tree/Segment_Tree.md)
 - [유니온 파인드(Union Find, Disjoint Set)](https://github.com/Alphanewbie/TIL/blob/master/Data_structure/Union_Find%2CDisjoint_Set/Union_Find%2CDisjoint_Set.md)
 
 ## 5. C++
