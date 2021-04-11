@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-// https://www.acmicpc.net/problem/1509
+// 시간 초과
 public class Main {
     public static void main(String[] args) {
         Palindrome palindrome;
@@ -57,26 +57,27 @@ class Palindrome {
     }
 
     /*
-    sentence를 분할된 문장이 전부 팰린드롬인 최소 갯수를 리턴한다.
+    s부터 시작 되는 문장에서 dfs방식으로 최소로 나눌 수 있는 경우의 수를 리턴
+    */
+    public int getMinPalindrome(int s) {
+        if (s > n)
+            return 0;
+        else if (minSplit[s] != Integer.MAX_VALUE)
+            return minSplit[s];
+        int answer = Integer.MAX_VALUE;
+        for (int i = s; i <= n; i++) {
+            if (dp[s][i])
+                answer = Math.min(answer, getMinPalindrome(i + 1) + 1);
+        }
+        return answer;
+    }
+
+    /*
+    dfs 방식으로 전체 문장에서 가장 적은 수로 나눌 수 있는 팰린드롬을 리턴
     */
     public int getMinPalindrome() {
-        /*
-        만약 j까지에서 나눌 수 있는 최대 팰린드롬의 갯수를 구하고 싶으면
-        즉, dp[0][i], dp[i][j]로 나눈다.
-        dp[i][j]가 팰린드롬이라면 즉, dp[0][j]까지의 최소 팰린드롬의 갯수는 dp[0][i]까지의 최소 팰린드롬 갯수의+1 한것과 같다
-         */
         minSplit = new int[n + 1];
-        Arrays.fill(minSplit, n + 1);
-        // basecase
-        minSplit[0] = 0;
-        // 점화식 - minSplit[j] = min(minSplit[j], minSplit[i - 1] + 1)
-        for (int j = 1; j < n + 1; j++) {
-            for (int i = 1; i <= j; i++) {
-                if (dp[i][j]) {
-                    minSplit[j] = Math.min(minSplit[j], minSplit[i - 1] + 1);
-                }
-            }
-        }
-        return minSplit[n];
+        Arrays.fill(minSplit, Integer.MAX_VALUE);
+        return getMinPalindrome(1);
     }
 }
