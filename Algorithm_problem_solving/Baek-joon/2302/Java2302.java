@@ -52,10 +52,8 @@ class Theater {
 
         // basecase
         dp[1] = 1;
-        if(!vipList[1] && !vipList[2])
-            dp[2] = 2;
-        else
-            dp[2] = 1;
+        dp[2] = (!vipList[1] && !vipList[2]) ? 2 : 1;
+        
         /*
         n번 자리에 사람이 앉는 경우의 수는 그 자리에 예약한 사람이 앉는 경우 dp[n-1]과 같고
         n-1과 n번 자리의 사람이 자리를 바꿔 앉는 경우와 같다.
