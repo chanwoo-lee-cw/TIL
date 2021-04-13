@@ -124,7 +124,7 @@
 - [운영체제 - 3주차](https://www.notion.so/ritualforrain/3-ba7cf1506193422c85132ab7d0ac1d8a)
 - [운영체제 - 4주차](https://www.notion.so/ritualforrain/4-d4d5c4aff6334637bf2089e176992e62)
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
-- [운영체제 - 6주차(뱅커스 알고리즘 작성 완료)](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
+- [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
 
 ### 9.5 프로그래밍 언어론
 
@@ -213,7 +213,8 @@
 - [Generations of Tribbles](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9507)
 - [구간 합 구하기 5](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/11660)
 - [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2631)
-- [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2407)
+- [조합](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2407)
+- [팰린드롬 분할](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1509)
 
 ### 10.2. Graph
 
