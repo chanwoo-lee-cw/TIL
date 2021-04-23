@@ -125,7 +125,7 @@
 - [운영체제 - 4주차](https://www.notion.so/ritualforrain/4-d4d5c4aff6334637bf2089e176992e62)
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 - [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
-- [운영체제 - 7주차(Momory allocatin scheme까지 추가)](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
+- [운영체제 - 7주차(내,외부 단편화까지)](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
 
 ### 9.5 프로그래밍 언어론
 
