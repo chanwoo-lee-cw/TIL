@@ -134,6 +134,9 @@
 - [프로그래밍 언어론 - 4. 바인딩-범위 규칙](https://www.notion.so/ritualforrain/4-96518ad5235d421288116ce2eac89a01)
 - [프로그래밍 언어론 - 4. 아키텍쳐](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 
+### 9.5 분산처리
+- [분산처리 - 1주차(확장성 문제까지)](https://www.notion.so/ritualforrain/1-a0be2641383d4dab8615d84e16ba6097)
+
 ## 10. Baek-joon
 
 ### 10.1. Dynamic Programming
@@ -216,6 +219,7 @@
 - [줄세우기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2631)
 - [조합](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2407)
 - [팰린드롬 분할](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1509)
+- [체스판 다시 칠하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1018)
 
 ### 10.2. Graph
 
