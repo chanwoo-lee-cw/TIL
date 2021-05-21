@@ -135,7 +135,8 @@
 - [프로그래밍 언어론 - 4. 아키텍쳐](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 
 ### 9.5 분산처리
-- [분산처리 - 1주차(Grid Computing Systems까지)](https://www.notion.so/ritualforrain/1-a0be2641383d4dab8615d84e16ba6097)
+
+- [분산처리 - 1주차(Enterprise Application Integration까지)](https://www.notion.so/ritualforrain/1-a0be2641383d4dab8615d84e16ba6097)
 
 ## 10. Baek-joon
 
