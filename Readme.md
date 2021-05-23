@@ -323,6 +323,7 @@
 - [나무 자르기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2805)
 - [숫자 카드 2](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10816)
 - [공유기 설치](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2110)
+- [대칭 차집합](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1269)
 
 ### 10.7. Divide and Conquer
 
