@@ -47,8 +47,9 @@ class Tree:
 
 
 if __name__ == "__main__":
-    testCase = 1
+    testCase = 0
     while True:
+        testCase += 1
         n, m = map(int, input().strip().split())
         if (n, m) == (0, 0):
             break
@@ -66,8 +67,8 @@ if __name__ == "__main__":
         tree = Tree(n, m, con)
         testTreeCase = tree.findTree()
         if testTreeCase == 0:
-            print("No trees.")
+            print(f'Case {testCase}: No trees.')
         elif testTreeCase == 1:
-            print("There is one tree.")
+            print(f'Case {testCase}: There is one tree.')
         else:
-            print(f'A forest of {testTreeCase} trees.')
+            print(f'Case {testCase}: A forest of {testTreeCase} trees.')
