@@ -352,6 +352,10 @@
 - [공항](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10775)
 - [연결 요소의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11724)
 
+### 10.9. Simulation
+
+- [#include <Google I/O.h>](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/17136)
+
 ## 11. Programmers
 
 ### 11.1. Brute Force
