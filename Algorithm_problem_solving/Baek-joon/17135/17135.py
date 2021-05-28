@@ -9,7 +9,7 @@ input = stdin.readline
 모든 칸에서 제거할 수 있는 병사의 수를 카운트 한다.
 """
 
-way = ((0, -1), (0, 1), (-1, 0))
+way = ((0, -1), (-1, 0), (0, 1))
 
 
 class DefenceGame:
@@ -56,18 +56,19 @@ class DefenceGame:
                     continue
                 queue.put((nextY, nextX, curr[2] + 1))
                 visited[nextY][nextX] = True
+        return -1, -1
 
     """
     게임을 하여 모든 병사가 사라질 때까지 최대 몇명을 없앨 수 있는지 센다.
     """
     def runGame(self):
         self.archorPos([], 0)
-        maxKill = 0     # 최대로 제거 할 수 있는 병사 수
+        maxKill = 0  # 최대로 제거 할 수 있는 병사 수
         for archors in self.archorList:
-            kill = 0    # 현재의 궁수 위치에서 제거할 수 있는 병사 수
+            kill = 0  # 현재의 궁수 위치에서 제거할 수 있는 병사 수
             self.board = copy.deepcopy(board)
-            target = set()      # 각 궁수가 제거하는 병사
             while True:
+                target = set()  # 각 궁수가 제거하는 병사
                 for archor in archors:
                     temp = self.targeting(archor)
                     if temp != (-1, -1):
