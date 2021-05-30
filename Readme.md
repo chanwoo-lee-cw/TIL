@@ -99,6 +99,7 @@
 - [Factory Method](https://www.notion.so/ritualforrain/Factory-Method-ae30ad4532e64b69a42ef4e78a130216)
 - [Strategy Pattern](https://www.notion.so/ritualforrain/Strategy-Pattern-28b104b399c04f53be8c5492bb03d13c)
 - [Command Pattern](https://www.notion.so/ritualforrain/Command-Pattern-2b7eca6f7c314892a581d6f611061af8)
+- [Decorator Pattern](https://www.notion.so/ritualforrain/Decorator-e402e76662114b28b0486523b2f5ff0e)
 
 ## 9. Lecture
 
