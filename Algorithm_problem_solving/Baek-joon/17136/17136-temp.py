@@ -4,7 +4,7 @@ import heapq
 input = stdin.readline
 PAPER_SIZE = 11
 
-
+# dfs로 조사하기 전에 저장
 def minNeedPaper(paper):
     """
     1*1, 2*2, ..., 5*5 까지 1을 모두 가리는데 필요한 종이의 갯수
