@@ -138,7 +138,7 @@
 ### 9.5 분산처리
 
 - [분산처리 - 1주차](https://www.notion.so/ritualforrain/1-a0be2641383d4dab8615d84e16ba6097)
-- [분산처리 - 2주차(Centralized Architectures까지)](https://www.notion.so/ritualforrain/2-fd04349c05d241698b3703c5bd5acf3a)
+- [분산처리 - 2주차](https://www.notion.so/ritualforrain/2-fd04349c05d241698b3703c5bd5acf3a)
 
 ## 10. Baek-joon
 
