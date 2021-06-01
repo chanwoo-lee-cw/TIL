@@ -358,6 +358,7 @@
 ### 10.9. Simulation
 
 - [#include <Google I/O.h>](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/17136)
+- [오늘도 졌다](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14582)
 
 ## 11. Programmers
 
