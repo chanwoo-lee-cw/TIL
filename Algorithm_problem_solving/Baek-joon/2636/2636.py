@@ -12,6 +12,8 @@ WAY = ((-1, 0), (1, 0), (0, -1), (0, 1))
 매개변수 : 세로, 가로, 치즈의 모양
 리턴 : (치즈가 다 녹을때까지 걸리는 시간, 마지막 남은 치즈의 크기)
 """
+
+
 def meltingChease(row, col, cheese):
     timeForMelting = [[-1] * col for _ in range(row)]  # 해당 칸에 있는 치즈가 녹는데 걸리는 시간
     que = []
@@ -55,5 +57,4 @@ if __name__ == "__main__":
         for j in range(col):
             cheese[i][j] = inputLine[j]
     spendTime, lastCheese = meltingChease(row, col, cheese)
-    print(spendTime)
-    print(lastCheese)
+    print(f'{spendTime}\n{lastCheese}')
