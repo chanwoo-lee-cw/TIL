@@ -142,7 +142,7 @@
 
 ### 9.6 인공지능
 
-- [인공지능 - 2. Intelligent Agents(에이전트 유형 작성중)](https://www.notion.so/ritualforrain/2-Intelligent-Agents-d1685e1dbefb452f9816f827ee76ade3)
+- [인공지능 - 2. Intelligent Agents](https://www.notion.so/ritualforrain/2-Intelligent-Agents-d1685e1dbefb452f9816f827ee76ade3)
 
 ## 10. Baek-joon
 
