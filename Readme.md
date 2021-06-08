@@ -326,6 +326,7 @@
 - [캐슬 디펜스](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/17135)
 - [치즈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2636)
 - [미로 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14923)
+- [A → B](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16953)
 
 ### 10.6. Binary Search
 
