@@ -3,7 +3,8 @@ from queue import Queue
 
 input = stdin.readline
 
-
+# 트리의 정의
+# 사이클이 없이 모든 정점이 연결되어 있는 그래프
 class Tree:
     def __init__(self, n, m, con):
         self.n = n
