@@ -3,7 +3,7 @@ from queue import Queue
 
 input = stdin.readline
 
-WAY = ((-1, 0), (1, 0), (0, -1), (0, 1))
+WAY = ((1, 0), (0, 1), (0, -1), (-1, 0))
 
 
 def findOpenGate(board, visited, i, j):
@@ -11,25 +11,21 @@ def findOpenGate(board, visited, i, j):
     unionSum = board[i][j]
     que = Queue()
     visited[i][j] = True
-    for nextMv in WAY:
+    for nextMv in WAY[:2]:
         nextY = i + nextMv[0]
         nextX = j + nextMv[1]
         if nextY < 0 or nextX < 0 or nextX >= N or nextY >= N:
             continue
         elif visited[nextY][nextX]:
             continue
+        if not L <= abs(board[nextY][nextX] - board[i][j]) <= R:
+            continue
         que.put((nextY, nextX, board[i][j]))
+        visited[nextY][nextX] = True
     while not que.empty():
         curr = que.get()
-        if visited[curr[0]][curr[1]]:
-            continue
-        if not L <= abs(curr[2] - board[curr[0]][curr[1]]) <= R:
-            continue
-        # else
-        print(f'{curr[2]} - {board[curr[0]][curr[1]]} = {abs(curr[2] - board[curr[0]][curr[1]])}')
         union.append((curr[0], curr[1]))
         unionSum += board[curr[0]][curr[1]]
-        visited[curr[0]][curr[1]] = True
         for nextMv in WAY:
             nextY = curr[0] + nextMv[0]
             nextX = curr[1] + nextMv[1]
@@ -37,7 +33,10 @@ def findOpenGate(board, visited, i, j):
                 continue
             elif visited[nextY][nextX]:
                 continue
+            if not L <= abs(board[nextY][nextX] - board[curr[0]][curr[1]]) <= R:
+                continue
             que.put((nextY, nextX, board[curr[0]][curr[1]]))
+            visited[nextY][nextX] = True
     for item in union:
         board[item[0]][item[1]] = unionSum // len(union)
     return True if len(union) > 1 else False
@@ -60,7 +59,7 @@ if __name__ == "__main__":
             for j in range(N):
                 if visited[i][j]:
                     continue
-                isMoving = isMoving or findOpenGate(board, visited, i, j)
+                isMoving = findOpenGate(board, visited, i, j) or isMoving   # 무조건 isMoving이 뒤로 와야한다. 먼저 나온게 True라면 뒤를 검사하지 않기 때문
         if isMoving:
             moveCnt += 1
         else:
