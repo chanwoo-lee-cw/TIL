@@ -364,6 +364,7 @@
 - [연결 요소의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11724)
 - [키로거](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/5397)
 - [콘서트](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/16466)
+- [사이클 게임](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/20040)
 
 ### 10.9. Simulation
 
