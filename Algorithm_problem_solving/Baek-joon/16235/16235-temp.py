@@ -5,14 +5,16 @@ input = sys.stdin.readline
 
 spred = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
 
-
+"""
+해당 나무 리스트에 한 해에 처리되는 경우
+"""
 def oneYearAgo(trees, arc):
-    prduction = {}
+    prduction = {}      # 번식 할 나무의 수
     for item in trees:
         # 봄
-        area = trees[item]
-        reIn = []
-        dieTree = 0
+        area = trees[item]  # (item[0], item[1]) 자리에 심어 있는 나무 리스트
+        reIn = []   # 영양을 빨아드린 나무
+        dieTree = 0     # 죽은 나무 -> 즉 다시 영양분으로 바"뀔 수치
         while area:
             tree = heapq.heappop(area)
             if arc[item[0]][item[1]] >= tree:
