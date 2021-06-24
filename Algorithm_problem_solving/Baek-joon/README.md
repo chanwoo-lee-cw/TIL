@@ -44,6 +44,7 @@
 - [고층 빌딩](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1328-F)
 - [무한 수열](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/1351)
 - [신나는 함수 실행](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/9184)
+- [약수의 합](https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/17425)
 
 
 
