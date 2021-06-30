@@ -5,7 +5,8 @@ input = stdin.readline
 
 """
 dfs로 nCr의 조합을 뽑는다.
-만약 모든 배열의 합이 S라면 answer을 하나 더한다.
+만약 모든 배열의 합이 S라면 answer을 더한다.
+매개볏수 : arr의 부분 집합, r 부분 집합의 크기, pos 조랍을 위한 위치 저장
 """
 def dfs(output, r, pos):
     answer = 0  # 리턴될 값
