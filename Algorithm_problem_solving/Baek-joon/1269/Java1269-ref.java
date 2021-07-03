@@ -6,6 +6,9 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+    """
+    이진 탐색으로 원하는 수가 배열 안에 존재 하는지 찾는다.
+    """
     public static boolean binarySearch(int[] arr, int s, int e, int find) {
         int m;
         while (e > s) {
@@ -22,10 +25,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int aSize, bSize;
-        int[] aSet;
-        int[] bSet;
-        int answer = 0;
+        int aSize, bSize;   // a와 b의 크기
+        int[] aSet;     // a 배열
+        int[] bSet;     // b 배열
+        int answer = 0;     // 출력할 값
         try {
             BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
             StringTokenizer st = new StringTokenizer(bf.readLine());
@@ -42,6 +45,7 @@ public class Main {
                 bSet[i] = Integer.parseInt(st.nextToken());
             }
 
+            // 이진 탐색을 위한 정렬
             Arrays.sort(aSet);
             Arrays.sort(bSet);
 
