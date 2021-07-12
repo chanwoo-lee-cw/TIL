@@ -6,6 +6,9 @@ input = stdin.readline
 
 output = []
 
+"""
+어떤 수가 사용됬는지를 이진수로 변환 한다.
+"""
 def getBinary(used):
     answer = 0
     for i in range(10):
@@ -15,7 +18,7 @@ def getBinary(used):
 
 
 def dfs(dp, lastNum, digit, used):
-    usedBinary = getBinary(used)
+    usedBinary = getBinary(used)    # 사용된 수들을 이진수로 변환한다.
     if digit == N:
         if usedBinary == 1023:
             print(output)
@@ -23,9 +26,9 @@ def dfs(dp, lastNum, digit, used):
         else:
             return 0
     answer = 0
-    output.append(lastNum)
+    output.append(lastNum)      
     if lastNum == 0:
-        used[1] += 1
+        used[1] += 1        # 어떤 수가 몇번 사용됬는지 계산하기 위해서 1을 더한다.
         answer = answer + dfs(dp, 1, digit + 1, used)
         used[1] -= 1
     elif lastNum == 9:
@@ -33,9 +36,11 @@ def dfs(dp, lastNum, digit, used):
         answer = answer + dfs(dp, 8, digit + 1, used)
         used[8] -= 1
     else:
+        # 커지는 경우
         used[lastNum + 1] += 1
         answer = answer + dfs(dp, lastNum + 1, digit + 1, used)
         used[lastNum + 1] -= 1
+        # 작아지는 경우
         used[lastNum - 1] += 1
         answer = answer + dfs(dp, lastNum - 1, digit + 1, used)
         used[lastNum - 1] -= 1
