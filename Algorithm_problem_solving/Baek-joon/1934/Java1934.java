@@ -28,6 +28,9 @@ public class Main {
 }
 
 class GcdAndLcm {
+    /*
+    유클리드 호제법을 이용해 a,b의 최대 공약수를 찾아낸다.
+    */
     public int gcd(int a, int b) {
         int div = 0;
         if (b > a) {
@@ -48,6 +51,9 @@ class GcdAndLcm {
         return div;
     }
 
+    /*
+    최대 공약수를 이용해 최소 공배수를 찾아낸다.
+    */
     public int lcm(int a, int b) {
         return a * b / gcd(a, b);
     }
