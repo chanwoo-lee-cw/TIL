@@ -11,14 +11,15 @@ def cypherNumCase(cypher):
     dp[1] = 1 if cypher[-1] != '0' else 0
     # 점화식
     for i in range(2, cypherLen + 1):
-        if cypher[-i] == '0' and cypher[-(i - 1)] == '0':
-            return 0
+        dp[i] = dp[i - 1];
+        if cypher[-i] == '0':
+            dp[i] = 0
+            if cypher[-(i - 1)] == '0':
+                return 0
         if cypher[-i] == '1':
             dp[i] += dp[i - 2]
         elif cypher[-i] == '2' and int(cypher[-(i - 1)]) <= 6:
             dp[i] += dp[i - 2]
-        if cypher[-(i - 1)] != '0':
-            dp[i] += dp[i - 1]
         dp[i] %= 1000000
     return dp[cypherLen]
 
