@@ -3,7 +3,10 @@ from sys import stdin
 
 input = stdin.readline
 
-
+"""
+dp[n] - 3*n을 1*2의 벽돌로 채우는 경우의 수
+재귀를 통해 dp배열을 채운다.
+"""
 def need_n_tile(dp, n):
     if dp[n] != 0:
         return dp[n]
@@ -22,5 +25,5 @@ def need_n_tile(dp, n):
 
 if __name__ == "__main__":
     N = int(input().strip())
-    dp = [0] * (N + 1)
+    dp = [0] * (N + 1)  # dp[n] : n개의 줄
     print(need_n_tile(dp, N))
