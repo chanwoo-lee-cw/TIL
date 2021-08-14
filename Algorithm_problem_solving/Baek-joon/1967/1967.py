@@ -17,15 +17,24 @@ class Node:
     def AddChild(self, child, weight):
         self.child.append((child, weight))
 
+    """
+    재귀를 통해 해당 노드에서 가장 긴 다리의 길이를 리턴한다.
+    """
     def getLongestLeg(self):
         if not self.child:
+            # 만약 단말 노드인 경우 
             return 0
+        global maxdiameter      # 가장 긴 지름의 길이를 저장할 변수
         for item in self.child:
             self.legs.append(tree[item[0]].getLongestLeg() + item[1])
+        
         self.legs.sort(reverse=True)
-        global maxdiameter
         if len(self.legs) >= 2:
+            # 다리가 여러개인 경우 지름을 구한다.
             maxdiameter = max(maxdiameter, self.legs[0] + self.legs[1])
+        else:
+            # 다리가 한개인 경우
+            maxdiameter = max(maxdiameter, self.legs[0])
         return self.legs[0]
 
 
