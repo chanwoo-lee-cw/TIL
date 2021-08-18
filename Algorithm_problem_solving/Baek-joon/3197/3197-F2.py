@@ -10,7 +10,7 @@ way = ((-1, 0), (1, 0), (0, -1), (0, 1))
 getMeltTime(r: 호수의 세로 크기, c: 호수의 사로 크기,, meltTime: 호수의 각 부분이 녹는 시간, que: Queue())
 return 각 얼음이 녹는데 걸리는 시간, 마지막 얼음이 녹는 시간
 """
-def getMeltTime(r: int, c: int, meltTime: list, que: Queue()) -> (list, int):
+def getMeltTime(r: int, c: int, meltTime: list, que: Queue()) -> tuple:
     maxMeltTime = 0
     while not que.empty():
         curr = que.get()
@@ -31,7 +31,7 @@ def getMeltTime(r: int, c: int, meltTime: list, que: Queue()) -> (list, int):
 swanCanMeet(r: 호수의 세로 크기, c: 호수의 가로 크기, start: 한 백조의 위치, dest:다른 백조의 위치, meltTime:각 얼음이 녹는데 걸리는 시간, time:이동할 수 있는 시간)
 return 각 얼음이 녹는데 걸리는 시간, 마지막 얼음이 녹는 시간
 """
-def swanCanMeet(r: int, c: int, start:tuple, dest:tuple, meltTime:list, time:int):
+def swanCanMeet(r: int, c: int, start:tuple, dest:tuple, meltTime:list, time:int) -> int:
     que = Queue()
     visited = [[False] * C for _ in range(R)]
     que.put(start)
@@ -55,7 +55,7 @@ def swanCanMeet(r: int, c: int, start:tuple, dest:tuple, meltTime:list, time:int
 """
 바이너리 서치로 최소 시간을 찾는다.
 """
-def findMinTime(r: int, c: int, swanPos:list, meltTime:list, maxMeltTime:int):
+def findMinTime(r: int, c: int, swanPos:list, meltTime:list, maxMeltTime:int) -> int:
     s = 0
     e = maxMeltTime
     answer = maxMeltTime
