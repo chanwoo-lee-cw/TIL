@@ -7,9 +7,9 @@ input = stdin.readline
 단어가 그룹 단어라면 True, 아니면 False 리턴
 line - 체크하고 싶은 단어
 """
-def isGroupSentence(line):
+def isGroupSentence(line : str) -> bool:
     pre = '-'
-    alphaSet = set()
+    alphaSet : set = set()
     for alphabet in line:
         if alphabet == pre or alphabet not in alphaSet:
             pre = alphabet
