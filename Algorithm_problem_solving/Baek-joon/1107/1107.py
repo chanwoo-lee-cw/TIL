@@ -6,7 +6,7 @@ input = stdin.readline
 
 def dfs(n: int, numList: list, nLen: int, output: list):
     answer: int = float("inf")
-    if len(output) == nLen:
+    if len(output) >= nLen:
         temp: int = int(''.join(output))
         return abs(temp - int(n)) + len(str(temp))
     else:
@@ -26,11 +26,8 @@ def solution(n: int, outOrder: list):
         if num in outOrder:
             continue
         numList.append(str(num))
-    for i in range(nLen - 1):
-        output.append('0')
-        answer = min(answer, dfs(n, numList, nLen, output))
-    output = []
-    answer = min(answer, dfs(n, numList, nLen, output))
+    for i in range(1, nLen + 2):
+        answer = min(answer, dfs(n, numList, i, output))
     return answer
 
 
