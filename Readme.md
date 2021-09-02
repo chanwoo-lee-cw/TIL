@@ -228,6 +228,8 @@
 - [조합](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2407)
 - [팰린드롬 분할](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1509)
 - [체스판 다시 칠하기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1018)
+- [징검다리 건너기 (small)](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/22869)
+- [징검다리 건너기 (large)](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/22871)
 
 ### 10.2. Graph
 
@@ -258,6 +260,7 @@
 - [행렬 곱셈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2740)
 - [직사각형에서 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1085)
 - [패션왕 신해빈](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9375)
+- [통계학](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2108)
 
 ### 10.5. DFS, BFS
 
@@ -328,6 +331,7 @@
 - [미로 탈출](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/14923)
 - [A → B](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16953)
 - [늑대와 양](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/16956)
+- [알고스팟](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1261)
 
 ### 10.6. Binary Search
 
@@ -342,6 +346,7 @@
 - [Z](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1074)
 - [색종이 만들기](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/2630)
 - [종이의 개수](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1780)
+- [서버실](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/17245)
 
 ### 10.8. Data Structure
 
@@ -370,6 +375,9 @@
 
 - [#include <Google I/O.h>](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/17136)
 - [오늘도 졌다](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/14582)
+- [암호](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1718)
+- [소트인사이드](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1427)
+- [알바생 강호](https://github.com/Alphanewbie/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1758)
 
 ## 11. Programmers
 
