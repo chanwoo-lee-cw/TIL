@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-//https://www.acmicpc.net/submit/2529/25661005
+//https://www.acmicpc.net/problem/2529
 public class Main {
     public static int k;    // 수의 배열 k
     public static char[] signs; // 부등호의 갯수
