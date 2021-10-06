@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2630
 import sys
 
 input = sys.stdin.readline
@@ -10,7 +11,7 @@ class PaperCut:
         self.blueCnt = 0
         self.whiteCnt = 0
 
-    def dfs(self, ys, ye, xs, xe):
+    def dfs(self, ys: int, ye: int, xs: int, xe: int):
         if ye - ys <= 1:
             return self.paper[ys][xs]
         thisArea = []
