@@ -10,12 +10,12 @@ if __name__ == "__main__":
         s.append(input().strip())
     cnt = 0
     while s:
-        if ord(s[0]) < ord(s[-1]):
+        if ord(s[0]) > ord(s[-1]):
             # 앞의 글자가 사전순으로 빠르면 앞에서 pop
-            t.append(s.pop(0))
+            t.append(s.pop(-1))
         else:
             # 뒤의 글자가 사전순으로 빠르면 뒤에서 pop
-            t.append(s.pop(-1))
+            t.append(s.pop(0))
         cnt += 1
         if cnt == 80:
             # 문자가 80개가 될 때마다 '\n' 추가
