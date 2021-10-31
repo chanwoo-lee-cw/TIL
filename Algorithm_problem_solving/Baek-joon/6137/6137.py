@@ -18,25 +18,30 @@ if __name__ == "__main__":
             t.append(s.pop(0))
         else:
             # 앞 뒤의 문자가 같은 경우
-            if len(s) == 1:
-                # 만약 남은 문자가 1개라면 그냥 그거 넣는다.
+            start = 0
+            end = len(s) - 1
+            flag = True
+            while start < end:
+                # 안쪽으로 하나씩 줄여가며, 먼저 사전순으로 작은게 있으면 1개만 팝한다.
+                # 여러개 팝히면 CAABC 같은 경우 
+                if end > 0:
+                    end -= 1
+                if start < len(s) - 2:
+                    start += 1
+                if s[start] < s[end]:
+                    flag = True
+                    break
+                elif s[start] > s[end]:
+                    flag = False
+                    break
+            # 따로 빼준 이유, 끝까지 모두 같은 경우 그냥 아무데서나 빼줘야 하기 때문
+            if flag:
                 t.append(s.pop(0))
-            for i in range(1, len(s)):
-                if s[i] == s[-(i+1)]:
-                    continue
-                elif s[i] > s[-(i+1)]:
-                    for j in range(i):
-                        t.append(s.pop(-1))
-                elif s[i] < s[-(i+1)]:
-                    for j in range(i):
-                        t.append(s.pop(0))
-                break
-            # 앞에서 두번째와 뒤에서 두번째의 문자를 비교한다.
+            else:
+                t.append(s.pop(-1))
 
+    for i in range(n):
+        if i != 0 and i % 80 == 0:
+            print()
+        print(t[i], end='')
 
-        cnt += 1
-        if cnt == 80:
-            # 문자가 80개가 될 때마다 '\n' 추가
-            t.append("\n")
-            cnt = 0
-    print(''.join(t))
