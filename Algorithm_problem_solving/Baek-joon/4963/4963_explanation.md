@@ -1,6 +1,6 @@
 ## 백준 4936번 풀이
 
-https://www.acmicpc.net/problem/4936
+https://www.acmicpc.net/problem/4963
 
 ### 문제
 
