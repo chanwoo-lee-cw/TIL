@@ -1,10 +1,13 @@
 class Cache:
     def __init__(self, n):
-        self.caheSize = n
-        self.caches = []
-        self.usedCahes = set()
+        self.caheSize = n   # 캐시의 사이즈
+        self.caches = []    # 캐시에 저장된 목록   
+        self.usedCahes = set()      # 현재 캐시에 저장되어 있는지 확인
 
     def add_cache(self, this_cache):
+        """
+        return boolean : False가 리턴된다면 Cache miss 발생, True가 리턴된다면 Cache Hit발생
+        """
         this_cache = this_cache.upper()
         answer = False
         if this_cache in self.usedCahes:
