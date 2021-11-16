@@ -40,7 +40,7 @@
 각각 왼쪽과 오른쪽에 각각 다른 경우의 수를 세기 위해
 
 ```c++
-	int right;
+    int right;
     int left;
     int downleft;
     int downright;
