@@ -129,7 +129,7 @@
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 - [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
 - [운영체제 - 7주차](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
-- [운영체제 - 8주차(7주차 복습까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
+- [운영체제 - 8주차(Demand Paging(2) 까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
 
 ### 9.5 프로그래밍 언어론
 
