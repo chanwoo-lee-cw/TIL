@@ -86,6 +86,7 @@
 - [Python의 우선순위 큐](https://github.com/Alphanewbie/TIL/blob/master/python/Python의_우선순위_큐.md)
 - [언더 스코어](https://github.com/Alphanewbie/TIL/blob/master/python/언더_스코어.md)
 - [@wrap](https://ritualforrain.notion.site/wraps-b14599e251104542aa3d3ed35cfb83ca)
+- [map함수](https://ritualforrain.notion.site/Python-map-4bdd2454889e4ed18207464869f49101)
 - [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
 ## 7. Linux
