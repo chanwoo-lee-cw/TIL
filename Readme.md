@@ -85,6 +85,9 @@
 - [List,Tuple,Dictionary](https://github.com/Alphanewbie/TIL/blob/master/python/List%2CTuple%2CDictionary.md)
 - [Python의 우선순위 큐](https://github.com/Alphanewbie/TIL/blob/master/python/Python의_우선순위_큐.md)
 - [언더 스코어](https://github.com/Alphanewbie/TIL/blob/master/python/언더_스코어.md)
+- [@wrap](https://ritualforrain.notion.site/wraps-b14599e251104542aa3d3ed35cfb83ca)
+- [map함수, lambda, filter](https://ritualforrain.notion.site/Python-map-4bdd2454889e4ed18207464869f49101)
+- [데코레이터](https://ritualforrain.notion.site/Decorator-06c462431c0f4a73aff3d4b4d81b7340)
 - [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
 ## 7. Linux
@@ -127,7 +130,7 @@
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 - [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
 - [운영체제 - 7주차](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
-- [운영체제 - 8주차(7주차 복습까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
+- [운영체제 - 8주차(Demand Paging(7) 까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
 
 ### 9.5 프로그래밍 언어론
 
