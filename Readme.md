@@ -89,6 +89,8 @@
 - [map함수, lambda, filter](https://ritualforrain.notion.site/Python-map-4bdd2454889e4ed18207464869f49101)
 - [데코레이터](https://ritualforrain.notion.site/Decorator-06c462431c0f4a73aff3d4b4d81b7340)
 - [Metaclass, ABClass](https://ritualforrain.notion.site/Metaclass-ABCMeta-62bff05de2bc45ac9021502b97902b0a)
+- [__getitem__](https://ritualforrain.notion.site/__getitem__-3c1599572803448c81a8d17ff75e0b2e)
+- [__subclass__](https://ritualforrain.notion.site/__subclass__-66cd2ba1afce4f3086c089b2cdf2a8f3)
 - [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
 ## 7. Linux
@@ -131,7 +133,7 @@
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 - [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
 - [운영체제 - 7주차](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
-- [운영체제 - 8주차(Demand Paging(7) 까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
+- [운영체제 - 8주차(page replace(4) 까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
 
 ### 9.5 프로그래밍 언어론
 
