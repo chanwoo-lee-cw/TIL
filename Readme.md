@@ -92,6 +92,7 @@
 - [__getitem__](https://ritualforrain.notion.site/__getitem__-3c1599572803448c81a8d17ff75e0b2e)
 - [__subclass__](https://ritualforrain.notion.site/__subclass__-66cd2ba1afce4f3086c089b2cdf2a8f3)
 - [importlib](https://ritualforrain.notion.site/importlib-1826c02269484730b90a1f445f6ec6b1)
+- [@classmethod](https://ritualforrain.notion.site/classmethod-70a16411f5d84a0599deb607809d0235)
 - [파이썬 개발 중 생기는 에러 정리](https://github.com/Alphanewbie/TIL/tree/master/python)
 
 ## 7. Linux
