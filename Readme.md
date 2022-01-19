@@ -48,6 +48,7 @@
 - [객체지향의 4가지 특성](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/객체_지향의_4가지_특성.md)
 - [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
+- [MongoDB](et/MongoDB.md)
 
 ## 3. Azure
 
@@ -135,7 +136,7 @@
 - [운영체제 - 5주차](https://www.notion.so/ritualforrain/5-388f29061d1a4b53be34182310b8e707)
 - [운영체제 - 6주차](https://www.notion.so/ritualforrain/6-cda6a1797a2842d89a5435e80bfe7cf6)
 - [운영체제 - 7주차](https://www.notion.so/ritualforrain/7-364cde9fc5454eb0ad1e0b52a8d25298)
-- [운영체제 - 8주차(Thrashing(7) 까지)](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
+- [운영체제 - 8주차](https://ritualforrain.notion.site/8-fdc274cc745541cb8f325860cb33852f)
 
 ### 9.5 프로그래밍 언어론
 
