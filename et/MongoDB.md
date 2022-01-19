@@ -90,3 +90,43 @@
 ```js
 {field : {$in: [value1, value2, ...]}}
 ```
+
+## 3. 논리 쿼리
+
+### 3.1 $or
+
+여러 조건 중 최소 한개는 만족하는 항목
+
+```js
+{ $or: [{ condition1 }, { condition2 }, ...] }
+```
+
+### 3.2 $and
+
+여러 조건들 전부를 만족하는 항목, 보통은 필요가 없지만, or 절로 다중 조건을 검색하는 경우에 필요
+
+```js
+{ $and: [{ condition1 }, { condition1 }, ...] }
+{ $and:
+	[
+		{ $or: [{ condition1 }, { condition2 }, ...] },
+		{ $or: [{ condition3 }, { condition4 }, ...] }
+	]
+}
+```
+
+### 3.3 $not
+
+단일 조건을 만족하지 않는 항목을 찾는다.
+
+```js
+{ $not: { condition1 }}
+```
+
+### 3.4 $nor
+
+명시된 모든 조건을 모두 만족하지 않는 항목을 찾는다.
+
+```js
+{ $nor: [{ condition1 }, { condition2 }, ...] },
+```
