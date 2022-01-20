@@ -130,3 +130,26 @@
 ```js
 { $nor: [{ condition1 }, { condition2 }, ...] },
 ```
+
+## 4. 요소 쿼리
+
+### 4.1 $exists
+
+해당 필드가 존재하는지 여부 검사
+
+```js
+// 해당 필드가 존재하는 항목 검색
+{field : {$exists: true}}
+// 해당 필드가 존재하지 않는 항목 검사 
+{field : {$exists: false}}
+```
+
+### 4.2 $type
+
+해당 필드의 자료형이 검색을 원하는 자료형과 일치하는지 확인
+
+- 선택 가능한 자료형 : double, string, object, array, binData, objectId, bool, date, null, regex, dbPointer, javascript, symbol, javascriptWithScope, int, timestamp, long, minKey, maxKey
+
+```js
+{field : {$type: data_type}}
+```
