@@ -153,3 +153,67 @@
 ```js
 {field : {$type: data_type}}
 ```
+
+## 5. 배열 쿼리
+
+### 5.1 $all
+
+필드의 값을 모두 포함하는 배열을 찾는다.
+
+해당 항목의 모든 값이 일치해야 하는게 아니라, 검색한 값이 해당 배열의 일부여도 찾아진다.
+
+```jsx
+{ <field>: { $all: [ <value1> , <value2> ... ] } }
+```
+
+```jsx
+db.testDb.insert({beta : ["a","b","c"]})
+db.testDb.find({beta : {$all : ["a","b"]}})
+
+// 출력
+{	"_id" : ObjectId("61eab5e7c7a7e3975a64e543"), "beta" : [ "a", "b", "c" ] }
+```
+
+```jsx
+{ tags: { $all: [ "ssl" , "security" ] } }
+```
+
+아래와 같다.
+
+```jsx
+{ $and: [ { tags: "ssl" }, { tags: "security" } ] }
+```
+
+### 5.2 $elemMatch
+
+`$elemMatch` 연산자는 지정된 모든 질의 조건과 일치하는 하나 이상의 요소와 배열 필드가 들어 있는 문서를 일치시킵니다.
+
+```jsx
+{ <field>: { $elemMatch: { <query1>, <query2>, ... } } }
+```
+
+`$all` 과는 다른 점은 query를 사용한다.
+
+```jsx
+db.scores.find(
+   { results: { $elemMatch: { $gte: 80, $lt: 85 } } }
+)
+```
+
+찾는 수의 범위를 지정하거나
+
+```jsx
+db.testDb.insert({
+    beta : [ 
+        {"gamma" : "x"},
+        {"gamma" : "y"},
+        {"gamma" : "z"}
+    ]
+})
+
+db.testDb.find({beta : {$elemMatch : {"gamma" : "x"}}})
+```
+
+이런 식으로 해당 값을 하나라도 포함하는 배열을 찾는 식으로 사용이 가능하다.
+
+### 5.3 $size
