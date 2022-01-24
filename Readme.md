@@ -109,6 +109,7 @@
 - [Strategy Pattern](https://www.notion.so/ritualforrain/Strategy-Pattern-28b104b399c04f53be8c5492bb03d13c)
 - [Command Pattern](https://www.notion.so/ritualforrain/Command-Pattern-2b7eca6f7c314892a581d6f611061af8)
 - [Decorator Pattern](https://www.notion.so/ritualforrain/Decorator-e402e76662114b28b0486523b2f5ff0e)
+- [Facade Pattern](https://ritualforrain.notion.site/Facade-Pattern-2baad7ebb7744598b9c01bbc5742daf0)
 
 ## 9. Lecture
 

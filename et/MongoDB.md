@@ -162,11 +162,11 @@
 
 해당 항목의 모든 값이 일치해야 하는게 아니라, 검색한 값이 해당 배열의 일부여도 찾아진다.
 
-```jsx
+```js
 { <field>: { $all: [ <value1> , <value2> ... ] } }
 ```
 
-```jsx
+```js
 db.testDb.insert({beta : ["a","b","c"]})
 db.testDb.find({beta : {$all : ["a","b"]}})
 
@@ -174,7 +174,7 @@ db.testDb.find({beta : {$all : ["a","b"]}})
 {	"_id" : ObjectId("61eab5e7c7a7e3975a64e543"), "beta" : [ "a", "b", "c" ] }
 ```
 
-```jsx
+```js
 { tags: { $all: [ "ssl" , "security" ] } }
 ```
 
@@ -202,7 +202,7 @@ db.scores.find(
 
 찾는 수의 범위를 지정하거나
 
-```jsx
+```js
 db.testDb.insert({
     beta : [ 
         {"gamma" : "x"},
@@ -217,3 +217,19 @@ db.testDb.find({beta : {$elemMatch : {"gamma" : "x"}}})
 이런 식으로 해당 값을 하나라도 포함하는 배열을 찾는 식으로 사용이 가능하다.
 
 ### 5.3 $size
+
+$size 연산자는 배열과 인수에 의해 지정된 요소 수를 일치시킵니다.
+
+```js
+db.collection.find( { field: { $size: 2 } } );
+```
+
+단, 이건 정확한 배열의 길이를 알고 있을 때의 조건이다.
+
+배열의 길이의 범위를 정해서 찾고 싶을 때는 
+
+```js
+db.collection.find({ $where:field.length > 2 })
+```
+
+이런 방식으로 찾아야 한다.
