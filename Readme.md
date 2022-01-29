@@ -112,6 +112,7 @@
 - [Facade Pattern](https://ritualforrain.notion.site/Facade-Pattern-2baad7ebb7744598b9c01bbc5742daf0)
 - [templata method(작성중)](https://ritualforrain.notion.site/templata-method-b37522aea7574366aeeb761aae41a524)
 - [Abstract Factory Pattern](https://ritualforrain.notion.site/Abstract-Factory-Pattern-fcfe9ecc10b44446badf1f4361bf9beb)
+- [Builder Pattern](https://ritualforrain.notion.site/Builder-Pattern-86871e1954a8466b90bc5e8d82268739)
 
 ## 9. Lecture
 
