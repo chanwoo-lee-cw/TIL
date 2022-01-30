@@ -49,6 +49,7 @@
 - [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 - [MongoDB](et/MongoDB.md)
+- [getter/setter 사용 이유](https://ritualforrain.notion.site/getter-setter-93aa475101c14de093d1e9340d621e6d)
 
 ## 3. Azure
 
