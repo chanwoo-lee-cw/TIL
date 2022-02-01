@@ -49,6 +49,7 @@
 - [오버로딩과 오버라이딩](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/오버로딩과_오버라이딩.md)
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 - [MongoDB](et/MongoDB.md)
+- [getter/setter 사용 이유](https://ritualforrain.notion.site/getter-setter-93aa475101c14de093d1e9340d621e6d)
 
 ## 3. Azure
 
@@ -110,7 +111,7 @@
 - [Command Pattern](https://www.notion.so/ritualforrain/Command-Pattern-2b7eca6f7c314892a581d6f611061af8)
 - [Decorator Pattern](https://www.notion.so/ritualforrain/Decorator-e402e76662114b28b0486523b2f5ff0e)
 - [Facade Pattern](https://ritualforrain.notion.site/Facade-Pattern-2baad7ebb7744598b9c01bbc5742daf0)
-- [templata method(작성중)](https://ritualforrain.notion.site/templata-method-b37522aea7574366aeeb761aae41a524)
+- [templata method](https://ritualforrain.notion.site/templata-method-b37522aea7574366aeeb761aae41a524)
 - [Abstract Factory Pattern](https://ritualforrain.notion.site/Abstract-Factory-Pattern-fcfe9ecc10b44446badf1f4361bf9beb)
 - [Builder Pattern](https://ritualforrain.notion.site/Builder-Pattern-86871e1954a8466b90bc5e8d82268739)
 
@@ -131,6 +132,7 @@
 - [Ch02. Transport Layer](https://www.notion.so/ritualforrain/2-5c95d06ec53a443a8b4dfea8cd2c0b4e)
 - [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-Sockets_Introduction.md)
 - [Ch04. Elementary TCP Sockets](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch04/Ch04-Elementary_TCP_Sockets.md)
+- [Ch05. UNIX Network Programming(wait and waitpid Functions까지)](https://ritualforrain.notion.site/5-a802462a085d48de850d94bbfd550380)
 
 ### 9.4 운영체제
 
