@@ -394,3 +394,95 @@ db.collection.find({ $where:field.length > 2 })
 ```
 
 이런 방식으로 찾아야 한다.
+
+# 7. 평가 쿼리
+
+## 7.1 **$regex**
+
+정규 표현식을 사용해서, pattern과 일치하는 데이터를 찾을 수 있다.
+
+```python
+{ <field>: { $regex: /pattern/, $options: '<options>' } }
+{ <field>: { $regex: 'pattern', $options: '<options>' } }
+{ <field>: { $regex: /pattern/<options> } }
+```
+
+- pattern
+    - `^` : 시작하는 문자
+    - `$` : 끝나는 문자
+    - `.` : 개행식을 제외한 모든 문자
+- option
+
+| Option | Description | Syntax Restrictions |
+| --- | --- | --- |
+| i | 대소문자를 구별하지 않는다. |  |
+| m | ^ 이나 $ 을 사용할 때, 다중 행을 가진 칼럼인 경우, 각 행의 처음과 끝에 매칭 시킨다. |  |
+| x | 공백 문자와 주석(#)을 무시한다. | $options 구문이 있는 $regex 필요 |
+| s | . 을 사용하는 경우, \n를 포함하여 매치 | $options 구문이 있는 $regex 필요 |
+- example
+
+```jsx
+//데이터 삽입
+db.testDb.insert([
+    {"text" : "abc123"},
+    {"text" : "해피"},
+    {"text" : "abc123\n해피"},
+    {"text" : "해피 뉴이어"},
+  ])
+```
+
+```jsx
+db.testDb.find({"text" : {$regex : /해피/}})
+// 출력
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651260"),
+	"text" : "해피"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651261"),
+	"text" : "abc123\n해피"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651262"),
+	"text" : "해피 뉴이어"
+}
+```
+
+```jsx
+db.testDb.find({"text" : {$regex : /^해피/}})
+// 출력
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651260"),
+	"text" : "해피"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651262"),
+	"text" : "해피 뉴이어"
+}
+
+db.testDb.find({"text" : {$regex : /^해피/m}})
+// 출력
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651260"),
+	"text" : "해피"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651261"),
+	"text" : "abc123\n해피"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651262"),
+	"text" : "해피 뉴이어"
+}
+
+db.testDb.find({"text" : {$regex : /ab.+?3/s}})
+// 출력
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a65125f"),
+	"text" : "abc123"
+},
+{
+	"_id" : ObjectId("61fb8c43c7a7e3975a651261"),
+	"text" : "abc123\n해피"
+}
+```

@@ -132,7 +132,7 @@
 - [Ch02. Transport Layer](https://www.notion.so/ritualforrain/2-5c95d06ec53a443a8b4dfea8cd2c0b4e)
 - [Ch03. UNIX Network Programming](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch03/Ch03-Sockets_Introduction.md)
 - [Ch04. Elementary TCP Sockets](https://github.com/Alphanewbie/TIL/blob/master/Lecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/Ch04/Ch04-Elementary_TCP_Sockets.md)
-- [Ch05. UNIX Network Programming(wait and waitpid Functions까지)](https://ritualforrain.notion.site/5-a802462a085d48de850d94bbfd550380)
+- [Ch05. UNIX Network Programming(Conn Abort before accept Returns까지)](https://ritualforrain.notion.site/5-a802462a085d48de850d94bbfd550380)
 
 ### 9.4 운영체제
 
