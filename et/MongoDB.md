@@ -486,3 +486,54 @@ db.testDb.find({"text" : {$regex : /ab.+?3/s}})
 	"text" : "abc123\n해피"
 }
 ```
+
+## 7.2 $where
+
+Javascript의 표현식 또는 함수 전체를 쿼리에 전달할 수 있게 한다.
+
+단, 각 항목당 Javascript의 쿼리문을 처리하기 때문에 속도가 굉장히 느려진다.
+
+```jsx
+db.testDb.insert([
+    {"alpha" : "A", "beta": "B"},
+    {"alpha" : "A", "beta": "A"},
+    {"alpha" : "B", "beta": "B"},
+    ])
+ 
+db.testDb.find({
+        $where : function() { return this.alpha == this.beta}
+    })
+db.testDb.find({
+        $where : "this.alpha == this.beta"
+    })
+
+// 결과
+{
+	"_id" : ObjectId("61fc7c14c7a7e3975a651266"),
+	"alpha" : "A",
+	"beta" : "A"
+},
+{
+	"_id" : ObjectId("61fc7c14c7a7e3975a651267"),
+	"alpha" : "B",
+	"beta" : "B"
+}
+
+db.testDb.find( {$expr: { $function: {
+      body: function(alpha) { return alpha == "A" },
+      args: [ "$alpha" ],
+      lang: "js"
+} } } )
+
+// 결과
+{
+	"_id" : ObjectId("61fc7c14c7a7e3975a651265"),
+	"alpha" : "A",
+	"beta" : "B"
+},
+{
+	"_id" : ObjectId("61fc7c14c7a7e3975a651266"),
+	"alpha" : "A",
+	"beta" : "A"
+}
+```
