@@ -114,6 +114,8 @@
 - [templata method](https://ritualforrain.notion.site/templata-method-b37522aea7574366aeeb761aae41a524)
 - [Abstract Factory Pattern](https://ritualforrain.notion.site/Abstract-Factory-Pattern-fcfe9ecc10b44446badf1f4361bf9beb)
 - [Builder Pattern](https://ritualforrain.notion.site/Builder-Pattern-86871e1954a8466b90bc5e8d82268739)
+- [Proxy pattern](https://ritualforrain.notion.site/Proxy-pattern-cffdea9efdee41b8b3306330c722899c)
+
 
 ## 9. Lecture
 
