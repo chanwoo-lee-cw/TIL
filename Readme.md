@@ -115,6 +115,8 @@
 - [Abstract Factory Pattern](https://ritualforrain.notion.site/Abstract-Factory-Pattern-fcfe9ecc10b44446badf1f4361bf9beb)
 - [Builder Pattern](https://ritualforrain.notion.site/Builder-Pattern-86871e1954a8466b90bc5e8d82268739)
 - [Proxy pattern](https://ritualforrain.notion.site/Proxy-pattern-cffdea9efdee41b8b3306330c722899c)
+- [Prototype Pattern](https://ritualforrain.notion.site/Prototype-Pattern-9659f10f7b2b42cbb13114cd556c8552)
+- [Adapter Pattern](https://ritualforrain.notion.site/Adapter-Pattern-c8aba7eea1154a688a2eb4f6d80ce794)
 
 
 ## 9. Lecture
