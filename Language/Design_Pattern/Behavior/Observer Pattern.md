@@ -23,3 +23,119 @@
 ### 3. 주의
 
 여러 개의 옵저버 패턴을 사용하는 경우에는 순환 구조를 막아야할 필요가 있다.
+
+
+## 4. 예제
+
+- 인터페이스
+
+```java
+interface Observer {
+    public void update(String alert);
+}
+```
+
+```java
+interface Subject {
+    public void add(Observer observer);
+    public void delete(Observer observer);
+    public void notifyObserver();
+}
+```
+
+- Observer
+
+```java
+class Safeguard implements Observer {
+    private Subject subject;
+    private String recieve;
+
+    public Safeguard(Subject subject) {
+        this.subject = subject;
+        subject.add(this);
+    }
+
+    @Override
+    public void update(String alert) {
+        System.out.printf("recieve %s\n",alert);
+        this.recieve = alert;
+        rescue();
+    }
+
+    public void rescue() {
+        System.out.println("safeguard : rescue People");
+    }
+}
+```
+
+```java
+class Paramedic implements Observer {
+    private Subject subject;
+    private String recieve;
+
+    public Paramedic(Subject subject) {
+        this.subject = subject;
+        subject.add(this);
+    }
+
+    @Override
+    public void update(String alert) {
+        System.out.printf("recieve %s\n",alert);
+        this.recieve = alert;
+        rescue();
+    }
+
+    public void rescue() {
+        System.out.println("paramedic : go out to save someone");
+    }
+}
+```
+
+- Subject
+
+```java
+class Diver implements Subject {
+    ArrayList<Observer> observers;
+    String status;
+
+    public Diver() {
+        this.observers = new ArrayList<>();
+    }
+
+    @Override
+    public void add(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void delete(Observer observer) {
+        this.observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for(Observer observer : this.observers){
+            observer.update(status);
+        }
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+        notifyObserver();
+    }
+}
+```
+
+- Main
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Diver diver = new Diver();
+        Safeguard safeguard = new Safeguard(diver);
+        Paramedic paramedic = new Paramedic(diver);
+
+        diver.setStatus("help");
+    }
+}
+```
