@@ -53,7 +53,7 @@
 
 ## 3. Computer Science
 
-- [프로세스 처리 알고리즘(Optimal LRU 추가)](https://ritualforrain.notion.site/2036f6b69b2547d9b4916fbe9f6ac344)
+- [프로세스 처리 알고리즘(Additional-Reference_Bits algorithm 추가)](https://ritualforrain.notion.site/2036f6b69b2547d9b4916fbe9f6ac344)
 
 ## 4. Data structure
 
