@@ -51,19 +51,9 @@
 - [MongoDB](et/MongoDB.md)
 - [getter/setter 사용 이유](https://ritualforrain.notion.site/getter-setter-93aa475101c14de093d1e9340d621e6d)
 
-## 3. Azure
+## 3. Computer Science
 
-### 3.1. AZ-300
-
-#### 3.1.1. Azure 솔류션 설계
-
-- [Azure 아키텍쳐 핵심 요쇼](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_아키텍쳐_핵심_요쇼.md)
-- [Azure 보안을 위한 디자인](https://github.com/Alphanewbie/TIL/blob/master/Azure/AZ-300/Azure_솔류션_설계/Azure_보안을_위한_디자인.md)
-
-### 3.2. DevOps
-
-- [SpringBoot DevOps 설정 방법](https://github.com/Alphanewbie/TIL/blob/master/Azure/DevOps/설정법.md)
-- [SpringMVC-Mybatis DevOps 설정법](https://github.com/Alphanewbie/TIL/blob/master/Azure/SpringMVC_DevOps/SpringMVCDev.md)
+- [프로세스 처리 알고리즘](https://ritualforrain.notion.site/2036f6b69b2547d9b4916fbe9f6ac344)
 
 ## 4. Data structure
 
