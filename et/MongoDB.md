@@ -537,3 +537,45 @@ db.testDb.find( {$expr: { $function: {
 	"beta" : "A"
 }
 ```
+
+# 8. Projection Operators
+
+## 8.1 $
+
+위치 $ 연산자는 배열의 쿼리 조건과 일치하는 첫 번째 요소를 반환하도록 array의 내용을 제한한다.
+
+만약 여러 개의 항목을 찾고 싶으면 `$filter` 를 사용하면 된다.
+
+```jsx
+// 배열의 지정된 쿼리 조건과 일치하는 첫 번째 배열 요소를 반환한다.
+db.collection.find( { <array>: <condition> ... },
+                    { "<array>.$": 1 } )
+db.collection.find( { <array.field>: <condition> ...},
+                    { "<array>.$": 1 } )
+```
+
+## 8.2 $elemMatah
+
+$elemMatch 연산자는 쿼리 결과의 <array> 필드 내용을 $elemMatch 조건과 일치하는 첫 번째 요소만 포함하도록 제한한다.
+
+```jsx
+// 입력
+db.players.insertOne( {
+   name: "player1",
+   games: [ { game: "abc", score: 8 }, { game: "xyz", score: 5 } ],
+   joined: new Date("2020-01-01"),
+   lastLogin: new Date("2020-05-01")
+} )
+
+// 검색 쿼리
+db.players.find( {}, { games: { $elemMatch: { score: { $gt: 5 } } }, joined: 1, lastLogin: 1 } )
+// players collection 안의 모든 항목에선 점수가 5점 이상인 배열과 lastLogin,joined 와 함께 뽑는다.
+
+// 출력
+{
+  "_id" : ObjectId("5edef91e76ddff7d92f118e1"),
+  "games" : [ { "game" : "abc", "score" : 8 } ],
+  "joined" : ISODate("2020-01-01T00:00:00Z"),
+  "lastLogin" : ISODate("2020-05-01T00:00:00Z")
+}
+```
