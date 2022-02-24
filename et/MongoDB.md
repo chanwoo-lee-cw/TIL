@@ -579,3 +579,71 @@ db.players.find( {}, { games: { $elemMatch: { score: { $gt: 5 } } }, joined: 1, 
   "lastLogin" : ISODate("2020-05-01T00:00:00Z")
 }
 ```
+
+## 8.3 $slice
+
+$slice 투영 연산자는 배열에서 조회 결과에 반환할 요소 수를 지정합니다.
+
+```jsx
+db.collection.find(
+   <query>,
+   { <arrayField>: { $slice: [ <number>, <number> ] } }
+);
+```
+
+```jsx
+
+{ item: "socks", qty: 100, details: { colors: [ "blue", "red" ], sizes: [ "S", "M", "L"] } }
+```
+
+```jsx
+db.inventory.find( { }, { qty: 1, "details.colors": { $slice: 1 } } )
+// 출력
+{ "_id" : ObjectId("5ee92a6ec644acb6d13eedb1"), "qty" : 100, "details" : { "colors" : [ "blue" ] } }
+```
+
+# 9. Update Operator
+
+## 9.1 $currentDate
+
+$currentDate 연산자는 필드 값을 현재 날짜(날짜 또는 타임스탬프)로 설정합니다. 기본 유형은 날짜입니다.
+
+```jsx
+{ $currentDate: { <field1>: <typeSpecification1>, ... } }
+```
+
+예제
+
+```jsx
+// 데이터 생산
+db.customers.insertOne(
+   { _id: 1, status: "a", lastModified: ISODate("2013-10-02T01:11:18.965Z") }
+)
+// 데이터 업데이트
+db.customers.updateOne(
+   { _id: 1 },
+   {
+     $currentDate: {
+        lastModified: true,
+        "cancellation.date": { $type: "timestamp" }
+     },
+     $set: {
+        "cancellation.reason": "user request",
+        status: "D"
+     }
+   }
+)
+```
+
+```jsx
+// 결과
+{
+   "_id" : 1,
+   "status" : "D",
+   "lastModified" : ISODate("2020-01-22T21:21:41.052Z"),
+   "cancellation" : {
+      "date" : Timestamp(1579728101, 1),
+      "reason" : "user request"
+   }
+}
+```
