@@ -647,3 +647,50 @@ db.customers.updateOne(
    }
 }
 ```
+
+## 9.2 $inc
+
+$inc 연산자는 지정된 값만큼 필드를 증가시키며 다음 형식을 가집니다.
+
+```jsx
+{ $inc: { <field1>: <amount1>, <field2>: <amount2>, ... } }
+```
+
+예제
+
+```jsx
+db.products.insertOne(
+   {
+     _id: 1,
+     sku: "abc123",
+     quantity: 10,
+     metrics: { orders: 2, ratings: 3.5 }
+   }
+)
+// 
+db.products.updateOne(
+   { sku: "abc123" },
+   { $inc: { quantity: -2, "metrics.orders": 1 } }
+)
+// 출력
+{
+  _id: 1,
+  sku: 'abc123',
+  quantity: 8,
+  metrics: { orders: 3, ratings: 3.5 }
+}
+```
+
+## 9.3 $min
+
+$min은 지정된 값이 필드의 현재 값보다 작을 경우 필드 값을 지정된 값으로 업데이트합니다.
+
+```jsx
+{ $min: { <field1>: <value1>, ... } }
+```
+
+예제
+
+```jsx
+db.scores.updateOne( { _id: 1 }, { $min: { lowScore: 150 } } )
+```
