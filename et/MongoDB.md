@@ -694,3 +694,19 @@ $min은 지정된 값이 필드의 현재 값보다 작을 경우 필드 값을 
 ```jsx
 db.scores.updateOne( { _id: 1 }, { $min: { lowScore: 150 } } )
 ```
+
+## 9.4 $max
+
+$max 연산자는 지정된 값이 필드의 현재 값보다 클 경우 필드 값을 지정된 값으로 업데이트합니다
+
+```jsx
+{ $max: { <field1>: <value1>, ... } }
+```
+
+예제
+
+```jsx
+db.scores.updateOne( { _id: 1 }, { $max: { highScore: 150 } } )
+```
+
+##
