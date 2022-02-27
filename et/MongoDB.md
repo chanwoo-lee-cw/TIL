@@ -395,9 +395,9 @@ db.collection.find({ $where:field.length > 2 })
 
 이런 방식으로 찾아야 한다.
 
-# 7. 평가 쿼리
+## 7. 평가 쿼리
 
-## 7.1 **$regex**
+### 7.1 **$regex**
 
 정규 표현식을 사용해서, pattern과 일치하는 데이터를 찾을 수 있다.
 
@@ -487,7 +487,7 @@ db.testDb.find({"text" : {$regex : /ab.+?3/s}})
 }
 ```
 
-## 7.2 $where
+### 7.2 $where
 
 Javascript의 표현식 또는 함수 전체를 쿼리에 전달할 수 있게 한다.
 
@@ -538,9 +538,9 @@ db.testDb.find( {$expr: { $function: {
 }
 ```
 
-# 8. Projection Operators
+## 8. Projection Operators
 
-## 8.1 $
+### 8.1 $
 
 위치 $ 연산자는 배열의 쿼리 조건과 일치하는 첫 번째 요소를 반환하도록 array의 내용을 제한한다.
 
@@ -554,7 +554,7 @@ db.collection.find( { <array.field>: <condition> ...},
                     { "<array>.$": 1 } )
 ```
 
-## 8.2 $elemMatah
+### 8.2 $elemMatah
 
 $elemMatch 연산자는 쿼리 결과의 <array> 필드 내용을 $elemMatch 조건과 일치하는 첫 번째 요소만 포함하도록 제한한다.
 
@@ -580,7 +580,7 @@ db.players.find( {}, { games: { $elemMatch: { score: { $gt: 5 } } }, joined: 1, 
 }
 ```
 
-## 8.3 $slice
+### 8.3 $slice
 
 $slice 투영 연산자는 배열에서 조회 결과에 반환할 요소 수를 지정합니다.
 
@@ -602,9 +602,9 @@ db.inventory.find( { }, { qty: 1, "details.colors": { $slice: 1 } } )
 { "_id" : ObjectId("5ee92a6ec644acb6d13eedb1"), "qty" : 100, "details" : { "colors" : [ "blue" ] } }
 ```
 
-# 9. Update Operator
+## 9. Update Operator
 
-## 9.1 $currentDate
+### 9.1 $currentDate
 
 $currentDate 연산자는 필드 값을 현재 날짜(날짜 또는 타임스탬프)로 설정합니다. 기본 유형은 날짜입니다.
 
@@ -648,7 +648,7 @@ db.customers.updateOne(
 }
 ```
 
-## 9.2 $inc
+### 9.2 $inc
 
 $inc 연산자는 지정된 값만큼 필드를 증가시키며 다음 형식을 가집니다.
 
@@ -681,7 +681,7 @@ db.products.updateOne(
 }
 ```
 
-## 9.3 $min
+### 9.3 $min
 
 $min은 지정된 값이 필드의 현재 값보다 작을 경우 필드 값을 지정된 값으로 업데이트합니다.
 
@@ -695,7 +695,7 @@ $min은 지정된 값이 필드의 현재 값보다 작을 경우 필드 값을 
 db.scores.updateOne( { _id: 1 }, { $min: { lowScore: 150 } } )
 ```
 
-## 9.4 $max
+### 9.4 $max
 
 $max 연산자는 지정된 값이 필드의 현재 값보다 클 경우 필드 값을 지정된 값으로 업데이트합니다
 
@@ -709,4 +709,32 @@ $max 연산자는 지정된 값이 필드의 현재 값보다 클 경우 필드 
 db.scores.updateOne( { _id: 1 }, { $max: { highScore: 150 } } )
 ```
 
-##
+### 9.6 $set
+
+$set 연산자는 필드의 값을 지정된 값으로 바꿉니다.
+
+```jsx
+{ $set: { <field1>: <value1>, ... } }
+db.products.updateOne(
+   { _id: 100 },
+   { $set:
+      {
+        quantity: 500,
+        details: { model: "2600", make: "Fashionaires" },
+        tags: [ "coats", "outerwear", "clothing" ]
+      }
+   }
+)
+```
+
+### 9.7 $unset
+
+$unset 연산자는 특정 필드를 삭제합니다.
+
+```jsx
+{ $unset: { <field1>: "", ... } }
+db.products.updateOne(
+   { sku: "unknown" },
+   { $unset: { quantity: "", instock: "" } }
+)
+```
