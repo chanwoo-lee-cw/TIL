@@ -738,3 +738,44 @@ db.products.updateOne(
    { $unset: { quantity: "", instock: "" } }
 )
 ```
+
+# 10. **Array Update Operators**
+
+## 10.1 $
+
+**위치 $ 연산자는 배열에서 요소의 위치를 명시적으로 지정하지 않고 업데이트할 요소를 식별합니다.**
+
+```jsx
+db.students.insertMany( [
+   { "_id" : 1, "grades" : [ 85, 80, 80 ] },
+   { "_id" : 2, "grades" : [ 88, 90, 92 ] },
+   { "_id" : 3, "grades" : [ 85, 100, 90 ] }
+] )
+// 입력
+db.students.updateOne(
+   { _id: 1, grades: 80 },
+   { $set: { "grades.$" : 82 } }
+)
+// 결과
+{ "_id" : 1, "grades" : [ 85, 82, 80 ] }
+{ "_id" : 2, "grades" : [ 88, 90, 92 ] }
+{ "_id" : 3, "grades" : [ 85, 100, 90 ] }
+```
+
+## 10.2 $[]
+
+모든 위치 연산자 $[]는 업데이트 연산자가 지정된 배열 필드의 모든 요소를 수정해야 함을 나타냅니다.
+
+```jsx
+db.collection.updateOne(
+   { <query conditions> },
+   { <update operator>: { "<array>.$[]" : value } }
+)
+db.collection.updateOne(
+   { myArray: [ 5, 8 ] },
+   { $set: { "myArray.$[]": 10 } },
+   { upsert: true }
+)
+// 결과
+{ "_id" : ObjectId(...), "myArray" : [ 10, 10 ] }
+```
