@@ -779,3 +779,42 @@ db.collection.updateOne(
 // 결과
 { "_id" : ObjectId(...), "myArray" : [ 10, 10 ] }
 ```
+
+## 10.3 $addToSet
+
+$addToSet 연산자는 배열에 값을 추가합니다. 만약 이미 배열에 값이 존재하는 경우 경우 $addToSet은 해당 배열에 대해 아무 작업도 수행하지 않는다.
+
+```jsx
+{ $addToSet: { <field1>: <value1>, ... } }
+```
+
+```jsx
+db.pigments.insertOne( { _id: 1, colors: "blue, green, red" } )
+
+db.pigments.updateOne(
+   { _id: 1 },
+   { $addToSet: { colors: "mauve" } }
+)
+```
+
+```jsx
+db.alphabet.insertOne( { _id: 1, letters: ["a", "b"] } )
+// 입력
+db.alphabet.updateOne(
+   { _id: 1 },
+   { $addToSet: { letters: [ "c", "d" ] } }
+)
+//결과
+{ _id: 1, letters: [ 'a', 'b', [ 'c', 'd' ] ] }
+```
+
+쪼개서 넣고 싶은 경우에는 $each를 사용한다.
+
+```jsx
+db.alphabet.updateOne(
+		{ _id: 1 },
+		{ $addToSet: { letters: { $each : [ "c", "d" ]} } }
+)
+//결과
+{ _id: 1, letters: [ 'a', 'b', [ 'c', 'd' ] ] }
+```
