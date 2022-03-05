@@ -818,3 +818,39 @@ db.alphabet.updateOne(
 //결과
 { _id: 1, letters: [ 'a', 'b', [ 'c', 'd' ] ] }
 ```
+
+## 10.4 $[identifier]
+
+필터링된 위치 연산자 $[identifier]는 업데이트 작업에 대한 arrayFilters 조건과 일치하는 배열 요소를 식별합니다.
+
+```jsx
+db.collection.updateMany(
+   { <query conditions> },
+   { <update operator>: { "<array>.$[<identifier>]" : value } },
+   { arrayFilters: [ { <identifier>: <condition> } ] }
+)
+db.students.insertMany( [
+   { "_id" : 1, "grades" : [ 95, 92, 90 ] },
+   { "_id" : 2, "grades" : [ 98, 100, 102 ] },
+   { "_id" : 3, "grades" : [ 95, 110, 100 ] }
+] )
+// 입력
+// 100 점이 넘는 점수를 모두 100으로 세팅한다.
+db.students.updateMany(
+   { },
+   { $set: { "grades.$[element]" : 100 } },
+   { arrayFilters: [ { "element": { $gte: 100 } } ] }
+)
+```
+
+## 10.5 $pop
+
+$pop 연산자는 배열의 첫 번째 또는 마지막 요소를 제거합니다. 배열의 첫 번째 요소를 제거하려면 $pop 값을 -1로 전달하고 배열의 마지막 요소를 제거하려면 1을 전달합니다.
+
+```js
+db.students.insertOne( { _id: 1, scores: [ 8, 9, 10 ] } )
+db.students.updateOne( { _id: 1 }, { $pop: { scores: -1 } } )
+// 결과
+{ _id: 1, scores: [ 9, 10 ] }
+```
+
