@@ -854,3 +854,70 @@ db.students.updateOne( { _id: 1 }, { $pop: { scores: -1 } } )
 { _id: 1, scores: [ 9, 10 ] }
 ```
 
+
+## 10.6 $pull
+
+$pull 연산자는 지정된 조건과 일치하는 값의 모든 인스턴스를 기존 배열에서 제거합니다.
+
+```jsx
+db.stores.insertMany( [
+   {
+      _id: 1,
+      fruits: [ "apples", "pears", "oranges", "grapes", "bananas" ],
+      vegetables: [ "carrots", "celery", "squash", "carrots" ]
+   },
+   {
+      _id: 2,
+      fruits: [ "plums", "kiwis", "oranges", "bananas", "apples" ],
+      vegetables: [ "broccoli", "zucchini", "carrots", "onions" ]
+   }
+] )
+// 입력
+// 과일에선 "apples", "oranges" 제거 야채에선 "carrots"
+db.stores.updateMany(
+    { },
+    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } }
+)
+// 결과
+{
+  _id: 1,
+  fruits: [ 'pears', 'grapes', 'bananas' ],
+  vegetables: [ 'celery', 'squash' ]
+},
+{
+  _id: 2,
+  fruits: [ 'plums', 'kiwis', 'bananas' ],
+  vegetables: [ 'broccoli', 'zucchini', 'onions' ]
+}
+```
+
+## 10.7 $push
+
+$push 연산자는 지정된 값을 배열에 추가합니다.
+
+```jsx
+db.students.insertOne( { _id: 1, scores: [ 44, 78, 38, 80 ] } )
+db.students.updateOne(
+   { _id: 1 },
+   { $push: { scores: 89 } }
+)
+{ _id: 1, scores: [ 44, 78, 38, 80, 89 ] }
+
+db.students.updateOne(
+   { _id: 1 },
+   { $push: { scores : {$each: [89, 91, 100] }} }
+)
+```
+
+## 10.8 **$pullAll**
+
+$pullAll 연산자는 지정된 값의 모든 인스턴스를 기존 배열에서 제거합니다. 쿼리를 지정하여 요소를 제거하는 $pull 연산자와 달리 $pullAll은 나열된 값과 일치하는 요소를 제거합니다.
+
+즉, pull 같은 경우는 `$in: [ "apples", "oranges" ]` 라는 쿼리를 줫을 때, 일치하는 저 둘을 모두 가지고 있는 항목만 제거하지만, pullall은 그냥 둘 중 하나만 있더라도 제거한다.
+
+```jsx
+db.survey.insertOne( { _id: 1, scores: [ 0, 2, 5, 5, 1, 0 ] } )
+db.survey.updateOne( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
+
+{ "_id" : 1, "scores" : [ 2, 1 ] }
+```
