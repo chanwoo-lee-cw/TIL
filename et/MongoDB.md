@@ -921,3 +921,50 @@ db.survey.updateOne( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
 
 { "_id" : 1, "scores" : [ 2, 1 ] }
 ```
+
+## 10.9 $each
+
+1. 값이 <field>에 없는 경우 $addToSet 연산자와 함께 사용하여 여러 값을 배열 <field>에 추가합니다.
+    
+    ```jsx
+    { $addToSet: { <field>: { $each: [ <value1>, <value2> ... ] } } }
+    ```
+    
+2. 여러 값을 배열 <필드>에 추가하려면 $push 연산자와 함께 사용합니다.
+    
+    ```jsx
+    { $push: { <field>: { $each: [ <value1>, <value2> ... ] } } }
+    ```
+    
+
+## 10.10 $position
+
+$position 한정자는 배열에서 $push 연산자가 요소를 삽입하는 위치를 지정합니다. 
+
+```jsx
+{
+  $push: {
+    <field>: {
+       $each: [ <value1>, <value2>, ... ],
+       $position: <num>
+    }
+  }
+}
+```
+
+```jsx
+db.students.insertOne( { "_id" : 1, "scores" : [ 100 ] } )
+db.students.updateOne(
+   { _id: 1 },
+   {
+     $push: {
+        scores: {
+           $each: [ 50, 60, 70 ],
+           $position: 0
+        }
+     }
+   }
+)
+//출력
+{ "_id" : 1, "scores" : [  50,  60,  70,  100 ] }
+```
