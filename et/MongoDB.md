@@ -968,3 +968,104 @@ db.students.updateOne(
 //출력
 { "_id" : 1, "scores" : [  50,  60,  70,  100 ] }
 ```
+
+## 10.11 **$slice**
+
+$slice는 $push 작업 중에 배열 요소의 수를 제한합니다. 읽기 작업에서 지정된 수의 배열 요소를 투영하거나 반환하려면 대신 $slice 투영 연산자를 참조하십시오.
+
+```jsx
+{
+  $push: {
+     <field>: {
+       $each: [ <value1>, <value2>, ... ],
+       $slice: <num>
+     }
+  }
+}
+```
+
+```jsx
+{ "_id" : 1, "scores" : [ 40, 50, 60 ] }
+db.students.updateOne(
+   { _id: 1 },
+   {
+     $push: {
+       scores: {
+         $each: [ 80, 78, 86 ],
+         $slice: -5
+       }
+     }
+   }
+)
+// 마지막 연산자 5개만 출력한다.
+{ "_id" : 1, "scores" : [  50,  60,  80,  78,  86 ] }
+
+//예제2
+{ "_id" : 1, "scores" : [ 40, 50, 60 ] }
+db.students.updateOne(
+   { _id: 1 },
+   {
+     $push: {
+       scores: {
+         $each: [ 80, 78, 86 ],
+         $slice: 3
+       }
+     }
+   }
+)
+// 마지막 연산자 5개로 자릅니다.
+{ "_id" : 1, "scores" : [  40, 50, 60, 80, 78 ] }
+```
+
+## 10.12 $sort
+
+$sort 한정자는 $push 연산 중에 배열의 요소를 정렬합니다. 즉, push 연산이 끝난 후에 정렬까지 실행합니다.
+
+```jsx
+{
+  $push: {
+     <field>: {
+       $each: [ <value1>, <value2>, ... ],
+       $sort: <sort specification>
+     }
+  }
+}
+```
+
+```jsx
+{
+	"_id": 1,
+	"quizzes": [
+		{ "id" : 1, "score" : 6 },
+		{ "id" : 2, "score" : 9 }
+  ]
+}
+db.students.updateOne(
+   { _id: 1 },
+   {
+     $push: {
+       quizzes: {
+         $each: [ { id: 3, score: 8 }, { id: 4, score: 7 }, { id: 5, score: 6 } ],
+         $sort: { score: 1 }
+       }
+     }
+   }
+)
+// 결과
+{
+  "_id" : 1,
+  "quizzes" : [
+     { "id" : 1, "score" : 6 },
+     { "id" : 5, "score" : 6 },
+     { "id" : 4, "score" : 7 },
+     { "id" : 3, "score" : 8 },
+     { "id" : 2, "score" : 9 }
+  ]
+}
+```
+
+- 주의 사항
+    
+    언급된 필드 하위에 직접 언급되야 한다.
+    
+    예) { quizzes.score: 1) 같은 방식으론 작동하지 않는다.
