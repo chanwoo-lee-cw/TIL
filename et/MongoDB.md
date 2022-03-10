@@ -156,7 +156,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
   db.testDb.deleteMany({alpha:"alpha"})
   ```
 
-## **2. find와 aggregate 차이**
+## 2. find와 aggregate 차이
 
 - `find` : 단일 쿼리를 사용한 검색을 위한 역할
   
@@ -178,9 +178,9 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
     - aggregate는 이런 방식으로 파이프라인을 작성할 수 있게 된다.
         - 위의 쿼리로 유저이름이 Tom인 사람을 사람을 찾고, 하단의 쿼리로 상태가 happy인 사람을 찾게 된다.
 
-## **3. 비교 쿼리**
+## 3. 비교 쿼리
 
-### **3.1 $eq**
+### 3.1 $eq
 
 해당 필드 값과 일치하는 값을 가진 필드를 찾는다.
 
@@ -191,7 +191,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : value}
 ```
 
-### **3.2 $ne**
+### 3.2 $ne
 
 해당 필드 값과 일치하지 않는 값을 가진 필드를 찾는다.
 
@@ -199,7 +199,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$ne: value}}
 ```
 
-### **3.3 $gt**
+### 3.3 $gt
 
 해당 필드 값보다 더 큰 값을 가진 필드를 찾는다.
 
@@ -207,7 +207,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$gt: value}}
 ```
 
-### **3.4 $lt**
+### 3.4 $lt
 
 해당 필드 값보다 더 작은 값을 가진 필드를 찾는다.
 
@@ -215,7 +215,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$lt: value}}
 ```
 
-### **3.5 $gte**
+### 3.5 $gte
 
 해당 값보다 크거나 같은 값을 가진 필드를 찾는다.
 
@@ -223,7 +223,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$gte: value}}
 ```
 
-### **3.6 $lte**
+### 3.6 $lte
 
 해당 값보다 작거나 같은 값을 가진 필드를 찾는다.
 
@@ -231,7 +231,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$lte: value}}
 ```
 
-### **3.7 $in**
+### 3.7 $in
 
 필드의 값이 $in 안에 들어있는 값들 중 하나인 필드를 찾는다.
 
@@ -241,7 +241,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 
 필드의 값이 이 value list 중 단 하나라도 일치하는게 있으면 그 항목을 반환한다.
 
-### **3.8 $nin**
+### 3.8 $nin
 
 필드의 값이 $nin 안에 들어있는 값들 중 일치하는것 들을 제외한 항목을 반환한다.
 
@@ -249,9 +249,9 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$in: [value1, value2, ...]}}
 ```
 
-## **4. 논리 쿼리**
+## 4. 논리 쿼리
 
-### **4.1 $or**
+### 4.1 $or
 
 여러 조건 중 최소 한개는 만족하는 항목
 
@@ -259,7 +259,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 { $or: [{ condition1 }, { condition2 }, ...] }
 ```
 
-### **4.2 $and**
+### 4.2 $and
 
 여러 조건들 전부를 만족하는 항목, 보통은 필요가 없지만, or 절로 다중 조건을 검색하는 경우에 필요
 
@@ -276,7 +276,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 }
 ```
 
-### **4.3 $not**
+### 4.3 $not
 
 단일 조건을 만족하지 않는 항목을 찾는다.
 
@@ -284,7 +284,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 { $not: { condition1 }}
 ```
 
-### **4.4 $nor**
+### 4.4 $nor
 
 명시된 모든 조건을 모두 만족하지 않는 항목을 찾는다.
 
@@ -292,9 +292,9 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 { $nor: [{ condition1 }, { condition2 }, ...] },
 ```
 
-## **5. 요소 쿼리**
+## 5. 요소 쿼리
 
-### **5.1 $exists**
+### 5.1 $exists
 
 해당 필드가 존재하는지 여부 검사
 
@@ -305,7 +305,7 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$exists: false}}
 ```
 
-### **5.2 $type**
+### 5.2 $type
 
 해당 필드의 자료형이 검색을 원하는 자료형과 일치하는지 확인
 
@@ -315,9 +315,9 @@ save와 insert 둘 다 값을 삽입 가능하지만, 수정 가능 여부가 �
 {field : {$type: data_type}}
 ```
 
-## **6. 배열 쿼리**
+## 6. 배열 쿼리
 
-### **6.1 $all**
+### 6.1 $all
 
 필드의 값을 모두 포함하는 배열을 찾는다.
 
@@ -345,7 +345,7 @@ db.testDb.find({beta : {$all : ["a","b"]}})
 { $and: [ { tags: "ssl" }, { tags: "security" } ] }
 ```
 
-### **6.2 $elemMatch**
+### 6.2 $elemMatch
 
 `$elemMatch` 연산자는 지정된 모든 질의 조건과 일치하는 하나 이상의 요소와 배열 필드가 들어 있는 문서를 일치시킵니다.
 
@@ -377,7 +377,7 @@ db.testDb.find({beta : {$elemMatch : {"gamma" : "x"}}})
 
 이런 식으로 해당 값을 하나라도 포함하는 배열을 찾는 식으로 사용이 가능하다.
 
-### **6.3 $size**
+### 6.3 $size
 
 $size 연산자는 배열과 인수에 의해 지정된 요소 수를 일치시킵니다.
 
@@ -397,7 +397,7 @@ db.collection.find({ $where:field.length > 2 })
 
 ## 7. 평가 쿼리
 
-### 7.1 **$regex**
+### 7.1 $regex
 
 정규 표현식을 사용해서, pattern과 일치하는 데이터를 찾을 수 있다.
 
@@ -739,11 +739,11 @@ db.products.updateOne(
 )
 ```
 
-# 10. **Array Update Operators**
+# 10. Array Update Operators
 
 ## 10.1 $
 
-**위치 $ 연산자는 배열에서 요소의 위치를 명시적으로 지정하지 않고 업데이트할 요소를 식별합니다.**
+위치 $ 연산자는 배열에서 요소의 위치를 명시적으로 지정하지 않고 업데이트할 요소를 식별합니다.
 
 ```jsx
 db.students.insertMany( [
@@ -909,7 +909,7 @@ db.students.updateOne(
 )
 ```
 
-## 10.8 **$pullAll**
+## 10.8 $pullAll
 
 $pullAll 연산자는 지정된 값의 모든 인스턴스를 기존 배열에서 제거합니다. 쿼리를 지정하여 요소를 제거하는 $pull 연산자와 달리 $pullAll은 나열된 값과 일치하는 요소를 제거합니다.
 
@@ -925,13 +925,13 @@ db.survey.updateOne( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
 ## 10.9 $each
 
 1. 값이 <field>에 없는 경우 $addToSet 연산자와 함께 사용하여 여러 값을 배열 <field>에 추가합니다.
-    
+   
     ```jsx
     { $addToSet: { <field>: { $each: [ <value1>, <value2> ... ] } } }
     ```
     
 2. 여러 값을 배열 <필드>에 추가하려면 $push 연산자와 함께 사용합니다.
-    
+   
     ```jsx
     { $push: { <field>: { $each: [ <value1>, <value2> ... ] } } }
     ```
@@ -969,7 +969,7 @@ db.students.updateOne(
 { "_id" : 1, "scores" : [  50,  60,  70,  100 ] }
 ```
 
-## 10.11 **$slice**
+## 10.11 $slice
 
 $slice는 $push 작업 중에 배열 요소의 수를 제한합니다. 읽기 작업에서 지정된 수의 배열 요소를 투영하거나 반환하려면 대신 $slice 투영 연산자를 참조하십시오.
 
@@ -1065,7 +1065,73 @@ db.students.updateOne(
 ```
 
 - 주의 사항
-    
+  
     언급된 필드 하위에 직접 언급되야 한다.
     
     예) { quizzes.score: 1) 같은 방식으론 작동하지 않는다.
+
+# 11. Aggregation Pipeline Stages
+
+파이프 라인은 배열로 나타내며, 순서대로 단계를 통과하며 쿼리를 처리한다.
+
+`$out`, `$merge` 및 `$geoNear` 단계를 제외한 모든 단계가 파이프라인에 여러 번 나타날 수 있습니다.
+
+## 11.1 $addFields
+
+문서에 새 필드를 추가합니다. `$addFields`는 입력 문서와 새로 추가된 필드의 기존의 모든 필드를 포함하는 문서를 출력합니다.
+
+`$addFields`는 입력 문서의 모든 기존 필드를 명시적으로 지정하고 새 필드를 추가하는 `$project`와 동일합니다.
+
+만약, 새 필드 이름이 기존 필드 이름( _id 포함)과 같으면 $addFields는 해당 필드의 기존 값을 지정된 식 값으로 덮어씁니다.
+
+```jsx
+{ $addFields: { <newField>: <expression>, ... } }
+{
+  _id: 1,
+  student: "Maya",
+  homework: [ 10, 5, 10 ],
+  quiz: [ 10, 8 ],
+  extraCredit: 0
+}
+{
+  _id: 2,
+  student: "Ryan",
+  homework: [ 5, 6, 5 ],
+  quiz: [ 8, 8 ],
+  extraCredit: 8
+}
+// 입력
+db.scores.aggregate( [
+   {
+     $addFields: {
+       totalHomework: { $sum: "$homework" } ,
+       totalQuiz: { $sum: "$quiz" }
+     }
+   },
+   {
+     $addFields: { totalScore:
+       { $add: [ "$totalHomework", "$totalQuiz", "$extraCredit" ] } }
+   }
+] )
+//결과
+{
+  "_id" : 1,
+  "student" : "Maya",
+  "homework" : [ 10, 5, 10 ],
+  "quiz" : [ 10, 8 ],
+  "extraCredit" : 0,
+  "totalHomework" : 25,
+  "totalQuiz" : 18,
+  "totalScore" : 43
+}
+{
+  "_id" : 2,
+  "student" : "Ryan",
+  "homework" : [ 5, 6, 5 ],
+  "quiz" : [ 8, 8 ],
+  "extraCredit" : 8,
+  "totalHomework" : 16,
+  "totalQuiz" : 16,
+  "totalScore" : 40
+}
+```
