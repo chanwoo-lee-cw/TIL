@@ -1221,3 +1221,27 @@ db.sales.aggregate( [
 //출력
 { "_id" : null, "count" : 8 }
 ```
+
+- group by multi field
+
+```jsx
+db.sales.aggregate( [
+  {
+    $group: {
+       _id: {
+							"addr": "$addr",
+							"book": "$book"
+						},
+			info: {
+				date_of_purchase: {$first: '$date_of_purchase'},
+				release_date : {$first: '$release_date'},
+			}
+			count: { $count: { } }
+    }
+  }
+] )
+
+```
+
+- 다중 옵션으로 묶기 위해서 `_id` 값을 여러 개의 값으로 묶어준다.
+- `date_of_purchase: {$first: '$date_of_purchase'}`를 통해 마지막 칼럼에서 구매일을 얻어온다.
