@@ -602,6 +602,31 @@ db.inventory.find( { }, { qty: 1, "details.colors": { $slice: 1 } } )
 { "_id" : ObjectId("5ee92a6ec644acb6d13eedb1"), "qty" : 100, "details" : { "colors" : [ "blue" ] } }
 ```
 
+### 8.4 field : "$field"
+
+조회결과에 보이는 필드 이름을 변경한다.
+
+```jsx
+db.collection.aggregate([
+  {$match: {}},
+  {$project: { _id: 0, "name": "$_id"} }		// _id 필드값을 name으로 바꾸로, _id 필드값을 비활성화 한다.
+])
+```
+
+```jsx
+db.collection.aggregate([
+  {$match: {}},
+  {$project: { _id: 0, "info.name": "$_id", "info.age": "$age"} }		
+])
+// 두 필드값을 묶는다.
+{
+  info : {
+    name: "beta",
+    age: "13"
+  }
+}
+```
+
 ## 9. Update Operator
 
 ### 9.1 $currentDate
