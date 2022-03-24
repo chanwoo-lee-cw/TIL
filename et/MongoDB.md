@@ -602,6 +602,31 @@ db.inventory.find( { }, { qty: 1, "details.colors": { $slice: 1 } } )
 { "_id" : ObjectId("5ee92a6ec644acb6d13eedb1"), "qty" : 100, "details" : { "colors" : [ "blue" ] } }
 ```
 
+### 8.4 field : "$field"
+
+조회결과에 보이는 필드 이름을 변경한다.
+
+```jsx
+db.collection.aggregate([
+  {$match: {}},
+  {$project: { _id: 0, "name": "$_id"} }		// _id 필드값을 name으로 바꾸로, _id 필드값을 비활성화 한다.
+])
+```
+
+```jsx
+db.collection.aggregate([
+  {$match: {}},
+  {$project: { _id: 0, "info.name": "$_id", "info.age": "$age"} }		
+])
+// 두 필드값을 묶는다.
+{
+  info : {
+    name: "beta",
+    age: "13"
+  }
+}
+```
+
 ## 9. Update Operator
 
 ### 9.1 $currentDate
@@ -1135,3 +1160,113 @@ db.scores.aggregate( [
   "totalScore" : 40
 }
 ```
+
+## 11.2 $count
+
+```jsx
+db.collection.aggregate( [
+   { $group: { _id: null, myCount: { $sum: 1 } } },
+   { $project: { _id: 0 } }
+] )
+```
+
+```jsx
+{ "_id" : 1, "subject" : "History", "score" : 88 }
+{ "_id" : 2, "subject" : "History", "score" : 92 }
+{ "_id" : 3, "subject" : "History", "score" : 97 }
+{ "_id" : 4, "subject" : "History", "score" : 71 }
+{ "_id" : 5, "subject" : "History", "score" : 79 }
+{ "_id" : 6, "subject" : "History", "score" : 83 }
+
+// 점수가 80 넘는 것만 
+db.scores.aggregate(
+  [
+    {
+      $match: {
+        score: {
+          $gt: 80
+        }
+      }
+    },
+    {
+      $count: "passing_scores"
+    }
+  ]
+)
+```
+
+## $group
+
+지정된 식에 따라 document를 그룹화한다. 그리고 원한다면 그룹화된 document를 계산하는 필드를 포함할 수도 있습니다.
+
+```jsx
+{
+  $group:
+    {
+      _id: <expression>, // Group By Expression
+      <field1>: { <accumulator1> : <expression1> },
+      ...
+    }
+ }
+```
+
+| Field | Description |
+| --- | --- |
+| _id | 필수값. _id값을 null 로 지정하거나 다른 상수값을 지정하면 $group 단계는 모든 입력 문서 전체에 대한 누적 값을 계산한다. |
+| field | 선택값. 누적 연산자를 사용해 계산한다. |
+
+**Accumulator Operator**
+
+| Name | Description |
+| --- | --- |
+| $accumulator | 사용자 정의 누적기 함수의 결과를 반환합니다. |
+| $addToSet | 각 그룹에 대해 고유한 식 값의 배열을 반환합니다. 배열 요소의 순서가 정의되지 않았습니다. |
+| $avg | 숫자 값의 평균을 반환합니다. 숫자가 아닌 값을 무시합니다. |
+| $count | 그룹의 문서 수를 반환합니다. $count 파이프라인 단계와는 구별됩니다. |
+| $first | 각 그룹의 첫 번째 문서에서 값을 반환합니다. 문서가 정렬된 경우에만 순서가 정의됩니다. |
+| $last | 각 그룹에 대해 마지막 문서의 값을 반환합니다. 문서가 정렬된 경우에만 순서가 정의됩니다. |
+| $max | 각 그룹의 가장 높은 식 값을 반환합니다. |
+| $mergeObjects | 각 그룹의 입력 문서를 결합하여 만든 문서를 반환합니다. |
+| $min | 각 그룹의 최소 식 값을 반환합니다. |
+| $push | 각 그룹의 문서에 대한 식 값 배열을 반환합니다. |
+| $stdDevPop | 입력 값의 모집단 표준 편차를 반환합니다. |
+| $stdDevSamp | 입력 값의 샘플 표준 편차를 반환합니다. |
+| $sum | 숫자 값의 합계를 반환합니다. 숫자가 아닌 값을 무시합니다. |
+
+```jsx
+db.sales.aggregate( [
+  {
+    $group: {
+       _id: null,
+       count: { $count: { } }
+    }
+  }
+] )
+
+//출력
+{ "_id" : null, "count" : 8 }
+```
+
+- group by multi field
+
+```jsx
+db.sales.aggregate( [
+  {
+    $group: {
+       _id: {
+							"addr": "$addr",
+							"book": "$book"
+						},
+			info: {
+				date_of_purchase: {$first: '$date_of_purchase'},
+				release_date : {$first: '$release_date'},
+			}
+			count: { $count: { } }
+    }
+  }
+] )
+
+```
+
+- 다중 옵션으로 묶기 위해서 `_id` 값을 여러 개의 값으로 묶어준다.
+- `date_of_purchase: {$first: '$date_of_purchase'}`를 통해 마지막 칼럼에서 구매일을 얻어온다.
