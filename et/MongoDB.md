@@ -1195,7 +1195,7 @@ db.scores.aggregate(
 )
 ```
 
-## $group
+## 11.3 $group
 
 지정된 식에 따라 document를 그룹화한다. 그리고 원한다면 그룹화된 document를 계산하는 필드를 포함할 수도 있습니다.
 
@@ -1270,3 +1270,41 @@ db.sales.aggregate( [
 
 - 다중 옵션으로 묶기 위해서 `_id` 값을 여러 개의 값으로 묶어준다.
 - `date_of_purchase: {$first: '$date_of_purchase'}`를 통해 마지막 칼럼에서 구매일을 얻어온다.
+
+## 11.4 $lookup
+
+left join을 실행하는 함수, 만약 해당하는 `Document`가 있다면 `Array`의 형태로 필드로 추가되게 된다.
+
+```jsx
+{
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <output array field>
+     }
+}
+```
+
+| Field        | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| from         | Join을 시도할 데이터베이스의 콜렉션을 지정한다.              |
+| localField   | equal 연산을 처리하기 위한 현재 콜렉션의 필드 이름. 만약 선택되지 않는다면 null로 처리한다. |
+| foreignField | equal 연산을 처리하기 위한 다른 콜렉션의 필드 이름. 만약 선택되지 않는다면 null로 처리한다. |
+| as           | 쿼리의 결과로 출력될 join된 외부 Document가 Array의 필드 이름. |
+
+```jsx
+db.card.aggregate([
+  {
+  	$lookup:
+     {
+       from: order,
+       localField: card_id,
+       foreignField: card_id,
+       as: orderList
+     }
+  }
+])
+```
+
