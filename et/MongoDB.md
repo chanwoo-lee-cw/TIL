@@ -1350,7 +1350,7 @@ db.orders.aggregate( [
          {
            from: "warehouses",
            let: { 
-							order_item: "$item", 		// order 콜렉션에 있는 item 을 order_item으로 재명명
+             	order_item: "$item", 		// order 콜렉션에 있는 item 을 order_item으로 재명명
              	order_qty: "$ordered" 	// order 콜렉션에 있는 ordered를 order_qty로 재명명
            },
            pipeline: [
@@ -1358,9 +1358,9 @@ db.orders.aggregate( [
                  { $expr:
                     { $and:
                        [
-                         	// $$은 현재 콜력션의 항목을 선택, $는 조인될 콜렉션의 항목을 지정한다.
-                         { $eq: [ "$stock_item",  "$$order_item" ] },		// order의 order_item과 warehouses의 stock_item이 일치하는 항목
-                         { $gte: [ "$instock", "$$order_qty" ] }				// order의 order_qty과 warehouses의 instock이 일치하는 항목
+                          // $$은 현재 콜력션의 항목을 선택, $는 조인될 콜렉션의 항목을 지정한다.
+                          { $eq: [ "$stock_item",  "$$order_item" ] },		// order의 order_item과 warehouses의 stock_item이 일치하는 항목
+                          { $gte: [ "$instock", "$$order_qty" ] }				// order의 order_qty과 warehouses의 instock이 일치하는 항목
                        ]
                     }
                  }
