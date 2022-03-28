@@ -1195,7 +1195,7 @@ db.scores.aggregate(
 )
 ```
 
-## $group
+## 11.3 $group
 
 지정된 식에 따라 document를 그룹화한다. 그리고 원한다면 그룹화된 document를 계산하는 필드를 포함할 수도 있습니다.
 
@@ -1270,3 +1270,105 @@ db.sales.aggregate( [
 
 - 다중 옵션으로 묶기 위해서 `_id` 값을 여러 개의 값으로 묶어준다.
 - `date_of_purchase: {$first: '$date_of_purchase'}`를 통해 마지막 칼럼에서 구매일을 얻어온다.
+
+## 11.4 $lookup
+
+left join을 실행하는 함수, 만약 해당하는 `Document`가 있다면 `Array`의 형태로 필드로 추가되게 된다.
+
+```jsx
+{
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <output array field>
+     }
+}
+```
+
+| Field        | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| from         | Join을 시도할 데이터베이스의 콜렉션을 지정한다.              |
+| localField   | equal 연산을 처리하기 위한 현재 콜렉션의 필드 이름. 만약 선택되지 않는다면 null로 처리한다. |
+| foreignField | equal 연산을 처리하기 위한 다른 콜렉션의 필드 이름. 만약 선택되지 않는다면 null로 처리한다. |
+| as           | 쿼리의 결과로 출력될 join된 외부 Document가 Array의 필드 이름. |
+
+```jsx
+db.card.aggregate([
+  {
+  	$lookup:
+     {
+       from: order,
+       localField: card_id,
+       foreignField: card_id,
+       as: orderList
+     }
+  }
+])
+```
+
+- 단일 일치 외에도 다른 조건을 넣고 싶거나, 추가 서브 쿼리를 넣고 싶은 경우
+
+```jsx
+{
+   $lookup:
+      {
+         from: <joined collection>,
+         let: { <var_1>: <expression>, …, <var_n>: <expression> },
+         pipeline: [ <pipeline to run on joined collection> ],
+         as: <output array field>
+      }
+}
+```
+
+| Field    | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| from     | Join을 시도할 데이터베이스의 콜렉션을 지정한다.              |
+| let      | 파이프라인 단계에서 사용할 변수를 지정한다. 예를 들면 멀티 조인인 경우에 변수명을 지정해 줘야 조인이 가능하다. |
+| pipeline | 조인된 컬렉션에서 실행할 파이프라인을 지정합니다. 파이프라인은 조인된 컬렉션에서 결과 문서를 결정합니다. 모든 문서를 반환하려면 빈 파이프라인 []을 지정하십시오. |
+| as       | 쿼리의 결과로 출력될 join된 외부 Document가 Array의 필드 이름. |
+
+```jsx
+db.orders.insertMany( [
+  { "_id" : 1, "item" : "almonds", "price" : 12, "ordered" : 2 },
+  { "_id" : 2, "item" : "pecans", "price" : 20, "ordered" : 1 },
+  { "_id" : 3, "item" : "cookies", "price" : 10, "ordered" : 60 }
+] )
+
+db.warehouses.insertMany( [
+  { "_id" : 1, "stock_item" : "almonds", warehouse: "A", "instock" : 120 },
+  { "_id" : 2, "stock_item" : "pecans", warehouse: "A", "instock" : 80 },
+  { "_id" : 3, "stock_item" : "almonds", warehouse: "B", "instock" : 60 },
+  { "_id" : 4, "stock_item" : "cookies", warehouse: "B", "instock" : 40 },
+  { "_id" : 5, "stock_item" : "cookies", warehouse: "A", "instock" : 80 }
+] )
+
+db.orders.aggregate( [
+   {
+      $lookup:
+         {
+           from: "warehouses",
+           let: { 
+             	order_item: "$item", 		// order 콜렉션에 있는 item 을 order_item으로 재명명
+             	order_qty: "$ordered" 	// order 콜렉션에 있는 ordered를 order_qty로 재명명
+           },
+           pipeline: [
+              { $match:
+                 { $expr:
+                    { $and:
+                       [
+                          // $$은 현재 콜력션의 항목을 선택, $는 조인될 콜렉션의 항목을 지정한다.
+                          { $eq: [ "$stock_item",  "$$order_item" ] },		// order의 order_item과 warehouses의 stock_item이 일치하는 항목
+                          { $gte: [ "$instock", "$$order_qty" ] }				// order의 order_qty과 warehouses의 instock이 일치하는 항목
+                       ]
+                    }
+                 }
+              },
+              { $project: { stock_item: 0, _id: 0 } } // 마지막으로 조인된 항목에서 stock_item와 _id는 보여주지 않는다.
+           ],
+           as: "stockdata"
+         }
+    }
+] )
+```
