@@ -1253,18 +1253,18 @@ db.sales.aggregate( [
 db.sales.aggregate( [
   {
     $group: {
-       _id: {
-							"addr": "$addr",
-							"book": "$book"
-						},
-			info: {
-				date_of_purchase: {$first: '$date_of_purchase'},
-				release_date : {$first: '$release_date'},
-			}
-			count: { $count: { } }
+      _id: {
+        "addr": "$addr",
+        "book": "$book"
+      },
+      info: {
+        date_of_purchase: {$first: '$date_of_purchase'},
+        release_date : {$first: '$release_date'},
+      }
+    count: { $count: { } }
     }
   }
-] )
+])
 
 ```
 
