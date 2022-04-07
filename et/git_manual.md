@@ -517,16 +517,9 @@ merge 결과에 Fast -forward라고 표시 되는 것은 future 브렌치가 mas
 만약 이런 식으로 충돌이 나게 된다면.
 
 ```java
-<<<<<<< HEAD
-  	for (int i = 0; i < ary.length; i++) {
-		System.out.print(ary[i] + " ");
-		ary[i] = ten += 10;
-	}
-=======
 	for (int i = 0; i < ary.length; i++) {
 		sum += ary[i] = (int) (Math.random() * 17) + 4;
 	}
->>>>>>> future
 ```
 
 이런식으로 윗 부분은 HEAD브렌치에서 수정된 부분
@@ -557,5 +550,4 @@ $ git rebase --continue
 https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
 
 https://gmlwjd9405.github.io/2018/05/25/git-add-cancle.html
-
 
