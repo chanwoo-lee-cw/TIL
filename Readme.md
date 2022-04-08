@@ -50,6 +50,7 @@
 - [프로세스와 쓰레드](https://github.com/Alphanewbie/TIL/blob/master/Common_sense/프로세스와_쓰레드.md)
 - [MongoDB](et/MongoDB.md)
 - [getter/setter 사용 이유](https://ritualforrain.notion.site/getter-setter-93aa475101c14de093d1e9340d621e6d)
+- [Java의 다중 반복문 break](https://ritualforrain.notion.site/Java-9b94c677d44940429653c850ea0e60b4)
 
 ## 3. Computer Science
 
