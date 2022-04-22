@@ -28,10 +28,15 @@ public class Main {
     }
 }
 
+
+/**
+ * 게임을 최대 n회 진행하는 경우 탈출하는 사람의 수를 구한다.
+ * n번방에 있는 사람은 n+1 회의 게임을 진행하는 경우에 영향을 받지 않기 때문에 최대 게임의 경우만 계산하면 된다.
+ */
 class JailBreak {
-    int n;
-    boolean[] jail;
-    int[] jailBreak;
+    int n;              // 상민이가 게임을 진행하는 횟수
+    boolean[] jail;     // n의 게임을 진행했을 때 탈출 가능한 사람
+    int[] jailBreak;    // n의 값일때 탈출한 사람의 수
 
     public JailBreak(int n) {
         this.n = n;
@@ -40,6 +45,9 @@ class JailBreak {
         fill_jail();
     }
 
+    /**
+     * n의 게임을 진행했을 때 탈출 가능한 사람은 true로 진행한다.
+     */
     public void fill_jail() {
         for (int i = 1; i < n + 1; i++) {
             for (int j = i; j < n + 1; j += i) {
@@ -58,6 +66,10 @@ class JailBreak {
         }
     }
 
+    /**
+     * @param n 게임을 진행하는 횟수
+     * @return 게임을 n회 진행했을 때 탈충하는 사람의 수
+     */
     public int getJailBreaker(int n) {
         return jailBreak[n];
     }
