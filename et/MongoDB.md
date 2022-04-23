@@ -868,6 +868,39 @@ db.students.updateMany(
 )
 ```
 
+
+
+이 쿼리의 `[element]` 는 배열 안의 어떤 **필드의 이름이 아니라, 항목을 대입하는 임시 변수** 이름이다.
+
+즉, 쿼리문
+
+```javascript
+db.students.insertMany( [
+   { "_id" : 1, "grades" : [ {score : 95}, {score : 92}, {score : 90}] },
+   { "_id" : 2, "grades" : [ {score : 98}, {score : 100}, {score : 102}] ] },
+   { "_id" : 3, "grades" : [ {score : 95}, {score : 110}, {score : 100}] ] }
+] )
+// 입력
+// 100 점이 넘는 점수를 모두 100으로 세팅한다.
+db.students.updateMany(
+   { },
+   { $set: { "grades.$[element].socre" : 100 } },
+   { arrayFilters: [ { "element.score": { $gte: 100 } } ] }
+)
+```
+
+은 프로그래밍 코드로 치환하면
+
+```python
+for element in grades:
+  if element.socre >= 100:
+    element.score = 100
+```
+
+와 비슷한 코드로 해석된다.
+
+
+
 ## 10.5 $pop
 
 $pop 연산자는 배열의 첫 번째 또는 마지막 요소를 제거합니다. 배열의 첫 번째 요소를 제거하려면 $pop 값을 -1로 전달하고 배열의 마지막 요소를 제거하려면 1을 전달합니다.
