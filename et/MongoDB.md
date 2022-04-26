@@ -1405,3 +1405,33 @@ db.orders.aggregate( [
     }
 ] )
 ```
+
+
+
+
+
+
+
+# et) 얻어낸 쿼리를 가공하는 방법
+
+```javascript
+db.testDB.find({
+    "class.people" : {
+        $elemMatch : {
+            "name" : {$regex : "^ "}
+        }
+    }
+}).forEach(function(doc){
+    var doc_id = doc._id
+    var lenght = doc.class.people.lenght
+    for(var i =0;i<length;i++) {
+        doc.class.people[i].name = doc.class.people[i].name.trim()
+    }
+    var update_set = doc.class.people
+    db.testDB.update(
+        {"_id" : doc_id},
+        {"$set": {"doc.class.people" : update_set}},
+     )
+})
+```
+
