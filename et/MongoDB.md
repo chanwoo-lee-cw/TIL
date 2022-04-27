@@ -1406,6 +1406,27 @@ db.orders.aggregate( [
 ] )
 ```
 
+- join을 한 다음에 조인된 요소가 존재하는지 여부의 찾기
+
+조인 후 첫번째 배열의 요소가 존재하는지의 여부로 판단한다.
+
+```javascript
+db.card_id.aggregate([
+    {
+        $lookup:
+        {
+            from: card,
+            localField: card_id,
+            foreignField: card_id,
+            as: card_data
+        }
+    },
+    {
+        "$match" : {"card_data.0" : {$exists : false}}
+    },
+])
+```
+
 
 
 
