@@ -1406,6 +1406,28 @@ db.orders.aggregate( [
 ] )
 ```
 
+- Join을 한 후에 특정한 값이 들어간 배열을 찾기
+
+예시는 두 카드의 데이터를 조인 한 다음에 카드 소유자가 james인 카드를 찾는 예시
+
+```javascript
+db.card_id.aggregate([
+    {
+        '$lookup' : {
+            from : 'card',
+            localField: "card_id",
+            foreignField: "card_id",
+            as : 'card_data'
+        },
+    },
+    {$match : 
+        {"card_data" : {"$elemMatch" : {card_name : "james"}}}
+    },
+])
+```
+
+
+
 - join을 한 다음에 조인된 요소가 존재하는지 여부의 찾기
 
 조인 후 첫번째 배열의 요소가 존재하는지의 여부로 판단한다.
