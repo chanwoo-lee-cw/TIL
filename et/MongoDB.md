@@ -377,6 +377,22 @@ db.testDb.find({beta : {$elemMatch : {"gamma" : "x"}}})
 
 이런 식으로 해당 값을 하나라도 포함하는 배열을 찾는 식으로 사용이 가능하다.
 
+
+
+일치하는 배열을 찾은 이후에 맞는 해당 배열이 일치하는 첫번째 항목만 출력하는 방법
+
+예시는 모든 상품을 검색해서 james씨가 주문한 상품을 찾는 예시
+
+```javascript
+db.product.find({ 
+    "product_data.orderList": {
+            "$elemMatch": {"orderer_name": "james"
+        }}
+    })
+    .projection({"product_data.orderList.$": 1})
+```
+
+
 ### 6.3 $size
 
 $size 연산자는 배열과 인수에 의해 지정된 요소 수를 일치시킵니다.
