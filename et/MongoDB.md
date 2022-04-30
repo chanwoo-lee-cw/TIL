@@ -1484,12 +1484,31 @@ db.testDB.find({
     var doc_id = doc._id
     var lenght = doc.class.people.lenght
     for(var i =0;i<length;i++) {
-        doc.class.people[i].name = doc.class.people[i].name.trim()
+        doc.class.people[i].name = doc.class.people[i].name.trim();
     }
     var update_set = doc.class.people
     db.testDB.update(
         {"_id" : doc_id},
         {"$set": {"doc.class.people" : update_set}},
+     )
+})
+```
+
+- 상단의 예시와 비슷하게 돌아간다.
+다만 모든 Documents에서 사람의 이름에 빈칸이 들어간 이름의 배열중에 첫번째만 지운다.
+```javascript
+db.testDB.find({
+    "class.people" : {
+        "$elemMatch" : {
+            "name" : {$regex : "^ "}
+        }
+    }
+}).forEach(function(doc){
+    var doc_id = doc._id
+    var trimPeopleName = doc.class.people[0].name.trim();
+    db.onesell_product.update(
+        {"_id" : doc_id, "class.people" : {"$elemMatch" : {"name" : {$regex : "^ "}}}},
+        {"$set": {"class.people.$.name" : trimPeopleName}},
      )
 })
 ```
