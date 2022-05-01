@@ -377,6 +377,22 @@ db.testDb.find({beta : {$elemMatch : {"gamma" : "x"}}})
 
 이런 식으로 해당 값을 하나라도 포함하는 배열을 찾는 식으로 사용이 가능하다.
 
+
+
+일치하는 배열을 찾은 이후에 맞는 해당 배열이 일치하는 첫번째 항목만 출력하는 방법
+
+예시는 모든 상품을 검색해서 james씨가 주문한 상품을 찾는 예시
+
+```javascript
+db.product.find({ 
+    "product_data.orderList": {
+            "$elemMatch": {"orderer_name": "james"
+        }}
+    })
+    .projection({"product_data.orderList.$": 1})
+```
+
+
 ### 6.3 $size
 
 $size 연산자는 배열과 인수에 의해 지정된 요소 수를 일치시킵니다.
@@ -867,6 +883,39 @@ db.students.updateMany(
    { arrayFilters: [ { "element": { $gte: 100 } } ] }
 )
 ```
+
+
+
+이 쿼리의 `[element]` 는 배열 안의 어떤 **필드의 이름이 아니라, 항목을 대입하는 임시 변수** 이름이다.
+
+즉, 쿼리문
+
+```javascript
+db.students.insertMany( [
+   { "_id" : 1, "grades" : [ {score : 95}, {score : 92}, {score : 90}] },
+   { "_id" : 2, "grades" : [ {score : 98}, {score : 100}, {score : 102}] ] },
+   { "_id" : 3, "grades" : [ {score : 95}, {score : 110}, {score : 100}] ] }
+] )
+// 입력
+// 100 점이 넘는 점수를 모두 100으로 세팅한다.
+db.students.updateMany(
+   { },
+   { $set: { "grades.$[element].socre" : 100 } },
+   { arrayFilters: [ { "element.score": { $gte: 100 } } ] }
+)
+```
+
+은 프로그래밍 코드로 치환하면
+
+```python
+for element in grades:
+  if element.socre >= 100:
+    element.score = 100
+```
+
+와 비슷한 코드로 해석된다.
+
+
 
 ## 10.5 $pop
 
@@ -1372,3 +1421,95 @@ db.orders.aggregate( [
     }
 ] )
 ```
+
+- Join을 한 후에 특정한 값이 들어간 배열을 찾기
+
+예시는 두 카드의 데이터를 조인 한 다음에 카드 소유자가 james인 카드를 찾는 예시
+
+```javascript
+db.card_id.aggregate([
+    {
+        '$lookup' : {
+            from : 'card',
+            localField: "card_id",
+            foreignField: "card_id",
+            as : 'card_data'
+        },
+    },
+    {$match : 
+        {"card_data" : {"$elemMatch" : {card_name : "james"}}}
+    },
+])
+```
+
+
+
+- join을 한 다음에 조인된 요소가 존재하는지 여부의 찾기
+
+조인 후 첫번째 배열의 요소가 존재하는지의 여부로 판단한다.
+
+```javascript
+db.card_id.aggregate([
+    {
+        $lookup:
+        {
+            from: card,
+            localField: card_id,
+            foreignField: card_id,
+            as: card_data
+        }
+    },
+    {
+        "$match" : {"card_data.0" : {$exists : false}}
+    },
+])
+```
+
+
+
+
+
+
+
+# et) 얻어낸 쿼리를 가공하는 방법
+
+```javascript
+db.testDB.find({
+    "class.people" : {
+        $elemMatch : {
+            "name" : {$regex : "^ "}
+        }
+    }
+}).forEach(function(doc){
+    var doc_id = doc._id
+    var lenght = doc.class.people.lenght
+    for(var i =0;i<length;i++) {
+        doc.class.people[i].name = doc.class.people[i].name.trim();
+    }
+    var update_set = doc.class.people
+    db.testDB.update(
+        {"_id" : doc_id},
+        {"$set": {"doc.class.people" : update_set}},
+     )
+})
+```
+
+- 상단의 예시와 비슷하게 돌아간다.
+다만 모든 Documents에서 사람의 이름에 빈칸이 들어간 이름의 배열중에 첫번째만 지운다.
+```javascript
+db.testDB.find({
+    "class.people" : {
+        "$elemMatch" : {
+            "name" : {$regex : "^ "}
+        }
+    }
+}).forEach(function(doc){
+    var doc_id = doc._id
+    var trimPeopleName = doc.class.people[0].name.trim();
+    db.onesell_product.update(
+        {"_id" : doc_id, "class.people" : {"$elemMatch" : {"name" : {$regex : "^ "}}}},
+        {"$set": {"class.people.$.name" : trimPeopleName}},
+     )
+})
+```
+
