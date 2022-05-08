@@ -53,6 +53,7 @@
 - [Java의 다중 반복문 break](https://ritualforrain.notion.site/Java-9b94c677d44940429653c850ea0e60b4)
 - [git merge](https://ritualforrain.notion.site/Git-merge-017db5656dbd41f59fd0d9ad20b71d86)
 - [ngrok 사용법](https://ritualforrain.notion.site/ngrok-e6e7280935ab4cab9a892199e7f12467)
+- [git cherry-pick](https://ritualforrain.notion.site/git-cherry-pick-1484ae4045da49c68de3ee0a42194bfb)
 
 ## 3. Computer Science
 
