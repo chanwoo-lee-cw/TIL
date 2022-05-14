@@ -7,14 +7,12 @@
 ### 코드
 
 ```python
-def bubbleSort(arr) :
-    arrLen = len(arr)
-    for i in range(arrLen - 1) :
-        for j in range(arrLen -i -1) :
-            if(arr[j]> arr[j+1]) :
-                temp = arr[j]
-                arr[j] = arr[j+1]
-                arr[j+1] = temp
+def buble_sort(arr):
+    arr_len = len(arr)
+    for i in range(arr_len - 1):
+        for j in range((arr_len - 1) - i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
 ```
 
