@@ -2,6 +2,8 @@
 
 ## 1. Algorithm
 
+- [시간복잡도](https://ritualforrain.notion.site/f30298df7a394f4c9a3bc8069592963f)
+
 ### 1.1. Graph
 
 - [Bipartite Graph](https://github.com/Alphanewbie/TIL/blob/master/Algorithm/Graph/Bipartite_Graph/Bipartite_Graph.md)
