@@ -1,8 +1,3 @@
-from sys import stdin
-
-input = stdin.readline
-
-
 def gcd(a, b):
     while a != 0:
         a, b = b % a, a
@@ -10,8 +5,17 @@ def gcd(a, b):
 
 
 if __name__ == "__main__":
-    a, b = map(int, input().strip().split())
-    numerator = int(b ** 0.5) - int(a ** 0.5)
+    a, b = map(int, input().split())
+    numerator = 0
+    curr = a ** 0.5 - 10
+    if curr <= 0:
+        curr = 1
+    while True:
+        if float(curr * curr) > b:
+            break
+        elif a < float(curr * curr):
+            numerator += 1
+        curr += 1
     denominator = b - a
     if numerator == 0 or denominator == 0:
         print(0)
