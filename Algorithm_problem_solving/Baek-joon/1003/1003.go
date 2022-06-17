@@ -23,7 +23,7 @@ func main() {
 	writer := bufio.NewWriter(os.Stdout)
 	defer writer.Flush()
 
-	tesCase := make([]int, t
+	tesCase := make([]int, t)
 	for i := 0; i < t; i++ {
 		fmt.Fscan(reader, &tesCase[i])
 		maxNum = maxInt(maxNum, tesCase[i])
