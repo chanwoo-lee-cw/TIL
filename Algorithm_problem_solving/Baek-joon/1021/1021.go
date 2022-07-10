@@ -1,5 +1,12 @@
 package main
 
+import (
+	"bufio"
+	"os"
+	"strconv"
+	"strings"
+)
+
 type Deque struct {
 	arr []int
 }
@@ -72,20 +79,40 @@ func (d *Deque) rotateRight(n int) {
 }
 
 func main() {
-	d := NewDeque()
+	var n int
+	var arr string
+	var numList []string
 
-	d.insertBack(10)
-	d.insertBack(9)
-	d.insertBack(8)
+	deque := NewDeque()
+	reader := bufio.NewReader(os.Stdin)
 
-	print(d.findIndex(8))
+	arr, _ = reader.ReadString('\n')
+	arr = strings.Trim(arr, "\n")
+	numList = strings.Split(arr, " ")
 
-	d.insertFront(10)
-	d.insertFront(9)
-	d.insertFront(8)
+	n, _ = strconv.Atoi(numList[0])
 
-	d.rotateLeft(2)
-	d.rotateRight(3)
+	arr, _ = reader.ReadString('\n')
+	arr = strings.Trim(arr, "\n")
+	numList = strings.Split(arr, " ")
 
-	print()
+	for i := 0; i < n; i++ {
+		deque.insertBack(i + 1)
+	}
+
+	answer := 0
+	for _, item := range numList {
+		num, _ := strconv.Atoi(item)
+		index := deque.findIndex(num)
+
+		if float32(index) < float32(deque.size())/2.0 {
+			deque.rotateLeft(index)
+			answer += index
+		} else {
+			deque.rotateRight(deque.size() - index)
+			answer += deque.size() - index
+		}
+		deque.popFront()
+	}
+	print(answer)
 }
