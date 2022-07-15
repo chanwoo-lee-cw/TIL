@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -18,19 +19,23 @@ func NewDeque() *Deque {
 }
 
 func (d Deque) front() int {
+	// get deque's first item
 	return d.arr[0]
 }
 
 func (d Deque) back() int {
+	// get deque's last item
 	return d.arr[d.size()-1]
 }
 
 func (d Deque) size() int {
+	// get deque's size
 	return len(d.arr)
 
 }
 
 func (d *Deque) popFront() (int, bool) {
+	// pop deque's first item
 	if d.size() <= 0 {
 		return 0, false
 	}
@@ -40,6 +45,7 @@ func (d *Deque) popFront() (int, bool) {
 }
 
 func (d *Deque) popBack() (int, bool) {
+	// pop deque's last item
 	if d.size() <= 0 {
 		return 0, false
 	}
@@ -49,14 +55,17 @@ func (d *Deque) popBack() (int, bool) {
 }
 
 func (d *Deque) insertFront(n int) {
+	// insert n into deque's first position
 	d.arr = append([]int{n}, d.arr...)
 }
 
 func (d *Deque) insertBack(n int) {
+	// insert n into deque's last position
 	d.arr = append(d.arr, n)
 }
 
 func (d Deque) findIndex(n int) int {
+	// find n's postion in deque
 	output := -1
 	for idx, item := range d.arr {
 		if item == n {
@@ -67,12 +76,14 @@ func (d Deque) findIndex(n int) int {
 }
 
 func (d *Deque) rotateLeft(n int) {
+	// roatate queue items into left
 	var left, right []int
 	left, right = d.arr[:n], d.arr[n:]
 	d.arr = append(right, left...)
 }
 
 func (d *Deque) rotateRight(n int) {
+	// roatate queue items into right
 	var left, right []int
 	left, right = d.arr[:d.size()-n], d.arr[d.size()-n:]
 	d.arr = append(right, left...)
@@ -105,7 +116,7 @@ func main() {
 		num, _ := strconv.Atoi(item)
 		index := deque.findIndex(num)
 
-		if float32(index) < float32(deque.size())/2.0 {
+		if index <= deque.size()-index {
 			deque.rotateLeft(index)
 			answer += index
 		} else {
@@ -114,5 +125,5 @@ func main() {
 		}
 		deque.popFront()
 	}
-	print(answer)
+	fmt.Println(answer)
 }
