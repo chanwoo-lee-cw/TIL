@@ -16,7 +16,7 @@
 
 팩토리얼 구하는 것처럼
 
- <sub>n</sub>C<sub>k</sub> = !n/!k*!(n-k)로 구하는 방법도 있지만, 이 공식은 시간이 지나치게 걸린다.
+ <sub>n</sub>C<sub>k</sub> = n!/k!*(n-k)!로 구하는 방법도 있지만, 이 공식은 시간이 지나치게 걸린다.
 
 ![{\binom  nk}={\begin{cases}n!/\left(k!(n-k)!\right)&0\leq k\leq n\\0&k<0\\0&k>n\end{cases}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/af575850eec19a2efa2ac71d38c3a4c7af88bf5d)
 
