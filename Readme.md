@@ -294,7 +294,7 @@
 - [N-Queen](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/9663)
 - [단지번호붙이기](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2667)
 - [유기농 배추](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1012)
-- [미로 탐색](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2187)
+- [미로 탐색](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/2178)
 - [토마토](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7576)
 - [토마토2](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/7569)
 - [숨바꼭질](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Baek-joon/1697)
