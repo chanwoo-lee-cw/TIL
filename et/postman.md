@@ -1,4 +1,4 @@
-# Postman
+# PostMan
 
 ## postman 사용법
 
@@ -75,6 +75,115 @@ pm.test("response should be okay to process", function () {
 });
 ```
 
+- 상태 코드
+
+```jsx
+// status code 201 은 Created 이므로 같은 결과 반환
+pm.test("Status code is 200", () => {
+  pm.response.to.have.status(200);
+});
+
+pm.test("Status code name has string", () => {
+  pm.response.to.have.status("OK");
+});
+
+// status code 201 은 Created 이므로 같은 코드
+pm.test("Status code is 201", () => {
+  pm.response.to.have.status(201);
+});
+
+pm.test("Status code name has string", () => {
+  pm.response.to.have.status("Created");
+});
+```
+
+- 헤더 값 확인
+
+```jsx
+pm.test("Content-Type header is present", () => {
+  pm.response.to.have.header("Content-Type");
+});
+
+pm.test("Content-Type header is application/json", () => {
+  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');
+});
+```
+
+- 헤더 안의 쿠키 값 확인
+
+```jsx
+// 쿠키 안에 JSESSIONID 가 있는지 확인
+pm.test("Cookie JSESSIONID is present", () => {
+  pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;
+});
+
+// isLoggedIn 값이 1인지 확인
+pm.test("Cookie isLoggedIn has value 1", () => {
+  pm.expect(pm.cookies.get('isLoggedIn')).to.eql('1');
+});
+```
+
+- response 의 타입 확인 방법
+
+```jsx
+/* response has this structure:
+{
+  "name": "Jane",
+  "age": 29,
+  "hobbies": [
+    "skating",
+    "painting"
+  ],
+  "email": null
+}
+*/
+const jsonData = pm.response.json();
+pm.test("Test data type of the response", () => {
+  pm.expect(jsonData).to.be.an("object");
+  pm.expect(jsonData.name).to.be.a("string");
+  pm.expect(jsonData.age).to.be.a("number");
+  pm.expect(jsonData.hobbies).to.be.an("array");
+  pm.expect(jsonData.website).to.be.undefined;
+  pm.expect(jsonData.email).to.be.null;
+});
+
+/*
+response has this structure:
+{
+  "errors": [],
+  "areas": [ "goods", "services" ],
+  "settings": [
+    {
+      "type": "notification",
+      "detail": [ "email", "sms" ]
+    },
+    {
+      "type": "visual",
+      "detail": [ "light", "large" ]
+    }
+  ]
+}
+*/
+
+const jsonData = pm.response.json();
+pm.test("Test array properties", () => {
+    //errors array is empty
+  pm.expect(jsonData.errors).to.be.empty;
+    //areas includes "goods"
+  pm.expect(jsonData.areas).to.include("goods");
+    //get the notification settings object
+  const notificationSettings = jsonData.settings.find
+      (m => m.type === "notification");
+  pm.expect(notificationSettings)
+    .to.be.an("object", "Could not find the setting");
+    //detail array must include "sms"
+  pm.expect(notificationSettings.detail).to.include("sms");
+    //detail array must include all listed
+  pm.expect(notificationSettings.detail)
+    .to.have.members(["email", "sms"]);
+});
+```
+
 - Json 안에 data 가 있는지 확인
 
 ```jsx
@@ -97,6 +206,42 @@ pm.test("status is have", function () {
 ```jsx
 pm.test("status is SUCCESS", function () {
     pm.expect(pm.response.json().result.status).to.equal("SUCCESS");
+});
+```
+
+- 해당 값이 배열중에 하나의 값인지 확인
+
+```jsx
+pm.test("Successful POST request", () => {
+  pm.expect(pm.response.code).to.be.oneOf([201,202]);
+});
+```
+
+- Body 안에 특정 문자열 있는지 확인
+
+```jsx
+pm.test("Body contains string",() => {
+	// pm.response.text() // 응답을 text로 변경, 만약 JSON이면 텍스트 형태가 된다.
+  pm.expect(pm.response.text()).to.include("customer_id");
+});
+```
+
+- Body 값 확인
+
+```jsx
+pm.test("Test data type of the response", () => {
+	// a,b 둘 다 있는지 확인, 하나라고 없으면 false
+	pm.expect({a: 1, b: 2}).to.have.all.keys('a', 'b');
+	// a,b 하나도 있는지 확인, 하나라도 있으면 True
+	pm.expect({a: 1, b: 2}).to.have.any.keys('a', 'b');
+	// a,b 둘 다 없는지 확인, 하나라도 있으면 False
+	pm.expect({a: 1, b: 2}).to.not.have.any.keys('c', 'd');
+	// a,b 하나라도 있는지 확인, 둘다 없어야 True
+	pm.expect({a: 1, b: 2}).to.not.have.all.keys('a', 'd');
+	// a가 key 로 있는지 확인
+	pm.expect({a: 1}).to.have.property('a');
+	// Object 형태인지 확인하고, 키로 a,b 가 포함되어 잇는지 확인
+	pm.expect({a: 1, b: 2}).to.be.an('object').that.has.all.keys('a', 'b');
 });
 ```
 
