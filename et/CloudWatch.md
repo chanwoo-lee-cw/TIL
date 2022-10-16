@@ -3,8 +3,6 @@
 작성일시: 2022년 10월 1일 오후 10:23
 최종 편집일시: 2022년 10월 3일 오후 10:31
 
-## 목차
-
 ## 지원되는 로그 및 검색된 필드
 
 CloudWatch Logs Insight는 다양한 로그 유형을 지원합니다. CloudWatch Logs는 Amazon CloudWatch Logs에 전송되는 모든 로그에 대해 다음과 같은 5개의 시스템 필드를 자동으로 생성합니다.
@@ -38,7 +36,7 @@ CloudWatch Logs Insights를 사용하면 쿼리 언어를 사용하여 로그 �
 ### CloudWatch Logs Insights 쿼리 명령
 
 - `display`
-    
+  
     display 기능을 사용하여 쿼리 결과에 특정 필드를 표시합니다.
     
     예시) 한 필드의 display
@@ -54,7 +52,7 @@ CloudWatch Logs Insights를 사용하면 쿼리 언어를 사용하여 로그 �
     
     - display는 쿼리에서 한번만 사용한다. 두번 이상 사용되는 경우 마지막 항목에서 지정된 필드가 표시된다.
 - `fields`
-    
+  
     field 명령어를 사용해서 쿼리 결과에 특정 필드를 표시합니다.
     
     예시) 특정 feild를 display
@@ -66,7 +64,7 @@ CloudWatch Logs Insights를 사용하면 쿼리 언어를 사용하여 로그 �
     ```
     
 - `filter`
-    
+  
     filter를 사용하여 하나 이상의 조건과 일치하는 로그 이벤트를 가져옵니다.
     
     예시 ) 하나의 조건을 사용한 로그의 필터
@@ -90,15 +88,15 @@ CloudWatch Logs Insights를 사용하면 쿼리 언어를 사용하여 로그 �
     ```
     
 - `stats`
-    
+  
     `stats`를 사용하여 로그 필드 값을 사용하여 집계 통계를 계산합니다.
     
 - `sort`
-    
+  
     `sort`을 사용하여 로그 이벤트를 오름차순(asc) 또는 내림차순(desc)으로 표시합니다.
     
 - `limit`
-    
+  
     `limit`를 사용하여 로그 이벤트의 쿼리에서 다시 돌아오도록 원하는 값을 지정합니다.
     
 ### **Guidelines for working with query commands**
@@ -121,6 +119,58 @@ fields @timestamp, @message
 ```
 
 키워드 구문 `like`와 `not like`를 사용하여 하위 문자열을 일치시킬 수 있습니다. 정규식 연산자 =~를 사용하여 하위 문자열을 일치시킬 수 있습니다. `like`와 `like`가 있는 부분 문자열을 일치시키려면 일치시킬 부분 문자열을 작은 따옴표 또는 큰 따옴표로 묶으십시오. `like`와 `not like`가 함께 있는 정규 표현 패턴을 사용할 수 있습니다. 부분 문자열을 정규식 연산자와 일치시키려면 일치시킬 부분 문자열을 슬래시로 묶으십시오. 다음 예제에는 `filter` 명령을 사용하여 하위 문자열을 일치시키는 방법을 보여주는 코드 조각이 포함되어 있습니다.
+
+### **Examples: Match substrings**
+
+다음 예제에서는 `f1`에 ***Exception***라는 단어가 포함된 로그 이벤트를 반환합니다. 세 가지 예 모두 대소문자를 구분합니다.
+
+첫 번째 예제는 하위 문자열과 `like`를 일치시킵니다.
+
+```
+fields f1, f2, f3 
+| filter f1 like "Exception"
+```
+
+두 번째 예는 `like`와 정규 표현 패턴을 가진 하위 문자열과 일치시킨다.
+
+```
+fields f1, f2, f3 
+| filter f1 like /Exception/
+```
+
+세 번째 예제는 부분 문자열을 정규식과 일치시킵니다.
+
+```
+fields f1, f2, f3 
+| filter f1 =~ /Exception/
+```
+
+### **Example: Match substrings with wildcards**
+
+마침표 기호(.)를 정규식에서 와일드카드로 사용하여 하위 문자열을 일치시킬 수 있습니다. 다음 예제에서 쿼리 반환은 f1의 값이 ServiceLog 문자열로 시작하는 위치와 일치합니다.
+
+```
+fields f1, f2, f3
+| filter f1 like /ServiceLog./
+```
+
+### **Example: Exclude substrings from matches**
+
+다음 예제에서는 `f1`에 ***Exception***라는 단어가 포함되지 않은 로그 이벤트를 반환하는 쿼리를 보여 줍니다. 예제는 대소문자를 구분합니다.
+
+```
+fields f1, f2, f3 
+| filter f1 not like "Exception"
+```
+
+### **Example: Match substrings with case-insensitive patterns**
+
+대소문자를 구분하지 않는 substring을 같은 식과 정규식과 일치시킬 수 있습니다. 일치시킬 하위 문자열 앞에 다음 매개 변수**(?i)**를 배치합니다. 다음 예제에서는 `f1`에 ***Exception*** 또는 ***exception***이라는 단어가 포함된 로그 이벤트를 반환하는 쿼리를 보여 줍니다.
+
+```
+fields f1, f2, f3 
+| filter f1 like /(?i)Exception/
+```
 
 ## 출처
 
