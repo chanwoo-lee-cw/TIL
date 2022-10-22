@@ -172,6 +172,85 @@ fields f1, f2, f3
 | filter f1 like /(?i)Exception/
 ```
 
+## Using ****aliases**** in queries
+
+별칭이 포함된 쿼리를 만듭니다. 별칭을 사용하여 로그 필드의 이름을 바꾸거나 사용 후 삭제 필드에 값을 추출할 때 사용합니다. 키워드 `as`를 사용하여 로그 필드를 지정하거나 별칭을 지정합니다. 쿼리에 둘 이상의 별칭을 사용할 수 있습니다. 
+
+별칭을 사용할 수 있는 명령어 :
+
+- `fields`
+- `parse`
+- `sort`
+- `stats`
+
+### **Example**
+
+```
+fields @timestamp, @message, accountId as ID
+| sort @timestamp desc
+| limit 20
+```
+
+쿼리는 `@timestamp`, `@message` 및 `accountId` 필드의 값을 반환합니다. 결과는 내림차순으로 정렬되고 20개로 제한됩니다. 그리고 `accountId`의 값은 별칭 ID 아래에 나열됩니다.
+
+### **Eaxmple**
+
+```
+stats count(*) by duration as time 
+| sort time desc
+```
+
+쿼리는 로그 그룹에서 `duration` 필드가 발생한 횟수를 카운트하고 결과를 내림차순으로 정렬합니다. `duration`에 대한 값은 `time`이라는 별칭 아래에 나열됩니다.
+
+## ****Using comments in queries****
+
+CloudWatch Logs Insights는 쿼리의 주석을 지원합니다. 해시 문자(#)를 사용하여 주석을 설정합니다. 즉, 주석을 사용하여 쿼리 또는 문서 쿼리의 행을 무시할 수 있습니다.
+
+```
+fields @timestamp, @message, accountId
+# | filter accountId not like "7983124201998"
+| sort @timestamp desc
+| limit 20
+```
+
+## ****Supported operations and functions****
+
+### **Arithmetic operators**
+
+산술 연산자는 숫자 데이터 형식을 인수로 받아들이고 숫자 결과를 반환합니다. filter 및 fields 명령에서 산술 연산자를 사용하고 다른 함수에 대한 인수로 사용합니다.
+
+| Operation | Description |
+| --- | --- |
+| a + b | Addition |
+| a - b | Subtraction |
+| a * b | Multiplication |
+| a / b | Division |
+| a ^ b | Exponentiation (2 ^ 3 returns 8) |
+| a % b | Remainder or modulus (10 % 3 returns 1) |
+
+### **Boolean operators**
+
+Boolean 연산자 `and`, `or`, `not`을 사용할 수 있다.
+
+<aside>
+💡 **Note**
+True, False 값을 반환하는 함수에서만 Boolean 연산자를 사용해야 한다.
+
+</aside>
+
+### **Comparison operators**
+
+비교 연산자는 모든 데이터 형식을 인수로 받아들이고 Boolean 결과를 반환합니다. `filter` 명령어 및 기타 함수의 인수로 비교 연산을 사용합니다.
+
+| Operator | Description |
+| --- | --- |
+| = | Equal |
+| != | Not equal |
+| < | Less than |
+| > | Greater than |
+| <= | Less than or equal to |
+| >= | Greater than or equal to |
+
 ## 출처
 
 [CloudWatch Logs Insights query syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html)
