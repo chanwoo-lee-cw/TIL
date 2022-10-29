@@ -11,7 +11,7 @@ CloudWatch Logs Insight는 다양한 로그 유형을 지원합니다. CloudWatc
 - `@timestamp` 는 로그 이벤트의 타임 스탬프 필드 안의 이벤트의 타임 스탬프가 포함됩니다. 이는 입력 로그 이벤트의 타임스탬프 필드에 해당합니다.
 - `@ingestionTime` 는 CloudWatch Logs가 로그 이벤트를 받은 시간을 포함한다.
 - `@logStream` 은 포한함다. **로그 이벤트가 추가된 로그 스트림의 이름이 포함됩니다. 로그 스트림은 로그를 생성한 프로세스와 동일한 프로세스를 통해 로그를 그룹화합니다.**
-- `@log` 는 `*`account-id`*:*`log-group-name`* 형태로 된 로그 식발자 입니다. 멀티 로그 그룹을 querying 할 때, 이것은 특정 사건에 속하는 로그 그룹을 식별하는 데 유용할 수 있습니다.
+- `@log` 는 `account-id` : `log-group-name` 형태로 된 로그 식발자 입니다. 멀티 로그 그룹을 querying 할 때, 이것은 특정 사건에 속하는 로그 그룹을 식별하는 데 유용할 수 있습니다.
 
 CloudWatch Logs Insights는 생성하는 필드의 시작 부분에 `@` 기호를 삽입합니다.
 
@@ -231,11 +231,8 @@ fields @timestamp, @message, accountId
 
 Boolean 연산자 `and`, `or`, `not`을 사용할 수 있다.
 
-<aside>
-💡 **Note**
-True, False 값을 반환하는 함수에서만 Boolean 연산자를 사용해야 한다.
-
-</aside>
+> **Note**
+> True, False 값을 반환하는 함수에서만 Boolean 연산자를 사용해야 한다.
 
 ### Comparison operators
 
@@ -278,6 +275,43 @@ True, False 값을 반환하는 함수에서만 Boolean 연산자를 사용해�
 예) dateceil(@timestamp, 1h) 모든 @timestamp 값을 1시간 단위로 올림한다.. |
 | fromMillis(fieldName: number) | Timestamp | Interprets the input field as the number of milliseconds since the Unix epoch and converts it to a timestamp. |
 | toMillis(fieldName: Timestamp) | number | Converts the timestamp found in the named field into a number representing the milliseconds since the Unix epoch. For example, toMillis(@timestamp)converts the timestamp 2022-01-14T13:18:031.000-08:00 to 1642195111000. |
+
+
+> **Note**
+> 현재 CloudWatch Logs Insights는 사람이 읽을 수 있는 타임스탬프가 있는 로그 필터링을 지원하지 않습니다.
+
+### General functions
+
+General functions은 `fields` 와 `filter`명령어에서 사용되고, 다른 함수의 매개변수로 사용된다.
+
+| Function | Result type | Description |
+| --- | --- | --- |
+| ispresent(fieldName: LogField) | Boolean | Returns true if the field exists |
+| coalesce(fieldName: LogField, ...fieldNames: LogField[]) | LogField | Returns the first non-null value from the list |
+
+### IP address string functions
+
+| Function | Result type | Description |
+| --- | --- | --- |
+| isValidIp(fieldName: string) | boolean | 필드가 유효한 IPv4 또는 IPv6 주소이면 true를 반환합니다. |
+| isValidIpV4(fieldName: string) | boolean | 필드가 유효한 IPv4 주소이면 true를 반환합니다. |
+| isValidIpV6(fieldName: string) | boolean | 필드가 유효한 IPv6 주소인 경우 true를 반환합니다. |
+| isIpInSubnet(fieldName: string, subnet: string) | boolean | 필드가 지정된 v4 또는 v6 서브넷 내의 유효한 IPv4 또는 IPv6 주소인 경우 true를 반환합니다. 서브넷을 지정할 때 192.0.2.0/24 또는 2001:db8:/32와 같은 CIDR 표기법을 사용합니다. |
+| isIpv4InSubnet(fieldName: string, subnet: string) | boolean | 필드가 지정된 v4 서브넷 내의 유효한 IPv4 주소인 경우 true를 반환합니다. 서브넷을 지정할 때 192.0.2.0/24와 같은 CIDR 표기법을 사용합니다. |
+| isIpv6InSubnet(fieldName: string, subnet: string) | boolean | 필드가 지정된 v6 서브넷 내의 유효한 IPv6 주소인 경우 true를 반환합니다. 서브넷을 지정할 때 2001:db8:/32와 같은 CIDR 표기법을 사용합니다. |
+
+### Stats aggregation functions
+
+| Function | Result type | Description |
+| --- | --- | --- |
+| avg(fieldName: NumericLogField) | number | 필드에 있는 값의 평균입니다. |
+| count()
+
+count(fieldName: LogField) | number | 로그 이벤트를 카운트합니다. count()는 쿼리에서 반환되는 모든 이벤트를 카운트하고 count(필드명)는 지정된 필드 이름을 포함하는 모든 레코드를 카운트합니다. |
+| max(fieldName: LogField) | LogFieldValue | 쿼리된 로그에서 이 필드에 대한 값의 최대값 |
+| min(fieldName: LogField) | LogFieldValue | 쿼리된 로그에서 이 로그 필드의 최소값입니다. |
+| stddev(fieldName: NumericLogField) | number | 지정된 필드에 있는 값의 표준 편차입니다. |
+| sum(fieldName: NumericLogField) | number | 지정된 필드의 값 합계입니다. |
 
 ## 출처
 
