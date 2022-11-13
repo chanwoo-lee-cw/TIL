@@ -53,13 +53,23 @@
 - [MongoDB](et/MongoDB.md)
 - [getter/setter 사용 이유](https://ritualforrain.notion.site/getter-setter-93aa475101c14de093d1e9340d621e6d)
 - [Java의 다중 반복문 break](https://ritualforrain.notion.site/Java-9b94c677d44940429653c850ea0e60b4)
-- [git merge](https://ritualforrain.notion.site/Git-merge-017db5656dbd41f59fd0d9ad20b71d86)
 - [ngrok 사용법](https://ritualforrain.notion.site/ngrok-e6e7280935ab4cab9a892199e7f12467)
-- [git cherry-pick](https://ritualforrain.notion.site/git-cherry-pick-1484ae4045da49c68de3ee0a42194bfb)
+- [Docker CLI](https://github.com/Alphanewbie/TIL/blob/master/et/Docker_CLI.md#L10)
+- [crontab 사용법](https://github.com/Alphanewbie/TIL/blob/master/et/crontab.md#L1)
+- [postman](https://github.com/Alphanewbie/TIL/blob/master/et/postman.md#L1)
+- [ngrok](https://github.com/Alphanewbie/TIL/blob/master/et/ngrok_사용법.md#L1)
+- [git](https://github.com/Alphanewbie/TIL/blob/master/et/git_manual.md#L1)
+  - [git merge](https://ritualforrain.notion.site/Git-merge-017db5656dbd41f59fd0d9ad20b71d86)
+  - [git cherry-pick](https://ritualforrain.notion.site/git-cherry-pick-1484ae4045da49c68de3ee0a42194bfb)
+  - [git stash](https://github.com/Alphanewbie/TIL/blob/master/et/git stash.md#L1)
+  - [git error](https://github.com/Alphanewbie/TIL/blob/master/et/git_error.md#L1)
+
 
 ## 3. Computer Science
 
 - [프로세스 처리 알고리즘](https://ritualforrain.notion.site/2036f6b69b2547d9b4916fbe9f6ac344)
+- [CQRS](https://github.com/Alphanewbie/TIL/blob/master/et/CQRS.md#L1)
+- [aws CloudWatch](https://github.com/Alphanewbie/TIL/blob/master/et/CloudWatch.md#L308)
 
 ## 4. Data structure
 
