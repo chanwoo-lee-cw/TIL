@@ -305,9 +305,7 @@ General functions은 `fields` 와 `filter`명령어에서 사용되고, 다른 �
 | Function | Result type | Description |
 | --- | --- | --- |
 | avg(fieldName: NumericLogField) | number | 필드에 있는 값의 평균입니다. |
-| count()
-
-count(fieldName: LogField) | number | 로그 이벤트를 카운트합니다. count()는 쿼리에서 반환되는 모든 이벤트를 카운트하고 count(필드명)는 지정된 필드 이름을 포함하는 모든 레코드를 카운트합니다. |
+| count() </br> count(fieldName: LogField) | number | 로그 이벤트를 카운트합니다. count()는 쿼리에서 반환되는 모든 이벤트를 카운트하고 count(필드명)는 지정된 필드 이름을 포함하는 모든 레코드를 카운트합니다. |
 | max(fieldName: LogField) | LogFieldValue | 쿼리된 로그에서 이 필드에 대한 값의 최대값 |
 | min(fieldName: LogField) | LogFieldValue | 쿼리된 로그에서 이 로그 필드의 최소값입니다. |
 | stddev(fieldName: NumericLogField) | number | 지정된 필드에 있는 값의 표준 편차입니다. |
