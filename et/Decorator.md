@@ -1,15 +1,8 @@
 # Decorator
 
-분류: Python
-소분류: Decorator
-작성일시: 2021년 12월 6일 오후 11:14
-최종 편집일시: 2022년 12월 3일 오후 11:45
+## 함수형 데코레이터
 
-# 목차
-
-# 함수형 데코레이터
-
-## 중간에 함수를 실행하는 데코레이터
+### 중간에 함수를 실행하는 데코레이터
 
 ```python
 def wrapping(func):
@@ -18,7 +11,7 @@ def wrapping(func):
         func(*args, **kwargs)
         print("wrapper_end")
 
-    return _wrapper    # ()을 붙히면 'NoneType' object is not callable 에러 발생
+    return _wrapper    ## ()을 붙히면 'NoneType' object is not callable 에러 발생
 
 @wrapping
 def test(name):
@@ -28,7 +21,7 @@ test("Mr.kim")
 ```
 
 ```python
-# 출력
+## 출력
 wrapper_start
 Mr.kim this test
 wrapper_end
@@ -62,7 +55,7 @@ test("Mr.kim")
 ```
 
 ```python
-# 출력
+## 출력
 wrapping_second_start
 wrapper_start
 Mr.kim this test
@@ -72,7 +65,7 @@ wrapping_second_end
 
 이런 식으로 데코레이터를 여러 개 감쌀 때는 위에 있는 데코레이터부터 순차적으로 실행된다.
 
-## 입력된 문장에 따라 함수의 반환 여부를 데코레이터
+### 입력된 문장에 따라 함수의 반환 여부를 데코레이터
 
 ```python
 def wrapping(func):
@@ -93,15 +86,15 @@ print(test("Mr.Lee"))
 ```
 
 ```python
-# Mr.kim이 포함되어 있으므로 함수를 실행시키지 않고 "Error" 문자열을 실행
+## Mr.kim이 포함되어 있으므로 함수를 실행시키지 않고 "Error" 문자열을 실행
 Error
-# Mr.kim이 포함되어 있지 않았으므로 함수를 실행시킨다.
+## Mr.kim이 포함되어 있지 않았으므로 함수를 실행시킨다.
 Mr.Lee this test
 ```
 
 데코레이터에 의해 사전에 검사해서 잘못된 문장이 있거나 하면, 출력을 하지 않거나 return을 하지 않음으로써 결과값을 돌려주지 않을 수도 있다.
 
-## 매개변수가 있는 함수형 데코레이터
+### 매개변수가 있는 함수형 데코레이터
 
 ```python
 from functools import wraps
@@ -125,14 +118,14 @@ test_fuction()
 ```
 
 ```python
-# 매개 변수로 전달된 함수 이름인 test_fuction를 출력한 다음에 함수가 실행된다.
+## 매개 변수로 전달된 함수 이름인 test_fuction를 출력한 다음에 함수가 실행된다.
 ====test_fuction===
 here is in test_fuction
 ```
 
 원하는 매개변수를 전달해서 함수 선언 이전에 전달하는 것이 가능하다.
 
-# 클래스형 데코레이터
+## 클래스형 데코레이터
 
 ```python
 print("all_pre")
@@ -196,7 +189,7 @@ print(test("Mr.lee"))
 ```
 
 ```python
-# 출력
+## 출력
 Error
 Mr.lee this test
 ```
@@ -232,7 +225,7 @@ test.print_test()
 ```
 
 ```
-# 출력
+## 출력
 0
 1
 2
@@ -245,3 +238,72 @@ test
     1. 이것이 되는 이유는 파이썬의 클래스 내 매서드의 항상 첫번째 매개변수는 자기 자신의 클래시은 `self` 가 전달되기 때문이다.
     2. `self.str`에 인스턴스를 할당
 4. `print_test()` 를 통해 `self.str` 출력
+
+#### 매개 변수가 있는 클레스형 데코레이터
+
+```python
+from functools import wraps
+from typing import Optional
+
+class Decorator:
+    def __init__(self, func_name: Optional[str] = None):
+        self.func_name = func_name
+
+    def __call__(self, func):
+        @wraps(func)
+        def decorated(*args, **kwargs):
+            print(f"==={self.func_name}===")
+            return func(*args, **kwargs)
+
+        return decorated
+
+@Decorator("test")
+def test_fuction():
+    print("here is in test_fuction")
+
+test_fuction()
+```
+
+## args가 선택 사항인 데코레이터 생성 방법
+
+```python
+from functools import wraps
+from typing import Optional
+
+class _Decorator(object):
+    def __init__(self, func, func_name: Optional[str] = None):
+        self.func = func
+        self.func_name = func_name
+
+    def __call__(self, *args, **kwargs):
+        print(f"==={self.func_name}===")
+        self.func(*args, **kwargs)
+
+def decorator(func=None, func_name: Optional[str] = None):
+    if func:
+        return _Decorator(func)
+    else:
+        @wraps(func)
+        def wrapper(func):
+            return _Decorator(func, func_name)
+
+        return wrapper
+
+@decorator
+def none_fuction():
+    print("here is in test_fuction")
+
+@decorator(func_name="test")
+def test_fuction():
+    print("here is in test_fuction")
+
+none_fuction()
+test_fuction()
+```
+
+```python
+===None===
+here is in test_fuction
+===test===
+here is in test_fuction
+```
