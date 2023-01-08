@@ -96,3 +96,100 @@ func main() {
 	person2.printName()
 }
 ```
+
+
+## 에러 처리
+
+```go
+package main
+
+import "log"
+
+func test(raise_error bool) int {
+	var val int
+	val = 1
+	log.Fatalln("This program needs exactly one argument")  // error raise
+	return val
+}
+
+func main() {
+	answer := test(true)
+	println(answer)
+}
+```
+
+```go
+// error raised
+2023/01/03 14:33:26 This program needs exactly one argument
+```
+
+```go
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func test(raise_error bool) (int, error) {
+	var val int
+	val = 1
+	//log.Fatalln("This program needs exactly one argument")
+	if raise_error {
+		return 0, errors.New("test")
+	}
+	return val, nil
+}
+
+func main() {
+	answer, err := test(true)
+	if err != nil {
+		// err 메세지 출력
+		// 위의 log.Fatalln("This program needs exactly one argument") 주석이면 
+		// 주석 : test
+		// 주석 해제 : This program needs exactly one argument
+		fmt.Println(err)
+	} else {
+		fmt.Println(answer)
+	}
+}
+```
+
+## 함수
+
+### defer
+
+특정 문장 혹은 함수를 나중에 (defer가 호출된 부분이 종료되기 직전에) 실행한다. finally 처럼 clean-up 작업을 위해 사용
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+)
+
+func doDbSomething(ctx context.Context) {
+	tx, err := db.Begin(ctx, nil)
+
+	defer func() {
+		// 함수가 끝난 이후에 
+		if err == nil {
+			if err != nil {
+				err = tx.Commit()
+			} else {
+				tx.Rollback()
+			}
+		}
+	}()
+}
+
+func main() {
+	answer, err := test(true)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(answer)
+	}
+}
+```
