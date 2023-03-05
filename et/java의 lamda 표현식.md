@@ -123,3 +123,118 @@ BinaryOperator<Integer> add = (Integer a, Integer b) -> a + b;
        }
    }
    ```
+
+# Stream
+
+## stream 이란?
+
+> Stream은 Java 컬렉션과 함께 작동하며, 컬렉션의 요소들을 처리하고, 변환하고, 조작하는데 사용됩니다. Stream은 간결하고 가독성이 좋은 코드를 작성할 수 있도록 도와주며, 병렬처리를 통해 높은 성능을 제공합니다.
+> 
+
+## 예제
+
+java steam을 사용하는 가장 대표적인 예제로는 컬렉션의 요소들을 순회하기 위해서 iterator 를 대신하는 용도로 주로 사용된다.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+numbers.stream()
+        .filter(item -> item % 2 == 0)
+        .forEach(System.out::println);
+```
+
+interger List에서 짝수만 출력하는 방법.
+
+steam을 통한 lamda 표현식을 통해 정수만 남긴 다음에, 메소드 참조 연산자를 통해 자세한 내용을 생락하고 출력했다.
+
+### 1. 리스트에서 필터링하기
+
+```java
+// 여러 수로 이루어진 리스트에서 짝수로만 이루어진 새로운 리스트를 만드는 방법
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+List<Integer> evenNumbers = numbers.stream()
+                                   .filter(n -> n % 2 == 0)
+                                   .collect(Collectors.toList());
+```
+
+### 2. 맵에서 키-값 쌍 필터링하기
+
+```java
+Map<String, Integer> items = new HashMap<>();
+items.put("A", 10);
+items.put("B", 20);
+items.put("C", 30);
+items.put("D", 40);
+items.put("E", 50);
+ 
+// Map에서 value이 30 이상으로만 이루어진 새로운 맵을 만드는 방법
+Map<String, Integer> filteredItems = items.entrySet()
+                                          .stream()
+                                          .filter(item -> item.getValue() > 30)
+                                          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+```
+
+### 3. 리스트에서 값 추출하기
+
+```java
+List<String> names = Arrays.asList("John", "Jane", "David", "Tom");
+String first = names.stream().findFirst().orElse("No names found");
+```
+
+문자열 리스트에서 첫 번째 값을 추출하는 코드. 만약 리스트가 비어있는 경우 `No names found`가 반환.
+
+### 4. 리스트에서 집계하기
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int sum = numbers.stream().mapToInt(Integer::intValue).sum();
+```
+
+위 코드는 숫자 리스트의 합계를 구하는 코드입니다. mapToInt() 함수를 사용하여 Integer를 int로 변환한 후 sum() 함수를 사용하여 합계를 구합니다.
+
+## Steam의 하위 함수
+
+### 1. map()
+
+요소를 다른 요소로 변환하는 함수. 스트림의 각 요소에 대해 인자로 주어진 함수를 적용하여 새로운 요소를 반환한다.
+
+```java
+List<String> strings = Arrays.asList("Java", "is", "a", "programming", "language");
+List<Integer> lengths = strings.stream().map(s -> s.length()).collect(Collectors.toList());
+// lengths: [4, 2, 1, 11, 8]
+```
+
+위 코드에서 map() 함수는 문자열 리스트를 정수 리스트로 변환합니다. 문자열의 길이를 반환하는 함수를 map() 함수에 전달하여 새로운 정수 리스트를 반환합니다.
+
+### 2. filter()
+
+주어진 조건에 맞는 요소만 선택하는 함수입니다. 스트림의 각 요소에 대해 인자로 주어진 조건을 검사하고, 조건에 맞는 요소만 선택하여 새로운 스트림을 반환합니다.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+List<Integer> evenNumbers = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+// evenNumbers: [2, 4, 6, 8, 10]
+```
+
+### 3. reduce()
+
+스트림의 모든 요소를 결합하여 하나의 값으로 만드는 함수입니다. 스트림의 요소를 순서대로 연산하여 최종 결과를 반환합니다.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int sum = numbers.stream().reduce(0, (a, b) -> a + b);
+// sum: 55
+```
+
+### 4. forEach()
+
+스트림의 각 요소에 대해 주어진 함수를 실행하는 함수입니다. 스트림의 모든 요소를 반복하며 인자로 주어진 함수를 실행합니다.
+
+```java
+List<String> strings = Arrays.asList("Java", "is", "a", "programming", "language");
+strings.stream().forEach(s -> System.out.println(s));
+// 출력: Java
+//       is
+//       a
+//       programming
+//       language
+```
