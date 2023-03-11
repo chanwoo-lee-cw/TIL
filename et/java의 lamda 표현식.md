@@ -238,3 +238,78 @@ strings.stream().forEach(s -> System.out.println(s));
 //       programming
 //       language
 ```
+
+### 5. collect()
+
+스트림의 요소들을 컬렉션으로 변환하는 함수입니다. 스트림의 모든 요소를 컬렉션으로 수집하는 작업을 수행할 때 사용됩니다. collect 함수는 Collector 인터페이스를 구현한 객체를 매개변수로 받습니다.
+
+1. toList() : 스트림의 모든 요소를 List로 변환합니다.
+    
+    ```java
+    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    List<String> strNumbers = numbers.stream().map(item -> item.toString()).collect(Collectors.toList());
+    ```
+    
+2. toSet(): 스트림의 모든 요소를 Set으로 변환합니다.
+3. toMap(): 스트림의 요소를 Key-Value 형태로 변환하여 Map으로 반환합니다.
+    
+    ```java
+    @Data
+    class Student {
+        private int id;
+        private String name;
+    }
+    
+    Map<String, Student> studentMap = students.stream().collect(Collectors.toMap(Student::getName, s -> s));
+    ```
+    
+4. joining(): 스트림의 요소를 지정된 구분자로 구분하여 문자열로 반환합니다.
+    
+    ```java
+    List<String> stringList = Arrays.asList("Java", "is", "a", "programming", "language");
+    
+    String concatenatedString = stringList.stream().collect(Collectors.joining(" "));
+    // Java is a programming language
+    // 만약 구분자를 주지 않으면 단순히 이어서 준다.
+    ```
+    
+5. summarizingInt()/summarizingDouble()/summarizingLong(): 스트림의 요소에 대한 요약 통계 정보를 계산하여 반환합니다.
+6. groupingBy(): 스트림의 요소를 그룹화하여 Map으로 반환합니다.
+    
+    ```java
+    @Data
+    class Student {
+        private int age;
+        private String name;
+    }
+    
+    Map<String, List<Student>> studentMapByAge = students.stream().collect(Collectors.groupingBy(Student::getAge));
+    ```
+    
+7. partitioningBy(): 스트림의 요소를 조건에 따라 분할하여 Map으로 반환합니다.
+
+### 5. flatMap()
+
+중첩된 스트림을 평면화 시켜서 하나의 스트림으로 만들어주는 함수. 하나의 요소를 여러개의 요소로 매핑하는 map과는 달리, 하나의 요소를 여러개의 스트림으로 매핑한 다음에 하나의 스트림으로 만들어준다.
+
+이 함수는 인자로 받은 요소를 처리하여 평면화된 스트림을 반환하는 로직을 구현해야 합니다.
+
+```java
+List<List<Integer>> nestedList = Arrays.asList(
+    Arrays.asList(1, 2, 3),
+    Arrays.asList(4, 5, 6),
+    Arrays.asList(7, 8, 9)
+);
+
+List<Integer> flatList = nestedList.stream()
+                                   .flatMap(Collection::stream)
+                                   .collect(Collectors.toList());
+```
+
+```java
+Stream<String> s1 = Stream.of("AA", "BB", "CC");
+Stream<String> s2 = Stream.of("DD", "EE", "FF");
+
+//Using flatMap() to merge two streams into one stream
+Stream<String> s3 = Stream.of(s1, s2).flatMap(s -> s);
+```
