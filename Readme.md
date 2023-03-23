@@ -443,3 +443,9 @@
 ### 11.8 Hash
 
 - [완주하지 못한 선수](https://github.com/Alphanewbie/TIL/blob/master/Algorithm_problem_solving/Programers/Hash/The_incomplete_marathoner/the_incomplete_marathoner)
+
+## 12. Memo
+
+기타 잡다한 메모 정리
+
+ - [strategy pattern 과 command pattern 차이점](https://www.notion.so/ritualforrain/strategy-pattern-command-pattern-66ebbb80230c4e7b9727481ec0a474a5?pvs=4)
