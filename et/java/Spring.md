@@ -1,3 +1,5 @@
+# Spring
+
 # Spring Bean
 
 ## Java Bean 이란?
@@ -61,3 +63,78 @@ public class UserRepositoryImpl implements UserRepository {
 Spring 컨테이너가 **`UserServiceImpl`** 빈을 생성하고 관리할 때, **`setUserRepository()`**에 대한 **`@Autowired`** 주석을 자동으로 감지하고 적절한 **`UserRepository`** 빈을 주입하여 **`UserServiceImpl`**이 **`UserRepository`** 구현을 수동으로 생성하지 않고도 사용할 수 있도록 합니다.
 
 **`@Autowired`**는 생성자 매개 변수 또는 클래스 필드에 직접 사용될 수 있으며, **`@Qualifier`**와 같은 다른 어노테이션과 결합하여 동일한 유형의 여러 빈이 있는 경우 주입할 빈을 지정할 수 있습니다.
+
+## Dependency Injection
+
+> DI란 객체 자체가 종속성을 생성하는 객체가 아닌, 객체에 존속성을 제공하여, 결합성은 낮추는 디자인 패턴.
+객체가 종속성을 만드는 대신 종속성이 서드 파티 구성 요소에 의해 객체를 주입
+> 
+
+DI를 통해 객체를 분리할 수 있으며 모듈화, 테스트 및 유지보수가 가능하고, IoC 컨테이너를 사용하여 DI를 구현한다.
+
+스프링은 생성자 주입과 세터 주입 두 가지 유형의 DI를 지원한다. 
+
+생성자 주입은 **객체에 종속성을 전달**하는 것을 포함하는 반변, 세터 주입은 **세터 메서드를 통해 종속성을 전달**하는 것을 포함한다.
+
+### DI의 장점
+
+- Decoupling of components : 응용 프로그램의 구성 요소가 느슨하게 결합되어 있어서 유지 보수가 용이
+- Simplified testing: 구성 요소가 분리되어 있기 때문에 분리된 상태에서 테스트 할 수 있으므로 애플리케이션에 대한 유닛 테스트를 쉽게 작성 가능
+- Easy configuration: 애플리케이션의 구성이 외부화되어 있으므로 소스코드를 수정하지 않고, 값을 변경 가능
+
+### DI의 예제
+
+```java
+public interface OrderRepository {
+    public void save(Order order);
+}
+
+@Component
+public class OrderRepositoryImpl implements OrderRepository {
+    public void save(Order order) {
+        // Implementation of save method
+    }
+}
+
+@Component
+public class OrderService {
+    private OrderRepository orderRepository;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
+    }
+}
+```
+
+`OrderRepository` 를 인터페이스로 선언하고, 이것을 상속받는 `OrderRepositoryImpl`를 선언한다. 그리고 둘 다 `@Component` 어노테이션이 붙어 있는데, 이 어노테이션은 spring에게 라이프사이클 관리와 중속성 주입에 사용할 수 있도록 선언해 주는 역할을 한다.
+
+`OrderService` 클래스에는 `OrderRepository`의 인스턴스를 **매개 변수**로 사용하는 생성자가 있습니다. `@AutoWired` 주석은 `OrderRepository` 인스턴스가 생성될 때 `OrderService` 클래스에 삽입하도록 Spring에 알립니다. 다음은 생성자 주입의 예입니다.
+
+`OrderService`의 `saveOrder` 메서드는 주입된 `OrderRepository` 인스턴스에 대한 저장 메서드를 호출합니다.
+
+DI를 사용함으로써 `OrderService` 클래스를 `OrderRepository` 클래스에서 분리하여 모듈화하고 테스트하기 쉽게 만들었습니다. `OrderService` 클래스를 수정하지 않고도 `OrderRespository` 구현을 다른 구현으로 쉽게 전환할 수 있습니다.
+
+## IoC와 DI
+
+IoC는 제어 흐름들 반전시키는 설계 패턴 및 아키텍쳐 원칙으로, 응용프로그램이 이벤트 흐름을 제어하는 대신 외부 프레임워크 또는 컨테이너가 이벤트 흐름을 제어하게 하는 방식을 말한다.
+
+반면에, DI는 사물에 종속성을 주입하는 것을 다루는 IoC의 구현 방식. DI는 객체가 자체 종속성을 생성하는 것이 아니라 객체의 종속성이 객체에 주입되는 IoC를 구현하는 방법을 말한다.
+
+요컨데, IoC는 원리인 반면에 DI는 IoC를 구현하는데 사용되는 기술.
+
+## Spring Container
+
+Spring 프레임워크에서 Spring 컨테이너는 응용프로그램에서 객체의 라이프사이클을 관리하는 중앙 구성요소이며, IoC(Inversion of Control) 컨테이너라고도 한다.
+
+Spring 컨테이너는 객체를 생성, 구성하고, 수명 주기를 관리하는 역할을 합니다. 컨테이너는 XML 파일, Java 어노테이션 또는 Java 코드 형식의 구성 메타데이터를 사용한다.
+
+Spring 컨테이너가 시작되면 구성 메타데이터를 읽고 정의된 개체를 생성합니다. 그런 다음 컨테이너는 이러한 개체의 종속성을 주입하고 메타데이터에 따라 개체를 구성합니다. 이를 통해 객체를 느슨하게 결합할 수 있으며 테스트 및 유지보수가 용이합니다.
+
+Spring 컨테이너에는 `BeanFactory`와 `ApplicationContext`의 두 가지 유형이 있습니다. `BeanFactory`는 기본 컨테이너이고 `ApplicationContext`는 국제화, 이벤트 전파 및 리소스 로드와 같은 추가 기능을 제공하는 고급 컨테이너입니다.
+
+Spring 컨테이너는 객체의 라이프사이클 관리 외에도 트랜잭션 관리, 보안 및 캐싱과 같은 다른 서비스도 제공합니다. 스프링 프레임워크의 핵심 구성 요소이며 스프링 기반 응용 프로그램에서 광범위하게 사용됩니다.
