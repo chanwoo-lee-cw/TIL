@@ -138,3 +138,23 @@ Spring 컨테이너가 시작되면 구성 메타데이터를 읽고 정의된 �
 Spring 컨테이너에는 `BeanFactory`와 `ApplicationContext`의 두 가지 유형이 있습니다. `BeanFactory`는 기본 컨테이너이고 `ApplicationContext`는 국제화, 이벤트 전파 및 리소스 로드와 같은 추가 기능을 제공하는 고급 컨테이너입니다.
 
 Spring 컨테이너는 객체의 라이프사이클 관리 외에도 트랜잭션 관리, 보안 및 캐싱과 같은 다른 서비스도 제공합니다. 스프링 프레임워크의 핵심 구성 요소이며 스프링 기반 응용 프로그램에서 광범위하게 사용됩니다.
+
+## Spring AOP
+
+AOP는 개발자들이 모듈화하고 concerns이라고 불리는 별도의 단위로 캡슐화할 수 있도록 함으로써 소프트웨어 개발에서 cross-cutting concerns 문제를 해결한다. 
+
+cross-cutting concerns는 이러한 어플리케이션 전체에 걸쳐 존재하는 우려 사항 또는 기능이며, 종종 여러 모듈에 걸쳐 차단되어 전통적인 객체 지향 프로그래밍(OOP) 패러다임 내에서 관리하고 유지하기 어렵다. cross-cutting concerns의 예로는 로깅, 보안, 캐싱 및 트랜잭션 관리가 있다.
+
+Spring AOP는 개발자가 이러한 aspect 사항을 캡슐화하는 측면을 정의하고 join points라고 알려져 있는 어플리케이션 실행에 적용할 수 있도록 합니다. 적절한 join points에 aspect를 주입함으로써 AOP는 코드베이스를 더 모듈화하고, 유지보수 가능하며, 이해하기 쉽게 유지할 수 있도록 도와준다.
+
+### Spring AOP의 중요 개념
+
+1. Aspect: cross-cutting concerns 모듈 단위.
+2. Join point: 어플리케이션 실행에서 aspect가 적용될 수 있는 특정 지점
+3. Advice: 특정한 join point에서 aspect에 의해 수행되는 작업
+4. Pointcut: Advice와 일치해야 하는 결합점을 정의하는 표현.
+5. Target object: 하나 이상의 aspects에 의해 Advice 되는 객체
+6. AOP proxy: 대상 객체를 둘러싸는 aspect 코드를 실행하는 동적으로 생성된 프록시.
+7. Weaving: 컴파일 시간이나, 로드 시간, 런타임에  타겟 객체에 aspect를 적용하는 프로세스. 
+
+스프링 AOP는 프록시 기반 접근법을 사용하는데, 이는 런타임에 동적 프록시를 생성하여 대상 객체에 측면을 짜넣는다는 것을 의미한다. 이를 통해 유연성이 향상되고 기존 애플리케이션과의 통합이 쉬워집니다.
