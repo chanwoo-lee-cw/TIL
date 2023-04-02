@@ -149,12 +149,34 @@ Spring AOP는 개발자가 이러한 aspect 사항을 캡슐화하는 측면을 
 
 ### Spring AOP의 중요 개념
 
-1. Aspect: cross-cutting concerns 모듈 단위.
+1. Aspect: cross-cutting concerns 모듈 단위. 
+한 aspect은 여러 구성 요소 또는 모듈에 걸쳐 있지만 핵심 비즈니스 로직과 직접 관련이 없는 기능인 Cross-cutting concerns를 캡슐화하는 모듈식 장치입니다. aspect은 적용할 실제 동작을 포함하는 조언을 나타내는 메서드와 함께 Java 클래스로 구현됩니다. 측면은 AOP 컨텍스트에서 역할을 나타내기 위해 `@Aspect` 주석으로 주석이 달린다.
 2. Join point: 어플리케이션 실행에서 aspect가 적용될 수 있는 특정 지점
+조인 포인트는 메서드 실행, 객체 인스턴스화 또는 필드 액세스와 같은 어플리케이션 실행의 특정 포인트이며, 여기서 aspect가 적용될 수 있습니다. Spring AOP에서 결합점은 메서드 실행으로 표시됩니다.
 3. Advice: 특정한 join point에서 aspect에 의해 수행되는 작업
+Advice는 적용될 cross-cutting concerns 로직을 포함하는 aspect내의 매소드이다. Advice는 조인 포인트와 관련하여 조언이 실행될 시기를 결정하는 `@Before`, `@After`, `@Around`, `@AfterReturn`, `@AfterThrowing`과 같은 주석이 달린다.
 4. Pointcut: Advice와 일치해야 하는 결합점을 정의하는 표현.
-5. Target object: 하나 이상의 aspects에 의해 Advice 되는 객체
+포인트 컷을 사용하면 Advice을 적용할 시기와 위치를 지정할 수 있습니다. 포인트컷 표현식은 일반적으로 `@Pointcut` 주석 및 AspectJ 표현식 언어를 사용하여 정의된다. 그런 다음 포인트 컷 표현식을 Advice 주석에서 참조하여 Advice를 지정된 조인 포인트와 연결할 수 있습니다.
+5. Target object: 하나 이상의 aspects에 의해 Advice 되는 객체.
+대상 객체는 매소드 호출을 가로채고, 필요애 따라 aspect 코드를 적용하는 AOP proxy 에 둘러 쌓입니다.
 6. AOP proxy: 대상 객체를 둘러싸는 aspect 코드를 실행하는 동적으로 생성된 프록시.
-7. Weaving: 컴파일 시간이나, 로드 시간, 런타임에  타겟 객체에 aspect를 적용하는 프로세스. 
+프록시 개체에 대한 메서드가 호출되면 프록시는 호출을 가로채고 대상 개체에 대한 호출을 하기 전이나 후에 advice가 있는 경우에는 실행합니다.
+7. Weaving: AOP proxy를 생성하고 컴파일 시간이나, 로드 시간, 런타임에 타겟 객체에 aspect를 적용하는 프로세스.
+어플리케이션 라이플 사이클의 다양한 단계에서 발생할 수 있다.
+    - Compile-time weaving : aspects가 컴파일 중에 요소가 대상 객체에 들어갑니다. Aspect J는 이 접근법을 지원한다.
+    - Load-time weaving : aspects는 JVM에 로드될 때 대상 객체에 들어갑니다. 이를 위해서는 특수 클래스 로더가 필요하며 AspectJ에 의해 지원된다.
+    - Runtime weaving : aspects가 런타임 동안 대상 객체에 들어갑니다. Spring AOP는 이 접근 방식을 사용하여 애플리케이션이 실행 중일 때 동적으로 AOP 프록시를 생성합니다.
 
 스프링 AOP는 프록시 기반 접근법을 사용하는데, 이는 런타임에 동적 프록시를 생성하여 대상 객체에 측면을 짜넣는다는 것을 의미한다. 이를 통해 유연성이 향상되고 기존 애플리케이션과의 통합이 쉬워집니다.
+
+### Cross-cutting concerns
+
+cross-cutting concerns은 여러 구성 요소 또는 모듈에 영향을 미치지만 핵심 비즈니스 로직과 직접적으로 관련되지 않는 소프트웨어 애플리케이션의 aspect이다. 이러한 aspect는 종종 시스템의 여러 부분에 걸쳐 있으므로 전통적인 객체 지향 프로그래밍(OOP) 패러다임 내에서 관리하고 유지하기 어렵다. cross-cutting concerns code scattering, tangling, and duplication을 초래할 수 있으며, 이는 코드 기반의 모듈성, 유지보수성 및 가독성에 부정적인 영향을 미칠 수 있다.
+
+cross-cutting concerns 의 예시
+
+1. Logging : 어플리케이션 이벤트나 진단 정보를 기록하는 것은 보통 다양한 모듈과 구성 요소에서 공통적으로 필요하다.
+2. Security : 응용프로그램 전반에 걸쳐 적절한 인증, 권한 부여 및 액세스 제어가 필요.
+3. Caching : 캐시에서 데이터를 저장하고 검색하면 성능이 향상될 수 있으며 시스템의 여러 부분에서 필요한 경우 다수.
+4. Transaction management : 데이터베이스 트랜잭션을 관리하여 데이터 일관성을 보장하는 것은 많은 구성 요소에 영향을 미치는 문제.
+5. Error handling and validation : 오류 처리, 입력 검증 및 예외 관리는 여러 모듈에 걸쳐 있을 수 있는 문제.
