@@ -169,6 +169,48 @@ Advice는 적용될 cross-cutting concerns 로직을 포함하는 aspect내의 �
 
 스프링 AOP는 프록시 기반 접근법을 사용하는데, 이는 런타임에 동적 프록시를 생성하여 대상 객체에 측면을 짜넣는다는 것을 의미한다. 이를 통해 유연성이 향상되고 기존 애플리케이션과의 통합이 쉬워집니다.
 
+### **@Aspect**
+
+Spring AOP에서 `@Aspect`어노테이션은 Class를 aspect로 정의 하기 위해서 사용된다. 한 `aspect`은 여러 구성 요소 또는 모듈에 걸쳐 있지만 핵심 비즈니스 로직과 직접 관련이 없는 기능인 `cross-cutting concerns`를 애플리케이션에 캡슐화하는 모듈식 장치입니다. 이러한 `aspect`의 목적은 이런  concerns을 코어 로직으로부터 분리하여 코드를 더 모듈화하고, 유지보수 가능하며, 이해하기 쉽게 만들기 위해서 이다.
+
+@Aspect를 쓰는 경우
+
+1. Modularize cross-cutting concerns : 핵심 애플리케이션 로직에서 cross-cutting concerns을 분리하여 코드를 보다 모듈화하고, 유지보수 가능하며, 이해하기 쉽게 만들 수 있습니다.
+2. Improve code reusability : cross-cutting concerns를 aspect로 구현하면 어플리케이션 전체의 여러 위치에서 동일한 aspect를 재사용할 수 있으므로 코드 중복을 줄이고 유지 관리성을 향상시킬 수 있습니다.
+3. Enhance maintainability : aspect에서 cross-cutting concerns을 중앙 집중화하면 코어 비즈니스 로직에 영향을 미치지 않고 쉽게 업데이트하고 유지 관리할 수 있습니다.
+4. Simplify testing : cross-cutting concerns를 핵심 로직에서 분리하여 개별적으로 테스트할 수 있으므로 응용 프로그램에 대한 테스트 프로세스를 간소화할 수 있습니다.
+
+- **예제**
+
+```java
+package com.example;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Before("execution(* com.example.service.*.*(..))")
+    public void logBefore(JoinPoint joinPoint) {
+        System.out.println("Method called: " + joinPoint.getSignature().getName());
+    }
+}
+```
+
+해당 
+
+- `execution(* com.example.service.*.*(..))`
+    - `com.example.service` : 패키지 안의 모든 파일을 가르킨다
+    - `*` : 해당 패키지의 모든 클래스를 가르키고
+    - `*` : 해당 클래스 안의 모든 매서드의
+    - `(..)` 모든 매개변수를 가리지 않는다는 뜻이다.
+- `JoinPoint` : 메서드, 대상 개체 및 매개변수 같은 해당 Join point 에 대한 정보를 가지고 있는 매개변수.
+    - 현재 인터셉터 중인 매소드에 대한 정보를 얻을 수 있다.
+
 ### Cross-cutting concerns
 
 cross-cutting concerns은 여러 구성 요소 또는 모듈에 영향을 미치지만 핵심 비즈니스 로직과 직접적으로 관련되지 않는 소프트웨어 애플리케이션의 aspect이다. 이러한 aspect는 종종 시스템의 여러 부분에 걸쳐 있으므로 전통적인 객체 지향 프로그래밍(OOP) 패러다임 내에서 관리하고 유지하기 어렵다. cross-cutting concerns code scattering, tangling, and duplication을 초래할 수 있으며, 이는 코드 기반의 모듈성, 유지보수성 및 가독성에 부정적인 영향을 미칠 수 있다.
