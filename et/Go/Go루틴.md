@@ -122,3 +122,132 @@ func main() {
 ```
 
 각  go루틴은 동시에 실행되므로 전송 순서가 실행 순서와 일치하지 않는다.
+
+
+### 2.3. 작동이 안되는 go 루틴
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func printMsg(msg string, channel chan int) {
+	fmt.Println(msg)
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+
+	go printMsg("test", channel)
+}
+```
+
+```go
+//출력값
+```
+
+go 루틴이 작동하기 전에 메인 루틴이 종료가 됬으므로 아무것도 하지 않는다.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func printMsg(msg string, channel chan int) {
+	fmt.Println(msg)
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+
+	go printMsg("test", channel)
+	// 메인 쓰레드가 종료 되면 안 되므로 sleep
+	time.Sleep(1)
+}
+```
+
+```go
+//출력값
+test
+```
+
+### 2.4. 메인 루틴에서 go 루틴으로 msg를 보내는 경우
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func printNumber(channel chan int) {
+	msg := <-channel
+	// 받은 값을 출력
+	fmt.Println(msg)
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+	go printNumber(channel)
+
+	channel <- 10
+	// 메인 쓰레드가 종료 되면 안 되므로 sleep
+	time.Sleep(1)
+}
+```
+
+```go
+// 출력값
+10
+```
+
+### 2.5. Go 루틴으로 메세지를 보낸 다음에 계속 수정하는 경우
+
+```go
+package main
+
+import "fmt"
+
+type IntBox struct {
+	Number int
+}
+
+func convertNumber(intBox *IntBox, channel chan int) {
+	channel <- intBox.Number
+	intBox.Number = 0
+	channel <- intBox.Number
+}
+
+func main() {
+	var intBox *IntBox
+	intBox = &IntBox{
+		Number: 2,
+	}
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+	go convertNumber(intBox, channel)
+	
+	fmt.Println(<-channel)
+	fmt.Println(<-channel)
+	fmt.Println(intBox.Number)
+}
+```
+
+```go
+// 출력
+2
+0
+0
+```
