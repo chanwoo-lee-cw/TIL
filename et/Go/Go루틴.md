@@ -251,3 +251,141 @@ func main() {
 0
 0
 ```
+
+
+### 2.6. Go 루틴으로 보낸 메세지를 iterate 로 출력
+
+```go
+package main
+
+import "fmt"
+
+func sendMsg(channel chan int) {
+	for i := 10; i < 20; i++ {
+		fmt.Printf("channel : %d\n", i)
+		channel <- i
+	}
+	// close가 필수
+	close(channel)
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int, 1)
+	// go 루틴 실행
+	go sendMsg(channel)
+
+	for i := range channel {
+		fmt.Printf("main : %d\n", i)
+	}
+}
+```
+
+```go
+// 출력
+channel : 10
+channel : 11
+channel : 12
+main : 10
+main : 11
+main : 12
+channel : 13
+channel : 14
+channel : 15
+main : 13
+main : 14
+main : 15
+channel : 16
+channel : 17
+channel : 18
+main : 16
+main : 17
+main : 18
+channel : 19
+main : 19
+```
+
+`range`를 채널에 사용하면, 채널이 `close` 되기 이전까지 값을 계속해서 받아올 수 있다.(테스트에 사용한 CPU는 4코어)
+
+즉, 채널이 close가 되지 않으면 해당 **고루틴은 계속해서 블록 상태**로 멈추게 된다.
+
+### 2.7. 데드락이 발생하는 예제
+
+```go
+package main
+
+import "fmt"
+
+func printNumber(channel chan int) {
+	fmt.Println("test")
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+	go printNumber(channel)
+	channel <- 10
+}
+```
+
+```go
+// 출력값
+test
+fatal error: all goroutines are asleep - deadlock!
+```
+
+go 루틴이 값을 받지 않고 종료 되었으므로 main 루틴이 waiting이 계속 걸리게 되서 에러 발생
+
+```go
+package main
+
+func printNumber(channel chan int) {
+	channel <- 10
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+	go printNumber(channel)
+	channel <- 10
+}
+```
+
+```go
+// 출력값
+fatal error: all goroutines are asleep - deadlock!
+```
+
+서로가 값을 받지 않고 모든 루틴이 sleep 상태에 빠지게 되서 데드락
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func printNumber(channel chan int) {
+	fmt.Println("this is printNumber func")
+}
+
+func main() {
+	// 채널 생성
+	channel := make(chan int)
+	// go 루틴 실행
+	go printNumber(channel)
+
+	msg := <-channel
+	fmt.Println(msg)
+}
+```
+
+```go
+// 출력값
+this is printNumber func
+fatal error: all goroutines are asleep - deadlock!
+```
+
+채널 버퍼가 비어있는데 값은 받으려고 대기하고 있기 때문에 데드락
