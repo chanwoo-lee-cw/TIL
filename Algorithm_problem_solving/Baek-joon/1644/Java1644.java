@@ -23,24 +23,30 @@ public class Main {
         return seive;
     }
 
-    private static int dfs(boolean[] seive, int start, int n, int sum) {
-        if (sum > n) {
-            return 0;
-        } else if (sum == n) {
-            return 1;
-        } else {
-            int answer = 0;
-            int temp = 0;
-            for (int i = start; i < n + 1; i++) {
-                if (seive[i]) {
-                    temp = dfs(seive, start + 1, n, sum + i);
-                    if (temp == 0) {
-                        break;
-                    }
-                }
+    private static int dfs(boolean[] seive, int n) {
+        int sum = 0;
+        int answer = 0;
+        List<Integer> sumList = new ArrayList<>();
+        int i = 2;
+        while (i <= n + 1) {
+            if (sum == n) {
+                answer++;
             }
-            return answer;
+            if (sum >= n) {
+                sum -= sumList.get(0);
+                sumList.remove(0);
+            } else {
+                while (i <= n && !seive[i]) {
+                    i++;
+                }
+                sum += i;
+                sumList.add(i);
+                i++;
+            }
         }
+
+        return answer;
+
     }
 
     public static void main(String[] args) {
@@ -49,6 +55,6 @@ public class Main {
 
         boolean[] seive = eratos(n);
 
-        System.out.println(dfs(seive, 2, n, 0));
+        System.out.println(dfs(seive, n));
     }
 }
