@@ -1,0 +1,6 @@
+-- https://school.programmers.co.kr/learn/courses/30/lessons/164673
+SELECT post.TITLE, post.BOARD_ID, re.REPLY_ID, re.WRITER_ID, re.CONTENTS, DATE_FORMAT(re.CREATED_DATE, '%Y-%m-%d') AS CREATED_DATE
+FROM USED_GOODS_BOARD as post inner join USED_GOODS_REPLY as re
+ON post.BOARD_ID = re.BOARD_ID
+WHERE post.CREATED_DATE BETWEEN '2022-10-01' AND '2022-10-31'
+ORDER BY CREATED_DATE ASC, TITLE ASC
