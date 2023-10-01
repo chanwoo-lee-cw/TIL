@@ -1,4 +1,4 @@
--- 코드를 입력하세요
+-- https://school.programmers.co.kr/learn/courses/30/lessons/157342
 SELECT result.ANIMAL_ID, result.NAME
 FROM (  
     SELECT ins.ANIMAL_ID, ins.NAME, (outs.DATETIME - ins.DATETIME) AS STAY_DATES
