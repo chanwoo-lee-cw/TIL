@@ -10,7 +10,7 @@
 
 ## 주요 메소드
 
-### **ContextVar(name, /, *, default=NOT_SET)**
+### ContextVar(name, /, *, default=NOT_SET)**
 
 - 새로운 **`ContextVar`** 객체를 생성합니다.
 - **`name`**: 변수의 이름입니다.
@@ -128,3 +128,39 @@ Flask에서 **`g`** 변수와 **`contextvars`** 모듈을 사용하는 것 사�
 - **용도**: **`g`**는 Flask 내부에서 요청별 상태를 관리하기 위해 설계되었으며, 주로 Flask의 요청 처리 파이프라인 내에서 사용됩니다. 반면, **`contextvars`**는 Flask에 국한되지 않고, Python 애플리케이션 전반에서 멀티스레딩이나 비동기 프로그래밍을 지원하는 데 사용됩니다.
 - **범위와 생명주기**: **`g`**의 생명주기는 하나의 요청에 국한되지만, **`contextvars`**는 요청뿐만 아니라 비동기 작업과 스레드에 대해서도 별도의 컨텍스트를 제공합니다.
 - **활용 환경**: **`g`**는 Flask 애플리케이션에서 주로 사용되는 반면, **`contextvars`**는 Flask에 국한되지 않고 다양한 환경에서 사용될 수 있습니다.
+
+
+
+## 메소드
+
+- `contextvars.copy_context()`
+
+이 함수는 현재 실행 중인 컨텍스트의 "얕은 복사본(shallow copy)"을 생성합니다. 이 복사본은 현재 컨텍스트의 상태를 그대로 복제하지만, 복제된 컨텍스트는 독립적으로 작동합니다.
+
+### **주요 사용 사례**
+
+**`contextvars.copy_context()`**의 주요 사용 사례는 멀티스레딩 또는 비동기 프로그래밍에서 특정 컨텍스트의 상태를 다른 스레드나 비동기 작업으로 전달할 때입니다. 이를 통해 각 스레드나 작업이 자신만의 컨텍스트를 가지면서도, 특정 시점의 컨텍스트 상태를 공유할 수 있습니다.
+
+### **작동 방식**
+
+- **얕은 복사**: **`copy_context()`**는 현재 컨텍스트의 상태를 복사하지만, 복사된 컨텍스트 내의 **`ContextVar`** 객체들은 원본과 동일한 객체를 참조합니다. 이 말은, 컨텍스트 내부의 변수들이 가리키는 데이터 자체는 복사되지 않는다는 의미입니다.
+- **독립적인 컨텍스트**: 복사된 컨텍스트는 원본 컨텍스트와 독립적입니다. 이는 원본 컨텍스트에서 발생하는 변경사항이 복사된 컨텍스트에 영향을 주지 않으며, 반대의 경우도 마찬가지라는 것을 의미합니다.
+
+```python
+import contextvars
+
+var = contextvars.ContextVar('var')
+var.set('original')
+
+# 현재 컨텍스트의 복사본 생성
+ctx_copy = contextvars.copy_context()
+
+# 복사된 컨텍스트에서 'var'의 값을 변경
+ctx_copy.run(lambda: var.set('copied'))
+
+# 원본 컨텍스트에서 'var'의 값은 여전히 'original'
+print(var.get())  # 출력: original
+
+# 복사된 컨텍스트에서 'var'의 값은 'copied'
+print(ctx_copy.run(var.get))  # 출력: copied
+```
