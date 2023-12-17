@@ -3,14 +3,13 @@
 ## `__init__.py`의 역할
 
 1. **파이썬 패키지로 표시**:
-    - 주된 역할은 디렉토리를 Python 패키지로 표시하는 것입니다. 이를 통해 Python은 이러한 디렉토리에서 모듈을 가져올 수 있습니다. **`__init__.py`** 파일이 없으면 Python은 디렉토리를 패키지 경로의 일부로 인식하지 않으며 가져오기 오류가 발생합니다.
+    - 디렉터리에 `__init__.py` 파일이 있으면 해당 디렉터리가 파이썬 패키지로 취급되어야 한다는 것을 파이썬 측에 알린다. 이렇게 하면 모듈과 같은 방식으로 디렉터리를 가져올 수 있다. `__init*__*.py` 파일이 없으면 해당 디렉터리는 패키지로 인식되지 않고 해당 모듈을 가져올 수 없다.
 2. **초기화 코드**:
-    - 패키지에 필요한 초기화 코드를 포함할 수 있습니다. 이 코드는 패키지가 Python 스크립트에서 가져올 때마다 실행됩니다.
-    - 예를 들어, 패키지 수준 데이터를 초기화하거나 필요한 상태를 설정하는 데 사용할 수 있습니다.
+    - 패키지를 가져올 때마다 `__init__.py` 파일을 실행하므로 패키지를 처음 가져올 때 한 번 실행해야 하는 초기화 코드에 적합한 장소이다. 여기에는 패키지 수준의 데이터를 설정하거나 초기화 상태를 설정할 수 있다.
 3. **Imports 컨트롤**:
-    - **`__init__.py`**에서 **`__all__`**을 정의하여 누군가 **`from package import *`**을 사용할 때 가져오는 것을 제어할 수 있습니다. 이는 공개 API를 노출하면서 내부 모듈을 숨기는 데 유용합니다.
+    - `__init__.py` 파일을 통해 패키지를 가져올 때 외부에 노출되는 내용을 제어할 수 있습니다. `from package import *`를 사용할 때 가져올 모듈 이름 목록이 될 수 있는 `__all__` 변수를 사용합니다.
 4. **Import Paths 단순화**:
-    - 이 파일은 패키지 수준에서 더 깊은 모듈 수준의 클래스, 함수 및 변수를 가져오는 데 사용할 수 있습니다. 이렇게 하면 다른 스크립트나 패키지가 사용해야 하는 가져오기 경로를 단순화할 수 있습니다.
+    - 패키지의 일부를 쉽게 접근할 수 있도록 `__init__.py`를 사용할 수 있다. 예를 들어, 깊게 중첩된 모듈이 있으면 패키지를 `__init__.py`로 가져올 수 있어 패키지 사용자가 전체 경로를 탐색하는 대신 패키지 레벨에서 바로 접근할 수 있다.
 5. **Namespace 패키지 지원:**
     - Python 3.3부터 PEP 420은 **`__init__.py`** 파일이 없는 "암시적 네임스페이스 패키지"의 개념을 도입했습니다. 이를 통해 여러 디렉토리 또는 여러 프로젝트에 걸쳐 Python 패키지를 만들 수 있습니다.
     - 그럼에도 불구하고 **`__init__.py`**는 일반적인 (네임스페이스가 아닌) 패키지에 여전히 널리 사용됩니다.
@@ -175,6 +174,90 @@ print(module.function())
 
 요약하자면, 공유 변수와 함수를 정의하기 위해 **`__init__.py`**를 사용할 수 있지만, 특히 더 크거나 복잡한 패키지의 경우 이 목적을 위해 전용 **`config.py`**(또는 유사한 것)를 사용하는 것이 종종 더 깨끗하고 유지 관리하기 쉬운 접근 방식입니다.
 
+### 2. **초기화 코드**
+
+패키지를 임포트할 때 파이썬은 패키지 디렉토리에서 **`__init__.py`** 파일을 찾습니다. 이 파일을 찾으면 파이썬은 그 안에 있는 모든 코드를 실행합니다. 이러한 동작은 **`__init__.py`** 파일을 패키지의 초기화자로 사용할 수 있게 합니다. **`__init__.py`**의 초기화 코드에 대한 몇 가지 핵심 포인트는 다음과 같습니다.
+
+1. **일회성 초기화**: 패키지가 처음 임포트될 때 한 번 실행되어야 하는 코드를 위한 장소입니다. 이는 전역 변수 설정, 로깅 구성 또는 데이터베이스 연결과 같은 초기화를 포함할 수 있습니다.
+2. **공유 리소스**: 패키지 내의 다양한 모듈에서 공유하는 리소스를 초기화하는 데 사용될 수 있습니다. 예를 들어, 여러 모듈이 공통 데이터베이스 연결을 사용하는 경우, **`__init__.py`**는 이 연결을 설정하고 다른 모듈은 이를 사용할 수 있습니다.
+3. **패키지 수준의 행동**: 패키지 수준의 행동이나 속성을 정의할 수도 있습니다. 예를 들어, 패키지 수준의 구성 설정이나 패키지 내의 여러 모듈에 관련된 함수를 가질 수 있습니다.
+- 예시
+
+```python
+db_operations/
+├── __init__.py
+├── connection.py
+└── query.py
+```
+
+```python
+# __init__.py
+from .connection import create_connection
+
+# 패키지가 임포트될 때 데이터베이스 연결 초기화
+db_connection = create_connection()
+
+print("데이터베이스 연결 초기화됨.")
+```
+
+```python
+# connection.py
+def create_connection():
+    # 데이터베이스 연결 생성 로직을 위한 자리 표시자
+    return "DatabaseConnectionObject"
+```
+
+```python
+# query.py
+from . import db_connection
+
+def run_query(sql):
+    # __init__.py에서 초기화된 db_connection 사용
+    print(f"{db_connection}에서 실행하는 쿼리: {sql}")
+```
+
+### 3. import 제어
+
+**`__init__.py`** 파일은 와일드카드 임포트(예: **`from package import *`**)를 사용할 때 패키지에서 어떤 모듈이나 심볼(클래스, 함수, 변수 등)이 외부에 노출되는지 제어하는 데 사용될 수 있습니다. 이는 다음과 같이 작동한다.
+
+1. **`__init__.py`** 파일에서 **`__all__`**이라는 리스트를 정의할 수 있습니다. 이 리스트에는 와일드카드 임포트를 사용할 때 공개적으로 사용 가능하게 하려는 모듈과 심볼의 이름을 포함시키면 됩니다.
+2. **내부 모듈 캡슐화**:
+    - 임포트를 제어함으로써 패키지의 내부 구조를 캡슐화할 수 있습니다. 이는 공개 인터페이스가 일관되게 유지되는 한, 패키지의 내부 조직을 변경해도 사용자에게 영향을 미치지 않음을 의미한다.
+3. **공개 인터페이스 간소화**:
+    - 이 방법은 패키지의 공개 인터페이스를 간소화하는 데 도움이 됩니다. 사용자는 내부 모듈 구조를 몰라도 미리 정의된 모듈과 심볼을 임포트할 수 있습니다.
+- 예시
+
+```python
+data_analysis/
+├── __init__.py
+├── query/
+│   ├── __init__.py
+│   └── query.py
+└── connection.py
+```
+
+```python
+# query/query.py
+def insert(data):
+		# insert query
+    ...
+```
+
+```python
+# connection.py
+def create_connection():
+    # 데이터베이스 연결 생성 로직을 위한 자리 표시자
+    return "DatabaseConnectionObject"
+```
+
+```python
+# data_analysis/__init__.py
+from .query.query import insert
+from .connection import create_connection
+
+__all__ = ["insert", "create_connection"]
+```
+
 ## 만들수 있는 예시
 
 ### DB 패키지
@@ -207,6 +290,7 @@ __all__ = ['database_connection', 'analytics_module']
 ```
 
 ```python
+# analytics_package/__init__.py
 def connect_to_database(settings):
     # 설정을 사용하여 데이터베이스 연결 시뮬레이션
     print("다음 설정으로 데이터베이스 연결:", settings)
@@ -214,6 +298,7 @@ def connect_to_database(settings):
 ```
 
 ```python
+# analytics_package/config_loader.py
 def load_config():
     # 구성 설정을 로드하는 것을 시뮬레이션
     print("구성 설정 로드 중")
@@ -221,8 +306,14 @@ def load_config():
 ```
 
 ```python
+# analytics_package/analytics_module.py
+from . import database_connection
+
 def analyze_data(data):
-    return f"{data} 분석 중"
+    # 데이터 베이스 연결 사용
+    print(f"Using database connection: {database_connection} to analyze {data}")
+    # 데이터 베이스 상호 작용 로직
+    return f"Analysis result for {data}"
 ```
 
 ```python
