@@ -10,9 +10,6 @@
     - `__init__.py` 파일을 통해 패키지를 가져올 때 외부에 노출되는 내용을 제어할 수 있습니다. `from package import *`를 사용할 때 가져올 모듈 이름 목록이 될 수 있는 `__all__` 변수를 사용합니다.
 4. **Import Paths 단순화**:
     - 패키지의 일부를 쉽게 접근할 수 있도록 `__init__.py`를 사용할 수 있다. 예를 들어, 깊게 중첩된 모듈이 있으면 패키지를 `__init__.py`로 가져올 수 있어 패키지 사용자가 전체 경로를 탐색하는 대신 패키지 레벨에서 바로 접근할 수 있다.
-5. **Namespace 패키지 지원:**
-    - Python 3.3부터 PEP 420은 **`__init__.py`** 파일이 없는 "암시적 네임스페이스 패키지"의 개념을 도입했습니다. 이를 통해 여러 디렉토리 또는 여러 프로젝트에 걸쳐 Python 패키지를 만들 수 있습니다.
-    - 그럼에도 불구하고 **`__init__.py`**는 일반적인 (네임스페이스가 아닌) 패키지에 여전히 널리 사용됩니다.
 
 ## 작동 방식
 
@@ -256,6 +253,43 @@ from .query.query import insert
 from .connection import create_connection
 
 __all__ = ["insert", "create_connection"]
+```
+
+### 4. **Import Paths 단순화**
+
+1. **임포트 문 단축**: 패키지나 하위 패키지의 **`__init__.py`** 파일에 클래스, 함수 및 하위 모듈을 임포트함으로써 사용자가 더 짧고 간결한 임포트 경로로 이들에 접근할 수 있도록 할 수 있습니다.
+2. **내부 구조 숨기기**: 이 과정은 또한 사용자에게 패키지의 내부 디렉토리 구조를 숨기는 데 도움이 됩니다. 사용자는 패키지 내부 구조 내에서 모듈의 정확한 위치를 알 필요가 없으며, 패키지나 최상위 하위 패키지에서 직접 필요한 것을 임포트하면 됩니다.
+3. **사용성 및 명확성 향상**: 간소화된 임포트 경로는 패키지를 더 직관적으로 사용할 수 있게 만들며 패키지의 주요 인터페이스와 기능이 무엇인지 명확하게 정의하는 데 도움이 됩니다.
+
+```python
+data_processing/
+├── __init__.py
+├── preprocessing/
+│   ├── __init__.py
+│   ├── clean.py
+│   └── normalize.py
+└── analysis/
+    ├── __init__.py
+    ├── statistics.py
+    └── regression.py
+```
+
+```python
+# data_processing/preprocessing/__init__.py
+from .clean import clean_data
+from .normalize import normalize_data
+```
+
+```python
+# data_processing/analysis/__init__.py:
+from .statistics import compute_statistics
+from .regression import perform_regression
+```
+
+```python
+# 다른 곳에서 사용할 때
+from data_processing.preprocessing import clean_data, normalize_data
+from data_processing.analysis import compute_statistics, perform_regression
 ```
 
 ## 만들수 있는 예시
