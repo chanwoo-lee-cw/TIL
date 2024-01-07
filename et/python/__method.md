@@ -197,7 +197,7 @@ obj = MyClass("example", 42)
 print(obj.__dict__)  # 출력: {'name': 'example', 'value': 42}
 ```
 
-1. **`__slots__`**
+11. **`__slots__`**
 - 메모리 사용을 최적화하기 위해 파이썬은 **`__slots__`** 메커니즘을 제공합니다. 클래스에서 **`__slots__`**를 정의함으로써 이 클래스의 인스턴스가 가질 속성을 명시적으로 선언하여 메모리를 절약합니다. 여기에 더 자세한 내용이 있습니다:
     - **고정된 속성:** **`__slots__`**를 정의하면, "이 클래스는 오직 이 속성들만 가질 것이다"라고 파이썬에게 말하는 것과 같습니다. 이것은 속성에 대한 정적 선언입니다.
     - **`__dict__` 없음:** **`__slots__`**이 정의되면, 파이썬은 각 인스턴스에 대해 **`__dict__`**를 생성하지 않습니다. 새로운 속성을 동적으로 추가하는 성질이 제거되므로 메모리를 절약합니다.
@@ -215,3 +215,88 @@ class MyClass:
 obj = MyClass("example", 42)
 # obj.__dict__  # 이것은 AttributeError를 발생시킵니다
 ```
+
+
+12. `__eq__(self, other)`: '==' 연산자를 오버로딩하여 객체 간의 동등성 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __eq__(self, other):
+           return self.value == other.value
+
+   a = Example(5)
+   b = Example(5)
+   print(a == b)  # True
+   ```
+
+13. `__ne__(self, other)`: '!=' 연산자를 오버로딩하여 객체 간의 부등성 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __ne__(self, other):
+           return self.value != other.value
+
+   a = Example(5)
+   b = Example(6)
+   print(a != b)  # True
+   ```
+
+14. `__lt__(self, other)`: '<' 연산자를 오버로딩하여 객체 간의 '작다' 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __lt__(self, other):
+           return self.value < other.value
+
+   a = Example(3)
+   b = Example(5)
+   print(a < b)  # True
+   ```
+
+15. `__le__(self, other)`: '<=' 연산자를 오버로딩하여 객체 간의 '작거나 같다' 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __le__(self, other):
+           return self.value <= other.value
+
+   a = Example(4)
+   b = Example(4)
+   print(a <= b)  # True
+   ```
+
+16. `__gt__(self, other)`: '>' 연산자를 오버로딩하여 객체 간의 '크다' 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __gt__(self, other):
+           return self.value > other.value
+
+   a = Example(7)
+   b = Example(5)
+   print(a > b)  # True
+   ```
+
+17. `__ge__(self, other)`: '>=' 연산자를 오버로딩하여 객체 간의 '크거나 같다' 비교를 정의합니다.
+   ```python
+   class Example:
+       def __init__(self, value):
+           self.value = value
+
+       def __ge__(self, other):
+           return self.value >= other.value
+
+   a = Example(5)
+   b = Example(5)
+   print(a >= b)  # True
+   ```
