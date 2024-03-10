@@ -18,10 +18,10 @@ class Grade(
 
     val n: Int = grades.size
     val maxGrade: Float
-        get() = if (n != 0) grades.max() else 0f
+        get() = if (grades.isNotEmpty()) grades.max() else 0f
 
     val average: Float
-        get() = if (n != 0) grades.sum() / n else 0f
+        get() = if (grades.isNotEmpty()) grades.sum() / n else 0f
 
     fun convertGrade(): Unit {
         val maxScore = maxGrade
