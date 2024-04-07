@@ -8,8 +8,9 @@ fun main() {
     val matrix = Array(height) { Array(width) { 0 } }
 
     for (i in 0 until height) {
-        for (j in 0 until width) {
-            matrix[i] = readLine()!!.trim().split(" ").map { it.toInt() }.toTypedArray()
+        val tempInput = readLine()!!.trim().split(" ").map { it.toInt() }.toTypedArray()
+        for ((j, value) in tempInput.withIndex()) { //indices -> 0..2
+            matrix[i][j] = value
         }
     }
 
@@ -40,7 +41,7 @@ class MonkeyJump(
     )
 
     fun getShortestJumping(): Int {
-        val visited = Array(h) { Array(w) { Int.MAX_VALUE } }
+        val visited = Array(h) { Array(w) { -1 } }
         val queue = ArrayDeque<MoveInfo>()
 
         queue.add(MoveInfo(0, 0, 0, 0))
@@ -48,7 +49,7 @@ class MonkeyJump(
 
         while (queue.isNotEmpty()) {
             val curr = queue.removeFirst()
-            if (curr.y == h && curr.x == w) {
+            if (curr.y == h - 1 && curr.x == w - 1) {
                 return curr.moveCount
             }
             for ((moveY, moveX) in walk) {
@@ -56,7 +57,7 @@ class MonkeyJump(
                 val nextX = curr.x + moveX
                 if (nextY < 0 || nextY >= h || nextX < 0 || nextX >= w) continue
                 if (matrix[nextY][nextX] == 1) continue
-                if (visited[nextY][nextX] <= curr.jumpCount) continue
+                if (visited[nextY][nextX] >= curr.jumpCount) continue
                 queue.add(MoveInfo(nextY, nextX, curr.jumpCount, curr.moveCount + 1))
                 visited[nextY][nextX] = curr.jumpCount
             }
@@ -66,7 +67,7 @@ class MonkeyJump(
                     val nextX = curr.x + moveX
                     if (nextY < 0 || nextY >= h || nextX < 0 || nextX >= w) continue
                     if (matrix[nextY][nextX] == 1) continue
-                    if (visited[nextY][nextX] <= curr.jumpCount) continue
+                    if (visited[nextY][nextX] >= curr.jumpCount) continue
                     queue.add(MoveInfo(nextY, nextX, curr.jumpCount + 1, curr.moveCount + 1))
                     visited[nextY][nextX] = curr.jumpCount + 1
                 }
