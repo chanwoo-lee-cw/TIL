@@ -1,5 +1,7 @@
 # Kotlin inline 함수
 
+## Sequence 함수
+
 1. map()
 
 변환을 위해서는 가장 자주 쓰게 되는 함수
@@ -78,7 +80,7 @@ fun main() {
 [1, 2, 3, 4, 5, 6]
 ```
 
-1. find()
+4. find()
 
 일치하는 첫번째 값을 얻어오는 함수.
 주로 Enum타입에서 원하는 조건을 가져오기 위해서 사용했다.
@@ -98,4 +100,114 @@ fun main() {
 ```
 ```
 SOPHOMORE
+```
+
+5. flatMap()
+
+중첩된 리스트를 평탄화 시키는 스트림
+써본적은 없지만, 인상깊게 남은 시퀸스 함수라 정리
+
+```kotlin
+fun main() {
+    val testList = listOf(
+        listOf(1,2,3),
+        listOf(2,3,4),
+        listOf(3,4,5)
+    )
+
+    println(testList.flatMap { it })
+}
+```
+```
+[1, 2, 3, 2, 3, 4, 3, 4, 5]
+```
+
+6. filter()
+
+시퀸스 함수가 나오면 필수적으로 나오는 기능.
+콜렉션에서 조건에 맞는 요소만 남긴다.
+
+```kotlin
+fun main() {
+    val testList = listOf(1,2,3,4,5,6,7,8,9,10)
+
+    println(testList.filter { it % 2 ==0 })
+}
+```
+```
+[2, 4, 6, 8, 10]
+```
+
+7. distinct()
+
+중복된 요소를 제거한다. 엄청 자주 쓰이긴 않지만, 종종 쓰이는 기능
+set을 사용해서 바꿀때는 순서 보장이 필요 없는 경우고, distinct를 사용해 제거하는 경우는 순서 보장이 필요한 경우이다.
+보통은 set을 쓰는게 더 보편적
+
+```kotlin
+fun main() {
+    val testList = listOf(1, 2, 4, 2, 4, 6, 12, 4, 1, 4, 1, 5, 1, 3, 2)
+
+    println(testList.distinct())
+}
+```
+```
+[1, 2, 4, 6, 12, 5, 3]
+```
+
+8. distinctBy()
+
+객체 리스트에서 특정 값을 기준으로 중복을 제거하고 싶을때 사용한다.
+각 중복 요소들의 첫번째 객체만 남긴다.
+
+```kotlin
+data class Student(
+    val grade: String,
+    val name: String,
+)
+
+fun main() {
+    val students = mutableListOf<Student>()
+    students.add(Student("senior", "Peter"))
+    students.add(Student("junior", "Parker"))
+    students.add(Student("sophomore", "Potter"))
+    students.add(Student("sophomore", "Harry"))
+    students.add(Student("freshman", "Miles"))
+
+    println(students.distinctBy { it.grade })
+}
+```
+```
+[
+    Student(grade=senior, name=Peter),
+    Student(grade=junior, name=Parker),
+    Student(grade=sophomore, name=Potter),
+    Student(grade=freshman, name=Miles)
+]
+```
+
+## Scope 함수
+
+
+1. let()
+
+가장 자주 쓰게되는 Scope 함수
+객체가 null이 아닌 경우에 처리한다
+Elvis 연산자와 사용한다.
+
+```kotlin
+data class Student(
+    var grade: Int,
+    val name: String,
+)
+
+fun main() {
+    val student: Student? = Student(1, "Peter")
+
+    student?.let { it.grade += 1 }
+    println(student)
+}
+```
+```
+Student(grade=2, name=Peter)
 ```
