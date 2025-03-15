@@ -2,6 +2,8 @@
 
 ## Sequence 함수
 
+시퀀스는 지연 연산(Lazy Evaluation) 을 지원하는 데이터 처리 방식으로, 최종 연산이 호출될 때까지 계산을 수행하지 않는다.
+
 ### 1. map()
 
 변환을 위해서는 가장 자주 쓰게 되는 함수
@@ -187,6 +189,152 @@ fun main() {
 ]
 ```
 
+
+### forEach {}
+
+컬렉션의 길이만큼 반복하고, 반복할 때마다 콜렉션 안의 값들을 인자로써 사용한다.
+고전적인 형태의 forEach 문과는 비슷하긴 하지만, break, continue 같은 제어문을 사용할 수 없고, 람다 함수를 호춣하기 때문에 아주 약간 더 느리다.
+중간에 종료하고 싶다면, return문을 사용해 특정 forEach 문만을 종료해야한다.
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4)
+
+    numList.forEach { item ->
+        if (item == 3) return@forEach
+        println(item)
+    }
+}
+```
+```
+// 정확히 3만 건너뛴다.
+1
+2
+4
+```
+```kotlin
+fun main() {
+    val numList = listOf(
+        listOf(1, 2, 3, 4),
+        listOf(2, 4, 6, 8),
+        listOf(3, 5, 7, 9)
+    )
+
+    numList.forEach outer@{ numbers ->
+        numbers.forEach inner@{ item ->
+            if (item > 6) return@outer
+            print(item)
+        }
+        println()
+    }
+}
+```
+```
+// 외부 루프를 돌다가 retrun되기 때문에 println이 출력되지 않는다.
+1234
+24635
+```
+
+### reduce {}
+
+컬렉션 요소를 차례대로 계산해서 한개의 값으로만 내보내는 함수.
+초기값이 없고, 첫번째 요소가 자동으로 초기값이 된다.
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+    // acc가 누적되는 값이다.
+    println(numList.reduce { acc, item -> acc + item })
+}
+```
+```
+45
+```
+
+### fold {}
+
+컬렉션 요소를 차례대로 계산해서 한개의 값으로만 내보내는 함수. 초기값을 지정할 수 있다.
+즉, reduce와 거의 동일하다.
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+
+    // 초기값이 100, acc가 누적되는 값이다.
+    println(numList.fold(100) { acc, item -> acc + item })
+}
+```
+```
+145
+```
+
+### take()
+
+앞에서부터 n개를 가져오는 함수
+slice를 사용하는 것과 기능적으로는 동일하지만, 앞에서부터 가져올때는 더 직관적이다.
+list 말고 다른 콜렉션에도 사용 가능하지만, 순서가 유지되지 않을 수도 있다.(단, Map은 불가능)
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+    
+    println(numList.take(5))
+}
+```
+```
+[1, 2, 3, 4, 2]
+```
+
+### drop()
+
+drop(n)은 앞에서부터 n개의 요소를 버리고 남은 요소만 반환하는 함수.
+다른 추가 기능은 take와 동일
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+
+    println(numList.drop(5))
+}
+```
+```
+[4, 6, 8, 3, 5, 7]
+```
+
+### takeIf {}
+
+객체가 조건을 만족하면 반환하고, 아니라면 null을 반환.
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+
+    numList
+        .takeIf { it.size > 10 }.also { println(it) }
+        ?.takeIf { it.size < 10 }.also { println(it) }
+}
+```
+```
+[1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7]
+null
+```
+
+### takeUnless {}
+
+```kotlin
+fun main() {
+    val numList = listOf(1, 2, 3, 4, 2, 4, 6, 8, 3, 5, 7)
+
+    numList
+        .takeUnless { it.size > 10 }.also { println(it) }
+}
+```
+```
+null
+```
+takeIf와는 반대로 조건을 만족하면 null을 반환한다.
+
+
 ## Scope 함수
 
 
@@ -320,3 +468,24 @@ fun main() {
 
 ChatGPT는 각각 스코프 함수의 용도를 이렇게 정리했다.
 특히, `run`과 `with`, `apply`와 `also`는 용도가 비슷하니 확실하게 구분지어서 사용하는 편이 더 나을거 같다.
+
+
+##  Control flow 함수
+
+### repeat()
+
+입력된 횟수만큼 블록 내의 명령을 수행한다.
+심플하고, 가장 자주 쓰게 되는 제어흐름 함수
+
+```kotlin
+fun main() {
+    repeat(3) {
+        println("Hello_world")
+    }
+}
+```
+```
+Hello_world
+Hello_world
+Hello_world
+```
