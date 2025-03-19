@@ -353,7 +353,7 @@ $ git pull learning master	//learning 에 있는 내용을 master에 내려받�
 pull과 비슷하지만 클라이언트 상에 아무 것도 없을때, 서버의 프로젝트를 내려 받는 명령어. 저장소의 내용을 다운로드 받고 자동으로 init도 된다.
 
   ``` Linux
-$ git clone https://github.com/Alphanewbie/Personal_learning
+$ git clone https://github.com/chanwoo-lee-cw/Personal_learning
   ```
 
 

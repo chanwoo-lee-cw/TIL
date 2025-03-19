@@ -1,6 +1,6 @@
 # 자료구조
 
-https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/10828
+https://github.com/chanwoo-lee-cw/TIL/tree/master/Algorithm_problem_solving/Baek-joon/10828
 
 ## 스택(Stack)
 

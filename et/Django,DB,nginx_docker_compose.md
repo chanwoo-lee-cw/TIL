@@ -51,7 +51,7 @@
      pip freeze > requirements.txt
      ```
 
-   - 그 의외의 설정은 [장고 readme](https://github.com/Alphanewbie/Django/blob/master/Readme.md)를 보고 따라 설정해준다.
+   - 그 의외의 설정은 [장고 readme](https://github.com/chanwoo-lee-cw/Django/blob/master/Readme.md)를 보고 따라 설정해준다.
 
    - article app안에 models.py안에 간단한 모델 작성
 

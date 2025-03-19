@@ -10,7 +10,7 @@
 
 ## 참고할 문제
 
-[가장 긴 증가하는 부분 수열](https://github.com/Alphanewbie/TIL/blob/master/Bae-joon/1463/1463.py)
+[가장 긴 증가하는 부분 수열](https://github.com/chanwoo-lee-cw/TIL/tree/master/Algorithm_problem_solving/Baek-joon/1463/1463.py)
 
 
 

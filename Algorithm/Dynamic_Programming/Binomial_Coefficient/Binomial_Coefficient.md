@@ -32,7 +32,7 @@
 
 ### c ++ 코드
 
-https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11050
+https://github.com/chanwoo-lee-cw/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11050
 
 ```cpp
 #include<iostream>
@@ -75,7 +75,7 @@ int binomial_coefficient(int n, int k) {
 
 ### Python 코드
 
-https://github.com/Alphanewbie/TIL/tree/master/Bae-joon/11051
+https://github.com/chanwoo-lee-cw/TIL/tree/master/Algorithm_problem_solving/Baek-joon/11051
 
 ```python
 import sys
