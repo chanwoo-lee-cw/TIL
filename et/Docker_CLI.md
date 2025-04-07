@@ -22,7 +22,7 @@ docker ps --no-trunc
 # 예를 들면, 전체 ID 값, ... 등으로 생략된 명령어 전체 표기 등을 알려준다.
 ```
 
-### `docker ps -—filter`
+### `docker ps --filter`
 
 - docker container를 필터링해서 검색할 수 있게 한다.
 

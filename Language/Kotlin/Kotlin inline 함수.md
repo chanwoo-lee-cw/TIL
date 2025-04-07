@@ -333,6 +333,104 @@ null
 ```
 takeIf와는 반대로 조건을 만족하면 null을 반환한다.
 
+### 16. partition {}
+
+```kotlin
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5, 6)
+
+    val (even, odd) = numbers.partition { it % 2 == 0 }
+
+    println("$even")
+    println("$odd")
+}
+```
+
+```ko
+[2, 4, 6]
+[1, 3, 5]
+```
+
+입력받은 배열을 조건에 따라 Pair 리스트로 분류한다.
+
+```kotlin
+fun main() {
+    val numbers: List<Int>? = null
+
+    val (even, odd) = numbers?.partition { it % 2 == 0 } ?: (emptyList<Int>() to emptyList())
+
+    println("$even")
+    println("$odd")
+}
+```
+
+```
+[]
+[]
+```
+
+반환형이 Pair 이므로 엘비스 연산자에 의한 세이프 콜도 `(emptyList<Int>() to emptyList())` Pair로 처리해야한다.
+
+### 17. chunk()
+
+```kotlin
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5, 6, 7)
+
+    val result = numbers.chunked(2)
+
+    println("$result")
+}
+```
+
+```
+[[1, 2], [3, 4], [5, 6], [7]]
+```
+
+
+
+### 18. windowed()
+
+```kotlin
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5, 6, 7)
+
+    val result = numbers.windowed(size = 4, step = 2)
+
+    println("$result")
+}
+```
+
+```
+[[1, 2, 3, 4], [3, 4, 5, 6]]
+```
+
+```kotlin
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5, 6, 7)
+
+    val result = numbers.windowed(size = 4, step = 2, partialWindows = true)
+
+    println("$result")
+}
+```
+
+```
+[[1, 2, 3, 4], [3, 4, 5, 6], [5, 6, 7], [7]]
+```
+
+리스트로 일정한 간격의 작은 크기의 리스트로 나눈다.
+
+
+
+파라미터
+
+- size :  각 그룹의 크기
+- step :  다음 윈도우의 시작점 step
+- partialWindows : size보다 작은 그룹은 버릴 것인지 여부
+- transform : 각 윈도우 조각에 변환을 적용하는 함수 (기본은 생략)
+
+
 
 ## Scope 함수
 
