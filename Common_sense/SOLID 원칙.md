@@ -3,6 +3,8 @@
 객체 지향 프로그래밍(OOP)에서 가급적이면 지켜줘야했으면 하는 5가지 원칙의 약자
 즉, 코드의 확장성과 재사용성을 높이고, 복잡도를 줄이기 위해 제안된 5가지 원칙이다.
 
+
+
 ## 단일 책임 원칙 (Single Responsibility Principle, SRP)
 
 > **하나의 클래스(객체)는 단 하나의 책임만 가져야** 한다는 원칙
@@ -10,6 +12,18 @@
 - 클래스는 언제나 하나의 기능을 가져야 하고, 가급적이면 각자 따로 나누는 것이 좋다는 원칙
 - 예를 들면, 주문이 들어왔을 때 재고를 차감하는 부분과 구매자에게 메일을 보내는 부분을 분리하는게 낫다.
 - 한 클래스가 다른 클래스의 기능을 지원한다면, 만약 이 클래스에 문제가 생기면 이 기능을 사용하는 다른 기능들도 문제가 생기 때문이기도 하고, 이 기능이 왜 이 클래스에 있는지 확인하기 어려워서 유지보수가 어려워진다.
+
+```kotlin
+class OrderService() {
+    fun orderSubmit() {}
+}
+
+
+class OrderSubmitEmailSend() {
+    fun getConfig() {}
+    fun sendEmail() {}
+}
+```
 
 
 
@@ -22,6 +36,89 @@
   - 확장에 열려있다 - 변경 사항이 생겼을 때, 유연하게 코드를 추가함으로써 큰 힘을 들이지 않고 애플리케이션 기능을 확장 할 수 있다.
   - 변경에 닫혀있다 - 새로운 변경 사항이 발생했을때, 객체를 직접적으로 수정하는건 지양함
 - 즉, 쉽게 말해 추상화, 인터페이스와 추상 클래스를 활용해 구현하라는 뜻이다.
+
+
+
+```kotlin
+class IamageResizer {
+  fun isOverSize() {
+    if(width > image.width && height > image.height) {}
+    else if(maxWidth > image.width  && maxheight > image.height )
+    // 여기에 비율로 계산하는 공식을 새로 추가하려면 if문을 새로 추가해야하고 관리하기 어려워진다.
+  }
+  
+  fun resize() {
+    if(width && height)
+    else if (width || height)
+    else if (maxWidth > image.width || maxheight > image.height )
+  }
+}
+```
+
+
+
+```kotlin
+interface IamageResizerImpl {
+  abstract fun isOverSize() {
+    if(width > image.width && height > image.height) {}
+    else if(maxWidth > image.width  && maxheight > image.height )
+    // 여기에 비율로 계산하는 공식을 새로 추가하려면 if문을 새로 추가해야하고 관리하기 어려워진다.
+  }
+  
+  fun resize() {
+    if(width && height)
+    else if (width || height)
+    else if (maxWidth > image.width || maxheight > image.height )
+  }
+}
+
+
+class IamageResizerBySize : IamageResizerImpl {
+  	fun match() {
+	    if(width && height) {}
+    }
+  	
+    abstract fun isOverSize() {
+	    if(width > image.width && height > image.height) {}
+  	}
+  
+    fun resize() {
+      ...
+  	}
+}
+
+class IamageResizerByRatio : IamageResizerImpl {
+  	fun match() {
+	    if(width || height) {}
+    }
+  	
+    abstract fun isOverSize() {
+	    if(width > image.width || height > image.height) {}
+  	}
+  
+    fun resize() {
+      ...
+  	}
+}
+
+class IamageResizerByMaxSize : IamageResizerImpl {
+  	fun match() {
+	    if(maxWidth || maxheight) {}
+    }
+  	
+    abstract fun isOverSize() {
+	    if(maxWidth > image.width || maxheight > image.height) {}
+  	}
+  
+    fun resize() {
+      ...
+  	}
+}
+```
+
+
+
+
 
 
 
@@ -44,6 +141,8 @@ fun <T> printSize(col : Collection<T>) {
 }
 ```
 
+
+### 예외 케이스
 만약 예외 케이스가 자주 들어오게 된다면 어떻게 해야할까?
 
 ```kotlin
