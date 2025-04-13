@@ -59,17 +59,9 @@ class IamageResizer {
 
 ```kotlin
 interface IamageResizerImpl {
-  abstract fun isOverSize() {
-    if(width > image.width && height > image.height) {}
-    else if(maxWidth > image.width  && maxheight > image.height )
-    // 여기에 비율로 계산하는 공식을 새로 추가하려면 if문을 새로 추가해야하고 관리하기 어려워진다.
-  }
+  abstract fun isOverSize()
   
-  fun resize() {
-    if(width && height)
-    else if (width || height)
-    else if (maxWidth > image.width || maxheight > image.height )
-  }
+  abstract fun resize()
 }
 
 
@@ -225,6 +217,64 @@ class Ostrich : Bird() {
 
 
 
+### 예시
+
+모든 사람은 자기 때문에 eat과 sleep이라는 기능을 넣었다.
+
+```kotlin
+interface Person {
+    fun sleep()
+    fun eat()
+}
+
+
+class Child :Person {
+    override fun sleep() {}
+
+    override fun eat() {}
+}
+```
+
+하지만, 새로운 사람 카테고리에 직장인을 넣으려고 보니 직장인은 야근으로 자지 않는 경우가 많다.
+
+이런식으로 쓰지않는 기능이 늘어난다면 안 좋은 인터페이스
+
+```kotlin
+import java.io.InvalidClassException
+
+interface Person {
+    fun sleep(time: Int)
+    fun eat(food :String)
+}
+
+
+class Child : Person {
+    override fun sleep(time: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun eat(food :String) {
+        TODO("Not yet implemented")
+    }
+}
+
+
+class Worker : Person {
+    override fun sleep(time: Int) {
+      	// 이런식으로 사용하지 않는 기능이 늘어난다면 나쁜 인터페이스
+        throw InvalidClassException("Postgrad can't sleep")
+    }
+
+    override fun eat(food :String) {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+
+
+
+
 ## 의존 역전 원칙 (Dependency Inversion Principle, DIP)
 
 > 어떤 클래스를 사용하고 싶다면, 그 **클래스를 직접 참조하는게 아니라 상위 요소를 참조**하라는 원칙
@@ -233,6 +283,36 @@ class Ostrich : Bird() {
 - 즉, 구현보다는 추상화(인터페이스, 추상 클래스)에 의존하라는 뜻
   - 코드의 중요한 핵심 부분은 바뀌지 않아야한다.
   - 변화가 자주 일어나는 코드에서의 의존 관계를 없앤다. -> 즉, 자주 변경되는가를 따져서 추상화를 시켜야한다.
+
+
+
+```kotlin
+interface Person {
+    fun sleep(time: Int)
+    fun eat(food :String)
+}
+
+
+class Child : Person {
+    override fun sleep(time: Int) {}
+
+    override fun eat(food :String) {}
+}
+
+class Main{
+    fun case1() {
+        // 추천하지 않는 구조, 직접 넣는다.
+        val child = Child()
+    }
+
+    fun case2(person: Person)  {
+        // 추천되는 구조, 직접 넣는 대신 객체를 주입받아서 생성한다.
+        val child = person
+    }
+}
+```
+
+
 
 
 
