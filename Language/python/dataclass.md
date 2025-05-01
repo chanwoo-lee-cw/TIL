@@ -72,14 +72,14 @@ print(product)
    - 이 값을 설정하면 데이터 클래스 생성 시 해당 필드에 값을 제공하지 않아도 됩니다.
    - 예시: `field(default=0)`
 
-   ```python
-   python
-   코드 복사
-   @dataclass
-   class Item:
-       name: str
-       price: float = field(default=10.0)
-   ```
+```python
+python
+코드 복사
+@dataclass
+class Item:
+    name: str
+    price: float = field(default=10.0)
+```
 
 2. **`default_factory`**:
 
@@ -87,12 +87,12 @@ print(product)
    - `default_factory`는 함수나 호출 가능한 객체를 받아서, 필드의 기본값을 동적으로 생성합니다.
    - 예시: `field(default_factory=list)`
 
-   ```python
-   @dataclass
-   class Item:
-       name: str
-       tags: list = field(default_factory=list)
-   ```
+```python
+@dataclass
+class Item:
+    name: str
+    tags: list = field(default_factory=list)
+```
 
 3. **`init`**:
 
@@ -100,15 +100,15 @@ print(product)
    - `init=False`로 설정하면 객체 생성 시 해당 필드를 초기화하지 않으며, 생성 후에 값을 할당해야 합니다.
    - 예시: `field(init=False)`
 
-   ```python
-   @dataclass
-   class Item:
-       name: str
-       identifier: int = field(init=False)
-   
-       def __post_init__(self):
-           self.identifier = hash(self.name)
-   ```
+```python
+@dataclass
+class Item:
+    name: str
+    identifier: int = field(init=False)
+
+    def __post_init__(self):
+        self.identifier = hash(self.name)
+```
 
 4. **`repr`**:
 
@@ -116,12 +116,12 @@ print(product)
    - `repr=False`로 설정하면 `__repr__` 출력에 해당 필드가 포함되지 않습니다.
    - 예시: `field(repr=False)`
 
-   ```python
-   @dataclass
-   class Item:
-       name: str
-       secret_code: str = field(repr=False)
-   ```
+```python
+@dataclass
+class Item:
+    name: str
+    secret_code: str = field(repr=False)
+```
 
 5. **`compare`**:
 
@@ -129,12 +129,12 @@ print(product)
    - `compare=False`로 설정하면 해당 필드는 비교에 사용되지 않습니다.
    - 예시: `field(compare=False)`
 
-   ```python
-   @dataclass
-   class Item:
-       name: str
-       serial_number: int = field(compare=False)
-   ```
+```python
+@dataclass
+class Item:
+    name: str
+    serial_number: int = field(compare=False)
+```
 
 6. **`metadata`**:
 
@@ -142,12 +142,12 @@ print(product)
    - 이는 주로 고급 사용 사례에서 필드와 관련된 추가 정보를 저장하는 데 사용됩니다.
    - 예시: `field(metadata={"unit": "kg"})`
 
-   ```python
-   @dataclass
-   class Item:
-       name: str
-       weight: float = field(metadata={"unit": "kg"})
-   ```
+```python
+@dataclass
+class Item:
+    name: str
+    weight: float = field(metadata={"unit": "kg"})
+```
 
 
 
@@ -155,12 +155,12 @@ print(product)
 
 - 직접 초기화와 `default` 초기화의 차이
 
-    ```python
-    @dataclass
-    class Item:
-        name :str = ""      # 직접 초기화
-        name :str = field(default="")   # default
-    ```
+```python
+@dataclass
+class Item:
+    name :str = ""      # 직접 초기화
+    name :str = field(default="")   # default
+```
 
     `name: str = ""` 와 `name: str = field(default="")` 의 선언 방식은 사실상 동일하디
 
@@ -170,14 +170,14 @@ print(product)
 
 - 직접 초기화와 `default_factory` 초기화의 차이
 
-  ```python
-  from optional import List
-  
-  @dataclass
-  class Item:
-      storys :List[str] = []      # 직접 초기화
-      storys :List[str] = field(default_factory=list)   # default
-  ```
+```python
+from optional import List
+
+@dataclass
+class Item:
+    storys :List[str] = []      # 직접 초기화
+    storys :List[str] = field(default_factory=list)   # default
+```
 
   이 설정 방식의 차이는 굉장히 다르다.
 
