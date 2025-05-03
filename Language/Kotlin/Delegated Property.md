@@ -135,11 +135,157 @@ class MyClass {
 }
 ```
 
+### by this::someProperty
+
+> 같은 클래스 안의 다른 프로퍼티에 위임한다.
+
+```kotlin
+class Person {
+    var realName: String = "Peter"
+
+    var name: String by this::realName
+}
+```
+
+위의 이 예제이다. `Person` 객체 내부의 realName 를 읽고 쓴다는 뜻이다.
 
 
 
+### by ::topLevelProperty
+
+> 파일의 최상위 수준(top-level)에 선언된 변수에 위임한다.
+
+```kotlin
+var globalCount: Int = 0
+
+class Counter {
+    var count: Int by ::globalCount
+}
+
+```
+
+현재 스코프 내부에 있는 `var` 형태의 top-level 변수에만 위임할 수 있다.
+
+조건이 몇개가 있는데,
+
+1. **var 프로퍼티에만 사용할 수 있다.** : `val`이 아닌 `var`인 이유는 위임받은 프로퍼티 값을 변경할 수 있어야 하기 때문이다.
+2. **같은 파일 내부거나 import로 참조된 프로퍼티만 가능하다.** : `::변수명`으로 직접 참조할 수 있어야 하므로, **같은 파일**이거나 `import`로 참조되어야 한다.
+3. **`top-level` 즉, 클래스 밖에 선언되어야 한다.** : 클래스/객체 내부가 아닌 패키지 수준의 변수여야한다.
+
+물론, 전역 변수를 var로 선언해야하는 만큼, 한정된 상황(테스트 상황)같은 케이스에만 사용된다.
 
 
+
+### by anotherInstance::prop
+
+> 다른 클래스 인스턴스의 프로퍼티에 위임한다.
+
+
+
+```kotlin
+class PersonInfoDto {
+    var country: String = "KR"
+}
+
+class PersonDto(infoDto: PersonInfoDto) {
+    var userName: String = "Peter"
+    var country: String by infoDto::country
+}
+```
+
+
+
+클래스 내의 프로퍼티를 선언하되, 실제 값은 다른 인스턴스가 가진 프로퍼티의 값을 직접 읽고 쓸 수 있도록 위임한다.
+
+클래스 내 프로퍼티는 포장하는 역할만 한다.
+
+
+
+```kotlin
+class PersonInfoDto {
+    var country: String = "KR"
+}
+
+class PersonDto(infoDto: PersonInfoDto) {
+    var userName: String = "Peter"
+    var country: String by infoDto::country
+}
+
+
+fun main() {
+    val personInfoDto = PersonInfoDto()
+    val personDto = PersonDto(personInfoDto)
+
+    println("Person country ${personDto.country}")
+    personDto.country = "US"
+    println("Person country ${personDto.country}")
+    println("Info country ${personDto.country}")
+}
+```
+
+```
+Person country KR
+Person country US
+Info country US
+```
+
+즉, PersonDto내의 프로퍼티가 아닌 PersonInfoDto의 프로퍼티를 설정 및 수정하는 역할을 말한다.
+
+
+
+다만, 주의할 점이 있다.
+
+- 동기화 문제 : 위임 객체가 변격이 되면 위임 프로퍼티도 같이 수정되야 하므로 상태 관리가 어렵다.
+- 디버깅의 어려움 : 어떤 객체가 어떤 값을 가지고 있는지 알아보기 어렵다.
+- Var 프로퍼티만 사용한다. : 역시 getter setter가 필요하므로 by 가 공유하는 동일한 문제이다.
+
+
+
+## Storing properties in a map﻿
+
+흔히 쓰이는 사례는 맵에 속성 값을 저장하는 것입니다. 
+
+맵 인스턴스 자체를 위임된 속성의 위임자로 사용하는 방식으로, 이러한 방식은  JSON 구문 분석이나 기타 동적 작업 수행과 같은 애플리케이션에서 자주 사용된다.
+
+```kotlin
+class User(val map: Map<String, Any?>) {
+    val name: String by map
+    val age: Int     by map
+}
+
+fun main() {
+    val userMap = mapOf(
+        "name" to "John Doe",
+        "age"  to 25,
+        "class" to 3,
+    )
+
+    val userDto = User(userMap)
+    println(userDto.name)
+    println(userDto.age)
+}
+
+// 출처 : https://kotlinlang.org/docs/delegated-properties.html#storing-properties-in-a-map
+```
+
+```
+John Doe
+25
+```
+
+맵을 클래스 형태로 위임해서 캐스팅 코드 없이 쉽게 처리할 수 있다.
+
+```kotlin
+// 일반적인 방식
+val name = map["name"] as String
+val age = map["age"] as Int
+```
+
+이런 방식 대신 가독성 좋게 처리할 수 있다.
+
+
+
+이것은 읽기 전용 맵 대신 MutableMap을 사용하는 경우 var의 속성에도 적용됩니다:
 
 
 
