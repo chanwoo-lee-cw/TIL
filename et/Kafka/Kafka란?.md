@@ -184,7 +184,6 @@ Kafka는 메시지를 생산하고 처리하기만 하고, 자체적으로 클�
 
 - https://www.redhat.com/ko/topics/integration/what-is-apache-kafka
 - [https://velog.io/@holicme7/Apache-Kafka-카프카란-무엇인가](https://velog.io/@holicme7/Apache-Kafka-카프카란-무엇인가)
-
 - [https://medium.com/@0joon/10분안에-알아보는-kafka-bed877e7a3bc](https://medium.com/@0joon/10분안에-알아보는-kafka-bed877e7a3bc)
 - [https://velog.io/@qlgks1/카프카Kafka란](https://velog.io/@qlgks1/카프카Kafka란)
 - [https://medium.com/%40greg.shiny82/apache-kafka-간략하게-살펴보기-343ad84a959b](https://medium.com/%40greg.shiny82/apache-kafka-간략하게-살펴보기-343ad84a959b)
