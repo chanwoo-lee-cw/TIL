@@ -241,7 +241,7 @@ Info country US
 
 
 
-## Storing properties in a map﻿
+## Storing properties in a map
 
 흔히 쓰이는 사례는 맵에 속성 값을 저장하는 것입니다. 
 
