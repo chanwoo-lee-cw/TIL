@@ -115,9 +115,9 @@
 
 ## 참고 문헌
 
-- https://djlife.tistory.com/31?utm_source=chatgpt.com
+- [https://djlife.tistory.com/31](https://djlife.tistory.com/31)
 - [https://khj93.tistory.com/entry/Spring-Batch란-이해하고-사용하기](https://khj93.tistory.com/entry/Spring-Batch란-이해하고-사용하기)
-- https://dkswnkk.tistory.com/707?utm_source=chatgpt.com
+- [https://dkswnkk.tistory.com/707](https://dkswnkk.tistory.com/707)
 - [https://velog.io/@wnguswn7/Tasklet-vs-Chunk-비교와-처리-테스트](https://velog.io/@wnguswn7/Tasklet-vs-Chunk-비교와-처리-테스트)
-- [https://jojoldu.tistory.com/331?utm_source=chatgpt.com](https://jojoldu.tistory.com/331?utm_source=chatgpt.com)
+- [https://jojoldu.tistory.com/331](https://jojoldu.tistory.com/331)
 
