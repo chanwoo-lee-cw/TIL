@@ -10,10 +10,6 @@
 
 
 
-## 카프카 브로
-
-
-
 ## 카프카 브로커의 핵심 역할
 
 ### Message Handling
@@ -85,7 +81,51 @@
 
 
 
+## 압축 처리
+
+Gzip, Snappy, Lz4, Zstd
+
+이 4가지의 방식으로 압축을 하는데, 카프카는 batch 단위로 압축을 하고, Broker는 압축해제하지 않고 그대로 저장하고, 그대로 컨슈머엑 보낸다.
+
+Consumer가 해당 압축을 직접 해제하여 처리한다.
+
+
+
+## Zero-Copy 전송 (`sendfile`)
+
+일반적인 디스크의 데이터를 네트워크를 통해 전달하는 경우에는
+
+1. 운영체제가 디스크상의 파일을 읽어 데이터를 커널 공간(kernel space)의 읽기 버퍼(read buffer)에 저장합니다. 
+2. 애플리케이션은 읽기 버퍼에 저장된 데이터를 사용자 공간(use space) 버퍼(application buffer)로 읽어 들입니다. 
+3. 애플리케이션은 사용자 공간 버퍼로 읽어 들인 데이터를 소켓 버퍼에 씁니다. 
+4. 운영체제는 소켓 버퍼의 데이터를 NIC(Network Interface Card) 버퍼에 복사합니다. 해당 데이터는 네트워크를 통해 전송됩니다. 
+
+
+
+이 과정에서 데이터 복사의 횟수는 `디스크 -> 읽기 버퍼 -> 사용자 공간 -> 소켓 버퍼 -> NIC 버퍼`를 거치며 총 4번의 데이터 복사가 수행된다.
+
+이것을 줄이기 위한 것이 `sendfile` 시스템 콜이다.
+
+이 시스템 콜을 사용하면 사용자 공간을 이용할 필요 없이 파일 디스크립터간 데이터를 복사할 수 있다.
+
+즉, `디스크 -> 읽기 버퍼 -> 소켓 버퍼 -> NIC 버퍼`를 거치며 총 3번의 복사만으로 파일을 복제 가능하다
+
+카프카는 해당 기법을 이용해 Consumer의 처리 속도를 향상 시킨다.
+
+consumer가 데이터를 요청할 때마다 데이터를 User Space에 복사하지 않고, `Sendfile` 을 통해 읽기 버퍼에 저장된 데이터를 바로 전달함으로써 효율을 높힌다.
+
+### 주의 사항
+
+- SSL/TLS 적용 시 Zero‑Copy 효과 대부분 사라진다.
+- 데이터를 재암호화해야 하므로 `sendfile()`을 사용할 수 없다.
+
+
+
+
+
 ## 참고 문헌
 
 - [https://www.redpanda.com/guides/kafka-architecture-kafka-broker](https://www.redpanda.com/guides/kafka-architecture-kafka-broker)
 - [https://rudaks.tistory.com/entry/3장-카프카-기본-개념-설명](https://rudaks.tistory.com/entry/3장-카프카-기본-개념-설명)
+- [https://www.instaclustr.com/blog/a-beginners-guide-to-kafka-consumers](https://www.instaclustr.com/blog/a-beginners-guide-to-kafka-consumers)
+- https://code-run.tistory.com/80
