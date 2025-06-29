@@ -121,6 +121,46 @@ consumer가 데이터를 요청할 때마다 데이터를 User Space에 복사�
 
 
 
+## Zookeeper
+
+> Broker를 관리(Broker들의 목록/설정을 관리)하는 소프트웨어
+
+
+
+Kafka Broker의 동기화, 구성관리, 리더 선출, 그룹 서비스 등을 안정적으로 수행할 수 있도록 한다.
+내부적으로는 메모리 기반 ZNode를 유지하며, 소량의 데이터를 빠르게 일고 처리하도록 설계
+
+Zookeeper는 변경 사항에 대해 Kafka에 알린다. Topic 생성/제거, Broker 추가/제거 등
+Zookeeper는 홀수 서버로 작동되도록 설계
+
+
+
+### ZAB 프로토콜 (Atomic Broadcast)
+
+> ZooKeeper 클러스터의 **일관성을 보장하고 장애 복구가 가능한 복제 구조**의 핵심 기술
+
+Leader가 쓰기 요청을 Followers에게 순서대로 브로드캐스트하고, 과반수 Ack를 받으면 커밋되고, 이 과정으로 **일관성과 전체 순서 보장**이 가능하고, 장애 발생시 복구를 보장한다.
+
+- Leader-Follwer 구조:
+  - 하나의 Leader가 쓰기 요청을 Follwer들에게 알리고, 과반수의 Ack을 받으면 commit한다. 전체 노드는 동일한 순서대로 JVM에 반영된다.
+- Total Order 보장:
+  - 모든 노드가 같은 순서대로 트랜젝션을 적용하도록 강제한다. 이는 읽기 전용 follower에서도 일관된 일기 시나리오 제공에 유리하다.
+- Quorum 기반:
+  - 과반수의 Ack을 받을 시에만 커밋이 이뤄져, 분할 된 상황에서도 일관성 유지한다.
+- Leader Election:
+  - 장애 또는 재시작이 발생하면 새로운 Leader를 선출하며, 가장 높은 zxid(트랜잭션 ID)를 가진 노드가 Leader로 선출된다.
+
+
+
+### ZooKeeper의 기능 요약
+
+- **Configuration Management**: 공통된 구성 데이터를 중앙 저장소에 보관
+- **Naming Service**: 서비스 주소 같은 메타데이터 관리
+- **Synchronization**: 락, barrier 같은 동기화 원시 기능 제공
+- **Group Management**: 노드 그룹 구성 및 구성원 변화 추적
+- **Leader Election**: 자동 리더 선출
+- **Distributed Locking**: Ephemeral + Sequential ZNode 기반 락 구현
+
 
 
 ## 참고 문헌
@@ -129,3 +169,4 @@ consumer가 데이터를 요청할 때마다 데이터를 User Space에 복사�
 - [https://rudaks.tistory.com/entry/3장-카프카-기본-개념-설명](https://rudaks.tistory.com/entry/3장-카프카-기본-개념-설명)
 - [https://www.instaclustr.com/blog/a-beginners-guide-to-kafka-consumers](https://www.instaclustr.com/blog/a-beginners-guide-to-kafka-consumers)
 - https://code-run.tistory.com/80
+- [https://velog.io/@hyun6ik/Apache-Kafka-Broker-Zookeeper](https://velog.io/@hyun6ik/Apache-Kafka-Broker-Zookeeper)
