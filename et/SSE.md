@@ -40,6 +40,12 @@
 class NotificationController(
     private val notificationApplication: NotificationApplication
 ) {
+    /**
+     * 클라이언트의 요청으로 알림 시스템과 연결한다.
+     *
+     * @param 연결될 알림 ID
+     * @return 생성된 SseEmitter
+     */
 		@Operation(description = "SSE 연결")
 		@GetMapping("/connect/{uuid}",  produces = [MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE])
     fun connectSseEventStream(
@@ -58,13 +64,41 @@ class NotificationController(
 ```kotlin
 @Service
 class NotificationApplication(
-		private val emitterService: EmitterService,
-) {
-
+    private val emitterService: EmitterService,
+){
+    /**
+     * SseEmitter에 연결
+     *
+     * @param emitterId SseEmitter의 ID
+     * @return 생성된 SseEmitter
+     */
     fun connect(
-      uuid: UUID,
+        uuid: UUID,
     ): SseEmitter {
+        val sseEmitter = emitterService.connect(uuid)
+        return emitter
+    }
 
+    /**
+     * SseEmitter를 통해 메세지를 전달한다.
+     *
+     * @param emitterId SseEmitter의 ID
+     */
+    fun sendNotification(
+        uuid: UUID,
+    ) {
+        emitterService.notify(uuid)
+    }
+  
+    /**
+     * SseEmitter를 종료한다.
+     *
+     * @param emitterId SseEmitter의 ID
+     */
+    fun completeNotification(
+        uuid: UUID,
+    ) {
+        emitterService.onCompleted(uuid)
     }
 }
 ```
@@ -72,23 +106,81 @@ class NotificationApplication(
 
 
 ```kotlin
-@Service
-class EmitterService(
-		private val emitterRepository: EmitterRepository,
-){
 
-  
-  	fun connect(emitterId: String): SseEmitter {
+@Service
+class NotificationEmitterService(
+    private val emitterRepository: EmitterRepository,
+){
+    /**
+     * SseEmitter 연결하고 Repositry에 저장한다.
+     *
+     * @param emitterId SseEmitter의 ID
+     * @return 생성된 SseEmitter
+     */
+    fun connect(emitterId: String): SseEmitter {
         val sseEmitter = SseEmitter(sseTimeout)
         channelStore.put(emitterId, sseEmitter)
+        sseEmitter.onCompletion {
+            log.debug("onCompletion callback")
+            emitterService.remove(uuid)
+        }
+
+        sseEmitter.onTimeout {
+            log.debug("onTimeout callback")
+            sseEmitter.complete()
+            sseEmitter.remove(userId)
+        }
+
+        sseEmitter.onError { e ->
+            log.debug { "onError callback ${e.message}" }
+            sseEmitter.complete()
+            sseEmitter.remove(userId)
+        }
         return sseEmitter
+    }
+
+
+    /**
+     * SseEmitter를 통해 클라이언트에게 메세지 전송
+     *
+     * @param emitterId SseEmitter의 ID
+     * @param message SseEmitter로 보낼 메세지
+     */
+    fun notify(
+        emitterId: UUID,
+        message: String
+    ) {
+        sseEmitter.get(emitterId)?.let {
+            try {
+                it.event()
+                    .id(emitterId)
+                    .name(message)
+                    .data(message, MediaType.APPLICATION_JSON)
+            } catch (e: IOException) {
+                it.completeWithError(e)
+                emitters.remove(userId)
+            }
+        }
+    }
+
+    /**
+     * SseEmitter를 종료
+     *
+     * @param emitterId SseEmitter의 ID
+     */
+    fun completeNotification(
+        emitterId: UUID,
+    ) {
+        sseEmitter.get(emitterId)?.let {
+            it.complete()
+        }
     }
 }
 ```
 
 
 
-
+- Repository
 
 ```kotlin
 @Component
@@ -96,14 +188,12 @@ class EmitterRepository{
   	private val emitters = ConcurrentHashMap<String, SseEmitter>() 
   
   	fun putSseEmitter(key: String, sseEmitter: SseEmitter) {
-      	
+      	emitters[key] = emitter
     }
   
     fun getSseEmitter(key: String): sseEmitter: SseEmitter {
-      	
+      	emitters[key] = emitter
     }
-  
-  	
 }
 ```
 
