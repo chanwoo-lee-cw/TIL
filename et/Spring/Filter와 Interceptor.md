@@ -20,7 +20,7 @@ Filter란 Web 애플리케이션에서 관리되는 영역으로 Client로 부�
 
 스프링 프레임 워크는 들어온 요청이 DispatherServlet에 의해 컨트롤러에 매핑이 되는데, Filter는 이 요청이 DispatherServlet에 의해 다뤄지기 전, 후에 동작합니다. 또한, Filter는 FilterChain을 통해 여러 필터가 연쇄적으로 동작하게 할 수 있다.
 
-즉, 스프링 컨테이너가 아닌 톰캣과 같은 웹 컨테이너에 의해 관리가 되는 것이고, 스프링 범위 밖에서 처리되는 것이다.
+즉, 스프링 컨테이너가 아닌 톰캣과 같은 웹 컨테이너에 의해 관리가 되는 것이다.
 
 
 
@@ -28,12 +28,21 @@ Filter란 Web 애플리케이션에서 관리되는 영역으로 Client로 부�
 
 Filter 인터페이스에는 3개의 메소드가 있는데 이것의 구현에 따라 기능이 달라진다
 
-- `init()` – 컨테이너가 인스턴스 생성 후 한 번 호출하며 초기 설정 수행. 즉, 서비스 최초 실행 때 한번 실행된다
-- `doFilter()` – 매 HTTP 요청이 디스패처 서블릿으로 전달되기 전에 웹 컨테이너에 의해 실행되는 메소드이다.
+- `init()` 
+  - 컨테이너가 인스턴스 생성 후 한 번 호출하며 초기 설정 수행. 즉, 서비스 최초 실행 때 한번 실행된다
+  - 비필수로 구현하지 않아도 default 기능을 사용한다
+
+- `doFilter()`
+  - 매 HTTP 요청이 디스패처 서블릿으로 전달되기 전에 웹 컨테이너에 의해 실행되는 메소드이다.
   - **chain.doFilter() 전**: 전처리 (예: 인증/로그/인코딩 세팅 등)
   - **chain.doFilter() 후**: 후처리 (예: 응답 압축/헤더 수정)
   - chain 호출을 생략하면 이후 서블릿/필터 실행을 막을 수 있음 → 보안용으로 활용
-- `destroy()` – 필터 제거 시 호출된다. 필터 객체를 제거하고 사용하는 자원을 반환하기 위한 메소드이다. 즉, Spring 서비스 종료때 실행된다.
+  - 필수로 override해야한다.
+
+- `destroy()` 
+  - 필터 제거 시 호출된다. 필터 객체를 제거하고 사용하는 자원을 반환하기 위한 메소드이다. 즉, Spring 서비스 종료때 실행된다.
+  - 비필수로 구현하지 않아도 default 기능을 사용한다
+
 
 
 
@@ -207,7 +216,7 @@ class WebConfig(
   - Request와 Response를 조작 가능. Header, Body, Stream 모두 가로채고 수정가능하다.
   - 다음 요청을 위해 FilterChain을 호출해야한다.
 - **Interceptor**
-  - Request와 Response 양측 모두 조작 불가
+  - Interceptor에서도 Request/Response의 Header나 Attribute 수정은 가능하지만, Body 조작은 불가능하다
   - Boolean 형태의 리턴 값에 따라 실행 여부가 결정된다.
 
 ### 용도
@@ -223,6 +232,69 @@ class WebConfig(
 
 
 
+## OncePerRequestFilter란?
+
+> HTTP Reqeust의 한번의 요청에 대해 한번만 실행하는 Filter
+
+`OncePerRequestFilter`는 HTTP Reqeust의 한번의 요청에 대해 한번만 실행하는 클래스를 말하는 것으로, 보통 한번의 요청이 DispatcherServlet → ErrorController 등 여러 경로로 흐를 때 필터가 중복 호출되는 문제를 방지하기 위해 사용된다.
+
+주로, 인증/인가, 요청/응답 로그를 찍어야하는 경우, CORS 처리, Request 래핑 (Body 재사용, 캐싱 등), 전역 공통 처리 (Trace ID 삽입, Locale 설정 등) 에 사용된다.
+
+
+
+### OncePerRequestFilter 구현
+
+- `doFilterInternal`
+  - Filter의 `doFilter` 와 같은 기능으로써, 이 부분에 전후 처리 로직을 작성함으로써 구현한다.
+  - 요청이 중복 실행되는 것을 자동으로 방지한다.
+  - 필수로 구현해야한다.
+- `shouldNotFilter`
+  - 특정 조건에 따라 해당 필터를 사용하고 싶지 않을때 사용한다.
+  - 반환 값이 `False`라면 필터를 실행하고, `true`반환시 해당 요청은 `doFilterInternal` 아예 실행하지 않는다.
+  - 주로 특정 URL에 대해 필터를 사용하지 않거나, 인증 같은 경우에 테스트 서버라면 건너 뛰고 싶을 때 사용한다.
+
+
+
+```kotlin
+package com.example.demo.filter
+
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import mu.KotlinLogging
+import org.springframework.stereotype.Component
+import org.springframework.web.filter.OncePerRequestFilter
+
+@Component
+class OnceTestRequestFilter: OncePerRequestFilter() {
+    private val log = KotlinLogging.logger {}
+
+    override fun doFilterInternal(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        filterChain: FilterChain
+    ) {
+        log.info { "this is OnceTestRequestFilter Start" }
+        filterChain.doFilter(request, response)
+        log.info { "this is OnceTestRequestFilter end" }
+    }
+
+    override fun shouldNotFilter(request: HttpServletRequest): Boolean {
+        // 아무것도 작성하지 않는다면 기본 값이 False이다
+        log.info { "this is shouldNotFilter Start" }
+        return false
+    }
+}
+```
+
+
+
+![OncePerRequestFilter 로그](https://velog.velcdn.com/images/alphanewbie/post/217ce6a2-f639-4460-862d-d150d4cfd7ea/image.png)
+
+
+
+
+
 ## 참고 문헌
 
 - [https://gardeny.tistory.com/35](https://gardeny.tistory.com/35)
@@ -231,3 +303,4 @@ class WebConfig(
 - [https://velog.io/@thing-zoo/Spring-Filter](https://velog.io/@thing-zoo/Spring-Filter)
 - [https://dev-coco.tistory.com/173](https://dev-coco.tistory.com/173)
 - [https://velog.io/@uiurihappy/Spring-인터셉터Interceptor와-필터Filter-차이](https://velog.io/@uiurihappy/Spring-인터셉터Interceptor와-필터Filter-차이)
+- [https://junyharang.tistory.com/378](https://junyharang.tistory.com/378)
