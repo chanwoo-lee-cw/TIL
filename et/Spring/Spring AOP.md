@@ -18,6 +18,16 @@
 
 
 
+## 구조
+
+
+![](https://velog.velcdn.com/images/alphanewbie/post/d4c6a0bb-1636-4c0c-9328-99ecf8590f36/image.png)
+
+
+![](https://velog.velcdn.com/images/alphanewbie/post/26845140-957e-43cc-a903-f9395139e883/image.png)
+
+
+
 ## Spring AOP의 주요 개념
 
 ###  JointPoint
@@ -174,6 +184,8 @@ class LoggingAspect {
 ### 시간 측정
 
 ```kotlin
+@Target(AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class MeasureRuntime{}
 ```
 
