@@ -5,7 +5,14 @@ import java.util.StringTokenizer;
 
 
 class PipeMoveSolution {
-    public long getPipeLineAble(
+    
+    /**
+     * 파이프를 가로, 세로, 대각선으로 밀면서 우측하단까지 옮기는 방법의 경우의 수
+     * @param n 벽의 넓이
+     * @param wall 벽의 형태
+     * @return 시작점에서 목적지까지 올 수 있는 경우의 수
+     */
+    public static long getPipeLineAble(
             int n,
             int[][] wall
     ) {
@@ -52,9 +59,8 @@ public class Main {
                 }
             }
 
-            PipeMoveSolution solution = new PipeMoveSolution();
             System.out.println(
-                    solution.getPipeLineAble(n, wall)
+                    PipeMoveSolution.getPipeLineAble(n, wall)
             );
 
 
