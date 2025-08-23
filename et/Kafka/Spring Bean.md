@@ -1,7 +1,5 @@
 # Spring의 Bean
 
-
-
 ## Bean 이란?
 
 > Bean이란 스프링 컨테이너에 의해 관리되는 재사용 가능한 소프트웨어 컴포넌트
@@ -154,6 +152,27 @@ class Person {
 
 
 
+### `@Configuration`
+
+- **설정 Class**를 Bean으로 등록하기 위한 어노테이션
+- `@Component`와 비슷하지만, CGLIB 프록시로 싱글톤 보장 기능이 있다는 점이 다르다.
+  - CGLIB 프록시 : 인터페이스가 없는 클래스를 상속을 통해 프록시 객체를 만들어주는 라이브러리
+  - 즉, `@Configuration` 어노테이션이 붙으면 항상 싱글톤 Bean으로 생성되어서, 같은 클래스내에서 @Bean 메소드를 호출하더라도 동일한 싱글톤 Bean을 호출하게 된다.
+- XML 설정 파일을 자바/코틀린 코드로 대체하는 역할을 한다
+
+```kotlin
+@Configuration
+class QueryDslConfig {
+    @PersistenceContext
+    lateinit var entityManager: EntityManager
+
+    @Bean
+    fun queryFactory(): JPAQueryFactory = JPAQueryFactory(entityManager)
+}
+```
+
+
+
 ##  `@Bean`와 `@Component`의 차이
 
 - @Bean
@@ -173,3 +192,4 @@ class Person {
 - [https://developer-ellen.tistory.com/198](https://developer-ellen.tistory.com/198)
 - [https://yooseong12.tistory.com/27](https://yooseong12.tistory.com/27)
 - [https://velog.io/@rara_kim/Spring-어노테이션Annotation](https://velog.io/@rara_kim/Spring-어노테이션Annotation)
+- [https://adjh54.tistory.com/311#2.%20%40Configuration-1-4](https://adjh54.tistory.com/311#2.%20%40Configuration-1-4)
