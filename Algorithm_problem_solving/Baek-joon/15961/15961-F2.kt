@@ -17,39 +17,34 @@ class ConveyorBeltSushi(
     fun maxSushiEat(): Int {
         var answer = 0;
         for (i in 0 until n) {
-            val eatSushi: MutableSet<Int> = mutableSetOf()
-            answer = max(answer, eatSushi(eatSushi, 0, i))
+            answer = max(answer, eatSushi(i))
         }
         return answer
     }
 
     private fun nextPosition(position: Int): Int {
-        return if (position + 1 < n) {
-            position + 1
+        return if (position + eatAble < n) {
+            position + eatAble
         } else {
-            (position + 1) % n
+            (position + eatAble) % n
         }
     }
 
     private fun eatSushi(
-        eatSushi: MutableSet<Int>,
-        payCount: Int,
-        position: Int,
+        startPosition: Int,
     ): Int {
-        var answer = 0
-        if (payCount == eatAble) {
-            answer = eatSushi.size
-            if (!eatSushi.contains(freeCoupon)) {
-                answer += 1
-            }
+        val next = nextPosition(startPosition)
+        val eatSushi = mutableSetOf<Int>();
+        if (next <= startPosition) {
+            eatSushi.addAll(conveyorBelt.slice(0 until next))
+            eatSushi.addAll(conveyorBelt.slice(startPosition until n))
         } else {
-            eatSushi.add(conveyorBelt[position])
-            answer = max(
-                answer,
-                eatSushi(eatSushi, payCount + 1, nextPosition(position))
-            )
+            eatSushi.addAll(conveyorBelt.slice(startPosition..next))
         }
-        return answer
+        if (!eatSushi.contains(freeCoupon)) {
+            eatSushi.add(freeCoupon)
+        }
+        return eatSushi.size
     }
 
 }
