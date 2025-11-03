@@ -1,17 +1,6 @@
 # Mermaid - Sequence Diagram 문법
 
-## Mermaid란?
-
-> Mermaid은 텍스트 기반으로 다이어그램을 생성할 수 있는 오픈소스 문법
-> 주로 Markdown 문서에서 시각적인 다이어그램을 코드처럼 작성할 때 사용됩니다.
-
-요약하자면 다이어그램을 텍스트로 생성하는 문법이라는는 뜻이다.
-
-
-
-## Sequence Diagram
-
-### 기본구조
+## 기본구조
 
 ```
 sequenceDiagram
@@ -31,7 +20,7 @@ sequenceDiagram
     John-->>-Alice: I feel great!
 ```
 
-### Participant / Actor
+## Participant / Actor
 
 해당 다이어그램의 참여자를 뜻하는 뜻이다.
 
@@ -62,7 +51,7 @@ sequenceDiagram
 		ServiceFirst->>KrSevice:
 ```
 
-### Grouping / Box
+## Grouping / Box
 
 | Type               | Description             |
 | ------------------ | ----------------------- |
@@ -102,7 +91,7 @@ sequenceDiagram
 
 
 
-### Message
+## Message
 
 각 객체들 끼리 요청을 나타내는 화살표
 
@@ -135,7 +124,7 @@ sequenceDiagram
 		Second--)Fisrt: async Response
 ```
 
-### Activations
+## Activations
 
 행위자를 활성화하거나 비활성화할 수 있습니다.
 
@@ -177,7 +166,7 @@ sequenceDiagram
     John-->>-Alice: I feel great!
 ```
 
-### Notes
+## Notes
 
 참여자(Actor)나 메시지에 대한 추가 설명을 붙일 때 사용한다. 해당 이벤트나 메세지에 대한 보충 설명을 나타낸다.
 
@@ -227,7 +216,7 @@ sequenceDiagram
 
 
 
-### Controll
+## Controll
 
 | Operator   | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
@@ -374,7 +363,7 @@ sequenceDiagram
     API-->BillingService: Start billing process
 ```
 
-### Background Highlighting
+## Background Highlighting
 
 색상의 배경 작업을 설정할 수 있다.
 
@@ -411,7 +400,7 @@ sequenceDiagram
     end
 ```
 
-### sequenceNumbers
+## sequenceNumbers
 
 각 화살표에 시퀸스 번호를 추가할 수 있다.
 
@@ -449,7 +438,7 @@ sequenceDiagram
 
 ```
 
-### Actor Menus
+## Actor Menus
 
 Actor에 Link를 추가해서 Drop Down 메뉴를 추가할 수 있다.
 
