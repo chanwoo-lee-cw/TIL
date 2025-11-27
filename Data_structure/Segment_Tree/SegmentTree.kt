@@ -2,7 +2,7 @@ class SegmentTree(
     val arr: Array<Int>,
 ) {
     // 1-base SegmentTree
-    private val tree = Array(n * 4) { 0 }
+    private val tree = Array(2 * n) { 0 }
 
     private val n
         get() = arr.size
@@ -100,12 +100,3 @@ class SegmentTree(
         }
     }
 }
-
-//fun main() {
-//    val arr: Array<Int> = arrayOf(1, 2, 3, 4, 5)
-//
-//    val segmentTree: SegmentTree = SegmentTree(arr)
-//
-//    segmentTree.update(3, 6)
-//    print(segmentTree.query(arr.indexOf(2), arr.indexOf(5)))
-//}
