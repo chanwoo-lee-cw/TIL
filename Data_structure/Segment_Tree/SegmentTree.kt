@@ -2,7 +2,7 @@ class SegmentTree(
     val arr: Array<Int>,
 ) {
     // 1-base SegmentTree
-    private val tree = Array(2 * n) { 0 }
+    private val tree = Array(4 * n) { 0 }
 
     private val n
         get() = arr.size
