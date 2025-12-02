@@ -40,7 +40,8 @@ class OrderService(
 ) {
     @Transactional
     fun createOrder(orderDto: OrderDto) {
-        orderRepository.save(Order.from(orderDto))
+      	val order = Order.from(orderDto)
+        orderRepository.save(order)
         publisher.publishEvent(OrderCreateSlackEventDto(order.id))
     }
 }
@@ -93,8 +94,68 @@ fun handleWithoutTx(event: SomeEvent) {
 
 
 
+## ApplicationEvent
+
+> Spring에서 발생하는 이벤트를 나타내는 객체, 해당 이벤트를 객체로 만들어서 다른 컴포넌트가 처리할 수 있도록 한다.
+
+즉, 이벤트를 `Publisher → Event → Listener` 순서를 통해 비동기적으로 처리할 수 있도록 한다.
+
+
+
+### 장점
+
+1. 서비스A가 서비스B를 직접 호출하지 않고, 이벤트를 통해 전달함으로써 결합도를 낮출 수 있다.
+2. 비동기 처리
+3. Spring 내부 알림 시스템으로도 사용 가능하다.
+
+
+
+### ApplicationEvent의 기본 구조
+
+```java
+public class MyEvent extends ApplicationEvent {
+    private final String message;
+
+    public MyEvent(Object source, String message) {
+        super(source);
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+```
+
+Spring 4.2 이전까지는 반드시 `ApplicationEvent` 클래스를 상속해야 했지만, 그 이후 버전부터는 단순히 data 클래스도 정상적으로 작동한다.
+
+
+
+```kotlin
+data class OrderCreateSlackEventDto(
+    val orderId: Long,
+  	val userName: String
+   	val userEmail: String
+  	val orderPrice: BigInteger,
+) : ApplicationEvent(orderId)
+```
+
+```kotlin
+data class OrderCreateSlackEventDto(
+    val orderId: Long,
+  	val userName: String
+   	val userEmail: String
+  	val orderPrice: BigInteger,
+)
+```
+
+위의 두 클래스는 이벤트 발행하는 기능으로는 동일하게 기능한다.
+
+안 붙혔더라도 내부적으로 동일하게 `ApplicationEvent`를 붙혀서 처리한다.
+
 
 
 ## 참고 문헌
 
 - [https://wildeveloperetrain.tistory.com/246](https://wildeveloperetrain.tistory.com/246)
+- [https://mangkyu.tistory.com/292](https://mangkyu.tistory.com/292)
