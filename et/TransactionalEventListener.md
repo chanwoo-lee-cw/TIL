@@ -42,7 +42,7 @@ class OrderService(
     fun createOrder(orderDto: OrderDto) {
       	val order = Order.from(orderDto)
         orderRepository.save(order)
-        publisher.publishEvent(OrderCreateSlackEventDto(order.id))
+        publisher.publishEvent(OrderCreateSlackEvent(order.id))
     }
 }
 ```
@@ -51,7 +51,7 @@ class OrderService(
 @Component
 class OrderEventHandler {
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    fun sendOrderCreateSlackMessage(eventDto: OrderCreateSlackEventDto) {
+    fun sendOrderCreateSlackMessage(eventDto: OrderCreateSlackEvent) {
       	// TODO 슬랙 발송 이벤트 추가
     }
 }
@@ -132,7 +132,7 @@ Spring 4.2 이전까지는 반드시 `ApplicationEvent` 클래스를 상속해�
 
 
 ```kotlin
-data class OrderCreateSlackEventDto(
+data class OrderCreateSlackEvent(
     val orderId: Long,
   	val userName: String
    	val userEmail: String
@@ -141,7 +141,7 @@ data class OrderCreateSlackEventDto(
 ```
 
 ```kotlin
-data class OrderCreateSlackEventDto(
+data class OrderCreateSlackEvent(
     val orderId: Long,
   	val userName: String
    	val userEmail: String
@@ -155,7 +155,16 @@ data class OrderCreateSlackEventDto(
 
 
 
+## ApplicationEventMulticaster
+
+> Spring 내부에서 ApplicationEventPublisher가 이벤트를 publish 하면, 리스너들에게 이벤트를 broadcast 하는 주체
+
+`Publisher → Event → ApplicationEventMulticaster →  Listener` 흐름으로 처리한다.
+
+
+
 ## 참고 문헌
 
 - [https://wildeveloperetrain.tistory.com/246](https://wildeveloperetrain.tistory.com/246)
 - [https://mangkyu.tistory.com/292](https://mangkyu.tistory.com/292)
+- [https://blog.naver.com/gngh0101/222020512119](https://blog.naver.com/gngh0101/222020512119)
