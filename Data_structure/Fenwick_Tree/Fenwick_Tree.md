@@ -12,7 +12,8 @@
 
 해당 인덱스의 **마지막 1비트**를 이용해서 누적합을 구한 구간을 계산한다.
 
-![스크린샷 2025-11-26 오후 11.21.16](/Users/chanwoo/Desktop/스크린샷 2025-11-26 오후 11.21.16.png)
+![](https://velog.velcdn.com/images/alphanewbie/post/7c2b8e03-5d07-40a4-8965-d46f4058fa99/image.png)
+
 
 | tree 인덱스 | 비트 패턴(2진수) | 담당 길이 | 저장되는 값(구간 합)          |
 | ----------- | ---------------- | --------- | ----------------------------- |
@@ -74,7 +75,8 @@ private fun prefixSum(
 
 예, 0~5까지의 구간 합을 구할시 필요한 값
 
-![스크린샷 2025-11-27 오후 10.47.13](/Users/chanwoo/Desktop/스크린샷 2025-11-27 오후 10.47.13.png)
+![](https://velog.velcdn.com/images/alphanewbie/post/ebbcab1a-801d-4bb2-901d-58ed06dc915d/image.png)
+
 
 1. Idx : 5
    1. sum : 5
@@ -108,7 +110,8 @@ private fun updateDiff(index: Int, diff: Int) {
 
 예, index 0을 6으로 업데이트 했을 시, 같이 업데이트 해야하는 값
 
-![스크린샷 2025-11-27 오후 10.43.40](/Users/chanwoo/Desktop/스크린샷 2025-11-27 오후 10.43.40.png)
+![](https://velog.velcdn.com/images/alphanewbie/post/22521f32-6f68-40b3-8beb-efa3ba499a0f/image.png)
+
 
 1. Idx : 1
    1. tree[1] = 1 (+5) = 6
