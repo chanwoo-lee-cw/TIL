@@ -45,17 +45,36 @@
 
 - Asynchronous 및 Non-Blocking I/O 방식을 사용하여 적은 수의 스레드로 많은 수의 동시 요청을 처리할 수 있다.
 - Synchronous 및 Blocking을 사용하는 기존 서블릿(Servlet) 기반 Spring Web MVC 방식과 달리, 높은 처리량을 제공
+- 스레드를 차단하지 않음으로써 적은 수의 쓰레드로 더 많은 요청을 처리할 수 있다.
 
 ### 함수형 프로그래밍
 
 -  불변 데이터와 순수 함수를 사용하는 함수형 프로그래밍 스타일을 지향한다.
 - 람다(Lambda)와 스트림(Stream)과 같은 기능적 추상화를 제공하여 반응형 코드를 보다 간결하고 읽기 쉽게 작성할 수 있다.
 
+### Reactive Stream기반
+
+WebFlux(Reactor)는 Reactive Streams 스펙 위에서 동작한다. Publisher가 데이터를 넣는게 아니라, Subscriber가 `request(n)`로 받을 수 있는 만큼만 가져온다.
+
+- Publisher
+  - 데이터를 생성하고, Subscriber에게 전송
+- Subscriber
+  - Publisher로부터 데이터를 받아들이고, 소비
+- Subscription
+  - Subscriber가 처리할 데이터의 양을 정의
+- Backpressure
+  - Subscriber가 처리 가능한 만큼만 요청해서, 부하를 줄이는 시스템
+
 ### 스프링 부트와의 통합
 
 - Spring Boot 생태계와 완전히 통합되어 있어 강력한 자동 설정 기능을 제공한다.
 
+### Mono / Flux
 
+| 타입      | 처리 가능한 스트림 |
+| --------- | ------------------ |
+| `Mono<T>` | 0~1건              |
+| `Flux<T>` | 0~N건              |
 
 
 
@@ -63,3 +82,6 @@
 
 - [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
 - [https://techblog.woowahan.com/12903](https://techblog.woowahan.com/12903)
+- [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
+- [https://adjh54.tistory.com/232#1.%20%EB%B0%98%EC%9D%91%ED%98%95%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(Reactive%20Programming)-1-2](https://adjh54.tistory.com/232#1.%20%EB%B0%98%EC%9D%91%ED%98%95%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(Reactive%20Programming)-1-2)
+- [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
