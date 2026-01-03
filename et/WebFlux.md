@@ -19,6 +19,11 @@
 
 ### Spring MVC
 
+```
+Client ──> Tomcat Thread ──(대기)──> DB ──> 응답
+            ↑ thread block
+```
+
 - 요청 1개당 쓰레드 1개 사용한다.
 - 하나의 작업이 끝날때까지 쓰레드가 묶여있는다.
 - 외부 API 요청시, 응답이 올때까지 쓰레드가 묶여있는다.
@@ -26,6 +31,11 @@
 - Tomcat Servlet 기반
 
 ### Spring WebFlux
+
+```
+Client ──> EventLoop ──(signal 등록)──> DB ──> EventLoop ──> 응답
+            thread free
+```
 
 - 요청이 들어와도 쓰레드가 묶이지 않는다.
 - 기다릴 필요가 있는 작업은 "콜백 신호"만 받고 쓰레드는 다른 작업 처리
@@ -78,6 +88,40 @@ WebFlux(Reactor)는 Reactive Streams 스펙 위에서 동작한다. Publisher가
 
 
 
+## WebFlux의 Scheduler와 Thread
+
+Spring WebFlux에서는 기본 실행 쓰레드가 EventLoop를 기반으로 하기 때문에 Scheduler를 사용한다.
+
+-> 즉, Scheduler는 Reactor가 제공하는 스레드 풀이다.
+
+
+
+### subscribeOn()
+
+- 파이프라인 전체에 영향을 준다.
+  - 구독 시점을 다른 Scheduler에서 실행
+  - Source가 데이터를 발행하는 시점과 그 이후의 기본 흐름을 다른 쓰레드에서 시작하도록 한다.
+  - 체인의 어디에 두든 상관없이, 항상 최초 구독과 데이터 소스가 실행되는 쓰레드를 바꾼다
+- 즉, Reactive 파이프라인의 시작점(thread context)을 정한다.
+
+### publishOn()
+
+- 해당 위치 이후의 downstream(아래쪽) 연산자만 영향을 받는다.
+  - 파이프라인 중간에서 실행 쓰레드를 전환하고 싶을 때 사용.
+  - publishOn 아래에 있는 모든 연산자는 그 Scheduler에서 실행한다.
+- 즉, 체인 도중에 쓰레드를 바꾸는 용도로 쓴다.
+
+
+
+### Scheduler가 중요한 이유
+
+- WebFlux는 EventLoop(소수의 쓰레드)로 다수의 Reqeust를 처리한다.
+- EventLoop에서 blocking 작업이 발생하는 경우에는,
+  - EventLoop가 해당 작업을 기다리는 동안 다른 Reqeust 처리 지연.
+- 즉, 이런 경우로 인한 성능 저하를 막기 위해, blocking 작업은 별도 쓰레드 풀로 격리해 실행한다.
+
+
+
 ##  참고 문헌
 
 - [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
@@ -85,3 +129,4 @@ WebFlux(Reactor)는 Reactive Streams 스펙 위에서 동작한다. Publisher가
 - [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
 - [https://adjh54.tistory.com/232#1.%20%EB%B0%98%EC%9D%91%ED%98%95%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(Reactive%20Programming)-1-2](https://adjh54.tistory.com/232#1.%20%EB%B0%98%EC%9D%91%ED%98%95%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(Reactive%20Programming)-1-2)
 - [https://m.blog.naver.com/seek316/223311717538](https://m.blog.naver.com/seek316/223311717538)
+- [https://trillium.tistory.com/193](https://trillium.tistory.com/193)
