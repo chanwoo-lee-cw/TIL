@@ -116,7 +116,241 @@ fun printWithThread(str: Any?) {
 }
 ```
 
+```
+[main @coroutine#1] START
+[main @coroutine#2] Hello launch
+[main] END
+```
+
 `launch`를 코루틴 빌더로 사용할 때, `CoroutineStart.LAZY` 옵션을 주어서 코루틴을 지연 시작으로 변경하고,  `job.start()`를 직접 호출해서 직접 시작한다.
+
+
+
+### cancel
+
+현재 돌아가고 있는 코루틴을 취소한다.
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine(): Unit = runBlocking {
+    val job = launch {
+        (1..5).forEach {
+            printWithThread(it)
+            delay(500)
+        }
+    }
+    delay(1_000L)
+    job.cancel()
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#2] 1
+[main @coroutine#2] 2
+[main] END
+```
+
+
+
+### Join
+
+제어하고 있는 코루틴이 끝날 때까지 대기한다.
+
+Join을 사용하지 않는 예시에 대해 작성한다.
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine(): Unit = runBlocking {
+    val job1 = launch {
+        printWithThread("Job 1 : START")
+        delay(1_000)
+        printWithThread("Job 1 : END")
+    }
+    val job2 = launch {
+        printWithThread("Job 2 : START")
+        delay(1_000)
+        printWithThread("Job 2 : END")
+    }
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#2] Job 1 : START
+[main @coroutine#3] Job 2 : START
+[main @coroutine#2] Job 1 : END
+[main @coroutine#3] Job 2 : END
+[main] END
+```
+
+![join 미사용](https://velog.velcdn.com/images/alphanewbie/post/453cc353-ba60-4361-bd03-ebb9ac71ccbf/image.png)
+
+각각 코루틴에 딜레이가 걸려 있지만, Job1과 Job2가 함께 출력되는데, Job1에서 1초를 대기하는 동안 Job2를 처리하기 때문이다.
+
+
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine(): Unit = runBlocking {
+    val job1 = launch {
+        printWithThread("Job 1 : START")
+        delay(1_000)
+        printWithThread("Job 1 : END")
+    }
+
+  	// job1이 끝날 때까지 기다린다.
+    job1.join()
+    
+    val job2 = launch {
+        printWithThread("Job 2 : START")
+        delay(1_000)
+        printWithThread("Job 2 : END")
+    }
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#2] Job 1 : START
+[main @coroutine#2] Job 1 : END
+[main @coroutine#3] Job 2 : START
+[main @coroutine#3] Job 2 : END
+[main] END
+```
+
+
+
+![join 사용](https://velog.velcdn.com/images/alphanewbie/post/238ae9c0-2b1a-468d-96ca-653ddfeef7a8/image.png)
+
+join을 호출함으로써, job1이 끝날 때까지 기다리기 때문에 Job1과 Job2가 순차적으로 실행된다.
+
+
+
+### async
+
+```kotlin
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlin.system.measureTimeMillis
+
+
+suspend fun echoValue(value: Int): Int {
+    // 계산 시간 가정을 위한 1초
+    delay(1_000)
+    return value
+}
+
+fun testCoroutine(): Unit = runBlocking {
+    val time = measureTimeMillis {
+        val job1 = async { echoValue(1) }
+        val job2 = async { echoValue(2) }
+        printWithThread(job1.await() + job2.await())
+    }
+    printWithThread("소요 시간 : $time ms")
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] 3
+[main @coroutine#1] 소요 시간 : 1044 ms
+[main] END
+```
+
+`async()`는 `launch()`와 동일하게 코루틴을 실행하는 함수지만, 결과값을 리턴한다는 것이 다르다.
+
+`suspend`를 붙인 함수를 호출함으로써 여러 외부 자원을 동시에 호출해야하는 경우에서 지연 시간을 최대한으로 줄일 수 있다.
+
+
+
+단, 주의 사항은 `CoroutineStart.LAZY`를 사용하는 경우 계산 결과를 기다리기 때문에 코루틴으로 얻을 수 있는 장점이 줄어들게 된다.
+
+```kotlin
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlin.system.measureTimeMillis
+
+
+suspend fun echoValue(value: Int): Int {
+    // 계산 시간 가정을 위한 1초
+    delay(1_000)
+    return value
+}
+
+fun testCoroutine(): Unit = runBlocking {
+    val time = measureTimeMillis {
+        val job1 = async(start = CoroutineStart.LAZY) { echoValue(1) }
+        val job2 = async(start = CoroutineStart.LAZY) { echoValue(2) }
+        // 지연 된 작업을 실행시킨다.
+        job1.start()
+        job2.start()
+        printWithThread(job1.await() + job2.await())
+    }
+    printWithThread("소요 시간 : $time ms")
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] 3
+[main @coroutine#1] 소요 시간 : 1085 ms
+[main] END
+```
+
+즉, `start()`를 통해 함수를 먼저 시작해줘야, 코루틴으로써 동시에 사용할 수 있다..
 
 
 
