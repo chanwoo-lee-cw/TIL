@@ -350,9 +350,283 @@ fun printWithThread(str: Any?) {
 [main] END
 ```
 
-즉, `start()`를 통해 함수를 먼저 시작해줘야, 코루틴으로써 동시에 사용할 수 있다..
+즉, `start()`를 통해 함수를 먼저 시작해줘야, 코루틴으로써 동시에 사용할 수 있다.
 
 
+
+## 코루틴의 취소
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+
+fun testCoroutine(): Unit = runBlocking {
+    val job1 = launch {
+        delay(1_000L)
+        printWithThread("This is Job1")
+    }
+    val job2 = launch {
+        delay(1_000L)
+        printWithThread("This is Job2")
+    }
+    delay(100L)
+    job1.cancel()
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#3] This is Job2
+[main] END
+```
+
+코루틴은 취소할 수 있지만, `Job`객체의 `cancel()` 함수를 이용해 취소 가능하지만,
+
+취소 대상인 코루틴도 `delay()` 함수나 `yield()`와 같은 **suspend 함수**를 사용해 대기 상태여야 취소가 가능하다. 
+
+
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+
+fun testCoroutine(): Unit = runBlocking {
+    val job = launch {
+        var i = 1
+        var nextPrintTime = System.currentTimeMillis()
+        while (i <= 5) {
+            if (nextPrintTime <= System.currentTimeMillis()) {
+                printWithThread("This is Job1 : print $i")
+                nextPrintTime += 100L // 1초 후에 다시 출력되도록 한다.
+                i++
+            }
+        }
+    }
+    delay(300L)
+    job.cancel()
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#2] This is Job1 : print 1
+[main @coroutine#2] This is Job1 : print 2
+[main @coroutine#2] This is Job1 : print 3
+[main @coroutine#2] This is Job1 : print 4
+[main @coroutine#2] This is Job1 : print 5
+[main] END
+```
+
+예상대로라면 3까지 출력되고 끝내야 했지만, 5까지 정상 출력되는 것을 볼 수가 있다.
+
+즉, busy Waiting을 이용한 방식의 대기인 경우에는 중단이 되지 않는다.
+
+
+
+### 멀티 쓰레드 코루틴 취소
+
+```kotlin
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.cancellation.CancellationException
+
+
+fun testCoroutine(): Unit = runBlocking {
+    val job = launch(Dispatchers.Default) {
+        var i = 1
+        var nextPrintTime = System.currentTimeMillis()
+        while (i <= 5) {
+            if (nextPrintTime <= System.currentTimeMillis()) {
+                printWithThread("${i++} 번째 출력!")
+                nextPrintTime += 100L // 1초 후에 다시 출력되도록 한다.
+            }
+            if (!isActive) {
+                throw CancellationException()
+            }
+        }
+    }
+    delay(100L)
+    printWithThread("취소 시작")
+    job.cancel()
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[DefaultDispatcher-worker-2 @coroutine#2] 1 번째 출력!
+[DefaultDispatcher-worker-2 @coroutine#2] 2 번째 출력!
+[main @coroutine#1] 취소 시작
+[main] END
+```
+
+코루틴의 취소 시키는 방법은 코루틴 스스로 본인의 상태를 확인해 취소 요청을 받았을때 `CancellationException`를 던지는 방법이 있다.
+
+- `Dispatchers.Default`
+  - 코루틴을 다른 쓰레드에서 동작하도록 할당한다는 뜻이다.
+- `isActive`
+  - 코루틴 블록 안에서 `isActive`라는 프로퍼티를 통해 해당 코루틴이 활성화되어 있는지 확인 할 수 있다.
+  - 취소 신호를 전달하기 위해서 다른 쓰레드에서 동작하고 있어야 한다.
+
+
+
+## 코루틴의 예외 처리
+
+### launch
+
+```kotlin
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine() : Unit = runBlocking {
+    printWithThread("START")
+    val job = CoroutineScope(Dispatchers.Default).launch {
+        throw IllegalArgumentException()
+        printWithThread("This is Coroutine1")
+    }
+    delay(1_000L)
+    printWithThread(job)
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] START
+[main @coroutine#1] "coroutine#2":StandaloneCoroutine{Cancelled}@64c7c9b8
+[main] END
+
+BUILD SUCCESSFUL in 3s
+3 actionable tasks: 2 executed, 1 up-to-date
+Exception in thread "DefaultDispatcher-worker-1 @coroutine#2" java.lang.IllegalArgumentException
+	at MainKt$testCoroutine$1$job$1.invokeSuspend(Main.kt:10)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+```
+
+`launch` 함수는 예외가 발생하자마자, 해당 예외를 출력하고 코루틴이 종료가 되는 걸 확인할 수가 있다.
+
+### async
+
+```kotlin
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine() : Unit = runBlocking {
+    printWithThread("START")
+    val job = CoroutineScope(Dispatchers.Default).async {
+        throw IllegalArgumentException()
+        printWithThread("This is Coroutine1")
+    }
+    delay(1_000L)
+    printWithThread(job)
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] START
+[main @coroutine#1] "coroutine#2":DeferredCoroutine{Cancelled}@d44fc21
+[main] END
+```
+
+
+
+하지만, async 함수에서는 예외가 발생하지만, 해당 예외에 대해 처리하지 않는다.
+
+이는 값을 반환하는 코루틴에 사용되기 때문에 예외 역시 반환 할 때 처리 할 수 있도록 설계된 것이다.
+
+
+
+```kotlin
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine() : Unit = runBlocking {
+    printWithThread("START")
+    val job = CoroutineScope(Dispatchers.Default).async {
+        throw IllegalArgumentException()
+        printWithThread("This is Coroutine1")
+    }
+    delay(1_000L)
+    job.await()     // 이때 예외가 발생한다.
+    printWithThread(job)
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] START
+3 actionable tasks: 2 executed, 1 up-to-date
+Exception in thread "main" java.lang.IllegalArgumentException
+	at MainKt$testCoroutine$1$job$1.invokeSuspend(Main.kt:10)
+	at _COROUTINE._BOUNDARY._(CoroutineDebugging.kt:46)
+	at MainKt$testCoroutine$1.invokeSuspend(Main.kt:14)
+Caused by: java.lang.IllegalArgumentException
+	at MainKt$testCoroutine$1$job$1.invokeSuspend(Main.kt:10)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+```
 
 
 
