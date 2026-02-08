@@ -502,6 +502,19 @@ fun printWithThread(str: Any?) {
 
 ## 코루틴의 예외 처리
 
+코루틴 내부에서 발생한 예외의 처리 방법
+
+- 발생한 예외가 `CancellationException`인 경우
+  - 취소로 간주하고 부모 코루틴에게 전파하지 않는다.
+- 다른 예외가 발생한 경우
+  - 실패로 간주하고 부모 코루틴에게 전파한다.
+
+### 예외가 발생한 경우 코루틴의 흐름
+![](https://velog.velcdn.com/images/alphanewbie/post/58956352-c9f8-49a3-b911-ac8176fd6485/image.png)
+
+### 정상 흐름의 경우 코루틴의 흐름
+![](https://velog.velcdn.com/images/alphanewbie/post/674a3521-2cf9-42a4-8f6f-cf28f64827cc/image.png)
+
 ### launch
 
 ```kotlin
@@ -543,7 +556,65 @@ Exception in thread "DefaultDispatcher-worker-1 @coroutine#2" java.lang.IllegalA
 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
 ```
 
-`launch` 함수는 예외가 발생하자마자, 해당 예외를 출력하고 코루틴이 종료가 되는 걸 확인할 수가 있다.
+`launch` 함수는 자식 코루틴에서의 예외의 발생과 관계없이 부모 코루틴은 정상적으로 종료되는걸 알 수 있다.
+
+
+
+```kotlin
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine(): Unit = runBlocking {
+    printWithThread("START")
+
+    val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
+        printWithThread("$throwable 예외")
+    }
+    val job = CoroutineScope(Dispatchers.Default).launch(exceptionHandler) {
+        throw IllegalArgumentException()
+        printWithThread("This is Coroutine1")
+    }
+    delay(1_000L)
+    printWithThread(job)
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] START
+[DefaultDispatcher-worker-1 @coroutine#2] java.lang.IllegalArgumentException 예외
+[main @coroutine#1] "coroutine#2":StandaloneCoroutine{Cancelled}@6895a785
+[main] END
+```
+
+-  `CoroutineExceptionHandler` 
+  - 코루틴에서 예외 발생시, 직접 `try catch` 대신, 예외가 발생한 경우 처리하는 공통된 로직을 만들고 싶은 경우에 사용한다.
+
+```kotlin
+@Suppress("FunctionName")
+public inline fun CoroutineExceptionHandler(crossinline handler: (CoroutineContext, Throwable) -> Unit): CoroutineExceptionHandler =
+    object : AbstractCoroutineContextElement(CoroutineExceptionHandler), CoroutineExceptionHandler {
+        override fun handleException(context: CoroutineContext, exception: Throwable) =
+            handler.invoke(context, exception)
+    }
+```
+
+- `CoroutineContext` : 코루틴 구성 요소의 context 정보를 담고 있는 객체
+- `Throwable` : 발생한 예외의 정보
+
+
 
 ### async
 
@@ -628,7 +699,68 @@ Caused by: java.lang.IllegalArgumentException
 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
 ```
 
+`async` 함수에서 발생한 예외를 확인하고 싶다면 `job.await()` 함수를 사용해야한다.
 
+하지만 예외가 발생하는 경우, 부모 코루틴으로 전파되어 부모 코루틴도 함께 함께 종료되게 된다.
+
+
+
+# Coroutine의 구성 요소와 원리
+
+## Structued Concurrency
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
+fun testCoroutine(): Unit = runBlocking {
+    printWithThread("START")
+    val job1 = launch {
+        delay(600L)
+        printWithThread("job1 성공!")
+    }
+    val job2 = launch {
+        delay(500L)
+        throw IllegalArgumentException("job2 예외 Throw")
+    }
+    printWithThread("END")
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+[main @coroutine#1] START
+[main @coroutine#1] END
+Exception in thread "main" java.lang.IllegalArgumentException: job2 예외 Throw
+	at MainKt$testCoroutine$1$job2$1.invokeSuspend(Main.kt:16)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+```
+
+Job2에서만 에러가 발생했고, Job1에서는 에러가 발생하지 않았지만, Job2, Job2 모두 에러가 취소된걸 알 수가 있다.
+
+즉, 자식 코루틴에서 에러가 발생한 경우, 다른 코루틴도 같이 취소된다.
+
+![](https://velog.velcdn.com/images/alphanewbie/post/674a3521-2cf9-42a4-8f6f-cf28f64827cc/image.png)
+
+그를 위해서 코루틴은 취소나 성공 시에 상태를 바로 `Completed`나 `Cancelled` 상태로 바꾸지 않고 중간 단계를 거쳐서 취소한다.
+
+
+
+이런 식으로 부모-자식 관계의 코루틴이 한몸처럼 움직이는 것을 `Structued Concurrency`라고 한다.
+
+### Structued Concurrency
+
+- `Structued Concurrency`는 수많은 코루틴이 유실되거나 누수되지 않도록 보장한다.
+- `Structued Concurrency`는 코드 내의 에러가 유실되지 않고 보고될 수 있도록 보장한다.
 
 ## 참고 문헌
 
