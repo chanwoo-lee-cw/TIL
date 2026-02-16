@@ -935,7 +935,7 @@ fun printWithThread(str: Any?) {
 >
 > 코루틴을 잠시 멈췄다가 나중에 이어서 할 수 있는 함수를 의미한다.
 
-`suspend` 지시어가 붙으면 다른 `suspend` 함수를 부를 수 있게 된다.
+`suspend` 지시어가 붙으면 다른 `suspend` 함수를 부를 수 있게 된다. 즉, 호출해도 되고 호출을 하지 않아도 된다.
 
 또한, 스레드가 아니라 코루틴을 멈춘다.
 
@@ -962,6 +962,124 @@ fun testCoroutine(): Unit = runBlocking {
 ```
 
 `runBlocking` 코루틴 빌더나 `launch` 빌더 같은 코루틴 빌더들은 `suspend` 함수가 내장되어 있어서 suspend 를 붙인 것을  suspending lambda 라고 부른다.
+
+### suspending function의 의미
+
+1. 중단 지점(suspension point)을 가질 수 있다.
+
+   - `suspend fun` 안에서는 `delay()`, `await()`, `withContext()` 같은 중단 가능 함수를 호출할 수 있다.
+
+2. `suspend fun`은 코루틴 내부에서만 호출 가능 하다
+
+   - `suspend fun` 다른 `suspend fun`  안 혹은, `launch {}`, `async {}`, `runBlocking {}` 같은 코루틴 빌더 내부에서만 호출 가능하다.
+
+3. 쓰레드 Block과는 다르다.
+
+   - ```kotlin
+     import kotlinx.coroutines.*
+     
+     fun blocking() {
+         Thread.sleep(1000) // 스레드가 1초 동안 멈춤
+     }
+     
+     suspend fun suspending() {
+         delay(1000)        // 코루틴만 멈춤 (스레드는 다른 코루틴 실행 가능)
+     }
+     ```
+
+
+
+### suspend 함수
+
+1. `coroutineScope`
+
+`coroutineScope`함수는 `launch` 나 `async` 처럼 새로운 코루틴을 만들지만, 주어진 코드 블록이 실행된다. 새로 생긴 코루틴과 자식 코루틴들이 모두 완료된 이후 반환된다. coroutineScope 으로 만든 코루틴은 이전 코루틴의 자식 코루틴이 된다.
+
+2. `withContext`
+
+`coroutineScope`과 동일하게 코드 블록이 즉시 호출되어 새로운 코루틴이 만들어지고, 이 코루틴이 완전히 종료되어야 반환된다.
+
+하지만 `withContext`은 `context`를 변경할 수 있다. 
+
+```kotlin
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import kotlin.system.measureTimeMillis
+
+
+suspend fun calculateResult(): Int = withContext(Dispatchers.Default) {
+    printWithThread("START")
+    val num1 = async {
+        delay(1_000L)
+        10
+    }
+    val num2 = async {
+        delay(1_000L)
+        20
+    }
+    num1.await() + num2.await()
+}
+
+fun testCoroutine(): Unit = runBlocking {
+    val time = measureTimeMillis {
+        printWithThread(calculateResult())
+    }
+    printWithThread("소요 시간 : $time ms")
+}
+
+fun main() {
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+3. `withTimeout` 와 `withTimeoutOrNull`
+
+`coroutineScope`과 유사하지만 해당 코드 블록이 시간 내에 완료되지 않으면 `TimeoutCancellationException` 를 발생 시킨다. 또한,  `withTimeoutOrNull`은 null을 반환한다.
+
+```kotlin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
+
+
+fun testCoroutine(): Unit = runBlocking {
+    val num = withTimeout(1_000L) {
+        delay(1_500L)
+        10 + 20
+    }
+    printWithThread(num)
+}
+
+fun main() {
+    printWithThread("START")
+    testCoroutine()
+    printWithThread("END")
+}
+
+fun printWithThread(str: Any?) {
+    println("[${Thread.currentThread().name}] $str")
+}
+```
+
+```
+> Task :MainKt.main() FAILED
+[main] START
+Exception in thread "main" kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 1000 ms
+	at _COROUTINE._BOUNDARY._(CoroutineDebugging.kt:46)
+	at MainKt$testCoroutine$1$num$1.invokeSuspend(Main.kt:8)
+	at MainKt$testCoroutine$1.invokeSuspend(Main.kt:7)
+Caused by: kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 1000 ms
+```
+
+
 
 
 
