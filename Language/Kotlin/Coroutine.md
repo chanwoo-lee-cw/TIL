@@ -1081,6 +1081,46 @@ Caused by: kotlinx.coroutines.TimeoutCancellationException: Timed out waiting fo
 
 
 
+## 코루틴과 Continuation
+
+### Continuation란?
+
+> 코루틴이 다음에 어디서부터 무엇을 가지고 이어서 실행할지 정보를 담고 있는 객체
+>
+> 코루틴이 suspend 지점에서 멈출 때, PC(프로그램 카운터), 로컬 변수, Callback 주소 및 리턴 값을 담고 있다.
+
+
+
+### suspend와 Continuation
+
+```kotlin
+suspend fun fetch(): String
+```
+
+위의 문장을 컴파일러가 내부적으로 해석하는 방법은 이런 식으로 변한다.
+
+```kotlin
+fun fetch(continuation: Continuation<String>): Any
+```
+
+- `Continuation<String>`: fetch 함수가 끝났을 때, 결과 값은 String 정보를 저장할 위치
+- 반환 타입이 `Any`인 이유:
+  - 중지 없이 끝나는 경우 : 결과를 바로 반환한다.
+  - suspend 하는 경우 : 멈췄다는 결과로 `COROUTINE_SUSPENDED` 같은 리턴값을 반환한다.
+
+-> Suspend 함수는 `Continuation` 을 사용한 Continuation Passing Style (CPS)로 변환시키는 기능이다.
+
+
+
+```kotlin
+public interface Continuation<in T> {
+    public val context: CoroutineContext
+    public fun resumeWith(result: Result<T>)
+}
+```
+
+
+
 
 
 ## 참고 문헌
