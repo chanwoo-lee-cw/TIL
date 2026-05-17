@@ -409,3 +409,116 @@ print(#arr)   -- 2 또는 4 (구현에 따라!)
 - Lua는 `#`을 계산할 때 "nil로 끝나는 경계"를 찾기 때문에
 - 중간에 nil이 있으면 어디가 끝인지 모호해집니다.
 - 빈 자리를 표현하고 싶으면 `false`나 다른 `__NIL__`같은sentinel 값을 쓰는 게 안전합니다.
+
+
+## 에러 처리
+
+### Error rasie
+
+```lua
+error("에러 발생")
+```
+
+```lua
+error({code = "INSUFFICIENT", message = "재고 부족"})
+```
+
+- Java의 `throw new Exception("...")`와 같은 역할.
+- error()를 호출하면 함수가 중단되고, 호출 스택을 거슬러 올라가며 전파된다.
+
+```lua
+local function divide(a, b)
+    if b == 0 then
+        error("0으로는 나눌 수 없습니다.")
+    end
+    return a / b
+end
+
+divide(10, 0)   -- 에러 발생 → 프로그램 죽음
+```
+
+### `pcall()` : catch
+
+```lua
+local ok, err = pcall(
+    function()
+        error("에러 발생")
+    end
+)
+```
+
+- Java나 Go의 catch 같은 역할
+- 블록 구역 에러가 나면 → ok = false, err = 에러 메시지 반환
+- 에러 없이 끝나면 → ok = true, 그 뒤에 함수의 반환값들
+- 즉, 에러를 반환값으려 변환해준다.
+  - Go의 value, err := ... 패턴이랑 같다.
+
+```lua
+-- 에러 케이스
+local ok, err = pcall(function()
+    error("에러 발생")
+end)
+print(ok, err)   -- false   "input:2: 에러 발생"  (파일:줄번호가 자동으로 붙음)
+
+-- 성공 케이스
+local ok, result = pcall(function()
+    return 42
+end)
+print(ok, result)   -- true   42
+```
+
+### 기존 함수 호출
+
+```lua
+local function risky(a, b)
+    if b == 0 then error("0 division") end
+    return a / b
+end
+
+local ok, result = pcall(risky, 10, 2)
+--                       ↑      ↑   ↑
+--                     함수   arg1 arg2
+```
+
+pcall(f, a, b, c)은 f(a, b, c)을 실행한다는 뜻이다.
+
+
+### 다중 반환인 경우
+
+```lua
+local function divmod(a, b)
+    if b == 0 then error("0으로는 나눌 수 없습니다.") end
+    return a // b, a % b      -- 두 값 반환
+end
+
+local ok, q, r = pcall(divmod, 17, 5)
+-- ok=false, q="0으로는 나눌 수 없습니다."  ← 에러 시엔 두 번째 자리가 에러 메시지
+```
+
+
+## 모듈
+
+```lua
+-- mymodule.lua
+local M = {}
+
+function M.hello()
+    return "hi"
+end
+
+return M
+
+-- main.lua
+local mymodule = require("mymodule")
+print(mymodule.hello())
+```
+
+## 헷갈리기 쉬운 포인트 정리
+
+1. 인덱스 1부터 — 가장 많이 실수하는 부분
+2. ~= (같지 않음, != 아님)
+3. .. (문자열 연결, + 아님)
+4. local 안 붙이면 전역 — 항상 붙이는 습관
+5. nil/false만 거짓 — 0은 참
+6. : vs . — 메서드 호출 시 self 자동 전달 여부
+7. pairs vs ipairs — 순서 필요하면 ipairs, 모든 키는 pairs
