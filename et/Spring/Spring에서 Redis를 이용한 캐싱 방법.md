@@ -10,9 +10,6 @@ dependencies {
 
 	// Redis
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
-	implementation("org.redisson:redisson-spring-boot-starter:3.41.0")
-	implementation("io.lettuce:lettuce-core:6.7.1.RELEASE")
-	
 }
 ```
 
@@ -32,9 +29,6 @@ spring:
 ### Redis Config 설정
 
 ```kotlin
-import org.redisson.Redisson
-import org.redisson.api.RedissonClient
-import org.redisson.config.Config
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
@@ -46,9 +40,9 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
+import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.redis.serializer.StringRedisSerializer
 import java.time.Duration
-import java.util.*
 
 
 @Configuration
@@ -66,15 +60,20 @@ class RedisConfig(
     @Bean
     fun redisCacheConfiguration() = RedisCacheConfiguration
         .defaultCacheConfig()
-  			.disableCachingNullValues()
-        .prefixCacheNameWith("prefix::")	// 환경에 따라 변경 필요
-        .entryTtl(Duration.ofMinutes(5))	// 환경에 따라 변경 필요
+        .disableCachingNullValues()
+        .prefixCacheNameWith("prefix::")    // 환경에 따라 변경 필요
+        .entryTtl(Duration.ofMinutes(5))    // 환경에 따라 변경 필요
+        // 캐시 추상화로 저장되는 값의 직렬화는 RedisTemplate이 아니라
+        // RedisCacheConfiguration이 결정한다. 명시하지 않으면 JDK 직렬화가 사용된다.
+        .serializeValuesWith(
+            RedisSerializationContext.SerializationPair
+                .fromSerializer(GenericJackson2JsonRedisSerializer())
+        )
 
 
     @Bean
     fun cacheManager(connectionFactory: RedisConnectionFactory): RedisCacheManager {
         val redisCacheConfiguration = redisCacheConfiguration()
-
 
         val cacheManager = RedisCacheManager.builder(connectionFactory)
             .cacheDefaults(
@@ -82,12 +81,6 @@ class RedisConfig(
             )
             .transactionAware()
             .withInitialCacheConfigurations(
-                // 테스트용 설정
-                /*
-                Collections.singletonMap(
-                  "predefined", RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()
-                )
-                */
                 redisCacheConfigMap()
             )
             .build()
@@ -96,23 +89,34 @@ class RedisConfig(
     }
 
 
-  	/**
-  	개별 캐시 설정을 위한 함수
-  	*/
+    /**
+     * 개별 캐시 설정을 위한 함수
+     */
     private fun redisCacheConfigMap(): Map<String, RedisCacheConfiguration> {
+        val jsonValue = RedisSerializationContext.SerializationPair
+            .fromSerializer(GenericJackson2JsonRedisSerializer())
+
         return mapOf(
             "productCache" to RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofHours(5))
                 .prefixCacheNameWith("product::")
-                .disableCachingNullValues(),
+                .disableCachingNullValues()
+                .serializeValuesWith(jsonValue),
             "orderCache" to RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(5))
                 .prefixCacheNameWith("order::")
-                .disableCachingNullValues(),
+                .disableCachingNullValues()
+                .serializeValuesWith(jsonValue),
             "categoriesCache" to RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofDays(10))
-                .prefixCacheNameWith("categories::"),
-            "personNameCache" to RedisCacheConfiguration.defaultCacheConfig(),
+                .prefixCacheNameWith("categories::")
+                .disableCachingNullValues()
+                .serializeValuesWith(jsonValue),
+            "personNameCache" to RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofMinutes(5))
+                .prefixCacheNameWith("personName::")
+                .disableCachingNullValues()
+                .serializeValuesWith(jsonValue),
         )
     }
 
@@ -125,7 +129,7 @@ class RedisConfig(
         redisTemplate.valueSerializer = GenericJackson2JsonRedisSerializer()
 
         redisTemplate.hashKeySerializer = StringRedisSerializer()
-        redisTemplate.hashValueSerializer = StringRedisSerializer()
+        redisTemplate.hashValueSerializer = GenericJackson2JsonRedisSerializer()
         return redisTemplate
     }
 
@@ -142,33 +146,32 @@ class RedisConfig(
       - Netty 프레임워크 위에 빌드된 비동기 이벤트 기반 네트워크 애플리케이션 프레임워크이다.
       - 동기, 비동기, 리액티브 프로그래밍 모델 모두 지원하는 자바 클라이언트이다.
 - `RedisCacheConfiguration` Bean :
-  - `defaultCacheConfig`: 
+  - `defaultCacheConfig`:
     - 스프링이 제공하는 캐시 기본 설정 템플릿을 가져오는 설정
       - key serializer: `StringRedisSerializer` -> 키를 문자열로 저장
-      - value serializer : `JdkSerializationRedisSerializer` -> 값을 바이트 형태로 저장한다.
+      - value serializer : `JdkSerializationRedisSerializer` -> (기본값) 값을 JDK 직렬화 바이트 형태로 저장한다. 단, 위 코드에서는 아래 `serializeValuesWith`로 JSON 직렬화로 오버라이드했다.
       - Null 값 캐싱 : 허용(null 값도 캐시에 저장한다.)
-      - key expiration : 영원히
-      - Prefix: 실제 캐시 이름
-  - `disableCachingNullValues` : 캐싱할 때 null 값을 허용하지 않음 (`#result == null` 과 함께 사용해야 함)
-  - `prefixCacheNameWith` : Redis의 네임 스페이스를 분리하기 위해 접두사를 붙히는 부분.
-    - `prefix + cacheName + '::'` : 형태로 캐시가 Key가 저장이 된다.
-    - 예시) 아래의 helloRequestDto 라면 `prefix::printPersonName::1234Test` 같은 형태로 캐시가 저장이 된다.
+      - key expiration : 영원히(TTL 없음)
+      - Prefix: 캐시 이름(`cacheName`)
+  - `disableCachingNullValues` : 캐싱할 때 null 값을 허용하지 않음. (메서드가 null을 반환하면 저장을 건너뛴다.)
+  - `prefixCacheNameWith` : Redis의 네임스페이스를 분리하기 위해 접두사를 붙이는 부분.
+    - `prefix + cacheName + '::' + key` 형태로 캐시 Key가 저장된다.
+    - 예시) 아래 `printPersonName`은 캐시 이름이 `personNameCache`, key가 `이름:나이` 형식이므로, `prefixCacheNameWith("prefix::")` 기준이면 실제 키는 `prefix::personNameCache::홍길동:30` 같은 형태가 된다.
   - `entryTtl` : 얼마나 시간이 지난 후에 캐시가 만료되는지 설정한다.
+  - `serializeValuesWith` : 캐시에 저장되는 값의 직렬화 방식을 지정한다.
+    - `@Cacheable` 같은 캐시 추상화로 저장되는 값의 직렬화는 `RedisCacheConfiguration`이 결정하며, 아래에서 만드는 `RedisTemplate`의 serializer와는 별개의 레이어다.
+    - 따라서 이 설정을 생략하면 `RedisTemplate`에 JSON serializer를 걸어두었더라도 캐시 값은 JSON이 아니라 **JDK 직렬화 바이트**로 저장된다. 사람이 읽을 수 있는 JSON으로 저장하려면 위처럼 `GenericJackson2JsonRedisSerializer`를 명시해야 한다.
 - `RedisCacheManager` Bean :
-  - `.cacheDefaults(redisCacheConfiguration)` : 
+  - `.cacheDefaults(redisCacheConfiguration)` :
     - 앞에서 설정한 `RedisCacheConfiguration` Bean 설정 적용.
   - `transactionAware` :
-    - 스프링 관리 트랜젝션과 동기화 해서, 커밋 후에만 실제 캐시의 업데이트가 발생하도록 한다.
+    - 스프링 관리 트랜잭션과 동기화해서, 커밋 후에만 실제 캐시 업데이트가 발생하도록 한다.
     - 데이터베이스와 Redis 캐시 불일치 문제를 방지하기 위해 설정.
-    - 기본값 : False
-      - 지금은 트랜젝션과 동기화 되지 않는다.
-      - 롤백 되도 데이터는 Redis에 저장된다.
+    - 기본값은 `false`이며, 켜지 않으면 트랜잭션이 롤백되어도 캐시는 그대로 Redis에 남는다. 그래서 위 코드에서는 `.transactionAware()`를 호출해 동기화를 활성화
   - `withInitialCacheConfigurations`
     - 캐시 이름별로 서로 다른 캐시 설정을 할 수 있도록 해주는 기능이다.
-      - `cacheDefaults`는 모든 캐시에 일괄적으로 설정을 하지만, 캐시 별로 다른 설정이 필요하기 때문에 사용한다.
+      - `cacheDefaults`는 모든 캐시에 일괄 설정을 하지만, 캐시별로 다른 설정이 필요할 때 사용한다.
     - **캐시 이름별로 서로 다른 캐시 정책(예: TTL, 직렬화, null 캐싱 여부 등)을 적용**할 수 있게 해주는 기능
-
-
 
 ### 캐시 사용
 
@@ -183,8 +186,8 @@ class HelloService(
      * 메소드 실행 후에 캐시를 저장한다. 만약 이미 캐싱된 값이 있으면 메소드를 실행하지 않고 캐싱된 값을 반환
      * - value: 캐시 이름 (여러 개 가능)
      * - key: 캐시에 저장할 키
-     * - unless: 조건에 따라 캐싱하지 않는다.
-     * - condition: 조건이 일치하면 캐싱한다
+     * - unless: 조건에 따라 캐싱하지 않는다. (반환값 기준)
+     * - condition: 조건이 일치하면 캐싱한다. (인자 기준)
      */
     @Cacheable(
         value = ["personNameCache"],
@@ -261,13 +264,13 @@ class HelloService(
 }
 ```
 
-
+> [!NOTE]
+> **`disableCachingNullValues`와 `unless = "#result == null"`의 차이**
+> 둘은 비슷해 보이지만 동작하는 레이어가 다르다. `disableCachingNullValues()`는 **캐시 매니저 레벨**에서 반환값이 null이면 저장을 건너뛰는 설정이고(설정하지 않으면 null도 저장을 시도한다), `unless = "#result == null"`은 **어노테이션 레벨**에서 SpEL로 거르는 것이다. 효과가 겹칠 뿐 "반드시 함께 써야 하는" 관계는 아니다.
 
 ### 예시 화면
 
 ![redis 결과 이미지](https://velog.velcdn.com/images/alphanewbie/post/43104557-aa67-4284-b79d-a7262c7cf465/image.png)
-
-
 
 ## 참고 문헌
 
